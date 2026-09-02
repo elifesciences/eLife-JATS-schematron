@@ -1471,11 +1471,13 @@
    
    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
-    <assert test="contrib-group" 
+    <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#test-contrib-group-presence-1"
+        test="contrib-group" 
         role="error" 
         id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
      
-     <assert test="contrib-group[@content-type='section']" 
+     <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#test-contrib-group-presence-2"
+        test="contrib-group[@content-type='section']" 
         role="error" 
         id="test-contrib-group-presence-2">contrib-group[@content-type='section'] must be present (as a child of article-meta) for research articles (this is the contrib-group which contains reviewers and editors).</assert>
    
@@ -1483,7 +1485,8 @@
     
     <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
       
-      <report test="contrib-group[@content-type='section']" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editorial-editors-presence"
+        test="contrib-group[@content-type='section']" 
         role="error" 
         id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
       
@@ -1679,11 +1682,13 @@
 	
 	<rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
-    <assert test="contrib" 
+    <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-presence-test"
+        test="contrib" 
         role="error" 
         id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
 		  
-    <report test="count(contrib[@equal-contrib='yes']) = 1" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-count-test"
+        test="count(contrib[@equal-contrib='yes']) = 1" 
         role="error" 
         id="equal-count-test">There is one contrib with the attribute equal-contrib='yes'. This cannot be correct. Either 2 or more contribs within the same contrib-group should have this attribute, or none. Check <value-of select="contrib[@equal-contrib='yes']/name"/></report>
 	
@@ -1697,15 +1702,18 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
       
-      <assert test="contrib[@contrib-type='author' and @corresp='yes']" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#corresp-presence-test"
+        test="contrib[@contrib-type='author' and @corresp='yes']" 
         role="error" 
         id="corresp-presence-test">There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
       
-      <assert test="empty($indistinct-names)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#duplicate-author-test"
+        test="empty($indistinct-names)" 
         role="warning" 
         id="duplicate-author-test">There is more than one author with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely be incorrect.</assert>
       
-      <report test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#non-contrib-contribs"
+        test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" 
         role="error" 
         id="non-contrib-contribs"><value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
@@ -1713,11 +1721,13 @@
     
     <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
       
-      <assert test="count(contrib[@contrib-type='senior_editor']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-1"
+        test="count(contrib[@contrib-type='senior_editor']) = 1" 
         role="error" 
         id="editor-conformance-1">contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
       
-      <assert test="count(contrib[@contrib-type='editor']) = 1" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-2"
+        test="count(contrib[@contrib-type='editor']) = 1" 
         role="warning" 
         id="editor-conformance-2">contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</assert>
       
@@ -1729,15 +1739,18 @@
       <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
       <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib/name[1])=$name) then e:get-name($contrib) else ()"/>
       
-      <report test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-3"
+        test="(@contrib-type='senior_editor') and ($role!='Senior Editor')" 
         role="error" 
         id="editor-conformance-3"><value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
       
-      <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-4"
+        test="(@contrib-type='editor') and ($role!='Reviewing Editor')" 
         role="error" 
         id="editor-conformance-4"><value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
 
-      <assert test="count($matching-author-names)=0" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-5"
+        test="count($matching-author-names)=0" 
         role="error" 
         id="editor-conformance-5"><value-of select="$name"/> is listed both as an author and as a <value-of select="$role"/>, which must be incorrect.</assert>
       
@@ -1745,7 +1758,8 @@
     
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-test-1"
+        test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
         role="warning" 
         flag="version-1"
         id="auth-cont-test-1"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
@@ -1758,7 +1772,8 @@
       <let name="con-vals" value="for $x in tokenize(string-join($cont-fn,', '),', ') return replace(lower-case($x),'\p{Zs}$|^\p{Zs}','')"/>
       <let name="indistinct-conts" value="for $val in distinct-values($con-vals)[matches(.,$credit-regex)] return $val[count($con-vals[. = $val]) gt 1]"/>
       
-      <assert test="empty($indistinct-conts)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-1"
+        test="empty($indistinct-conts)" 
         role="error"
         flag="version-1"
         id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
@@ -1766,12 +1781,14 @@
     
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests-v2">
       
-      <assert test="role" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-test-1-v2"
+        test="role" 
         role="warning" 
         flag="version-2"
         id="auth-cont-test-1-v2"><value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
       
-      <report test="role and not(role[@vocab='credit'])" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-test-2-v2"
+        test="role and not(role[@vocab='credit'])" 
         role="warning" 
         flag="version-2"
         id="auth-cont-test-2-v2"><value-of select="e:get-name(name[1])"/> has no CRediT contributions. Is that correct?</report>
@@ -1779,7 +1796,8 @@
     
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" id="collab-cont-tests">
       
-      <assert test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#collab-cont-test-1"
+        test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" 
         role="warning" 
         flag="version-1"
         id="collab-cont-test-1"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
@@ -1787,17 +1805,20 @@
     
     <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)]" id="collab-cont-tests-v2">
       
-      <assert test="role" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-collab-cont-test-1-v2"
+        test="role" 
         role="warning" 
         flag="version-2"
         id="pre-collab-cont-test-1-v2"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
       
-      <assert test="role" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#final-collab-cont-test-1-v2"
+        test="role" 
         role="error" 
         flag="version-2"
         id="final-collab-cont-test-1-v2"><value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
       
-      <report test="role and not(role[@vocab='credit'])" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#final-collab-cont-test-2-v2"
+        test="role and not(role[@vocab='credit'])" 
         role="warning" 
         flag="version-2"
         id="final-collab-cont-test-2-v2"><value-of select="e:get-surname(.)"/> has no CRediT contributions. Is that correct?</report>
@@ -1821,7 +1842,8 @@
       <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
      
-      <assert test="empty($indistinct-conts)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-v2"
+        test="empty($indistinct-conts)" 
         role="error" 
         id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
       
@@ -1834,11 +1856,13 @@
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       
-      <assert test="empty($indistinct-names)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#duplicate-member-test"
+        test="empty($indistinct-names)" 
         role="warning" 
         id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
       
-      <assert test="empty($indistinct-orcids)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#duplicate-member-orcid-test"
+        test="empty($indistinct-orcids)" 
         role="error" 
         id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
     </rule>
@@ -1850,7 +1874,8 @@
         return e:get-name($member)"/>
       <let name="auth-and-member" value="$top-names[.=$members]"/>
       
-      <assert test="empty($auth-and-member)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-and-member-test"
+        test="empty($auth-and-member)" 
         role="warning" 
         id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule>
@@ -1879,7 +1904,8 @@
         role="error" 
         id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
-      <report test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-xref-test-2"
+        test="(@ref-type='fn') and contains(@rid,'equal') and preceding-sibling::xref[not(@ref-type='aff')]" 
         role="error" 
         id="author-xref-test-2">Equal contribution links from authors must appear after affiliation footnote links. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their equal contribution link (to <value-of select="idref(@rid)"/>) appears after another non-affiliation link, when it should appear before it.</report>
       
@@ -1888,22 +1914,26 @@
         role="error" 
         id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
       
-      <report test="contains(@rid,'dataset')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-xref-test-4"
+        test="contains(@rid,'dataset')" 
         role="error" 
         id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule>
 	
 	<rule context="contrib-group//name" id="name-tests">
 		
-    	<assert test="count(surname) = 1" 
+    	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-1"
+        test="count(surname) = 1" 
         role="error" 
         id="surname-test-1">Each name must contain only one surname.</assert>
 	  
-	  <report test="count(given-names) gt 1" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-1"
+        test="count(given-names) gt 1" 
         role="error" 
         id="given-names-test-1">Each name must contain only one given-names element.</report>
 	  
-	  <assert test="given-names" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-2"
+        test="given-names" 
         role="warning" 
         id="given-names-test-2">This name - <value-of select="."/> - does not contain a given-name. Please check with eLife staff that this is correct.</assert>
 	  
@@ -1911,39 +1941,48 @@
 	  
 	  <rule context="contrib-group//name/surname" id="surname-tests">
 		
-	  <report test="normalize-space(.)=''" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-2"
+        test="normalize-space(.)=''" 
         role="error" 
         id="surname-test-2">surname must not be empty.</report>
 		
-    <report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-3"
+        test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" 
         role="error" 
         id="surname-test-3">surname must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript).</report>
 		
-	  <assert test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-4"
+        test="matches(.,&quot;^[\p{L}\p{M}\s'’-]*$&quot;)" 
         role="error" 
         id="surname-test-4">surname should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <report test="matches(.,'^\p{Ll}') and not(matches(.,'^(de[lrn]?|van|von|el|te[rn]|d[ai]|dos)\s'))" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-5"
+        test="matches(.,'^\p{Ll}') and not(matches(.,'^(de[lrn]?|van|von|el|te[rn]|d[ai]|dos)\s'))" 
         role="warning" 
         id="surname-test-5">surname doesn't begin with a capital letter - <value-of select="."/>. Is this correct?</report>
 	  
-	  <report test="matches(.,'^\p{Zs}')" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-6"
+        test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="surname-test-6">surname starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'\p{Zs}$')" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-7"
+        test="matches(.,'\p{Zs}$')" 
         role="error" 
         id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	    
-	    <report test="matches(.,'^[A-Z]{1,2}\p{Zs}') and (string-length(.) gt 3)" 
+	    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-8"
+        test="matches(.,'^[A-Z]{1,2}\p{Zs}') and (string-length(.) gt 3)" 
         role="warning" 
         id="surname-test-8">surname looks to start with initial - '<value-of select="."/>'. Should '<value-of select="substring-before(.,' ')"/>' be placed in the given-names field?</report>
 	    
-	    <report test="matches(.,'[\(\)\[\]]')" 
+	    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-9"
+        test="matches(.,'[\(\)\[\]]')" 
 	      role="warning" 
 	      id="surname-test-9">surname contains brackets - '<value-of select="."/>'. Should the bracketed text be placed in the given-names field instead?</report>
 	    
-	    <report test="matches(.,'\p{Zs}(III?|I?V)$')" 
+	    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-10"
+        test="matches(.,'\p{Zs}(III?|I?V)$')" 
 	      role="warning" 
 	      id="surname-test-10">surname ends with what might be roman numerals - '<value-of select="."/>'. Should these be placed in a suffix element instead?</report>
 		
@@ -1951,55 +1990,68 @@
     
     <rule context="name/given-names" id="given-names-tests">
 		
-	  <report test="normalize-space(.)=''" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-3"
+        test="normalize-space(.)=''" 
         role="error" 
         id="given-names-test-3">given-names must not be empty.</report>
 		
-    	<report test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" 
+    	<report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-4"
+        test="descendant::bold or descendant::sub or descendant::sup or descendant::italic or descendant::sc" 
         role="error" 
         id="given-names-test-4">given-names must not contain any formatting (bold, or italic emphasis, or smallcaps, superscript or subscript) - '<value-of select="."/>'.</report>
 		
-      <assert test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-5"
+        test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" 
         role="error" 
         id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
 		
-	  <assert test="matches(.,'^\p{Lu}')" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-6"
+        test="matches(.,'^\p{Lu}')" 
         role="warning" 
         id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
 	  
-    <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\p{Zs}?[\p{L}]{1}\.\p{Zs}?$')" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-7"
+        test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\p{Zs}?[\p{L}]{1}\.\p{Zs}?$')" 
         role="error" 
         id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/></report>
 	  
-    <report test="matches(.,'^\p{Zs}')" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-8"
+        test="matches(.,'^\p{Zs}')" 
         role="error" 
         id="given-names-test-8">given-names starts with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-    <report test="matches(.,'\p{Zs}$')" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-9"
+        test="matches(.,'\p{Zs}$')" 
         role="error" 
         id="given-names-test-9">given-names ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
 	  
-	  <report test="matches(.,'[A-Za-z] [Dd]e[rn]?$')" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-10"
+        test="matches(.,'[A-Za-z] [Dd]e[rn]?$')" 
         role="warning" 
         id="given-names-test-10">given-names ends with de, der, or den - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 		
-	  <report test="matches(.,'[A-Za-z] [Vv]an$')" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-11"
+        test="matches(.,'[A-Za-z] [Vv]an$')" 
         role="warning" 
         id="given-names-test-11">given-names ends with ' van' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-      <report test="matches(.,'[A-Za-z] [Vv]on$')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-12"
+        test="matches(.,'[A-Za-z] [Vv]on$')" 
         role="warning" 
         id="given-names-test-12">given-names ends with ' von' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
 	  
-      <report test="matches(.,'[A-Za-z] [Ee]l$')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-13"
+        test="matches(.,'[A-Za-z] [Ee]l$')" 
         role="warning" 
         id="given-names-test-13">given-names ends with ' el' - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-14"
+        test="matches(.,'[A-Za-z] [Tt]e[rn]?$')" 
         role="warning" 
         id="given-names-test-14">given-names ends with te, ter, or ten - should this be captured as the beginning of the surname instead? - '<value-of select="."/>'.</report>
       
-      <report test="matches(normalize-space(.),'[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]|[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]$|^[A-za-z]\p{Zs}[A-za-z]$')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-15"
+        test="matches(normalize-space(.),'[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]|[A-Za-z]\p{Zs}[A-za-z]\p{Zs}[A-za-z]$|^[A-za-z]\p{Zs}[A-za-z]$')" 
         role="info" 
         id="given-names-test-15">given-names contains initials with spaces. Ensure that the space(s) is removed between initials - '<value-of select="."/>'.</report>
 		
@@ -2007,11 +2059,13 @@
     
     <rule context="contrib-group//name/suffix" id="suffix-tests">
       
-      <assert test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#suffix-assert"
+        test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" 
         role="error" 
         id="suffix-assert">suffix can only have one of these values - 'Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
-      <report test="*" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#suffix-child-test"
+        test="*" 
         role="error" 
         id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/></report>
       
@@ -2019,7 +2073,8 @@
     
     <rule context="contrib-group//name/*" id="name-child-tests">
       
-      <assert test="local-name() = ('surname','given-names','suffix')" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#disallowed-child-assert"
+        test="local-name() = ('surname','given-names','suffix')" 
         role="error" 
         id="disallowed-child-assert"><value-of select="local-name()"/> is not allowed as a child of name.</assert>
       
@@ -2055,7 +2110,8 @@
         role="error" 
         id="contrib-test-1">Authors should have at least 1 link to an affiliation. <value-of select="$name"/> does not.</report>
 	  
-	  <report test="if ($subj-type = $notice-display-types) then ()      
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-test-5"
+        test="if ($subj-type = $notice-display-types) then ()      
 	    else if ($type != 'author') then ()      
 	    else if (collab or collab-wrap) then ()      
 	    else if (ancestor::*[name()=('collab','collab-wrap')]) then (count(xref[@ref-type='aff']) + count(aff) = 0)      
@@ -2073,20 +2129,24 @@
         role="error" 
         id="contrib-test-4">The <value-of select="role[1]"/> (<value-of select="$name"/>) must have an affiliation. Exeter: If it is not present in the eJP output, please check with eLife production. Production: Please check eJP or ask Editorial for the correct affiliation.</report>
 	  
-	     <report test="name and (collab or collab-wrap)" 
+	     <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-test-3"
+        test="name and (collab or collab-wrap)" 
         role="error" 
         id="contrib-test-3">author contains both a child name element and a child collab-wrap (or collab) element. This is not correct.</report>
 	  
-	     <report test="if (collab or collab-wrap) then ()
+	     <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#name-test"
+        test="if (collab or collab-wrap) then ()
 	       else count(name) != 1" 
         role="error" 
         id="name-test">Contrib contains no collab-wrap but has <value-of select="count(name)"/> name(s). This is not correct.</report>
 	  
-	     <report test="self::*[@corresp='yes'][not(child::*:email)]" 
+	     <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-email-1"
+        test="self::*[@corresp='yes'][not(child::*:email)]" 
         role="error" 
         id="contrib-email-1">Corresponding authors must have an email.</report>
 	  
-	  <report test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" 
+	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-email-2"
+        test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" 
         role="error" 
         id="contrib-email-2">Non-corresponding authors must not have an email.</report>
 	  
@@ -2111,7 +2171,8 @@
       <let name="name" value="e:get-name(name[1])"/>
       <let name="normalized-name" value="e:stripDiacritics($name)"/>
       
-      <report test="$normalized-name != $name" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#corresp-author-initial-test"
+        test="$normalized-name != $name" 
         role="warning" 
         id="corresp-author-initial-test"><value-of select="$name"/> has a name with letters that have diacritics, marks, or a name with special characters. Please ensure that their initials display correctly in the PDF in the 'For correspondence' section on the first page.</report>
       
@@ -2124,7 +2185,8 @@
 		  <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
 		
 		  <!-- Exception included for group authors -->
-		  <assert test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
+		  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-children-test"
+        test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
 		    else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]
 		    else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features]
 		    else self::*[local-name() = $allowed-contrib-blocks]" 
@@ -2141,7 +2203,8 @@
       <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
       
       <!-- Exception included for group authors -->
-      <assert test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-children-test-v2"
+        test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]
         else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]
         else if ($article-type = $features-article-types) then self::*[local-name() = $allowed-contrib-blocks-features]
         else self::*[local-name() = $allowed-contrib-blocks]" 
@@ -2157,22 +2220,26 @@
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
       <let name="credit-role" value="document($credit-roles)//*:item[(@term = $vocab-term) or (@uri = $vocab-term-id)]"/>
       
-      <assert test="@vocab-identifier='http://credit.niso.org/'" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-1"
+        test="@vocab-identifier='http://credit.niso.org/'" 
         role="error"
         id="credit-role-check-1">A CRediT taxonomy role must have a @vocab-identifier whose value is http://credit.niso.org/.</assert>
       
-      <report test="not(@vocab-term-identifier) or ((count($credit-role) = 1) and ($vocab-term-id != $credit-role/@uri))" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-2"
+        test="not(@vocab-term-identifier) or ((count($credit-role) = 1) and ($vocab-term-id != $credit-role/@uri))" 
         role="error"
         flag="version-2"
         id="credit-role-check-2">A CRediT taxonomy role must have a @vocab-term-identifier, the value of which must be the URL of the specific CRediT term. <value-of select="if (empty($credit-role)) then concat('It must be one of these - ',string-join(document($credit-roles)//*:item/@uri,', ')) else concat('In this case ',$credit-role/@uri,' (based on the @vocab-term of this role element)')"/>.</report>
       
-      <report test="not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))"
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-3"
+        test="not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))"
         role="error"
         flag="version-2"
         id="credit-role-check-3">A CRediT taxonomy role must have a @vocab-term, the value of which must be one of the CRediT terms - <value-of select="if (empty($credit-role)) then string-join(document($credit-roles)//*:item/@term,', ') 
           else concat(' in this case ',$credit-role/@term,' (based on the @vocab-term-identifer of of this role element)')"/>.</report>
       
-      <assert test="(count($credit-role) = 1) and $vocab-term=$credit-role/@term and $vocab-term-id= $credit-role/@uri" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-4"
+        test="(count($credit-role) = 1) and $vocab-term=$credit-role/@term and $vocab-term-id= $credit-role/@uri" 
         role="error"
         flag="version-2"
         id="credit-role-check-4">A CRediT taxonomy role must have a @vocab-term, whose value is a specific CRediT taxonomy term, and a @vocab-term-identifier, whose value is the URL for that corresponding CRediT term. <value-of select="concat('Either the @vocab-term - ', $vocab-term, ' - is incorrect and must be ', if ($credit-role[@uri=$vocab-term-id]) then $credit-role[@uri=$vocab-term-id]/@term else 'unknown', ', or the @vocab-term-identifier - ', $vocab-term-id,' - is incorrect and must be ', $credit-role[@term=$vocab-term]/@uri)"/>.</assert>
@@ -2183,12 +2250,14 @@
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
       
-      <report test="@vocab-term or @vocab-term-identifier or @vocab-identifier"
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-role-check-1"
+        test="@vocab-term or @vocab-term-identifier or @vocab-identifier"
         role="error"
         flag="version-2"
         id="author-role-check-1">role with <value-of select="string-join(@*[name()=('vocab-term','vocab-term-identifier','vocab-identifier')]/name(),'; ')"/> attributes must have a vocab="credit" attribute. This one does not.</report>
       
-      <report test="matches(lower-case(.),'^\p{Zs}*(conceptuali[sz]ation|data\p{Zs}+curation|formal\p{Zs}+analysis|funding\p{Zs}+acquisition|investigation|methodology|project\p{Zs}+administration|resources|software|supervision|validation|visualization|writing\p{Zs}+[-–—]\p{Zs}+original\p{Zs}+draft|writing\p{Zs}+[-–—]\p{Zs}+review(ing)?\p{Zs}+(&amp;|and)\p{Zs}+editing)\p{Zs}*$')"
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-role-check-2"
+        test="matches(lower-case(.),'^\p{Zs}*(conceptuali[sz]ation|data\p{Zs}+curation|formal\p{Zs}+analysis|funding\p{Zs}+acquisition|investigation|methodology|project\p{Zs}+administration|resources|software|supervision|validation|visualization|writing\p{Zs}+[-–—]\p{Zs}+original\p{Zs}+draft|writing\p{Zs}+[-–—]\p{Zs}+review(ing)?\p{Zs}+(&amp;|and)\p{Zs}+editing)\p{Zs}*$')"
         role="error"
         flag="version-2"
         id="author-role-check-2">role with content '<value-of select="."/>' exactly matches one of the CRediT taxonomy terms, but it does not have a vocab="credit" attribute.</report>
@@ -2198,20 +2267,24 @@
 	<rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
 	  <let name="text" value="."/>
 		
-    	<assert test="@authenticated='true'" 
+    	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#orcid-test-1"
+        test="@authenticated='true'" 
         role="error" 
         id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
 		
 		<!-- Needs updating to only allow https when this is implemented -->
-	  <assert test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#orcid-test-2"
+        test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" 
         role="error" 
         id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
 	  
-	  <assert test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-orcid-test-3"
+        test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1" 
         role="warning" 
         id="pre-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <value-of select="."/> - is associated with <value-of select="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text])"/> authors. Please confirm which author this ORCiD belongs to.'.</assert>
 	  
-	  <assert test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1" 
+	  <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#final-orcid-test-3"
+        test="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text]) = 1" 
         role="error" 
         id="final-orcid-test-3"><value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please raise a query with production so that they can raise it with the authors.</assert>
 		
@@ -2223,7 +2296,8 @@
 	
 	<rule context="article-meta//email" id="email-tests">
 		
-    	<assert test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" 
+    	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#email-test"
+        test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" 
         role="error" 
         id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
@@ -3801,11 +3875,13 @@
 
   <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
     	
-    <report test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-author-test-1"
+        test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" 
         role="error" 
         id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     
-    <report test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" 
+    <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-author-test-2"
+        test="xref[matches(@rid,'^equal-contrib[0-9]$')] and not(@equal-contrib='yes')" 
         role="error" 
         id="equal-author-test-2">author contains an xref[@ref-type='fn'] with a 'equal-contrib0' type @rid, but the contrib has no @equal-contrib='yes'.</report>
 		
@@ -6638,14 +6714,16 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
-      <assert test="title = 'Competing interests'" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-title-test"
+        test="title = 'Competing interests'" 
         role="error" 
         id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
     
     <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
       
-      <assert test="title = 'Author contributions'" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-title-test"
+        test="title = 'Author contributions'" 
         role="error" 
         id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
@@ -7243,22 +7321,26 @@ else self::*/local-name() = $allowed-p-blocks"
         id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
       
       <!-- Exception for article with no authors -->
-      <report test="if ($author-count = 0) then ()
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#additional-info-test-2"
+        test="if ($author-count = 0) then ()
         else not(fn-group[@content-type='competing-interest'])" 
         role="error" 
         id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
       
-      <report test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#final-additional-info-test-3"
+        test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))
         else ()" 
         role="error" 
         id="final-additional-info-test-3">Missing author contributions. This type of sec in research content must have a child fn-group[@content-type='author-contribution'].</report>
       
-      <report test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-additional-info-test-3"
+        test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))
         else ()" 
         role="warning" 
         id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
       
-      <report test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#additional-info-test-4"
+        test="$article-type=$non-contribs and fn-group[@content-type='author-contribution']" 
         role="error" 
         id="additional-info-test-4"><value-of select="$article-type"/> type articles should not contain author contributions.</report>
       
@@ -7294,11 +7376,13 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       
-      <assert test="count(fn) gt 0" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-1"
+        test="count(fn) gt 0" 
         role="error" 
         id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
       
-      <assert test="ancestor::back" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-group-test-1"
+        test="ancestor::back" 
         role="error" 
         id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
     </rule>
@@ -7306,15 +7390,18 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       <let name="lower-case" value="lower-case(.)"/>
       
-      <assert test="@fn-type='COI-statement'" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-2"
+        test="@fn-type='COI-statement'" 
         role="error" 
         id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
       
-      <report test="contains(lower-case(.),'the other authors')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-3"
+        test="contains(lower-case(.),'the other authors')" 
         role="error" 
         id="comp-int-fn-test-3">Competing interests footnote contains information about other authors - '<value-of select="."/>'. These footnotes should only contain information about that specific author.</report>
       
-      <report test="matches(.,'\.\p{Zs}*$')" 
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-4"
+        test="matches(.,'\.\p{Zs}*$')" 
         role="error" 
         id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
 
@@ -7326,7 +7413,8 @@ else self::*/local-name() = $allowed-p-blocks"
     
     <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
       
-      <assert test="@fn-type='con'" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-fn-test-1"
+        test="@fn-type='con'" 
         role="error" 
         id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
 
@@ -13870,7 +13958,8 @@ else self::*/local-name() = $allowed-p-blocks"
     <rule context="contrib[@contrib-type]" id="contrib-id-attribute-test">
       <let name="allowed-values" value="('author','senior_editor','editor','reviewer')"/>
       
-      <assert test="@contrib-type=$allowed-values" 
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-id-value-conformance"
+        test="@contrib-type=$allowed-values" 
         role="error" 
         id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
     </rule>
