@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
-      <assert test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-upper-case" test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

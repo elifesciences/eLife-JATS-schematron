@@ -965,7 +965,7 @@
     <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <report test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#distinct-label-conformance" test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

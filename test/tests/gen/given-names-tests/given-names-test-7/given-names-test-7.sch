@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="name/given-names" id="given-names-tests">
-      <report test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\p{Zs}?[\p{L}]{1}\.\p{Zs}?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-7" test="matches(.,'^[\p{L}]{1}\.$|^[\p{L}]{1}\.\p{Zs}?[\p{L}]{1}\.\p{Zs}?$')" role="error" id="given-names-test-7">given-names contains initialised full stop(s) which is incorrect - <value-of select="."/>
       </report>
     </rule>
   </pattern>

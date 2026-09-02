@@ -973,7 +973,7 @@
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <report test="if ($subj-type = $notice-display-types) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-auth-kwd-group-presence-1" test="if ($subj-type = $notice-display-types) then ()       else count(kwd-group[@kwd-group-type='author-keywords']) != 1" role="error" id="test-auth-kwd-group-presence-1">One author keyword group must be present in article-meta.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

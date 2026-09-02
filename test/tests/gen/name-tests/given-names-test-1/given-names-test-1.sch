@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name" id="name-tests">
-      <report test="count(given-names) gt 1" role="error" id="given-names-test-1">Each name must contain only one given-names element.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-1" test="count(given-names) gt 1" role="error" id="given-names-test-1">Each name must contain only one given-names element.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

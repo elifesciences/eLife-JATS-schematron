@@ -973,7 +973,7 @@
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <report test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-ro-kwd-group-presence-1" test="count(kwd-group[@kwd-group-type='research-organism']) gt 1" role="error" id="test-ro-kwd-group-presence-1">More than 1 Research organism keyword group is present in article-meta. This is incorrect.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -966,7 +966,7 @@
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
-      <report test="if ($author-count = 0) then ()         else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#additional-info-test-2" test="if ($author-count = 0) then ()         else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

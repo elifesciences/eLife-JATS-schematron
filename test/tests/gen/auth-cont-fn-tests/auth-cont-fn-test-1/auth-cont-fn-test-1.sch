@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
-      <assert test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-fn-test-1" test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

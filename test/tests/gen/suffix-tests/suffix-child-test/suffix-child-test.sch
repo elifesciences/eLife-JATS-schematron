@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/suffix" id="suffix-tests">
-      <report test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#suffix-child-test" test="*" role="error" id="suffix-child-test">suffix cannot have any child elements - <value-of select="*/local-name()"/>
       </report>
     </rule>
   </pattern>

@@ -967,7 +967,7 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <report test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-1" test="contains($mime-subtype,'tiff') and not(matches($file,'\.tif$|\.tiff$'))" role="error" id="graphic-test-1">
         <name/> has tif mime-subtype but filename does not end with '.tif' or '.tiff'. This cannot be correct.</report>
     </rule>
   </pattern>

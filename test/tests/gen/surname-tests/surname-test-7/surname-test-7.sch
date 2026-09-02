@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="matches(.,'\p{Zs}$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-7" test="matches(.,'\p{Zs}$')" role="error" id="surname-test-7">surname ends with a space, which cannot be correct - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

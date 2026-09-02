@@ -965,7 +965,7 @@
     <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
-      <report test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#label-fig-group-conformance-2" test="not(ancestor::fig-group) and parent::media and matches(.,'[Ff]igure')" role="error" id="label-fig-group-conformance-2">
         <value-of select="$label"/> contains the string 'Figure' but it's not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
     </rule>
   </pattern>

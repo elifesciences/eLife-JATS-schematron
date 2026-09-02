@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
-      <assert test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
+      <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#non-ro-kwd-presence-test" test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

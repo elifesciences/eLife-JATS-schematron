@@ -967,7 +967,7 @@
       <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <let name="allowed-contrib-blocks" value="('name', 'collab', 'collab-wrap', 'contrib-id', 'email', 'xref')"/>
       <let name="allowed-contrib-blocks-features" value="($allowed-contrib-blocks, 'bio')"/>
-      <assert test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" flag="version-1" id="author-children-test">
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-children-test" test="if (ancestor::collab or ancestor::collab-wrap) then self::*[local-name() = ($allowed-contrib-blocks,'aff')]       else if ($template = '5') then self::*[local-name() = $allowed-contrib-blocks-features]       else if ($article-type = ($features-article-types,'expression-of-concern')) then self::*[local-name() = $allowed-contrib-blocks-features]       else self::*[local-name() = $allowed-contrib-blocks]" role="error" flag="version-1" id="author-children-test">
         <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
     </rule>
   </pattern>

@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#broken-unicode-presence" test="matches(.,'&amp;#x\d')" role="warning" id="broken-unicode-presence">
         <name/> element contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>

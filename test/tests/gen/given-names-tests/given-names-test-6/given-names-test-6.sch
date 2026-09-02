@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="name/given-names" id="given-names-tests">
-      <assert test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-6" test="matches(.,'^\p{Lu}')" role="warning" id="given-names-test-6">given-names doesn't begin with a capital letter - '<value-of select="."/>'. Is this correct?</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

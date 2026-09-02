@@ -973,7 +973,7 @@
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <report test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-auth-kwd-group-presence-2" test="if ($subj-type = $notice-display-types) then (count(kwd-group[@kwd-group-type='author-keywords']) != 0)       else ()" role="error" id="test-auth-kwd-group-presence-2">
         <value-of select="$subj-type"/> articles must not have any author keywords</report>
     </rule>
   </pattern>

@@ -967,7 +967,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
-      <report test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-5" test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

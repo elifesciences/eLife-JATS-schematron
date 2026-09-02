@@ -965,7 +965,7 @@
     <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" id="author-role-tests-2">
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
-      <report test="@vocab-term or @vocab-term-identifier or @vocab-identifier" role="error" flag="version-2" id="author-role-check-1">role with <value-of select="string-join(@*[name()=('vocab-term','vocab-term-identifier','vocab-identifier')]/name(),'; ')"/> attributes must have a vocab="credit" attribute. This one does not.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-role-check-1" test="@vocab-term or @vocab-term-identifier or @vocab-identifier" role="error" flag="version-2" id="author-role-check-1">role with <value-of select="string-join(@*[name()=('vocab-term','vocab-term-identifier','vocab-identifier')]/name(),'; ')"/> attributes must have a vocab="credit" attribute. This one does not.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

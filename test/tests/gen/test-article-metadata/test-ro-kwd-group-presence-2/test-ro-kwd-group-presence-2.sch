@@ -973,7 +973,7 @@
       <let name="digest-count" value="count(abstract[@abstract-type=('plain-language-summary','executive-summary')])"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="dtd" value="ancestor::article/@dtd-version"/>
-      <report test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))       then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#test-ro-kwd-group-presence-2" test="if ($subj-type = ('Research Article', 'Research Advance', 'Replication Study', 'Research Communication'))       then (count(kwd-group[@kwd-group-type='research-organism']) = 0)       else ()" role="warning" id="test-ro-kwd-group-presence-2">
         <value-of select="$subj-type"/> does not contain a Research Organism keyword group. Is this correct?</report>
     </rule>
   </pattern>

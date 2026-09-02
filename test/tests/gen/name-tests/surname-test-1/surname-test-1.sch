@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name" id="name-tests">
-      <assert test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-1" test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

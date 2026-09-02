@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="contrib-group//name/surname" id="surname-tests">
-      <report test="matches(.,'\p{Zs}(III?|I?V)$')" role="warning" id="surname-test-10">surname ends with what might be roman numerals - '<value-of select="."/>'. Should these be placed in a suffix element instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-10" test="matches(.,'\p{Zs}(III?|I?V)$')" role="warning" id="surname-test-10">surname ends with what might be roman numerals - '<value-of select="."/>'. Should these be placed in a suffix element instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

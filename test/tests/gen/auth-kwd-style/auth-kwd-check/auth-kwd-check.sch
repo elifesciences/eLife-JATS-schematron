@@ -967,7 +967,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
-      <report test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check" test="not(matches(.,'RNA|[Cc]ryoEM|[34]D')) and (. != $lower) and not(contains($t,.))" role="warning" id="auth-kwd-check">Keyword - '<value-of select="."/>' - does not appear in the article text with this capitalisation. Should it be <value-of select="$lower"/> instead?</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
-      <assert test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#test-contrib-group-presence-1" test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

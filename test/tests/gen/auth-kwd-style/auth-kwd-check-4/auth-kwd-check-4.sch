@@ -967,7 +967,7 @@
       <let name="lower" value="lower-case(.)"/>
       <let name="kwd-regex" value="concat('\. ',replace(.,'\+','\\+'))"/>
       <let name="t" value="replace($article-text,$kwd-regex,'')"/>
-      <report test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" role="warning" id="auth-kwd-check-4">Keyword contains brackets - <value-of select="."/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</report>
+      <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-4" test="matches(.,'[\(\)\[\]]') or contains(.,'{') or contains(.,'}')" role="warning" id="auth-kwd-check-4">Keyword contains brackets - <value-of select="."/>. These should either simply be removed, or added as two keywords (with the brackets still removed).</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

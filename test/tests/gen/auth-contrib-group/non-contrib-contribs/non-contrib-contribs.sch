@@ -969,7 +969,7 @@
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
-      <report test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" role="error" id="non-contrib-contribs">
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#non-contrib-contribs" test="$article-type=$non-contribs and descendant::contrib[@contrib-type='author' and role]" role="error" id="non-contrib-contribs">
         <value-of select="$article-type"/> type articles should not contain author contributions.</report>
     </rule>
   </pattern>

@@ -967,7 +967,7 @@
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
       <let name="credit-role" value="document($credit-roles)//*:item[(@term = $vocab-term) or (@uri = $vocab-term-id)]"/>
-      <report test="not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))" role="error" flag="version-2" id="credit-role-check-3">A CRediT taxonomy role must have a @vocab-term, the value of which must be one of the CRediT terms - <value-of select="if (empty($credit-role)) then string-join(document($credit-roles)//*:item/@term,', ')            else concat(' in this case ',$credit-role/@term,' (based on the @vocab-term-identifer of of this role element)')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-3" test="not(@vocab-term) or ((count($credit-role) = 1) and ($vocab-term != $credit-role/@term))" role="error" flag="version-2" id="credit-role-check-3">A CRediT taxonomy role must have a @vocab-term, the value of which must be one of the CRediT terms - <value-of select="if (empty($credit-role)) then string-join(document($credit-roles)//*:item/@term,', ')            else concat(' in this case ',$credit-role/@term,' (based on the @vocab-term-identifer of of this role element)')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

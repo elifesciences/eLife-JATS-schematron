@@ -967,7 +967,7 @@
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
       <let name="mime-subtype" value="if ($dtd-version le '1.3') then @mime-subtype else substring-after(@mimetype,'/')"/>
-      <report test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#graphic-test-6" test="preceding::graphic/@xlink:href = $link" role="error" id="graphic-test-6">Image file for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="replace(preceding::graphic[@xlink:href=$link][1]/parent::fig/label,'\.','')"/>.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="back">
     <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
-      <assert test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-1" test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

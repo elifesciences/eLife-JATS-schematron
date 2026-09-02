@@ -967,7 +967,7 @@
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
       <let name="credit-role" value="document($credit-roles)//*:item[(@term = $vocab-term) or (@uri = $vocab-term-id)]"/>
-      <assert test="@vocab-identifier='http://credit.niso.org/'" role="error" id="credit-role-check-1">A CRediT taxonomy role must have a @vocab-identifier whose value is http://credit.niso.org/.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-1" test="@vocab-identifier='http://credit.niso.org/'" role="error" id="credit-role-check-1">A CRediT taxonomy role must have a @vocab-identifier whose value is http://credit.niso.org/.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#operating-system-command-presence" test="contains(.,'&#x9D;')" role="error" id="operating-system-command-presence">
         <name/> element contains an operating system command character '&#x9D;' (unicode string: &amp;#x9D;) which should very likely be replaced/removed. - <value-of select="."/>
       </report>
     </rule>

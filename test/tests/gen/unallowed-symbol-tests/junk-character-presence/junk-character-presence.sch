@@ -963,7 +963,7 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">
-      <report test="contains(.,'')" role="error" id="junk-character-presence">
+      <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#junk-character-presence" test="contains(.,'')" role="error" id="junk-character-presence">
         <name/> element contains a junk character '' which should be replaced.</report>
     </rule>
   </pattern>
