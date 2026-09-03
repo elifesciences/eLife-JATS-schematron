@@ -1,0 +1,11 @@
+<?oxygen SCHSchema="math-block-inline.sch"?>
+<!--Context: mml:math
+Test: report    @display='block' and ancestor::inline-formula
+Message:  is a descendant of an inline-formula but it has the attribute display="block". This is incorrect. Either the inline-formula is really a disp-formula, or the display="block" attribute should be removed (or changed to "inline"). -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <disp-formula>
+            <mml:math display="block"/>
+        </disp-formula>
+    </article>
+</root>

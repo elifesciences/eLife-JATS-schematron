@@ -3443,6 +3443,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-broken-unicode-test" test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" role="warning" id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
       
       <report test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\){}\[\]\|]')])" role="warning" id="math-test-22">Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</report>
+      
+      <report test="@display='block' and ancestor::inline-formula" role="error" id="math-block-inline">
+        <name/> is a descendant of an inline-formula but it has the attribute display="block". This is incorrect. Either the inline-formula is really a disp-formula, or the display="block" attribute should be removed (or changed to "inline").</report>
     </rule>
   </pattern>
   <pattern id="math-descendant-tests-pattern">
