@@ -3446,6 +3446,9 @@
       
       <report test="@display='block' and ancestor::inline-formula" role="error" id="math-block-inline">
         <name/> is a descendant of an inline-formula but it has the attribute display="block". This is incorrect. Either the inline-formula is really a disp-formula, or the display="block" attribute should be removed (or changed to "inline").</report>
+      
+      <report test="@display='inline' and ancestor::disp-formula" role="warning" id="math-display-inline">
+        <name/> is a descendant of an disp-formula but it has the attribute display="inline". This is likely incorrect. Either the disp-formula is really a inline-formula, or the display="inline" attribute should be removed (or changed to "block").</report>
     </rule>
   </pattern>
   <pattern id="math-descendant-tests-pattern">
