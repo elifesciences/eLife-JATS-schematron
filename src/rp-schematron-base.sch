@@ -3113,6 +3113,9 @@
         test="matches(.,'(&amp;|§|§amp;)(#x?\d)?|[^\p{L}\p{N}][gl]t;')" 
         role="warning" 
         id="math-broken-unicode-test">Equation likely contains a broken unicode - <value-of select="."/>.</report>
+      <report test="@display='block' and ancestor::inline-formula" 
+        role="error" 
+        id="math-block-inline"><name/> is a descendant of an inline-formula but it has the attribute display="block". This is incorrect. Either the inline-formula is really a disp-formula, or the display="block" attribute should be removed (or changed to "inline").</report>
     </rule>
     
     <rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
