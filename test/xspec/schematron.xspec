@@ -6357,6 +6357,26 @@
         <x:expect-report id="math-test-22" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-block-inline-pass">
+        <x:context href="../tests/gen/math-tests/math-block-inline/pass.xml"/>
+        <x:expect-not-report id="math-block-inline" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-block-inline-fail">
+        <x:context href="../tests/gen/math-tests/math-block-inline/fail.xml"/>
+        <x:expect-report id="math-block-inline" role="error"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-display-inline-pass">
+        <x:context href="../tests/gen/math-tests/math-display-inline/pass.xml"/>
+        <x:expect-not-report id="math-display-inline" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-display-inline-fail">
+        <x:context href="../tests/gen/math-tests/math-display-inline/fail.xml"/>
+        <x:expect-report id="math-display-inline" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="math-descendant-tests">
       <x:scenario label="math-descendant-test-1-pass">
