@@ -2586,6 +2586,9 @@
       
       <report test="@display='inline' and ancestor::disp-formula" role="warning" id="math-display-inline">
         <name/> is a descendant of an disp-formula but it has the attribute display="inline". This is likely incorrect. Either the disp-formula is really a inline-formula, or the display="inline" attribute should be removed (or changed to "block").</report>
+      
+      <assert test="@display" role="warning" id="math-display-absence">
+        <name/> does not have a display attribute. Since this math is a descendant of <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/>, is should be display="<value-of select="if (ancestor::disp-formula) then 'block' else 'inline'"/>".</assert>
     </rule>
   </pattern>
   <pattern id="math-content-elems-pattern">
