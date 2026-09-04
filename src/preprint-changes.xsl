@@ -2864,7 +2864,12 @@
         <xsl:choose>
             <xsl:when test="parent::alternatives">
                 <xsl:copy>
-                    <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
+                    <xsl:apply-templates select="@*[not(name()=('alttext','display'))]"/>
+                    <!-- Enforce the correct display attribute for maths -->
+                    <xsl:attribute name="display">
+                        <xsl:value-of select="if ($pretty-print) then 'block' else 'inline'"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="* | text() | processing-instruction()"/>
                 </xsl:copy>
                 <xsl:if test="$pretty-print">
                     <xsl:text>&#xa;</xsl:text>
@@ -2876,9 +2881,12 @@
                     <xsl:if test="$pretty-print">
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
-                    <xsl:copy>
-                        <xsl:apply-templates select="@*[name()!='alttext'] | * | text() | processing-instruction()"/>
-                    </xsl:copy>
+                    <xsl:apply-templates select="@*[not(name()=('alttext','display'))]"/>
+                    <!-- Enforce the correct display attribute for maths -->
+                    <xsl:attribute name="display">
+                        <xsl:value-of select="if ($pretty-print) then 'block' else 'inline'"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="* | text() | processing-instruction()"/>
                     <xsl:if test="$pretty-print">
                         <xsl:text>&#xa;</xsl:text>
                     </xsl:if>
