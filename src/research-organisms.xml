@@ -734,6 +734,14 @@
     <organism type="species" regex="m\.\p{Zs}?sphinx">M. sphinx</organism>
     <organism type="species" regex="melampsora\p{Zs}?lini">Melampsora lini</organism>
     <organism type="species" regex="m\.\p{Zs}?lini">M. lini</organism>
+    <organism type="species" regex="monopterus\p{Zs}?albus">Monopterus albus</organism>
+    <organism type="species" regex="m\.\p{Zs}?albus">M. albus</organism>
+    <organism type="species" regex="monopterus\p{Zs}?bicolor">Monopterus bicolor</organism>
+    <organism type="species" regex="m\.\p{Zs}?bicolor">M. bicolor</organism>
+    <organism type="species" regex="monopterus\p{Zs}?dienbienensis">Monopterus dienbienensis</organism>
+    <organism type="species" regex="m\.\p{Zs}?dienbienensis">M. dienbienensis</organism>  
+    <organism type="species" regex="monopterus\p{Zs}?javanensis">Monopterus javanensis</organism>
+    <organism type="species" regex="m\.\p{Zs}?javanensis">M. javanensis</organism>  
     <organism type="species" regex="mucispirillum\p{Zs}?schaedleri">Mucispirillum schaedleri</organism>
     <organism type="species" regex="m\.\p{Zs}?schaedleri">M. schaedleri</organism>
     <organism type="species" regex="mus\p{Zs}?musculus">Mus musculus</organism>
