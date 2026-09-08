@@ -67,6 +67,8 @@
         <xsl:output-character character="Χ" string="&amp;#x3a7;"/>
         <xsl:output-character character="Ψ" string="&amp;#x3a8;"/>
         <xsl:output-character character="Ω" string="&amp;#x3a9;"/>
+        <xsl:output-character character="♀" string="&amp;#x2640;"/>
+        <xsl:output-character character="♂" string="&amp;#x2642;"/>
         
         <!-- Mathematical Script Capital Letters (U+1D49C-1D4B5) -->
         <xsl:output-character character="𝒜" string="&amp;#x1D49C;"/>
