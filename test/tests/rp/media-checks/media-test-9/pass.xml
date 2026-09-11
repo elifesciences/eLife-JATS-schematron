@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="media-test-9.sch"?>
+<!--Context: media
+Test: report    matches(lower-case(@*:href),'\.(xml|XML)\s*$')
+Message: media points to an xml file. This cannot be handled currently. Please download the file, place it in a zip and replace the file with this zip, and update the xlink:href accordingly. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <media xlink:href="some-file.zip"/>
+        <media xlink:href="another-file"/>
+    </article>
+</root>

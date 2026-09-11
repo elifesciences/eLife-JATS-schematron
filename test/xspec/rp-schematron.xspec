@@ -3215,6 +3215,16 @@
         <x:expect-assert id="media-test-1" role="error"/>
         <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="media-test-9-pass">
+        <x:context href="../tests/rp/media-checks/media-test-9/pass.xml"/>
+        <x:expect-not-report id="media-test-9" role="error"/>
+        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="media-test-9-fail">
+        <x:context href="../tests/rp/media-checks/media-test-9/fail.xml"/>
+        <x:expect-report id="media-test-9" role="error"/>
+        <x:expect-not-assert id="media-checks-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="sec-checks">
       <x:scenario label="sec-supplementary-material-pass">
