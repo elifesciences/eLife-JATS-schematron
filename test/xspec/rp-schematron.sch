@@ -2715,6 +2715,8 @@
         
       <assert test="parent::supplementary-material" role="error" id="media-test-1">media element should only be placed as a child of supplementary-material. This one has the parent <value-of select="parent::*/name()"/>
       </assert>
+        
+      <report test="matches(lower-case(@*:href),'\.(xml|XML)\s*$')" role="error" id="media-test-9">media points to an xml file. This cannot be handled currently. Please download the file, place it in a zip and replace the file with this zip, and update the xlink:href accordingly.</report>  
      </rule>
   </pattern>
   
