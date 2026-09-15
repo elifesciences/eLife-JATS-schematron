@@ -1,0 +1,34 @@
+<!--Testing template with id: pub-history-changes-->
+<article-meta xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<history>
+<date date-type="sent-for-review" iso-8601-date="2026-04-01">
+<day>01</day>
+<month>04</month>
+<year>2026</year>
+</date>
+</history>
+<pub-history>
+<event>
+<event-desc>Reviewed preprint v1</event-desc>
+<date date-type="reviewed-preprint" iso-8601-date="2026-05-01">
+<day>01</day>
+<month>05</month>
+<year>2026</year>
+</date>
+<self-uri content-type="reviewed-preprint" xlink:href="https://doi.org/10.7554/eLife.91769.1"/>
+<self-uri content-type="editor-report" xlink:href="https://doi.org/10.7554/eLife.91769.1.sa3">eLife assessment</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.91769.1.sa2">Reviewer #1 (Public Review):</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.91769.1.sa1">Reviewer #2 (Public Review):</self-uri>
+<self-uri content-type="referee-report" xlink:href="https://doi.org/10.7554/eLife.91769.1.sa0">Reviewer #3 (Public Review):</self-uri>
+</event>
+<event>
+<event-desc>Preprint posted</event-desc>
+<date date-type="preprint" iso-8601-date="2026-03-31">
+<day>31</day>
+<month>03</month>
+<year>2026</year>
+</date>
+<self-uri content-type="preprint" xlink:href="https://doi.org/10.1101/2025.05.13.653501"/>
+</event>
+</pub-history>
+</article-meta>

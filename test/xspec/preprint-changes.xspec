@@ -64,9 +64,9 @@
       <x:context href="../tests/preprint-changes/strip-history/input.xml"/>
       <x:expect label="Testing the template: strip-history" href="../tests/preprint-changes/strip-history/output.xml"/>
     </x:scenario>
-    <x:scenario label="sent-for-review-in-pub-history">
-      <x:context href="../tests/preprint-changes/sent-for-review-in-pub-history/input.xml"/>
-      <x:expect label="Testing the template: sent-for-review-in-pub-history" href="../tests/preprint-changes/sent-for-review-in-pub-history/output.xml"/>
+    <x:scenario label="pub-history-changes">
+      <x:context href="../tests/preprint-changes/pub-history-changes/input.xml"/>
+      <x:expect label="Testing the template: pub-history-changes" href="../tests/preprint-changes/pub-history-changes/output.xml"/>
     </x:scenario>
     <x:scenario label="strip-counts">
       <x:context href="../tests/preprint-changes/strip-counts/input.xml"/>
