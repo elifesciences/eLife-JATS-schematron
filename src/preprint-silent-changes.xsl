@@ -435,7 +435,7 @@
             <xsl:apply-templates select="supplement|supplement/following-sibling::text()[1]"/>
             <xsl:apply-templates select="*[name()=('fpage','lpage','page-range','elocation-id')] | *[name()=('fpage','lpage','page-range','elocation-id')]/following-sibling::text()[1]"/>
             <xsl:apply-templates select="*[name()=('email','ext-link','uri','product','supplementary-material')] | *[name()=('email','ext-link','uri','product','supplementary-material')]/following-sibling::text()[1]"/>
-            <xsl:apply-templates select="history|history/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="history"/>
             <xsl:apply-templates select="pub-history|pub-history/following-sibling::text()[1]"/>
             <xsl:apply-templates select="permissions|permissions/following-sibling::text()[1]"/>
             <xsl:apply-templates select="self-uri|self-uri/following-sibling::text()[1]"/>
@@ -447,6 +447,28 @@
             <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
             <xsl:apply-templates select="custom-meta-group|custom-meta-group/following-sibling::text()[1]"/>
+        </xsl:copy>
+    </xsl:template>
+    
+     <!-- Remove history from article-meta (deprecated in JATS 1.4) -->
+    <xsl:template xml:id="strip-history" match="article-meta/history"/>
+    
+    <!-- Move history into pub-history -->
+    <xsl:template xml:id="sent-for-review-in-pub-history" match="pub-history[parent::article-meta/history[date[@date-type='sent-for-review']]]">
+        <xsl:variable name="sent-for-review-iso-date" select="parent::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:apply-templates select="event[date/@iso-8601-date le $sent-for-review-iso-date]|event[date/@iso-8601-date le $sent-for-review-iso-date]/preceding-sibling::text()[.!='' and normalize-space(.)=''][1]"/>
+            <xsl:text>&#xa;</xsl:text>
+            <event>
+                <xsl:text>&#xa;</xsl:text>
+                <event-desc>Sent for review</event-desc>
+                <xsl:text>&#xa;</xsl:text>
+                <xsl:apply-templates select="parent::article-meta/history/date[@date-type='sent-for-review']"/>
+                <xsl:text>&#xa;</xsl:text>
+            </event>
+            <xsl:apply-templates select="event[date/@iso-8601-date gt $sent-for-review-iso-date]|event[date/@iso-8601-date gt $sent-for-review-iso-date]/preceding-sibling::text()[.!='' and normalize-space(.)=''][1]"/>
+            <xsl:text>&#xa;</xsl:text>
         </xsl:copy>
     </xsl:template>
     
