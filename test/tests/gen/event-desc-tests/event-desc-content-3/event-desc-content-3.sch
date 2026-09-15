@@ -963,6 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event-desc" id="event-desc-tests">
+      <let name="template-descriptions" value="('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.','Reviewed preprint posted','Reviewed preprint revised')"/>
       <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" role="error" id="event-desc-content-3">
         <name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
     </rule>
