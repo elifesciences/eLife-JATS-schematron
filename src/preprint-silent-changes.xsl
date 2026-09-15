@@ -435,7 +435,7 @@
             <xsl:apply-templates select="supplement|supplement/following-sibling::text()[1]"/>
             <xsl:apply-templates select="*[name()=('fpage','lpage','page-range','elocation-id')] | *[name()=('fpage','lpage','page-range','elocation-id')]/following-sibling::text()[1]"/>
             <xsl:apply-templates select="*[name()=('email','ext-link','uri','product','supplementary-material')] | *[name()=('email','ext-link','uri','product','supplementary-material')]/following-sibling::text()[1]"/>
-            <xsl:apply-templates select="history|history/following-sibling::text()[1]"/>
+            <xsl:apply-templates select="history"/>
             <xsl:apply-templates select="pub-history|pub-history/following-sibling::text()[1]"/>
             <xsl:apply-templates select="permissions|permissions/following-sibling::text()[1]"/>
             <xsl:apply-templates select="self-uri|self-uri/following-sibling::text()[1]"/>
@@ -447,6 +447,35 @@
             <xsl:apply-templates select="support-group|support-group/following-sibling::text()[1]"/>
             <xsl:apply-templates select="conference|conference/following-sibling::text()[1]"/>
             <xsl:apply-templates select="custom-meta-group|custom-meta-group/following-sibling::text()[1]"/>
+        </xsl:copy>
+    </xsl:template>
+    
+     <!-- Remove history from article-meta (deprecated in JATS 1.4) -->
+    <xsl:template xml:id="strip-history" match="article-meta/history"/>
+    
+    <!-- Move history into pub-history and force events into chronological order -->
+    <xsl:template xml:id="pub-history-changes" match="pub-history">
+        <xsl:variable name="sent-for-review-date" select="parent::article-meta/history/date[@date-type='sent-for-review']"/>
+        <xsl:variable name="new-event">
+            <xsl:if test="$sent-for-review-date">
+                <event>
+                    <xsl:text>&#xa;</xsl:text>
+                    <event-desc>Sent for review</event-desc>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="$sent-for-review-date"/>
+                    <xsl:text>&#xa;</xsl:text>
+                </event>
+            </xsl:if>
+        </xsl:variable>
+
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:text>&#xa;</xsl:text>
+            <xsl:for-each select="event | $new-event/event">
+                <xsl:sort select="date/@iso-8601-date"/>
+                <xsl:apply-templates select="."/>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:for-each>
         </xsl:copy>
     </xsl:template>
     

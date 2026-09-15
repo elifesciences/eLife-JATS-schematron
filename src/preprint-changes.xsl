@@ -1200,22 +1200,29 @@
     <!-- Remove history from article-meta (deprecated in JATS 1.4) -->
     <xsl:template xml:id="strip-history" match="article-meta/history"/>
     
-    <!-- Move history into pub-history -->
-    <xsl:template xml:id="sent-for-review-in-pub-history" match="pub-history[parent::article-meta/history[date[@date-type='sent-for-review']]]">
-        <xsl:variable name="sent-for-review-iso-date" select="parent::article-meta/history/date[@date-type='sent-for-review']/@iso-8601-date"/>
+    <!-- Move history into pub-history and force events into chronological order -->
+    <xsl:template xml:id="pub-history-changes" match="pub-history">
+        <xsl:variable name="sent-for-review-date" select="parent::article-meta/history/date[@date-type='sent-for-review']"/>
+        <xsl:variable name="new-event">
+            <xsl:if test="$sent-for-review-date">
+                <event>
+                    <xsl:text>&#xa;</xsl:text>
+                    <event-desc>Sent for review</event-desc>
+                    <xsl:text>&#xa;</xsl:text>
+                    <xsl:apply-templates select="$sent-for-review-date"/>
+                    <xsl:text>&#xa;</xsl:text>
+                </event>
+            </xsl:if>
+        </xsl:variable>
+
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:apply-templates select="event[date/@iso-8601-date le $sent-for-review-iso-date]|event[date/@iso-8601-date le $sent-for-review-iso-date]/preceding-sibling::text()[.!='' and normalize-space(.)=''][1]"/>
             <xsl:text>&#xa;</xsl:text>
-            <event>
+            <xsl:for-each select="event | $new-event/event">
+                <xsl:sort select="date/@iso-8601-date"/>
+                <xsl:apply-templates select="."/>
                 <xsl:text>&#xa;</xsl:text>
-                <event-desc>Sent for review</event-desc>
-                <xsl:text>&#xa;</xsl:text>
-                <xsl:apply-templates select="parent::article-meta/history/date[@date-type='sent-for-review']"/>
-                <xsl:text>&#xa;</xsl:text>
-            </event>
-            <xsl:apply-templates select="event[date/@iso-8601-date gt $sent-for-review-iso-date]|event[date/@iso-8601-date gt $sent-for-review-iso-date]/preceding-sibling::text()[.!='' and normalize-space(.)=''][1]"/>
-            <xsl:text>&#xa;</xsl:text>
+            </xsl:for-each>
         </xsl:copy>
     </xsl:template>
         
