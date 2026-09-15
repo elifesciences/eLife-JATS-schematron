@@ -963,6 +963,7 @@
   </xsl:function>
   <pattern id="article-metadata">
     <rule context="event-desc" id="event-desc-tests">
+      <let name="template-descriptions" value="('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.','Reviewed preprint posted','Reviewed preprint revised')"/>
       <report test="*" role="error" id="event-desc-elems">
         <name/> cannot contain elements. This one has the following: <value-of select="string-join(distinct-values(*/name()),', ')"/>.</report>
     </rule>
