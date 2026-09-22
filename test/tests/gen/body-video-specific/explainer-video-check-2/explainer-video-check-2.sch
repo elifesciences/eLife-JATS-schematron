@@ -970,7 +970,7 @@
       <let name="fig-pos" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)]) - count(following::media[starts-with(@mimetype,'video')][starts-with(label[1],$fig-label)])"/>
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video( for figure \d+)?\.$')"/>
-      <report test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])" role="error" id="explainer-video-check-2">
+      <report test="$is-explainer and not(caption//supplementary-material[contains(label[1],'data')])" role="warning" id="explainer-video-check-2">
         <value-of select="label"/> is an author explainer video, but it does not have any source data. All author explainer videos should be accompanied by a source data file with a transcript.</report>
     </rule>
   </pattern>
