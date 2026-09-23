@@ -1013,6 +1013,18 @@
     <organism type="species" regex="p\.\p{Zs}?pictus">P. pictus</organism>
     <organism type="species" regex="pinacosaurus\p{Zs}?grangeri">Pinacosaurus grangeri</organism>
     <organism type="species" regex="p\.\p{Zs}?grangeri">P. grangeri</organism>
+    <organism type="species" regex="phragmites\p{Zs}?australis">Phragmites australis</organism>
+    <organism type="species" regex="p\.\p{Zs}?australis">P. australis</organism>
+    <organism type="species" regex="phragmites\p{Zs}?bhattacharyyae">Phragmites bhattacharyyae</organism>
+    <organism type="species" regex="p\.\p{Zs}?bhattacharyyae">P. bhattacharyyae</organism>
+    <organism type="species" regex="phragmites\p{Zs}?frutescens">Phragmites frutescens</organism>
+    <organism type="species" regex="p\.\p{Zs}?frutescens">P. frutescens</organism>
+    <organism type="species" regex="phragmites\p{Zs}?japonicus">Phragmites japonicus</organism>
+    <organism type="species" regex="p\.\p{Zs}?japonicus">P. japonicus</organism>
+    <organism type="species" regex="phragmites\p{Zs}?karka">Phragmites karka</organism>
+    <organism type="species" regex="p\.\p{Zs}?karka">P. karka</organism>
+    <organism type="species" regex="phragmites\p{Zs}?mauritianus">Phragmites mauritianus</organism>
+    <organism type="species" regex="p\.\p{Zs}?mauritianus">P. mauritianus</organism>
     <organism type="species" regex="plantago\p{Zs}?lanceolata">Plantago lanceolata</organism>
     <organism type="species" regex="p\.\p{Zs}?lanceolata">P. lanceolata</organism>
     <organism type="species" regex="plasmodium\p{Zs}?knowlesi">Plasmodium knowlesi</organism>
