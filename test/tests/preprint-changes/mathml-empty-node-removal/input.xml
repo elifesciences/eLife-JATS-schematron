@@ -1,0 +1,17 @@
+<!--Testing template with id: mathml-empty-node-removal-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <mml:math>
+        <mml:mrow/>
+        <mml:msqrt/>
+        <mml:mstyle/>
+        <mml:mpadded/>
+        <mml:mi/>
+        <mml:mn/>
+        <mml:mo/>
+        <mml:mtext/>
+        <mml:mtext>the only node</mml:mtext>
+        <mml:ms/>
+        <mml:mglyph/>
+        <mml:malignmark/>
+    </mml:math>
+</article>

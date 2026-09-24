@@ -1,0 +1,9 @@
+<?oxygen SCHSchema="math-starts-with-equals.sch"?>
+<!--Context: *:math
+Test: report    matches($data,'^\s*=')
+Message:  starts with an equal sign. Is that correct? Or has some processing error occurred? -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <mml:math display="inline" id="I131"><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mi>b</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>τ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt><mml:msub><mml:mi>ρ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>o</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>z</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo stretchy="false">]</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn><mml:mi>N</mml:mi><mml:mi>η</mml:mi><mml:mi>τ</mml:mi></mml:mrow></mml:msup><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mover accent="true"><mml:mi>z</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>−</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt><mml:msub><mml:mi>ρ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>o</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mtext> </mml:mtext></mml:math>
+    </article>
+</root>

@@ -2589,6 +2589,9 @@
       
       <assert test="@display" role="warning" id="math-display-absence">
         <name/> does not have a display attribute. Since this math is a descendant of <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/>, is should be display="<value-of select="if (ancestor::disp-formula) then 'block' else 'inline'"/>".</assert>
+      
+      <report test="matches($data,'^\s*=')" role="warning" id="math-starts-with-equals">
+        <name/> starts with an equal sign. Is that correct? Or has some processing error occurred?</report>
     </rule>
   </pattern>
   <pattern id="math-content-elems-pattern">

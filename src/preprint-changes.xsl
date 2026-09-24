@@ -3004,6 +3004,19 @@
     <!-- Strip unnecessary pretty printing within inline-formula -->
     <xsl:template xml:id="inline-formula-space-removal" match="inline-formula/text()[matches(.,'^\n\s*$')] | inline-formula/alternatives/text()[matches(.,'^\n\s*$')]"/>
     
+    <!-- Remove broken maths -->
+    <xsl:template xml:id="mathml-empty-node-removal" match="mml:mrow[not(*) and (normalize-space(.)='')] |
+        mml:msqrt[not(*) and (normalize-space(.)='')] |        
+        mml:mstyle[not(*) and (normalize-space(.)='')] |        
+        mml:mpadded[not(*) and (normalize-space(.)='')] |        
+        mml:mi[not(*) and (normalize-space(.)='')] |        
+        mml:mn[not(*) and (normalize-space(.)='')] |        
+        mml:mo[not(*) and (normalize-space(.)='')] |        
+        mml:mtext[not(*) and (normalize-space(.)='')] |        
+        mml:ms[not(*) and (normalize-space(.)='')] |        
+        mml:mglyph[not(*) and (normalize-space(.)='')] |        
+        mml:malignmark[not(*) and (normalize-space(.)='')]"/>
+    
     <!-- collab to collab-wrap/collab-name -->
     <xsl:template xml:id="collab-deprecated" match="collab">
         <xsl:choose>

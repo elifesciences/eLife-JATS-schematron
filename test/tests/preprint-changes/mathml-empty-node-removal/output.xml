@@ -1,0 +1,4 @@
+<!--Testing template with id: mathml-empty-node-removal-->
+<article xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" dtd-version="1.4">
+    <mml:math><mml:mtext>the only node</mml:mtext></mml:math>
+</article>
