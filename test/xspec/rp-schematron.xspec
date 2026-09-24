@@ -2907,6 +2907,16 @@
         <x:expect-assert id="math-display-absence" role="warning"/>
         <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="math-starts-with-equals-pass">
+        <x:context href="../tests/rp/math-tests/math-starts-with-equals/pass.xml"/>
+        <x:expect-not-report id="math-starts-with-equals" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="math-starts-with-equals-fail">
+        <x:context href="../tests/rp/math-tests/math-starts-with-equals/fail.xml"/>
+        <x:expect-report id="math-starts-with-equals" role="warning"/>
+        <x:expect-not-assert id="math-tests-xspec-assert" role="error"/>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="math-content-elems">
       <x:scenario label="math-empty-elem-test-pass">

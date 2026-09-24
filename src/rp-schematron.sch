@@ -2272,6 +2272,8 @@
       <report test="@display='inline' and ancestor::disp-formula" role="warning" id="math-display-inline">[math-display-inline] <name/> is a descendant of an disp-formula but it has the attribute display="inline". This is likely incorrect. Either the disp-formula is really a inline-formula, or the display="inline" attribute should be removed (or changed to "block").</report>
       
       <assert test="@display" role="warning" id="math-display-absence">[math-display-absence] <name/> does not have a display attribute. Since this math is a descendant of <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/>, is should be display="<value-of select="if (ancestor::disp-formula) then 'block' else 'inline'"/>".</assert>
+      
+      <report test="matches($data,'^\s*=')" role="warning" id="math-starts-with-equals">[math-starts-with-equals] <name/> starts with an equal sign. Is that correct? Or has some processing error occurred?</report>
     </rule></pattern><pattern id="math-content-elems-pattern"><rule context="*:mrow|*:msqrt|*:mstyle|*:mpadded|*:mi|*:mn|*:mo|*:mtext|*:ms|*:mglyph|*:malignmark" id="math-content-elems">
       <report test="not(*) and (normalize-space(.)='')" role="error" id="math-empty-elem-test">[math-empty-elem-test] <value-of select="name()"/> cannot be empty. This one in <value-of select="concat(ancestor::*[name()=('disp-formula','inline-formula')][1]/name(),' with id ',ancestor::*[name()=('disp-formula','inline-formula')][1]/@id)"/> is.</report>
     </rule></pattern><pattern id="math-empty-child-tests-pattern"><rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
