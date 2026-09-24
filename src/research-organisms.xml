@@ -172,6 +172,12 @@
     <organism type="species" regex="a\.\p{Zs}?thaliana">A. thaliana</organism>
     <organism type="species" regex="bacillus\p{Zs}?subtilis">Bacillus subtilis</organism>
     <organism type="species" regex="b\.\p{Zs}?subtilis">B. subtilis</organism>
+    <organism type="species" regex="bacteroides\p{Zs}?acidifaciens">Bacteroides acidifaciens</organism>
+    <organism type="species" regex="b\.\p{Zs}?acidifaciens">B. acidifaciens</organism>
+    <organism type="species" regex="bacteroides\p{Zs}?caecimuris">Bacteroides caecimuris</organism>
+    <organism type="species" regex="b\.\p{Zs}?caecimuris">B. caecimuris</organism>
+    <organism type="species" regex="bacteroides\p{Zs}?uniformis">Bacteroides uniformis</organism>
+    <organism type="species" regex="b\.\p{Zs}?uniformis">B. uniformis</organism>
     <organism type="species" regex="batrachochytrium\p{Zs}?dendrobatidis">Batrachochytrium dendrobatidis</organism>
     <organism type="species" regex="b\.\p{Zs}?dendrobatidis">B. dendrobatidis</organism>
     <organism type="species" regex="beta\p{Zs}?macrocarpa">Beta macrocarpa</organism>
@@ -508,14 +514,20 @@
     <organism type="species" regex="d\.\p{Zs}?obscura">D. obscura</organism>
     <organism type="species" regex="drosophila\p{Zs}?subobscura">Drosophila subobscura</organism>
     <organism type="species" regex="d\.\p{Zs}?subobscura">D. subobscura</organism>
+    <organism type="species" regex="duncaniella\p{Zs}?freteri">Duncaniella freteri</organism>
+    <organism type="species" regex="d\.\p{Zs}?freteri">D. freteri</organism>
     <organism type="species" regex="encephalitozoon\p{Zs}?cuniculi">Encephalitozoon cuniculi</organism>
     <organism type="species" regex="e\.\p{Zs}?cuniculi">E. cuniculi</organism>
+    <organism type="species" regex="enterococcus\p{Zs}?casseliflavus">Enterococcus casseliflavus</organism>
+    <organism type="species" regex="e\.\p{Zs}?casseliflavus">E. casseliflavus</organism>
     <organism type="species" regex="enterococcus\p{Zs}?faecalis">Enterococcus faecalis</organism>
     <organism type="species" regex="e\.\p{Zs}?faecalis">E. faecalis</organism>
     <organism type="species" regex="erwinia\p{Zs}?carotovora">Erwinia carotovora</organism>
     <organism type="species" regex="e\.\p{Zs}?carotovora">E. carotovora</organism>
     <organism type="species" regex="escherichia\p{Zs}?coli">Escherichia coli</organism>
     <organism type="species" regex="e\.\p{Zs}?coli">E. coli</organism>
+    <organism type="species" regex="escherichia\p{Zs}?fergusonii">Escherichia fergusonii</organism>
+    <organism type="species" regex="e\.\p{Zs}?fergusonii">E. fergusonii</organism>
     <organism type="species" regex="euoplocephalus\p{Zs}?tutus">Euoplocephalus tutus</organism>
     <organism type="species" regex="e\.\p{Zs}?tutus">E. tutus</organism>
     <organism type="species" regex="europelta\p{Zs}?carbonensis">Europelta carbonensis</organism>
@@ -736,6 +748,10 @@
     <organism type="species" regex="l\.\p{Zs}?areolatus">L. areolatus</organism>
     <organism type="species" regex="lithobates\p{Zs}?berlandieri">Lithobates berlandieri</organism>
     <organism type="species" regex="l\.\p{Zs}?berlandieri">L. berlandieri</organism>
+    <organism type="species" regex="ligilactobacillus\p{Zs}?murinus">Ligilactobacillus murinus</organism>
+    <organism type="species" regex="l\.\p{Zs}?murinus">L. murinus</organism>
+    <organism type="species" regex="limosilactobacillus\p{Zs}?reuteri">Limosilactobacillus reuteri</organism>
+    <organism type="species" regex="l\.\p{Zs}?reuteri">L. reuteri</organism>
     <organism type="species" regex="lithobates\p{Zs}?blairi">Lithobates blairi</organism>
     <organism type="species" regex="l\.\p{Zs}?blairi">L. blairi</organism>
     <organism type="species" regex="lithobates\p{Zs}?brownorum">Lithobates brownorum</organism>
@@ -856,6 +872,10 @@
     <organism type="species" regex="m\.\p{Zs}?javanensis">M. javanensis</organism>  
     <organism type="species" regex="mucispirillum\p{Zs}?schaedleri">Mucispirillum schaedleri</organism>
     <organism type="species" regex="m\.\p{Zs}?schaedleri">M. schaedleri</organism>
+    <organism type="species" regex="muribaculum\p{Zs}?caecicola">Muribaculum caecicola</organism>
+    <organism type="species" regex="m\.\p{Zs}?caecicola">M. caecicola</organism>
+    <organism type="species" regex="muribaculum\p{Zs}?intestinale">Muribaculum intestinale</organism>
+    <organism type="species" regex="m\.\p{Zs}?intestinale">M. intestinale</organism>
     <organism type="species" regex="mus\p{Zs}?baoulei">Mus baoulei</organism>
     <organism type="species" regex="m\.\p{Zs}?baoulei">M. baoulei</organism>
     <organism type="species" regex="mus\p{Zs}?booduga">Mus booduga</organism>
@@ -1002,6 +1022,8 @@
     <organism type="species" regex="p\.\p{Zs}?cynocephalus">P. cynocephalus</organism>
     <organism type="species" regex="papio\p{Zs}?hamadryas">Papio hamadryas</organism>
     <organism type="species" regex="p\.\p{Zs}?hamadryas">P. hamadryas</organism>
+    <organism type="species" regex="parabacteroides\p{Zs}?distasonis">Parabacteroides distasonis</organism>
+    <organism type="species" regex="p\.\p{Zs}?distasonis">P. distasonis</organism>
     <organism type="species" regex="paratomella\p{Zs}?rubra">Paratomella rubra</organism>
     <organism type="species" regex="p\.\p{Zs}?rubra">P. hamadryas</organism>
     <organism type="species" regex="paratomella\p{Zs}?unichaeta">Paratomella unichaeta</organism>
@@ -1014,6 +1036,8 @@
     <organism type="species" regex="p\.\p{Zs}?pictus">P. pictus</organism>
     <organism type="species" regex="pinacosaurus\p{Zs}?grangeri">Pinacosaurus grangeri</organism>
     <organism type="species" regex="p\.\p{Zs}?grangeri">P. grangeri</organism>
+    <organism type="species" regex="phocaeicola\p{Zs}?vulgatus">Phocaeicola vulgatus</organism>
+    <organism type="species" regex="p\.\p{Zs}?vulgatus">P. vulgatus</organism>
     <organism type="species" regex="phragmites\p{Zs}?australis">Phragmites australis</organism>
     <organism type="species" regex="p\.\p{Zs}?australis">P. australis</organism>
     <organism type="species" regex="phragmites\p{Zs}?bhattacharyyae">Phragmites bhattacharyyae</organism>
@@ -1318,10 +1342,14 @@
     <organism type="species" regex="s\.\p{Zs}?mediterranea">S. mediterranea</organism>
     <organism type="species" regex="scutellosaurus\p{Zs}?lawleri">Scutellosaurus lawleri</organism>
     <organism type="species" regex="s\.\p{Zs}?lawleri">S. lawleri</organism>
+    <organism type="species" regex="sporofaciens\p{Zs}?musculi">Sporofaciens musculi</organism>
+    <organism type="species" regex="s\.\p{Zs}?musculi">S. musculi</organism>
     <organism type="species" regex="staphylococcus\p{Zs}?aureus">Staphylococcus aureus</organism>
     <organism type="species" regex="s\.\p{Zs}?aureus">S. aureus</organism>
     <organism type="species" regex="stegosaurus\p{Zs}?stenops">Stegosaurus stenops</organism>
     <organism type="species" regex="s\.\p{Zs}?stenops">S. stenops</organism>
+    <organism type="species" regex="streptococcus\p{Zs}?intermedius">Streptococcus intermedius</organism>
+    <organism type="species" regex="s\.\p{Zs}?intermedius">S. intermedius</organism>
     <organism type="species" regex="streptococcus\p{Zs}?pyogenes">Streptococcus pyogenes</organism>
     <organism type="species" regex="s\.\p{Zs}?pyogenes">S. pyogenes</organism>
     <organism type="species" regex="sulfolobus\p{Zs}?solfataricus">Sulfolobus solfataricus</organism>
@@ -1340,6 +1368,8 @@
     <organism type="species" regex="u\.\p{Zs}?maydis">U. maydis</organism>
     <organism type="species" regex="vibrio\p{Zs}?cholerae">Vibrio cholerae</organism>
     <organism type="species" regex="v\.\p{Zs}?cholerae">V. cholerae</organism>
+    <organism type="species" regex="xanthomonas\p{Zs}?citri">Xanthomonas citri</organism>
+    <organism type="species" regex="x\.\p{Zs}?citri">X. citri</organism>
     <organism type="species" regex="xenopus\p{Zs}?laevis">Xenopus laevis</organism>
     <organism type="species" regex="x\.\p{Zs}?laevis">X. laevis</organism>
     <organism type="species" regex="xenopus\p{Zs}?tropicalis">Xenopus tropicalis</organism>
