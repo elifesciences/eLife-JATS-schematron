@@ -3221,7 +3221,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-video-position-test-2" test="not($is-explainer) and following-sibling::fig" role="error" id="fig-video-position-test-2">[fig-video-position-test-2] <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
       
-      <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="error" id="fig-video-position-test-3">[fig-video-position-test-3] <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
+      <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="warning" id="fig-video-position-test-3">[fig-video-position-test-3] <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
       
     </rule></pattern><pattern id="dl-video-specific-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>

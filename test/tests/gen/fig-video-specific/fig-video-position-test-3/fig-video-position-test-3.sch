@@ -965,7 +965,7 @@
     <rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
-      <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="error" id="fig-video-position-test-3">
+      <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" role="warning" id="fig-video-position-test-3">
         <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
     </rule>
   </pattern>
