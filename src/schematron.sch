@@ -5850,7 +5850,7 @@ else self::*/local-name() = $allowed-p-blocks"
         id="fig-video-position-test-2"><value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
       
       <report test="$is-explainer and preceding-sibling::fig[@specific-use='child-fig']" 
-        role="error" 
+        role="warning" 
         id="fig-video-position-test-3"><value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
       
     </rule>
