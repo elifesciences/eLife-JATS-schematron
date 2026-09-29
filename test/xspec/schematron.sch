@@ -4989,7 +4989,7 @@
     </rule>
   </pattern>
   <pattern id="res-data-sec-pattern">
-    <rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+    <rule context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
       <let name="title" value="lower-case(title[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#sec-test-3" test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
@@ -9243,7 +9243,7 @@
       <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-children-xspec-assert">supplementary-material/* must be present.</assert>
       <assert test="descendant::author-notes/*" role="error" id="author-notes-children-xspec-assert">author-notes/* must be present.</assert>
       <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
-      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub or descendant::[Gg]itlab or descendant::[Cc]ode[Pp]lex or descendant::[Ss]ource[Ff]orge or descendant::[Bb]it[Bb]ucket'))]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))] must be present.</assert>
+      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type)]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type)] must be present.</assert>
       <assert test="descendant::article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" role="error" id="res-ethics-sec-xspec-assert">article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])] must be present.</assert>
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
       <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
