@@ -3829,7 +3829,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#final-sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="error" id="final-sec-test-2">[final-sec-test-2] sec appears to contain no content. This cannot be correct.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">[sec-test-5] Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
-    </rule></pattern><pattern id="res-data-sec-pattern"><rule context="article[@article-type='research-article']//sec[not(@sec-type) and not(matches(.,'[Gg]ithub|[Gg]itlab|[Cc]ode[Pp]lex|[Ss]ource[Ff]orge|[Bb]it[Bb]ucket'))]" id="res-data-sec">
+    </rule></pattern><pattern id="res-data-sec-pattern"><rule context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
       <let name="title" value="lower-case(title[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#sec-test-3" test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" role="warning" id="sec-test-3">[sec-test-3] Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
