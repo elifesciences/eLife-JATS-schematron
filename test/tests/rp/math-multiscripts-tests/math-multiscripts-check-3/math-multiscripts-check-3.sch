@@ -1298,7 +1298,7 @@
   <pattern id="math-multiscripts-tests-pattern">
     <rule context="*:mmultiscripts" id="math-multiscripts-tests">
       <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>
-      <assert test="*:mprescripts" role="error" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+      <assert test="*:mprescripts" role="warning" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element does not have a child mml:mprescripts element. Is that correct? Or should a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
     </rule>
   </pattern>
   <pattern id="root-pattern">

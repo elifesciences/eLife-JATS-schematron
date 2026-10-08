@@ -2296,7 +2296,7 @@
 
       <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']" role="error" id="math-multiscripts-check-2">[math-multiscripts-check-2] <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
 
-      <assert test="*:mprescripts" role="error" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element must have a child mml:mprescripts element. If the expressions are all correct, then a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
+      <assert test="*:mprescripts" role="warning" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element does not have a child mml:mprescripts element. Is that correct? Or should a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
 
     </rule></pattern><pattern id="math-mtable-tests-pattern"><rule context="*:mtable" id="math-mtable-tests">
       <assert test="*:mtr or *:mlabeledtr" role="error" id="math-mtable-check-1">[math-mtable-check-1] <name/> element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither.</assert>
