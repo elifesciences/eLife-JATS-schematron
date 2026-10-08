@@ -6491,12 +6491,12 @@
       </x:scenario>
       <x:scenario label="math-multiscripts-check-3-pass">
         <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-3/pass.xml"/>
-        <x:expect-not-assert id="math-multiscripts-check-3" role="error"/>
+        <x:expect-not-assert id="math-multiscripts-check-3" role="warning"/>
         <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="math-multiscripts-check-3-fail">
         <x:context href="../tests/gen/math-multiscripts-tests/math-multiscripts-check-3/fail.xml"/>
-        <x:expect-assert id="math-multiscripts-check-3" role="error"/>
+        <x:expect-assert id="math-multiscripts-check-3" role="warning"/>
         <x:expect-not-assert id="math-multiscripts-tests-xspec-assert" role="error"/>
       </x:scenario>
     </x:scenario>
