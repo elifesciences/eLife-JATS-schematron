@@ -1150,6 +1150,10 @@
 	  <report test="@dtd-version" 
         role="info" 
         id="dtd-info">DTD version is <value-of select="@dtd-version"/></report>
+      
+      <assert test="fudge"
+        role="error"
+        id="choc-presence"><name/> does not have a fudge element. There are <value-of select="count(*)"/> child elements.</assert>
 	  
 	  <assert test="@article-type = $allowed-article-types" 
         role="error" 

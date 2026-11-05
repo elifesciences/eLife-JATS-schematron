@@ -1,0 +1,10 @@
+<?oxygen SCHSchema="fudge-presence.sch"?>
+<!--Context: article
+Test: assert    fudge
+Message:  does not have a fudge element. There are  child elements. -->
+<root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <article>
+        <chocolate/>
+        <ice-cream/>
+    </article>
+</root>

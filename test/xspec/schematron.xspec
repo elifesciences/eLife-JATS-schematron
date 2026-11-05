@@ -23,6 +23,16 @@
         <x:expect-report id="dtd-info" role="info"/>
         <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
       </x:scenario>
+      <x:scenario label="fudge-presence-pass">
+        <x:context href="../tests/gen/article-tests/fudge-presence/pass.xml"/>
+        <x:expect-not-assert id="fudge-presence" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
+      <x:scenario label="fudge-presence-fail">
+        <x:context href="../tests/gen/article-tests/fudge-presence/fail.xml"/>
+        <x:expect-assert id="fudge-presence" role="error"/>
+        <x:expect-not-assert id="article-tests-xspec-assert" role="error"/>
+      </x:scenario>
       <x:scenario label="test-article-type-pass">
         <x:context href="../tests/gen/article-tests/test-article-type/pass.xml"/>
         <x:expect-not-assert id="test-article-type" role="error"/>
