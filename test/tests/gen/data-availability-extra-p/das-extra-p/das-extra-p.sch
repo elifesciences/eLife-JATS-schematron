@@ -962,13 +962,13 @@
     <xsl:sequence select="count(tokenize($arg,'(\r\n?|\n\r?)'))"/>
   </xsl:function>
   <pattern id="house-style">
-    <rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
-      <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
+    <rule context="sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" id="data-availability-extra-p">
+      <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no reference citations within the section.</report>
     </rule>
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert xmlns="" test="descendant::sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::element-citation)]/p must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p must be present.</assert>
     </rule>
   </pattern>
 </schema>

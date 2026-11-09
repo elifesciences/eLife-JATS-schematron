@@ -12474,11 +12474,11 @@ else self::*/local-name() = $allowed-p-blocks"
       
     </rule>
     
-    <rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
+    <rule context="sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" id="data-availability-extra-p">
       
       <report test="preceding-sibling::p" 
         role="warning" 
-        id="das-extra-p">Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
+        id="das-extra-p">Is this extra p element in the data availability section required? There are no reference citations within the section.</report>
       
     </rule>
     
