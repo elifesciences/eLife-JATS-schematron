@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability' and descendant::element-citation]" role="error" id="data-availability-without-extra-p-xspec-assert">sec[@sec-type='data-availability' and descendant::element-citation] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability' and descendant::element-citation]" role="error" id="data-availability-without-extra-p-xspec-assert">sec[@sec-type='data-availability' and descendant::element-citation] must be present.</assert>
     </rule>
   </pattern>
 </schema>

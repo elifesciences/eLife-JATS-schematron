@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(descendant::p or descendant::td or descendant::th)] or descendant::td[not(descendant::p)] or descendant::th[not(descendant::p)]" role="error" id="private-char-tests-xspec-assert">p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)] must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(descendant::p or descendant::td or descendant::th)] or descendant::td[not(descendant::p)] or descendant::th[not(descendant::p)]" role="error" id="private-char-tests-xspec-assert">p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

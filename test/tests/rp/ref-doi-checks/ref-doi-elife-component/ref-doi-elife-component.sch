@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-doi-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-doi-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

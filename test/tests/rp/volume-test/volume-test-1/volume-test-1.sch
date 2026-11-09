@@ -1304,7 +1304,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/volume" role="error" id="volume-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/volume must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/volume" role="error" id="volume-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/volume must be present.</assert>
     </rule>
   </pattern>
 </schema>

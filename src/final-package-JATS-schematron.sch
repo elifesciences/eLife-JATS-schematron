@@ -6118,7 +6118,7 @@
       <assert test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test-2">isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule></pattern><pattern id="data-availability-statement-pattern"><rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
-      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="warning" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       
       

@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
+      <assert xmlns="" test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" role="error" id="inline-formula-length-tests-xspec-assert">inline-formula[not(descendant::mml:mtable) and following-sibling::text()] must be present.</assert>
+      <assert xmlns="" test="descendant::inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" role="error" id="inline-formula-length-tests-xspec-assert">inline-formula[not(descendant::mml:mtable) and following-sibling::text()] must be present.</assert>
     </rule>
   </pattern>
 </schema>

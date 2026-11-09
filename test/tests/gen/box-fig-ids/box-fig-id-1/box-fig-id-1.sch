@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

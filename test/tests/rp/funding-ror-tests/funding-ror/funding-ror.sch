@@ -1304,7 +1304,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

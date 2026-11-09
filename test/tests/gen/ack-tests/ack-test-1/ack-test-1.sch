@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back/ack" role="error" id="ack-tests-xspec-assert">back/ack must be present.</assert>
+      <assert xmlns="" test="descendant::back/ack" role="error" id="ack-tests-xspec-assert">back/ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" role="error" id="res-ethics-sec-xspec-assert">article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" role="error" id="res-ethics-sec-xspec-assert">article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])] must be present.</assert>
     </rule>
   </pattern>
 </schema>

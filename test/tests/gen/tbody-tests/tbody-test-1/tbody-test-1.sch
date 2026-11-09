@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table/tbody" role="error" id="tbody-tests-xspec-assert">table/tbody must be present.</assert>
+      <assert xmlns="" test="descendant::table/tbody" role="error" id="tbody-tests-xspec-assert">table/tbody must be present.</assert>
     </rule>
   </pattern>
 </schema>

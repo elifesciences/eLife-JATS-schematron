@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(inline-formula or disp-formula or code)]" role="error" id="p-text-tests-xspec-assert">p[not(inline-formula or disp-formula or code)] must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(inline-formula or disp-formula or code)]" role="error" id="p-text-tests-xspec-assert">p[not(inline-formula or disp-formula or code)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

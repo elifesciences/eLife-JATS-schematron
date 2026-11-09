@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff[not(parent::contrib)]" role="error" id="aff-ids-xspec-assert">aff[not(parent::contrib)] must be present.</assert>
+      <assert xmlns="" test="descendant::aff[not(parent::contrib)]" role="error" id="aff-ids-xspec-assert">aff[not(parent::contrib)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

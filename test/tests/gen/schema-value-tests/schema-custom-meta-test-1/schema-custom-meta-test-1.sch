@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value" role="error" id="schema-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value" role="error" id="schema-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

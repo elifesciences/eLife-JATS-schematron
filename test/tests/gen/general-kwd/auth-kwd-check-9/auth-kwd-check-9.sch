@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::kwd" role="error" id="general-kwd-xspec-assert">kwd must be present.</assert>
+      <assert xmlns="" test="descendant::kwd" role="error" id="general-kwd-xspec-assert">kwd must be present.</assert>
     </rule>
   </pattern>
 </schema>

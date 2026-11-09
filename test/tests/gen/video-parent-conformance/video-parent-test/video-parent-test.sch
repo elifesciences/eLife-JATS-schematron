@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[starts-with(@mimetype,'video')]" role="error" id="video-parent-conformance-xspec-assert">media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert xmlns="" test="descendant::media[starts-with(@mimetype,'video')]" role="error" id="video-parent-conformance-xspec-assert">media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

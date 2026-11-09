@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(descendant::mml:math)] or descendant::td[not(descendant::mml:math)] or descendant::th[not(descendant::mml:math)] or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(descendant::mml:math)] or descendant::td[not(descendant::mml:math)] or descendant::th[not(descendant::mml:math)] or descendant::monospace or descendant::code" role="error" id="latex-tests-xspec-assert">p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code must be present.</assert>
     </rule>
   </pattern>
 </schema>

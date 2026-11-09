@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

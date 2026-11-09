@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

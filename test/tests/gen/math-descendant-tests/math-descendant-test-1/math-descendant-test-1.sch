@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" role="error" id="math-descendant-tests-xspec-assert">mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')] must be present.</assert>
+      <assert xmlns="" test="descendant::mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" role="error" id="math-descendant-tests-xspec-assert">mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

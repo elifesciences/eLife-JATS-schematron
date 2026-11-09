@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" role="error" id="collab-cont-tests-xspec-assert">article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" role="error" id="collab-cont-tests-xspec-assert">article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

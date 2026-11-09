@@ -974,7 +974,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" role="error" id="vid-source-data-tests-xspec-assert">media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')] must be present.</assert>
+      <assert xmlns="" test="descendant::media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" role="error" id="vid-source-data-tests-xspec-assert">media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

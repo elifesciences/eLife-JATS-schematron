@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::td/*" role="error" id="td-child-tests-xspec-assert">td/* must be present.</assert>
+      <assert xmlns="" test="descendant::td/*" role="error" id="td-child-tests-xspec-assert">td/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

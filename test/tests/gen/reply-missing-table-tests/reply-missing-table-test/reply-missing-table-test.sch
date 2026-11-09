@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

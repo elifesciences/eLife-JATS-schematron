@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="funding-ror-tests-xspec-assert">funding-source[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="funding-ror-tests-xspec-assert">funding-source[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

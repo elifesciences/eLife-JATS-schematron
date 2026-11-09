@@ -1330,7 +1330,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
+      <assert xmlns="" test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

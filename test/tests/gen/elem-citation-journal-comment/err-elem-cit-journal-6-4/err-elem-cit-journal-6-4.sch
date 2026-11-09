@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
     </rule>
   </pattern>
 </schema>

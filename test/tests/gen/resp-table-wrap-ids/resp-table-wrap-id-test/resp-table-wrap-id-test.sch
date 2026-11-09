@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article//table-wrap" role="error" id="resp-table-wrap-ids-xspec-assert">sub-article//table-wrap must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article//table-wrap" role="error" id="resp-table-wrap-ids-xspec-assert">sub-article//table-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body/sec/title  or descendant:: article/back/sec/title  or descendant:: article/back/app/title  or descendant:: article/back/app-group/app/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title must be present.</assert>
+      <assert xmlns="" test="descendant::article/body/sec/title  or descendant:: article/back/sec/title  or descendant:: article/back/app/title  or descendant:: article/back/app-group/app/title" role="error" id="title-toc-checks-xspec-assert">article/body/sec/title | article/back/sec/title | article/back/app/title | article/back/app-group/app/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
+      <assert xmlns="" test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

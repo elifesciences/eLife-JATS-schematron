@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
+      <assert xmlns="" test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
     </rule>
   </pattern>
 </schema>

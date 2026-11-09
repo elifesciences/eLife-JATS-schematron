@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::day[not(parent::string-date)]" role="error" id="day-tests-xspec-assert">day[not(parent::string-date)] must be present.</assert>
+      <assert xmlns="" test="descendant::day[not(parent::string-date)]" role="error" id="day-tests-xspec-assert">day[not(parent::string-date)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

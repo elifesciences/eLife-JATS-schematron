@@ -972,7 +972,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[matches(lower-case(.),$org-regex)]" role="error" id="italic-org-tests-xspec-assert">italic[matches(lower-case(.),$org-regex)] must be present.</assert>
+      <assert xmlns="" test="descendant::italic[matches(lower-case(.),$org-regex)]" role="error" id="italic-org-tests-xspec-assert">italic[matches(lower-case(.),$org-regex)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

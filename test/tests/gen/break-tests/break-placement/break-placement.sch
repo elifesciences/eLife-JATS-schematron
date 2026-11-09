@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::break" role="error" id="break-tests-xspec-assert">break must be present.</assert>
+      <assert xmlns="" test="descendant::break" role="error" id="break-tests-xspec-assert">break must be present.</assert>
     </rule>
   </pattern>
 </schema>

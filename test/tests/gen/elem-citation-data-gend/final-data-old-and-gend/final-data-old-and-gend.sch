@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

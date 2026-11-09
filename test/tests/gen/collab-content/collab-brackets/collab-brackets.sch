@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation//collab  or descendant:: ref/element-citation//collab-name" role="error" id="collab-content-xspec-assert">ref/element-citation//collab | ref/element-citation//collab-name must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation//collab  or descendant:: ref/element-citation//collab-name" role="error" id="collab-content-xspec-assert">ref/element-citation//collab | ref/element-citation//collab-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

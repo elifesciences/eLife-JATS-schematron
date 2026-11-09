@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-graphic" role="error" id="inline-checks-xspec-assert">inline-graphic must be present.</assert>
+      <assert xmlns="" test="descendant::inline-graphic" role="error" id="inline-checks-xspec-assert">inline-graphic must be present.</assert>
     </rule>
   </pattern>
 </schema>

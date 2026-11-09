@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mtext" role="error" id="mtext-tests-xspec-assert">mml:mtext must be present.</assert>
+      <assert xmlns="" test="descendant::mml:mtext" role="error" id="mtext-tests-xspec-assert">mml:mtext must be present.</assert>
     </rule>
   </pattern>
 </schema>

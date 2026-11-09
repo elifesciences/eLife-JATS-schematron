@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='retraction']//article-meta" role="error" id="retraction-test-xspec-assert">article[@article-type='retraction']//article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='retraction']//article-meta" role="error" id="retraction-test-xspec-assert">article[@article-type='retraction']//article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

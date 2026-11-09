@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

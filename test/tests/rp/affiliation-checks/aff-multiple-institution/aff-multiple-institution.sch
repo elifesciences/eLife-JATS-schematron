@@ -1358,7 +1358,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
+      <assert xmlns="" test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
     </rule>
   </pattern>
 </schema>

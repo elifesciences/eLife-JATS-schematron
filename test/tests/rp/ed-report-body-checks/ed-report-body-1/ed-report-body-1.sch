@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/body" role="error" id="ed-report-body-checks-xspec-assert">sub-article[@article-type='editor-report']/body must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/body" role="error" id="ed-report-body-checks-xspec-assert">sub-article[@article-type='editor-report']/body must be present.</assert>
     </rule>
   </pattern>
 </schema>

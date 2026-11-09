@@ -973,7 +973,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(ancestor::sub-article) and label] or descendant::       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]] or descendant::       media[not(ancestor::sub-article) and label] or descendant::       supplementary-material[not(ancestor::sub-article) and label]" role="error" id="unlinked-object-cite-xspec-assert">fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label] must be present.</assert>
+      <assert xmlns="" test="descendant::fig[not(ancestor::sub-article) and label] or descendant::       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]] or descendant::       media[not(ancestor::sub-article) and label] or descendant::       supplementary-material[not(ancestor::sub-article) and label]" role="error" id="unlinked-object-cite-xspec-assert">fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

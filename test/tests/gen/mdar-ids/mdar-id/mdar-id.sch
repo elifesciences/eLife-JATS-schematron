@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'mdar')]" role="error" id="mdar-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'mdar')] must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material[contains(lower-case(label[1]),'mdar')]" role="error" id="mdar-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'mdar')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

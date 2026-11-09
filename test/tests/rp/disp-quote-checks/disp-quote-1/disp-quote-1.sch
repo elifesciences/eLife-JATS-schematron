@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-quote" role="error" id="disp-quote-checks-xspec-assert">disp-quote must be present.</assert>
+      <assert xmlns="" test="descendant::disp-quote" role="error" id="disp-quote-checks-xspec-assert">disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>

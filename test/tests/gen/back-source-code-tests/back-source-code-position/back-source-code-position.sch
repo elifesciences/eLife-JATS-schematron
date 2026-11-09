@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

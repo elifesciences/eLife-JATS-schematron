@@ -973,7 +973,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)] must be present.</assert>
+      <assert xmlns="" test="descendant::app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

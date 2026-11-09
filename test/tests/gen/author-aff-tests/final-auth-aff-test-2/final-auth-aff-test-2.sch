@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
     </rule>
   </pattern>
 </schema>

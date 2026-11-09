@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

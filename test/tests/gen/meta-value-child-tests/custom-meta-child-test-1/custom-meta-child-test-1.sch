@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta/meta-value/*" role="error" id="meta-value-child-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value/* must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta/meta-value/*" role="error" id="meta-value-child-tests-xspec-assert">article-meta/custom-meta-group/custom-meta/meta-value/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1303,7 +1303,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/title" role="error" id="fig-title-checks-xspec-assert">fig/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption/title" role="error" id="fig-title-checks-xspec-assert">fig/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

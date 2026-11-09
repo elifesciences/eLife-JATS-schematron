@@ -1303,7 +1303,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)]" role="error" id="p-bold-checks-xspec-assert">p[not(ancestor::sub-article or ancestor::def) and (count(*)=1) and (child::bold or child::italic)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

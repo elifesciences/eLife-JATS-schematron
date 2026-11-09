@@ -1303,7 +1303,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
+      <assert xmlns="" test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

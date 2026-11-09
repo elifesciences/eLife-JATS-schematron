@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" role="error" id="elem-citation-data-pub-id-doi-xspec-assert">ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" role="error" id="elem-citation-data-pub-id-doi-xspec-assert">ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

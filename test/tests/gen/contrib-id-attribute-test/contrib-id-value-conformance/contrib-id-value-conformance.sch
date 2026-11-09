@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::contrib[@contrib-type]" role="error" id="contrib-id-attribute-test-xspec-assert">contrib[@contrib-type] must be present.</assert>
+      <assert xmlns="" test="descendant::contrib[@contrib-type]" role="error" id="contrib-id-attribute-test-xspec-assert">contrib[@contrib-type] must be present.</assert>
     </rule>
   </pattern>
 </schema>

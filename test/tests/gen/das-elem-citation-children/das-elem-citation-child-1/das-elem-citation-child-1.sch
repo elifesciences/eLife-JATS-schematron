@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/* or descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" role="error" id="das-elem-citation-children-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/* must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/* or descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" role="error" id="das-elem-citation-children-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

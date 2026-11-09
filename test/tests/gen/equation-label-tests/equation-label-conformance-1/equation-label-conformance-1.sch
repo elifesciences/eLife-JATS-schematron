@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type) or @article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[not(@article-type) or @article-type!='correction']//disp-formula/label must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(@article-type) or @article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[not(@article-type) or @article-type!='correction']//disp-formula/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

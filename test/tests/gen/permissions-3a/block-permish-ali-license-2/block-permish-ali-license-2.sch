@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta)]//ali:license_ref" role="error" id="permissions-3a-xspec-assert">permissions[not(parent::article-meta)]//ali:license_ref must be present.</assert>
+      <assert xmlns="" test="descendant::permissions[not(parent::article-meta)]//ali:license_ref" role="error" id="permissions-3a-xspec-assert">permissions[not(parent::article-meta)]//ali:license_ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

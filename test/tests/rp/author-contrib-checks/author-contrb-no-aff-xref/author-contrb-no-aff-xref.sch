@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

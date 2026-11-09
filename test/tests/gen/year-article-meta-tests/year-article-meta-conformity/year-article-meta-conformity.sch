@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
+      <assert xmlns="" test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
+      <assert xmlns="" test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
     </rule>
   </pattern>
 </schema>

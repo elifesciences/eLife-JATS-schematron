@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='journal') and (fpage or lpage)]" role="error" id="page-conformity-xspec-assert">element-citation[(@publication-type='journal') and (fpage or lpage)] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[(@publication-type='journal') and (fpage or lpage)]" role="error" id="page-conformity-xspec-assert">element-citation[(@publication-type='journal') and (fpage or lpage)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

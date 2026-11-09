@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/article-title or descendant::       element-citation/chapter-title or descendant::       element-citation/source or descendant::       element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/article-title or descendant::       element-citation/chapter-title or descendant::       element-citation/source or descendant::       element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

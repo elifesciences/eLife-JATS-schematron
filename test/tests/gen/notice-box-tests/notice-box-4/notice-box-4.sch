@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

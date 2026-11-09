@@ -974,7 +974,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap//supplementary-material[contains(label[1],' code ')]" role="error" id="table-source-code-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' code ')] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap//supplementary-material[contains(label[1],' code ')]" role="error" id="table-source-code-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' code ')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
+      <assert xmlns="" test="descendant::p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" role="error" id="pubmed-link-xspec-assert">p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

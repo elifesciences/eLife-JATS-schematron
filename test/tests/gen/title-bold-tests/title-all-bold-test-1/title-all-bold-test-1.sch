@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::title[(count(*)=1) and (child::bold or child::italic)]" role="error" id="title-bold-tests-xspec-assert">title[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
+      <assert xmlns="" test="descendant::title[(count(*)=1) and (child::bold or child::italic)]" role="error" id="title-bold-tests-xspec-assert">title[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

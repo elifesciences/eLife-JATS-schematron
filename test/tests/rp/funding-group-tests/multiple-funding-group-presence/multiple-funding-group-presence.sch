@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

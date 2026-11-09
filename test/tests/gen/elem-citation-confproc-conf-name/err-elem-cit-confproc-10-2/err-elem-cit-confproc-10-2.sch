@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='confproc']/conf-name" role="error" id="elem-citation-confproc-conf-name-xspec-assert">element-citation[@publication-type='confproc']/conf-name must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='confproc']/conf-name" role="error" id="elem-citation-confproc-conf-name-xspec-assert">element-citation[@publication-type='confproc']/conf-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

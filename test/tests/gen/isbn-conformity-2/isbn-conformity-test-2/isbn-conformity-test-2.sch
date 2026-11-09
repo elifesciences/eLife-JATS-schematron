@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::isbn" role="error" id="isbn-conformity-2-xspec-assert">isbn must be present.</assert>
+      <assert xmlns="" test="descendant::isbn" role="error" id="isbn-conformity-2-xspec-assert">isbn must be present.</assert>
     </rule>
   </pattern>
 </schema>

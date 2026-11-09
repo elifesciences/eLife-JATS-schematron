@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(child::table-wrap)]" role="error" id="gene-primer-sequence-xspec-assert">p[not(child::table-wrap)] must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(child::table-wrap)]" role="error" id="gene-primer-sequence-xspec-assert">p[not(child::table-wrap)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

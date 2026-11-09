@@ -972,7 +972,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" role="error" id="ref-report-editor-tests-2-xspec-assert">sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" role="error" id="ref-report-editor-tests-2-xspec-assert">sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1324,7 +1324,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
+      <assert xmlns="" test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
     </rule>
   </pattern>
 </schema>

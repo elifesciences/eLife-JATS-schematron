@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::bold" role="error" id="bold-checks-xspec-assert">bold must be present.</assert>
+      <assert xmlns="" test="descendant::bold" role="error" id="bold-checks-xspec-assert">bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

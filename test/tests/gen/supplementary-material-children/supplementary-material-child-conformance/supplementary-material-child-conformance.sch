@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-children-xspec-assert">supplementary-material/* must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material/*" role="error" id="supplementary-material-children-xspec-assert">supplementary-material/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

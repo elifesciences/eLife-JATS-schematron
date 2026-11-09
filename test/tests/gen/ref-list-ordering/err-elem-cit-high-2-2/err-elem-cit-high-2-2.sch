@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
+      <assert xmlns="" test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
     </rule>
   </pattern>
 </schema>

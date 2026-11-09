@@ -1304,7 +1304,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
+      <assert xmlns="" test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

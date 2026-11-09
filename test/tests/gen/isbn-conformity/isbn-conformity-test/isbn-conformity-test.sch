@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']" role="error" id="isbn-conformity-xspec-assert">element-citation/pub-id[@pub-id-type='isbn'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/pub-id[@pub-id-type='isbn']" role="error" id="isbn-conformity-xspec-assert">element-citation/pub-id[@pub-id-type='isbn'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

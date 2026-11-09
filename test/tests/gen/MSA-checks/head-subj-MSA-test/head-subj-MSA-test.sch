@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
+      <assert xmlns="" test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front/notes" role="error" id="notes-checks-xspec-assert">front/notes must be present.</assert>
+      <assert xmlns="" test="descendant::front/notes" role="error" id="notes-checks-xspec-assert">front/notes must be present.</assert>
     </rule>
   </pattern>
 </schema>

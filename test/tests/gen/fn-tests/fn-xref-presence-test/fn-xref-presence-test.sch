@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)] must be present.</assert>
+      <assert xmlns="" test="descendant::fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" role="error" id="fn-tests-xspec-assert">fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

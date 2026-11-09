@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

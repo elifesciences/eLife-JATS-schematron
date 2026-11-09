@@ -971,7 +971,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='thesis']/publisher-loc" role="error" id="elem-citation-thesis-publisher-loc-xspec-assert">element-citation[@publication-type='thesis']/publisher-loc must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='thesis']/publisher-loc" role="error" id="elem-citation-thesis-publisher-loc-xspec-assert">element-citation[@publication-type='thesis']/publisher-loc must be present.</assert>
     </rule>
   </pattern>
 </schema>

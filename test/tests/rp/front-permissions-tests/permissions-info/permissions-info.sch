@@ -1306,7 +1306,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

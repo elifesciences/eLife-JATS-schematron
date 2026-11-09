@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='web']/source" role="error" id="elem-citation-web-source-xspec-assert">element-citation[@publication-type='web']/source must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='web']/source" role="error" id="elem-citation-web-source-xspec-assert">element-citation[@publication-type='web']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

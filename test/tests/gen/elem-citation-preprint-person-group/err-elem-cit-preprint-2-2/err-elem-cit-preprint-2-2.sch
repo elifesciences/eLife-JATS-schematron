@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='preprint']/person-group" role="error" id="elem-citation-preprint-person-group-xspec-assert">element-citation[@publication-type='preprint']/person-group must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='preprint']/person-group" role="error" id="elem-citation-preprint-person-group-xspec-assert">element-citation[@publication-type='preprint']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

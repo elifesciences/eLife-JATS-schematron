@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

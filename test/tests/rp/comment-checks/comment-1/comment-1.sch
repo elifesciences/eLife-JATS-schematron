@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::comment" role="error" id="comment-checks-xspec-assert">comment must be present.</assert>
+      <assert xmlns="" test="descendant::comment" role="error" id="comment-checks-xspec-assert">comment must be present.</assert>
     </rule>
   </pattern>
 </schema>

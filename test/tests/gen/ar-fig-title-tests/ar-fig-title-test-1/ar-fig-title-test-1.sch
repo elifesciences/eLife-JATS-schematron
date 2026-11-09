@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

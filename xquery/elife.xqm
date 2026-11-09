@@ -65,7 +65,7 @@ return delete node $x,
     return 
     if ($id=('pre-colour-styled-content-check','final-colour-styled-content-check','final-strike-flag','permissions-notification','empty-attribute-conformance')) then ()
     else insert node 
-        <pattern id="root-pattern">
+        <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="root-pattern">
         <rule context="root" id="root-rule">
         {$q}
         </rule>
@@ -108,7 +108,7 @@ declare function elife:sch2pre($sch){
       let $id := ($x/@id || '-pattern')
       return 
       if (starts-with($x/@id,'final-')) then delete node $x
-      else (replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>)
+      else (replace node $x with <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="{$id}">{$x}</pattern>)
     )
     return
     copy $copy3 := $copy2
@@ -147,7 +147,7 @@ declare function elife:sch2dl($sch){
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
       return 
-      if ($x/*[@flag="dl-ar"]) then replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>
+      if ($x/*[@flag="dl-ar"]) then replace node $x with <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="{$id}">{$x}</pattern>
       else delete node $x
     )
     return 
@@ -175,7 +175,7 @@ declare function elife:sch2final($sch){
       let $id := ($x/@id || '-pattern')
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
-      else (replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>)
+      else (replace node $x with <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="{$id}">{$x}</pattern>)
     )
     return
     copy $copy3 := $copy2
@@ -250,7 +250,7 @@ declare function elife:sch2final-package($sch){
     modify(
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
-      return replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>
+      return replace node $x with <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="{$id}">{$x}</pattern>
     )
     return
     copy $copy3 := $copy2
@@ -297,7 +297,7 @@ declare function elife:sch2xspec-sch($sch){
   modify(
         for $t in $copy2
          let $r := 
-             <pattern id="root-pattern">
+             <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="root-pattern">
                 <rule context="root" id="root-rule">{
                 for $z in $t//sch:rule[not(@id=("missing-ref-cited","strike-tests","colour-styled-content","empty-attribute-test","strike-checks","preformat-checks","inline-media-checks","code-checks","uri-checks","sc-checks","funding-group-presence-tests"))]
                 let $test := $z/@context/string()
@@ -320,7 +320,7 @@ declare function elife:sch2xspec-sch($sch){
                             
         for $c in $copy2//sch:rule[not(@id="missing-ref-cited")]
         let $id := ($c/@id || '-pattern')
-        return replace node $c with <pattern id="{$id}">{$c}</pattern>
+        return replace node $c with <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="{$id}">{$c}</pattern>
      )
      return $copy2
 };
@@ -481,7 +481,7 @@ return delete node $x,
     return 
     if ($id=('inline-media-flag','code-flag','preformat-flag','strike-warning','uri-flag', 'sc-check-1','funding-group-presence')) then ()
     else insert node 
-        <pattern id="root-pattern">
+        <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="root-pattern">
         <rule context="root" id="root-rule">
         {$q}
         </rule>

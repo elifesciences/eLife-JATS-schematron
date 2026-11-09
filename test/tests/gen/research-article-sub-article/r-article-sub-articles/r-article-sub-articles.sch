@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article' and sub-article]" role="error" id="research-article-sub-article-xspec-assert">article[@article-type='research-article' and sub-article] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article' and sub-article]" role="error" id="research-article-sub-article-xspec-assert">article[@article-type='research-article' and sub-article] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[count(code) = 1]/code" role="error" id="code-tests-3-xspec-assert">p[count(code) = 1]/code must be present.</assert>
+      <assert xmlns="" test="descendant::p[count(code) = 1]/code" role="error" id="code-tests-3-xspec-assert">p[count(code) = 1]/code must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -972,7 +972,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/person-group/name/suffix" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name/suffix must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/person-group/name/suffix" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name/suffix must be present.</assert>
     </rule>
   </pattern>
 </schema>

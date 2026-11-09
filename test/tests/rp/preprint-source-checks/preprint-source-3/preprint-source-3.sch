@@ -1303,7 +1303,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

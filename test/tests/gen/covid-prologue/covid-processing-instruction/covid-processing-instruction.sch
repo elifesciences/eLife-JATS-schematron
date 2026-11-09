@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" role="error" id="covid-prologue-xspec-assert">article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]] must be present.</assert>
+      <assert xmlns="" test="descendant::article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" role="error" id="covid-prologue-xspec-assert">article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

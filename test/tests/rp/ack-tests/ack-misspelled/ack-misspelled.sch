@@ -1302,7 +1302,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
+      <assert xmlns="" test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
+      <assert xmlns="" test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
     </rule>
   </pattern>
 </schema>

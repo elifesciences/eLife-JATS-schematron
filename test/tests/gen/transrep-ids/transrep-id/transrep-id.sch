@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent')]" role="error" id="transrep-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'transparent')] must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent')]" role="error" id="transrep-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'transparent')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

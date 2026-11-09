@@ -968,7 +968,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/title-group" role="error" id="ed-eval-title-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/title-group must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub/title-group" role="error" id="ed-eval-title-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/title-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

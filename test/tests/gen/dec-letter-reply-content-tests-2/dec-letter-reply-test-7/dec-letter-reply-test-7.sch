@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/sub-article//p[not(ancestor::disp-quote)]" role="error" id="dec-letter-reply-content-tests-2-xspec-assert">article/sub-article//p[not(ancestor::disp-quote)] must be present.</assert>
+      <assert xmlns="" test="descendant::article/sub-article//p[not(ancestor::disp-quote)]" role="error" id="dec-letter-reply-content-tests-2-xspec-assert">article/sub-article//p[not(ancestor::disp-quote)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

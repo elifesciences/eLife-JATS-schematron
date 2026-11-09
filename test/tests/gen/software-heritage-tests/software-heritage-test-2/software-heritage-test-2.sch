@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" role="error" id="software-heritage-tests-xspec-assert">ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]] must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" role="error" id="software-heritage-tests-xspec-assert">ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

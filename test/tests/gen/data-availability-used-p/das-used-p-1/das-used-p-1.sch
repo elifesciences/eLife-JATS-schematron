@@ -969,7 +969,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" role="error" id="data-availability-used-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]] must be present.</assert>
+      <assert xmlns="" test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" role="error" id="data-availability-used-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

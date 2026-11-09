@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
+      <assert xmlns="" test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
+      <assert xmlns="" test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

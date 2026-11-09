@@ -970,7 +970,7 @@
   </pattern>
   <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" role="error" id="fig-video-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>
