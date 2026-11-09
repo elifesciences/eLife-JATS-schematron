@@ -969,9 +969,9 @@
         <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

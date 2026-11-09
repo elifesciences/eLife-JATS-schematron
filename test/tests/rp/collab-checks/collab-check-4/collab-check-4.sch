@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-checks-pattern">
+  <pattern id="collab-checks-pattern">
     <rule context="collab | collab-name" id="collab-checks">
       <report test="matches(.,'^[\p{Z}\p{N}\p{P}]*$')" role="warning" id="collab-check-4">[collab-check-4] <name/> element consists only of spaces, punctuation and/or numbers (or is empty) - '<value-of select="."/>'. Is it really a <name/>?</report>
       <sqf:fix id="replace-collab-to-string-name">
@@ -1309,10 +1309,10 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
+      <assert xmlns="" test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

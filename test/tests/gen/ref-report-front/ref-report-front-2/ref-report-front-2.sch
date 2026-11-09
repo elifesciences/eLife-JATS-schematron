@@ -967,9 +967,9 @@
       <assert test="$count = 1" role="error" flag="dl-ar" id="ref-report-front-2">sub-article front-stub must contain one, and only one contrib-group elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']/front-stub" role="error" id="ref-report-front-xspec-assert">sub-article[@article-type='referee-report']/front-stub must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='referee-report']/front-stub" role="error" id="ref-report-front-xspec-assert">sub-article[@article-type='referee-report']/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

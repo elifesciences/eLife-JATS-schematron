@@ -968,9 +968,9 @@
       <assert test="count(subj-group[@subj-group-type='display-channel']) = 1" role="error" id="disp-subj-test">There must be one subj-group[@subj-group-type='display-channel'] which is a child of article-categories. Currently there are <value-of select="count(article-categories/subj-group[@subj-group-type='display-channel'])"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
     </rule>
   </pattern>
 </schema>

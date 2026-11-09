@@ -966,9 +966,9 @@
       <assert test="text() = 'In press'" role="error" id="err-elem-cit-journal-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']/comment" role="error" id="elem-citation-journal-comment-xspec-assert">element-citation[@publication-type='journal']/comment must be present.</assert>
     </rule>
   </pattern>
 </schema>

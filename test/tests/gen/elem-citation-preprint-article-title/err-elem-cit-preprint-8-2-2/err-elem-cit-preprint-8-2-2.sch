@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='preprint']/article-title" role="error" id="elem-citation-preprint-article-title-xspec-assert">element-citation[@publication-type='preprint']/article-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='preprint']/article-title" role="error" id="elem-citation-preprint-article-title-xspec-assert">element-citation[@publication-type='preprint']/article-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

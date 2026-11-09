@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-3" test="count(tr) lt 1" role="warning" id="kr-table-header-3">Key resources table has no rows in its header, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

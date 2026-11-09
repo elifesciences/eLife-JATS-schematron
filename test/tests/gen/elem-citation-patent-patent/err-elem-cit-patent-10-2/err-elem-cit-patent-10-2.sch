@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-10-2" test="some $x in document($countries)/countries/country/@country satisfies ($x=@country)" role="error" id="err-elem-cit-patent-10-2">The &lt;patent&gt; element must have a country attribute, the value of which must be a 2 letter ISO 3166-1 country code. Reference '<value-of select="ancestor::ref/@id"/>' has a patent/@country attribute with the value '<value-of select="@country"/>', which is not in the list.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='patent']/patent" role="error" id="elem-citation-patent-patent-xspec-assert">element-citation[@publication-type='patent']/patent must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='patent']/patent" role="error" id="elem-citation-patent-patent-xspec-assert">element-citation[@publication-type='patent']/patent must be present.</assert>
     </rule>
   </pattern>
 </schema>

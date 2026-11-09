@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-ext-links-pattern">
+  <pattern id="sub-article-ext-links-pattern">
     <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
       <report test="not(inline-graphic) and matches(lower-case(@*:href),'imgur\.com')" role="warning" id="ext-link-imgur">[ext-link-imgur] ext-link in sub-article directs to imgur.com - <value-of select="@*:href"/>. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//ext-link" role="error" id="sub-article-ext-links-xspec-assert">sub-article/body//ext-link must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article/body//ext-link" role="error" id="sub-article-ext-links-xspec-assert">sub-article/body//ext-link must be present.</assert>
     </rule>
   </pattern>
 </schema>

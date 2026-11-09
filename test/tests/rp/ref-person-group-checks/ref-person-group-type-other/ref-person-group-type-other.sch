@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-person-group-checks-pattern">
+  <pattern id="ref-person-group-checks-pattern">
     <rule context="ref//person-group" id="ref-person-group-checks">
       <report test="ancestor::mixed-citation[@publication-type=('journal','data', 'patent', 'software', 'preprint', 'web', 'report', 'confproc', 'thesis', 'other')] and not(normalize-space(@person-group-type)=('','author'))" role="warning" id="ref-person-group-type-other">[ref-person-group-type-other] This <name/> inside a <value-of select="ancestor::mixed-citation/@publication-type"/> reference has the person-group-type '<value-of select="@person-group-type"/>'. Is that correct?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
+      <assert xmlns="" test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
         <value-of select="replace(label,'\.$','')"/> is placed before <value-of select="following-sibling::fig[1]/label[1]"/> Figure level videos should always be placed after figures and figure supplements in their figure group.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group/media[starts-with(@mimetype,'video')]" role="error" id="fig-video-specific-xspec-assert">fig-group/media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert xmlns="" test="descendant::fig-group/media[starts-with(@mimetype,'video')]" role="error" id="fig-video-specific-xspec-assert">fig-group/media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

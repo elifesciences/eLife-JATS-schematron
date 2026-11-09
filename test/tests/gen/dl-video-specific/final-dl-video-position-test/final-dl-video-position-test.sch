@@ -970,9 +970,9 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" role="error" id="dl-video-specific-xspec-assert">sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-p-checks-pattern">
+  <pattern id="sub-article-p-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-p-checks">
       <report test="bold[matches(lower-case(.),'(image|table)')] and (inline-graphic or graphic or ext-link[inline-graphic or graphic])" role="error" id="sub-article-bold-image-1">[sub-article-bold-image-1] p element contains both bold text (a label for an image or table) and a graphic. These should be in separate paragraphs (so that they are correctly processed into fig or table-wrap).</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
     </rule>
   </pattern>
 </schema>

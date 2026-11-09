@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-4" test="count(award-id) gt 1" role="error" id="award-group-test-4">award-group may contain one and only one award-id.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

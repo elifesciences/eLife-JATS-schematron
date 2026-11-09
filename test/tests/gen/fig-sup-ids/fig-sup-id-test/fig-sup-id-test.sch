@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-id-test" test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" role="error" id="fig-sup-ids-xspec-assert">article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" role="error" id="fig-sup-ids-xspec-assert">article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

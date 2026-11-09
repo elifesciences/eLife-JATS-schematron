@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="test-editor-contrib-group-pattern">
+  <pattern id="test-editor-contrib-group-pattern">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
       <assert test="count(contrib[@contrib-type='senior_editor']) = 1" role="error" id="editor-conformance-1">[editor-conformance-1] contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.')" role="warning" id="pub-id-url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
+      <assert xmlns="" test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::element-citation)]/p must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::element-citation)]/p must be present.</assert>
     </rule>
   </pattern>
 </schema>

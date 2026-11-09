@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h3q4a-retraction-info" test="@article-type='retraction'" role="info" id="retraction-info">Ensure that the PDF for the article which is being retracted (<value-of select="string-join(descendant::article-meta/related-article[@related-article-type='retracted-article']/@xlink:href,'; ')"/>) is also updated with a header saying it's been retracted.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

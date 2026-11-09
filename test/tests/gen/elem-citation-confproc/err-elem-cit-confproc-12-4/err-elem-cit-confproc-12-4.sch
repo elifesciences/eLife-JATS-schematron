@@ -969,9 +969,9 @@
         &lt;fpage&gt; and  <value-of select="count(lpage/*)"/> child elements in &lt;lpage&gt;.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

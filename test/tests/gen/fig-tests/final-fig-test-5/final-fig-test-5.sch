@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-5" test="not($article-type = ('discussion',$notice-article-types)) and not(caption/title)" role="error" id="final-fig-test-5">fig caption must have a title.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
+      <assert xmlns="" test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

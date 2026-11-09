@@ -966,9 +966,9 @@
       <report test="matches(.,'[Dd]ecision letter table \d')" role="error" flag="dl-ar" id="sub-article-dl-image-2">Decision letter contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the decision letter table is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/body//bold" role="error" id="sub-article-dl-image-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//bold must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/body//bold" role="error" id="sub-article-dl-image-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

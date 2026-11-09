@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-4" test="matches(@object-id,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-4">related-object in editor's evaluation must have an object-id attribute which is a doi. '<value-of select="@object-id"/>' is not a valid doi.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/related-object" role="error" id="ed-eval-rel-obj-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/related-object must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub/related-object" role="error" id="ed-eval-rel-obj-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/related-object must be present.</assert>
     </rule>
   </pattern>
 </schema>

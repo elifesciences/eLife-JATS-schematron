@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-1" test="mml:math or alternatives/mml:math" role="error" id="inline-formula-test-1">inline-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
+      <assert xmlns="" test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

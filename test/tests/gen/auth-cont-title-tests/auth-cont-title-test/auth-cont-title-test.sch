@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-title-test" test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-title-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='author-contribution']" role="error" id="auth-cont-title-tests-xspec-assert">fn-group[@content-type='author-contribution'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

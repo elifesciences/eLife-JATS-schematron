@@ -974,9 +974,9 @@
         <value-of select="label"/> does not begin with its parent figure label - <value-of select="$fig-label"/> - which is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

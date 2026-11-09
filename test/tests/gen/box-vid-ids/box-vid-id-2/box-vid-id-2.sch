@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-2" test="starts-with(@id,$box-id)" role="error" id="box-vid-id-2">video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//boxed-text//media[starts-with(@mimetype,'video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[starts-with(@mimetype,'video')] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//boxed-text//media[starts-with(@mimetype,'video')]" role="error" id="box-vid-ids-xspec-assert">article/body//boxed-text//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

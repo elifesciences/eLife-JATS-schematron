@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="front-permissions-tests-pattern">
+  <pattern id="front-permissions-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//permissions" id="front-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
@@ -1303,10 +1303,10 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-info" test="license" role="info" id="permissions-info">[permissions-info] This article is licensed under a<value-of select="      if (contains($license-type,'publicdomain/zero')) then ' CC0 1.0'      else if (contains($license-type,'by/4.0')) then ' CC BY 4.0'      else if (contains($license-type,'by/3.0')) then ' CC BY 3.0'      else 'n unknown'"/> license. <value-of select="$license-type"/>
       </report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
     </rule>
   </pattern>
 </schema>

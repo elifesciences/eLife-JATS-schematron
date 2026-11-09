@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::" role="error" id="-xspec-assert"> must be present.</assert>
+      <assert xmlns="" test="descendant::" role="error" id="-xspec-assert"> must be present.</assert>
     </rule>
   </pattern>
 </schema>

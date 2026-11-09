@@ -970,9 +970,9 @@
       <report test="matches(@xlink:href,'^mailto:')" role="error" id="ext-link-mailto-check">Embedded URL within text starts with the mailto prefix - <value-of select="if (not(. = (@xlink:href,replace(@xlink:href,'^mailto:','')))) then concat(@xlink:href,' embedded in ',.) else ."/>. This will fail ingestion at PMC. Remove this link (the text can remain).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
+      <assert xmlns="" test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

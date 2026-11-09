@@ -973,9 +973,9 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxls5-diabetes-1-test" test="matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes') and not(descendant::p[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::td[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')]) and not(descendant::th[matches(.,'[Tt]ype\p{Zs}?[Oo]ne\p{Zs}?[Dd]iabetes')])" role="error" id="diabetes-1-test">'<name/>' element contains the phrase 'Type one diabetes'. The number should not be spelled out, this should be 'Type 1 diabetes'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert xmlns="" test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
     </rule>
   </pattern>
 </schema>

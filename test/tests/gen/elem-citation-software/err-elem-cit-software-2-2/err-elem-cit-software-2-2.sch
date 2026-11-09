@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-2-2" test="person-group[@person-group-type='author']" role="error" id="err-elem-cit-software-2-2">The &lt;person-group&gt; in a software reference must have the attribute person-group-type set to 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

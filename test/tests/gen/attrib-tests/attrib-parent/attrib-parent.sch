@@ -969,9 +969,9 @@
       </assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
+      <assert xmlns="" test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

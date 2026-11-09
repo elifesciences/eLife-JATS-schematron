@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-label-test-1" test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" role="error" id="fig-label-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" role="error" id="fig-label-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

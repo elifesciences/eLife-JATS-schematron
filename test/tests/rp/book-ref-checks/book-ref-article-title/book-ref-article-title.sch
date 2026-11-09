@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="book-ref-checks-pattern">
+  <pattern id="book-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
       <report test="descendant::article-title" role="error" id="book-ref-article-title">[book-ref-article-title] This book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a descendant article-title. This cannot be correct. It should either be a source or chapter-title (or something else entirely).</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

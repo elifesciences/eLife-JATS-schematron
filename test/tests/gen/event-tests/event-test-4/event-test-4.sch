@@ -970,9 +970,9 @@
       <report test="following-sibling::event[date[@iso-8601-date lt $date]]" role="error" id="event-test-4">Events in pub-history must be ordered chronologically in descending order. This event has a date (<value-of select="$date"/>) which is later than the date of a following event (<value-of select="preceding-sibling::event[date[@iso-8601-date lt $date]][1]"/>).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
+      <assert xmlns="" test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="test-editors-contrib-pattern">
+  <pattern id="test-editors-contrib-pattern">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
       <let name="name" value="if (name) then e:get-name(name[1]) else ''"/>
       <let name="role" value="role[1]"/>
@@ -1303,10 +1303,10 @@
       <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib/name[1])=$name) then e:get-name($contrib) else ()"/>
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjuk3-contrib-test-2" test="(count(xref[@ref-type='aff']) + count(aff) = 0)" role="warning" id="contrib-test-2">[contrib-test-2] The <value-of select="if (role) then role[1] else 'editor contrib'"/> doesn't have an affiliation - <value-of select="$name"/> - is this correct? Please check eJP or ask Editorial for the correct affiliation to be added in eJP.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']/contrib" role="error" id="test-editors-contrib-xspec-assert">article/front/article-meta/contrib-group[@content-type='section']/contrib must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/contrib-group[@content-type='section']/contrib" role="error" id="test-editors-contrib-xspec-assert">article/front/article-meta/contrib-group[@content-type='section']/contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

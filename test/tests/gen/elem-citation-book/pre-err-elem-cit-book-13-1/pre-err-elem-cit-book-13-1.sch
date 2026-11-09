@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hg5ky-pre-err-elem-cit-book-13-1" test="count(publisher-name)=1" role="warning" id="pre-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements. If this information is missing, please query it with the authors.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

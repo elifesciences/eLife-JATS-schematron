@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1" test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highly unusual. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:is-prc(.)]" role="error" id="prc-pub-review-tests-xspec-assert">article[e:is-prc(.)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

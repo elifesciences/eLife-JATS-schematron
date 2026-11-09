@@ -966,9 +966,9 @@
       <report test="@*" role="error" id="anonymous-test-3">anonymous element cannot have any attributes.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
+      <assert xmlns="" test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
     </rule>
   </pattern>
 </schema>

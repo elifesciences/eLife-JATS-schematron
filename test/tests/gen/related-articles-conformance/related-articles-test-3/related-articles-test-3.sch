@@ -968,9 +968,9 @@
       <assert test="@related-article-type" role="error" id="related-articles-test-3">related-article element must contain a @related-article-type.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

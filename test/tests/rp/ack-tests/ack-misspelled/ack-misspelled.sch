@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ack-tests-pattern">
+  <pattern id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
       <report test="not(title[1][.='Acknowledgements'])" role="error" id="ack-misspelled">[ack-misspelled] The Acknowledgements section is misspelled, please correct.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
+      <assert xmlns="" test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

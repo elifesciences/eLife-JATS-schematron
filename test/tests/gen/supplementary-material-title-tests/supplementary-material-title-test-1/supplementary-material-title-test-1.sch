@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-1" test="matches(.,'^\([A-Za-z]|^[A-Za-z]\)')" role="warning" id="supplementary-material-title-test-1">'<value-of select="$label"/>' appears to have a title which is the beginning of a caption. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
         <name/> that's a child of an event with an eLife DOI must contain the text 'Reviewed preprint v0' (or in older content one of the folllowing template descriptions: '<value-of select="string-join($template-descriptions,'; ')"/>'). This one has '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
+      <assert xmlns="" test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
     </rule>
   </pattern>
 </schema>

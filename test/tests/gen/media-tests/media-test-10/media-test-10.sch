@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-10" test="preceding::media/@xlink:href = $link" role="error" id="media-test-10">Media file for <value-of select="if (starts-with(@mimetype,'video')) then replace(label,'\.','') else replace(parent::*/label,'\.','')"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@xlink:href=$link][1]/starts-with(@mimetype,'video')) then replace(preceding::media[@xlink:href=$link][1]/label,'\.','')         else replace(preceding::media[@xlink:href=$link][1]/parent::*/label,'\.','')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert xmlns="" test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

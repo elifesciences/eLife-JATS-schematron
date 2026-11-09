@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="contrib-checks-pattern">
+  <pattern id="contrib-checks-pattern">
     <rule context="article/front/article-meta/contrib-group/contrib" id="contrib-checks">
       <report test="parent::contrib-group[not(preceding-sibling::contrib-group)] and not(@contrib-type)" role="error" id="contrib-2">[contrib-2] Contrib without the attribute contrib-type="author" is present in author contrib-group (the first contrib-group within article-meta). This is not correct.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/contrib-group/contrib" role="error" id="contrib-checks-xspec-assert">article/front/article-meta/contrib-group/contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

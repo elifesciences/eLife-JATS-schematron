@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
+      <assert xmlns="" test="descendant::disp-quote" role="error" id="disp-quote-tests-xspec-assert">disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>

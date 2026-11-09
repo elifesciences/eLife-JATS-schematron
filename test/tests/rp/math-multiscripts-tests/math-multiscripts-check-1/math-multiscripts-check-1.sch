@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-multiscripts-tests-pattern">
+  <pattern id="math-multiscripts-tests-pattern">
     <rule context="*:mmultiscripts" id="math-multiscripts-tests">
       <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>
       <assert test="count(*) ge 3" role="error" id="math-multiscripts-check-1">[math-multiscripts-check-1] <name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
+      <assert xmlns="" test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
     </rule>
   </pattern>
 </schema>

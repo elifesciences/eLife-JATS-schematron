@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/title-group" role="error" id="ed-eval-title-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/title-group must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub/title-group" role="error" id="ed-eval-title-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/title-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

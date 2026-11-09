@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="license-tests-pattern">
+  <pattern id="license-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//permissions/license" id="license-tests">
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" test="*:license_ref" role="error" id="license-test-1">[license-test-1] license must contain ali:license_ref.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license" role="error" id="license-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license" role="error" id="license-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license must be present.</assert>
     </rule>
   </pattern>
 </schema>

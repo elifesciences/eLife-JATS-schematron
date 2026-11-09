@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-article-title-checks-pattern">
+  <pattern id="ref-article-title-checks-pattern">
     <rule context="ref//article-title" id="ref-article-title-checks">
       <report test="contains(lower-case(.),'[internet]')" role="warning" id="article-title-internet">[article-title-internet] This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//article-title" role="error" id="ref-article-title-checks-xspec-assert">ref//article-title must be present.</assert>
+      <assert xmlns="" test="descendant::ref//article-title" role="error" id="ref-article-title-checks-xspec-assert">ref//article-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

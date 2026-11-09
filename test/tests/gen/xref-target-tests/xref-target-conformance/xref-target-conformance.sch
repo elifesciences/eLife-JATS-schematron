@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-target-conformance" test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
+      <assert xmlns="" test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
     </rule>
   </pattern>
 </schema>

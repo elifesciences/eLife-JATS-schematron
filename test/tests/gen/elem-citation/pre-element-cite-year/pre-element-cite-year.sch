@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-element-cite-year" test="not(year)" role="warning" id="pre-element-cite-year">'<value-of select="@publication-type"/>' type references must have a year. Reference '<value-of select="../@id"/>' does not. If you are unable to determine this, please ensure to add an author query asking for the year of publication.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-citation-checks-pattern">
+  <pattern id="ref-citation-checks-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-citation-checks">
       <let name="rid" value="@rid"/>
       <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and preceding::text()[1][matches(lower-case(.),'\d\s*([YZEPTGMkhdacm]?m|mm|cm|km|[µμ]m|nm|pm|fm|am|zm|ym)$')]" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-1">[ref-cite-superscript-1] This reference citation contains superscript number(s), but is preceed by an SI unit abbreviation. Should the xref be removed and the superscript numbers be retained?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-citation-checks-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='bibr']" role="error" id="ref-citation-checks-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

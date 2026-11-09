@@ -973,9 +973,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-1" test="parent::fig-group" role="error" id="fig-sup-test-1">fig supplement is not a child of fig-group. This cannot be correct.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

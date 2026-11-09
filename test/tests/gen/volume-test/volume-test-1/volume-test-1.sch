@@ -968,9 +968,9 @@
       <report test=".='' or (. != (number($pub-date) - 2011))" role="error" id="volume-test-1">Journal volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/volume" role="error" id="volume-test-xspec-assert">article-meta/volume must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/volume" role="error" id="volume-test-xspec-assert">article-meta/volume must be present.</assert>
     </rule>
   </pattern>
 </schema>

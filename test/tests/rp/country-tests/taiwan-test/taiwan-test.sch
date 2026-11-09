@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="country-tests-pattern">
+  <pattern id="country-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
@@ -1303,10 +1303,10 @@
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <report test="(. != 'Taiwan') and  (matches(lower-case($city),'ta[i]?pei|tai\p{Zs}?chung|kaohsiung|taoyuan|tainan|hsinchu|keelung|chiayi|changhua|jhongli|tao-yuan|hualien'))" role="warning" id="taiwan-test">[taiwan-test] Affiliation has a Taiwanese city - <value-of select="$city"/> - but its country is '<value-of select="."/>'. Please check the original preprint/manuscript. If it has 'Taiwan' as the country in the original manuscript then ensure it is changed to 'Taiwan'.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
     </rule>
   </pattern>
 </schema>

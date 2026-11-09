@@ -967,9 +967,9 @@
         <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
+      <assert xmlns="" test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -970,9 +970,9 @@
         <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> has a title '<value-of select="caption[1]/title[1]"/>'. Is it a Key resources table? If so, it should be captured as a table in an appendix for the article.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-type-title-test" test="if ($title = 'undefined') then ()         else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type]/title" role="error" id="sec-title-tests-xspec-assert">sec[@sec-type]/title must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type]/title" role="error" id="sec-title-tests-xspec-assert">sec[@sec-type]/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

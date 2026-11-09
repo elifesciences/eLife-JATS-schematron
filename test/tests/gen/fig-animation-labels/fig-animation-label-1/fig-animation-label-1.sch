@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#fig-animation-label-1" test="$number != 1 and (not(parent::media/preceding-sibling::media/label[contains(.,concat($figure-string,'—animation'))]) or (number(parent::media/preceding-sibling::media[label[contains(.,concat($figure-string,'—animation'))]][1]/label/replace(substring-after(.,'—'),'[^\d]','')) != ($number - 1)))" role="error" id="fig-animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="concat($figure-string,'—animation ',string($number - 1))"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" role="error" id="fig-animation-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" role="error" id="fig-animation-labels-xspec-assert">media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

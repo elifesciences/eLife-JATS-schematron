@@ -971,9 +971,9 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-test-2" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else not(label)" role="error" flag="dl-ar" id="ar-fig-test-2">Author Response fig must have a label.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
+      <assert xmlns="" test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

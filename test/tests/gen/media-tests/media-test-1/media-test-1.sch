@@ -969,9 +969,9 @@
       <report test="($dtd-version le '1.3') and not(@mimetype=('video','application','text','image', 'audio','chemical'))" role="error" id="media-test-1">media must have @mimetype, the value of which has to be one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert xmlns="" test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

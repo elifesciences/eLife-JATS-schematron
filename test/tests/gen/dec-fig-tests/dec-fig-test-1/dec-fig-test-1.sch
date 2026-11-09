@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-1" test="label" role="error" flag="dl-ar" id="dec-fig-test-1">fig must have a label.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']//fig" role="error" id="dec-fig-tests-xspec-assert">sub-article[@article-type='decision-letter']//fig must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']//fig" role="error" id="dec-fig-tests-xspec-assert">sub-article[@article-type='decision-letter']//fig must be present.</assert>
     </rule>
   </pattern>
 </schema>

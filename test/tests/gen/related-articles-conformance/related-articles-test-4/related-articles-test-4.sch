@@ -968,9 +968,9 @@
       <assert test="@related-article-type = $allowed-values" role="error" id="related-articles-test-4">@related-article-type must be equal to one of the allowed values, ('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', and 'object-of-concern').</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

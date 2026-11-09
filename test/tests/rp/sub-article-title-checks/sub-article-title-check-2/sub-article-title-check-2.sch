@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-title-checks-pattern">
+  <pattern id="sub-article-title-checks-pattern">
     <rule context="sub-article/front-stub/title-group/article-title" id="sub-article-title-checks">
       <let name="type" value="ancestor::sub-article/@article-type"/>
       <report test="$type='referee-report' and not(matches(.,'^Reviewer #\d\d? \([Pp]ublic [Rr]eview\):?$|^Joint [Pp]ublic [Rr]eview:?$'))" role="error" id="sub-article-title-check-2">[sub-article-title-check-2] The title of a <value-of select="$type"/> type sub-article should be in one of the following formats: 'Reviewer #0 (public review)' or 'Joint public review'. This one is: <value-of select="."/>
       </report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/front-stub/title-group/article-title" role="error" id="sub-article-title-checks-xspec-assert">sub-article/front-stub/title-group/article-title must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article/front-stub/title-group/article-title" role="error" id="sub-article-title-checks-xspec-assert">sub-article/front-stub/title-group/article-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

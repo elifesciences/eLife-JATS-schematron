@@ -970,9 +970,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-9" test="matches($pre-text,'[Ff]igure [0-9]{1,3}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" role="error" id="vid-xref-test-9">Incomplete citation. Video citation is preceded by text which suggests it should instead be a link to a figure level video - '<value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

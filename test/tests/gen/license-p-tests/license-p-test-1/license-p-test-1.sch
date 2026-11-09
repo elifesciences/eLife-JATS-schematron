@@ -970,9 +970,9 @@
       <report test="($license-type='ccby') and .!=$ccby-text" role="error" id="license-p-test-1">The text in license-p is incorrect (<value-of select="."/>). Since this article is CCBY licensed, the text should be <value-of select="$ccby-text"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
+      <assert xmlns="" test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

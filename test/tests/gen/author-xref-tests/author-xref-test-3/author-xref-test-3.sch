@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-3" test="(@ref-type='fn') and contains(@rid,'pa') and following-sibling::xref[@ref-type='aff' or contains(@rid,'equal')]" role="error" id="author-xref-test-3">Present address type footnote links from authors must appear after affiliation and equal contribution links (if there is one). For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their present address link (to <value-of select="idref(@rid)"/>) appears before an affiliation link or equal contribution link.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib[@contrib-type='author']/xref" role="error" id="author-xref-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/xref must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta//contrib[@contrib-type='author']/xref" role="error" id="author-xref-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/xref must be present.</assert>
     </rule>
   </pattern>
 </schema>

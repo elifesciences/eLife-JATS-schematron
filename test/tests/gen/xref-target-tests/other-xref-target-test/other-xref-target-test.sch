@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#other-xref-target-test" test="(@ref-type='other') and not($target/local-name() = 'award-group')" role="error" id="other-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
+      <assert xmlns="" test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
     </rule>
   </pattern>
 </schema>

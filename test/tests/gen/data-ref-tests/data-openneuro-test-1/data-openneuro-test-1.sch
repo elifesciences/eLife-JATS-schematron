@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-openneuro-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.18112/openneuro') and (source[1]!='OpenNeuro')" role="warning" id="data-openneuro-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.18112/openneuro' but the database name is not 'OpenNeuro' - <value-of select="source[1]"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
+      <assert xmlns="" test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

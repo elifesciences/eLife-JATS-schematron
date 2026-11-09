@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-author-test-1" test="bio or collab or ancestor::collab or collab-wrap or ancestor::collab-wrap" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author'] must be present.</assert>
+      <assert xmlns="" test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" role="error" id="feature-author-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

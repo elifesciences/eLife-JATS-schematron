@@ -973,9 +973,9 @@
       </assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

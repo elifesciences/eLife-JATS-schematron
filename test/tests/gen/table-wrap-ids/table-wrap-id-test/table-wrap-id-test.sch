@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-id-test" test="if (label = 'Key resources table') then @id='keyresource'         else if (label) then matches(@id, '^table[0-9]{1,3}$')         else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" role="error" id="table-wrap-ids-xspec-assert">article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)] must be present.</assert>
+      <assert xmlns="" test="descendant::article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" role="error" id="table-wrap-ids-xspec-assert">article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

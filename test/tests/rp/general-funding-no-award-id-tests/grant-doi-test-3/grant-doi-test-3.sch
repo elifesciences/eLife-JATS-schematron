@@ -1295,17 +1295,17 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="general-funding-no-award-id-tests-pattern">
+  <pattern id="general-funding-no-award-id-tests-pattern">
     <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="key('ror-by-ror-id', $funder-id, $rors-doc)"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3" test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">[grant-doi-test-3] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id]" role="error" id="general-funding-no-award-id-tests-xspec-assert">funding-group/award-group[not(award-id) and funding-source/institution-wrap[count(institution-id)=1]/institution-id] must be present.</assert>
     </rule>
   </pattern>
 </schema>

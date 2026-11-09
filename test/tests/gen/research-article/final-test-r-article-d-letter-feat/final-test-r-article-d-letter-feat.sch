@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-test-r-article-d-letter-feat" test="$disp-channel = 'Feature Article' and not(sub-article[@article-type='decision-letter'])" role="warning" flag="dl-ar" id="final-test-r-article-d-letter-feat">A decision letter should be present for research articles. Feature template 5s almost always have a decision letter, but this one does not. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

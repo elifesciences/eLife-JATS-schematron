@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="article-version-alternatives-checks-pattern">
+  <pattern id="article-version-alternatives-checks-pattern">
     <rule context="article/front/article-meta/article-version-alternatives" id="article-version-alternatives-checks">
       <assert test="article-version[@article-version-type='publication-state']" role="error" id="article-version-10">[article-version-10] article-version-alternatives must contain a &lt;article-version article-version-type="publication-state"&gt;.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/article-version-alternatives" role="error" id="article-version-alternatives-checks-xspec-assert">article/front/article-meta/article-version-alternatives must be present.</assert>
     </rule>
   </pattern>
 </schema>

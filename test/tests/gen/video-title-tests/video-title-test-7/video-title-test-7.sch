@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-7" test="string-length(.) gt 250" role="warning" id="video-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

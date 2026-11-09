@@ -972,9 +972,9 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-data-label" test="$label = concat($table-label,'—source data ',$pos,'.')" role="error" id="table-data-label">Table source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong table or the label is incorrect. Should the label be <value-of select="concat($table-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap//supplementary-material[contains(label[1],' data ')]" role="error" id="table-source-data-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' data ')] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap//supplementary-material[contains(label[1],' data ')]" role="error" id="table-source-data-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' data ')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

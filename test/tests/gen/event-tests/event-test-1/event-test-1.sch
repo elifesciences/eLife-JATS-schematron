@@ -971,9 +971,9 @@
         <name/> must contain an event-desc element. This one does not.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
+      <assert xmlns="" test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>
   </pattern>
 </schema>

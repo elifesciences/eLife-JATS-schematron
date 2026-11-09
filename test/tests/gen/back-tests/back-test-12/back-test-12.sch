@@ -970,9 +970,9 @@
       <report test="if ($version='1') then ($article-type = 'research-article') and (count(sec[@sec-type='additional-information']/fn-group[@content-type='author-contribution']) != 1)         else ()" role="error" id="back-test-12">One and only one fn-group[@content-type='author-contribution'] must be present in back as a child of sec[@sec-type="additional-information"] in <value-of select="$subj-type"/> content.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert xmlns="" test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>
   </pattern>
 </schema>

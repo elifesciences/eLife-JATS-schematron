@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#elem-cit-source" test="string-length(normalize-space(.)) ge 2" role="error" id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation/source" role="error" id="elem-citation-source-xspec-assert">ref/element-citation/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

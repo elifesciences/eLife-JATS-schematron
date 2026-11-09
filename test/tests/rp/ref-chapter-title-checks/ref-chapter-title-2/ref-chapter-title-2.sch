@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-chapter-title-checks-pattern">
+  <pattern id="ref-chapter-title-checks-pattern">
     <rule context="ref//chapter-title" id="ref-chapter-title-checks">
       <report test="matches(.,'\?[^\s\p{P}]')" role="warning" id="ref-chapter-title-2">[ref-chapter-title-2] <name/> in ref contains a question mark which may potentially be the result of a processing error - <value-of select="."/>. Should it be repalced with other characters?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
+      <assert xmlns="" test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

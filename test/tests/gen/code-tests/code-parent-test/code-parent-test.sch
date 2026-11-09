@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-parent-test" test="parent::p" role="error" id="code-parent-test">A code element must be contained in a p element. The code element (containing the content <value-of select="."/>) is contained in a <value-of select="parent::*/name()"/> element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
+      <assert xmlns="" test="descendant::code" role="error" id="code-tests-xspec-assert">code must be present.</assert>
     </rule>
   </pattern>
 </schema>

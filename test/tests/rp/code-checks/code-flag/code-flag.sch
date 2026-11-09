@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="code-checks-pattern">
+  <pattern id="code-checks-pattern">
     <rule context="code" id="code-checks">
       <report test="." role="warning" id="code-flag">[code-flag] Please check whether the content in this code element has been captured correctly (and is rendered approriately).</report>
     </rule>
-  </sch:pattern>
+  </pattern>
 </schema>

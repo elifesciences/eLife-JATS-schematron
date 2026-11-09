@@ -966,9 +966,9 @@
       <assert test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]" role="warning" id="add-files-2">This article does not have a transparent reporting form or MDAR checklist. Is that correct?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']" role="error" id="trf-presence-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

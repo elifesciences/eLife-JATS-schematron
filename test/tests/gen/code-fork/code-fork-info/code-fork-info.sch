@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#code-fork-info" test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="code-fork-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

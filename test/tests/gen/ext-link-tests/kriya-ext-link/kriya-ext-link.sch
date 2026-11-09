@@ -970,9 +970,9 @@
       <report test="contains(lower-case(@xlink:href),'kriyadocs.com')" role="error" id="kriya-ext-link">URL contains 'kriyadocs.com', so it looks like a link to kriya which must be incorrect - <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
+      <assert xmlns="" test="descendant::ext-link[@ext-link-type='uri']" role="error" id="ext-link-tests-xspec-assert">ext-link[@ext-link-type='uri'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

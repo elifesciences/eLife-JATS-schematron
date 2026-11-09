@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hdxya-pre-auth-aff-test-1" test="country" role="warning" id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
     </rule>
   </pattern>
 </schema>

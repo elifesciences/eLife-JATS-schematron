@@ -968,9 +968,9 @@
       <report test="count(sub-article[@article-type=('reply','author-comment')]) gt 1" role="error" flag="dl-ar" id="test-r-article-a-reply-2">There cannot be more than one author response. This article has <value-of select="count(sub-article[@article-type=('reply','author-comment')])"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

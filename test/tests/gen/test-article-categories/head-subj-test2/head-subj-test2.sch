@@ -968,9 +968,9 @@
       <report test="($article-type = ('research-article','review-article',$notice-article-types,'article-commentary')) and not($template ='5') and count(subj-group[@subj-group-type='heading']) lt 1" role="error" id="head-subj-test2">article-categories must contain one and or two subj-group[@subj-group-type='heading'] elements. Currently there are 0.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
     </rule>
   </pattern>
 </schema>

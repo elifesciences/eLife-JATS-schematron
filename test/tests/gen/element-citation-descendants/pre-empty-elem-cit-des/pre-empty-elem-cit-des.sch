@@ -967,9 +967,9 @@
         <name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
     </rule>
   </pattern>
 </schema>

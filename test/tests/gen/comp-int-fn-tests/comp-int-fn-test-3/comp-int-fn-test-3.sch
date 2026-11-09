@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-3" test="contains(lower-case(.),'the other authors')" role="error" id="comp-int-fn-test-3">Competing interests footnote contains information about other authors - '<value-of select="."/>'. These footnotes should only contain information about that specific author.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
     </rule>
   </pattern>
 </schema>

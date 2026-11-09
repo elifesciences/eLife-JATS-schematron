@@ -974,9 +974,9 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-1" test="table" role="error" id="table-wrap-test-1">table-wrap must have one table.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>

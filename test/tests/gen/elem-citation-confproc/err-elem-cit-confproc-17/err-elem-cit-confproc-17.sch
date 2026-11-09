@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h08e2-err-elem-cit-confproc-17" test="count(*) = count(person-group | article-title | year | conf-loc | conf-name | lpage |         fpage | elocation-id | ext-link | pub-id)" role="error" id="err-elem-cit-confproc-17">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="confproc" are: &lt;person-group&gt;, &lt;year&gt;, &lt;article-title&gt;, &lt;conf-loc&gt;, &lt;conf-name&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;elocation-id&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-numeric-label-checks-pattern">
+  <pattern id="ref-numeric-label-checks-pattern">
     <rule context="ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label]" id="ref-numeric-label-checks">
       <let name="numeric-label" value="number(replace(./label[1],'[^\d]',''))"/>
       <let name="pos" value="count(parent::ref-list/ref[label]) - count(following-sibling::ref[label])"/>
       <assert test="$numeric-label = $pos" role="warning" id="ref-label-1">[ref-label-1] ref with id <value-of select="@id"/> has the label <value-of select="$numeric-label"/>, but according to its position it should be labelled as number <value-of select="$pos"/>. Has there been a processing error?</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label]" role="error" id="ref-numeric-label-checks-xspec-assert">ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label] must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label]" role="error" id="ref-numeric-label-checks-xspec-assert">ref-list[ref/label[matches(.,'^\p{P}*\d+\p{P}*$')] and not(ref/label[not(matches(.,'^\p{P}*\d+\p{P}*$'))])]/ref[label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

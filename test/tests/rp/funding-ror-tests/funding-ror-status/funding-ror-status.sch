@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-ror-tests-pattern">
+  <pattern id="funding-ror-tests-pattern">
     <rule context="funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="funding-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       <report test="$matching-ror[@status='withdrawn']" role="error" id="funding-ror-status">[funding-ror-status] Funding has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

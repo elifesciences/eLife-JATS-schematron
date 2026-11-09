@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="pr-table-labels-pattern">
+  <pattern id="pr-table-labels-pattern">
     <rule context="sub-article[@article-type='referee-report']//table-wrap/label" id="pr-table-labels">
       <assert test="matches(.,'^Review table \d\d?\.$')" role="error" id="pr-table-label-1">[pr-table-label-1] Label for tables in public reviews must be in the format 'Review table 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='referee-report']//table-wrap/label" role="error" id="pr-table-labels-xspec-assert">sub-article[@article-type='referee-report']//table-wrap/label must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='referee-report']//table-wrap/label" role="error" id="pr-table-labels-xspec-assert">sub-article[@article-type='referee-report']//table-wrap/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

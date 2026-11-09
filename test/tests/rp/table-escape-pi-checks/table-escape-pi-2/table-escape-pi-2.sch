@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-escape-pi-checks-pattern">
+  <pattern id="table-escape-pi-checks-pattern">
     <rule context="processing-instruction('table-escape')" id="table-escape-pi-checks">
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="normalize-space(.)=''" role="error" id="table-escape-pi-2">[table-escape-pi-2] 'table-escape' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('table-escape')" role="error" id="table-escape-pi-checks-xspec-assert">processing-instruction('table-escape') must be present.</assert>
+      <assert xmlns="" test="descendant::processing-instruction('table-escape')" role="error" id="table-escape-pi-checks-xspec-assert">processing-instruction('table-escape') must be present.</assert>
     </rule>
   </pattern>
 </schema>

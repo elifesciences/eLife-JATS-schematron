@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-12" test="matches($data,'^%$')" role="error" id="math-test-12">mml:math only contains '%', which is unnecessary. Capture this as a normal text instead.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
+      <assert xmlns="" test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>
   </pattern>
 </schema>

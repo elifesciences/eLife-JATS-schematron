@@ -966,9 +966,9 @@
       <assert test="count(related-article[@related-article-type='object-of-concern']) gt 0" role="error" id="related-articles-test-13">Expressions of Concern must contain at least 1 related-article link with the attribute related-article-type='object-of-concern'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='expression-of-concern']//article-meta" role="error" id="eoc-test-xspec-assert">article[@article-type='expression-of-concern']//article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='expression-of-concern']//article-meta" role="error" id="eoc-test-xspec-assert">article[@article-type='expression-of-concern']//article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

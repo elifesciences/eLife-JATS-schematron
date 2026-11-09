@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-title-test" test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-title-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-title-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

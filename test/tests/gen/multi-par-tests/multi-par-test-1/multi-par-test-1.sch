@@ -968,9 +968,9 @@
       <assert test="empty($indistinct-names)" role="error" id="multi-par-test-1">Funding entry from <value-of select="ancestor::award-group[1]/funding-source[1]/descendant::institution[1]"/> has duplicate author names associated - <value-of select="string-join($indistinct-names,';')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group//principal-award-recipient[count(name) gt 1]" role="error" id="multi-par-tests-xspec-assert">funding-group//principal-award-recipient[count(name) gt 1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

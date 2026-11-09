@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-formula-checks-pattern">
+  <pattern id="disp-formula-checks-pattern">
     <rule context="disp-formula" id="disp-formula-checks">
       <assert test="*:math or alternatives[*:math]" role="warning" id="disp-formula-math-conformance">[disp-formula-math-conformance] <value-of select="if (label) then concat('Equation ',label) else name()"/> does not have a child mml:math element. Is that correct?</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

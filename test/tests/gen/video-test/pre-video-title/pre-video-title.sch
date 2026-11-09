@@ -967,9 +967,9 @@
         <value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
+      <assert xmlns="" test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

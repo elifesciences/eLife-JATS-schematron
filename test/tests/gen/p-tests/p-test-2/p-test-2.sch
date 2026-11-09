@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hxspa-p-test-2" test="@*" role="error" id="p-test-2">p element must not have any attributes.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p" role="error" id="p-tests-xspec-assert">p must be present.</assert>
+      <assert xmlns="" test="descendant::p" role="error" id="p-tests-xspec-assert">p must be present.</assert>
     </rule>
   </pattern>
 </schema>

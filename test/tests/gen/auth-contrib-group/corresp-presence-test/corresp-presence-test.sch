@@ -972,9 +972,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#corresp-presence-test" test="contrib[@contrib-type='author' and @corresp='yes']" role="error" id="corresp-presence-test">There must be at least one corresponding author (a contrib[@contrib-type='author' and @corresp='yes'] in the first contrib-group).</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="auth-contrib-group-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="auth-contrib-group-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

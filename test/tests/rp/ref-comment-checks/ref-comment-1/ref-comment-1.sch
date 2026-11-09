@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-comment-checks-pattern">
+  <pattern id="ref-comment-checks-pattern">
     <rule context="comment" id="ref-comment-checks">
       <report test="ancestor::mixed-citation" role="warning" id="ref-comment-1">[ref-comment-1] Reference (with id=<value-of select="ancestor::ref/@id"/>) contains a comment element. Is this correct? <value-of select="."/>
       </report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
+      <assert xmlns="" test="descendant::comment" role="error" id="ref-comment-checks-xspec-assert">comment must be present.</assert>
     </rule>
   </pattern>
 </schema>

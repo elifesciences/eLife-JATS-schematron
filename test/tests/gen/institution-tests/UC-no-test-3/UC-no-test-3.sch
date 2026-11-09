@@ -968,9 +968,9 @@
         <value-of select="."/> has '<value-of select="substring-after(.,'alifornia')"/>' as its campus name in the institution field, but '<value-of select="$city"/>' is the city. Should the institution end with 'University of California, San Diego' instead?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
+      <assert xmlns="" test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

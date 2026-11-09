@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-2" test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
+      <assert xmlns="" test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
     </rule>
   </pattern>
 </schema>

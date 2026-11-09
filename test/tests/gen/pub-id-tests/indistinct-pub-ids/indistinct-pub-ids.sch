@@ -966,9 +966,9 @@
       <report test="preceding-sibling::pub-id/@pub-id-type = @pub-id-type" role="error" id="indistinct-pub-ids">element-citation for <value-of select="e:citation-format1(parent::element-citation)"/> has more than one pub-id with the type <value-of select="@pub-id-type"/>, which cannot be correct - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

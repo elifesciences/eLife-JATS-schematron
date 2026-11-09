@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#hm6gy-pre-fig-caption-test-4" test="$is-cc0 and matches(lower-case(.),'biorend[eo]r') and not(ancestor::fig/permissions[matches(lower-case(.),'biorend[eo]r')])" role="error" id="fig-caption-test-4">Caption or attrib for <value-of select="$label"/> contains what looks like a mention of BioRender. Since the overall license for the article is CC0, and BioRender can (only) be licensed CC BY, a permissions statement needs to be added (e.g. © <value-of select="year-from-date(current-date())"/>, {authors}. Parts of this image created with BioRender are made available under a Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

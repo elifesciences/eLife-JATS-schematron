@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-2" test="count(contrib-group) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-2">editor report front-stub must contain 1 (and only 1) contrib-group element. This one has <value-of select="count(contrib-group)"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

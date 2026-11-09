@@ -967,9 +967,9 @@
         <name/> is not allowed as a child of author-notes.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::author-notes/*" role="error" id="author-notes-children-xspec-assert">author-notes/* must be present.</assert>
+      <assert xmlns="" test="descendant::author-notes/*" role="error" id="author-notes-children-xspec-assert">author-notes/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

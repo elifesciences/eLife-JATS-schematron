@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-test-2" test="thead" role="warning" id="table-test-2">table doesn't have a header (thead). Is this correct?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
+      <assert xmlns="" test="descendant::table" role="error" id="table-tests-xspec-assert">table must be present.</assert>
     </rule>
   </pattern>
 </schema>

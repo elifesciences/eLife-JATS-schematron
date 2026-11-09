@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
+  <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='ethics-statement' and (preceding::sec[@sec-type='ethics-statement'] or ancestor::sec[@sec-type='ethics-statement'])" role="error" id="sec-ethics">[sec-ethics] sec has the sec-type 'ethics-statement', but there is one or more other secs with this same sec-type. Are they duplicates? There can only be one section with this sec-type (although it can have subsections with further distinctions that have separate 'ethics-...' sec-types - e.g. "ethics-approval-human", "ethics-approval-animal" etc.)</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

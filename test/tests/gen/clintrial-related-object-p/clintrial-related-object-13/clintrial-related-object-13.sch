@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-13" test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" role="error" id="clintrial-related-object-p-xspec-assert">abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']] must be present.</assert>
+      <assert xmlns="" test="descendant::abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" role="error" id="clintrial-related-object-p-xspec-assert">abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

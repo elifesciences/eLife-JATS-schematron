@@ -970,9 +970,9 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-6" test="(count($aff) &gt; 1) and (some $x in $aff-tokens satisfies not(contains(.,$x)))" role="warning" id="feature-bio-test-6">Some of the text from <value-of select="$name"/>'s affiliations does not appear in their bio - <value-of select="string-join(for $x in $aff-tokens return if (contains(.,$x)) then () else concat('&quot;',$x,'&quot;'),' and ')"/>. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio must be present.</assert>
+      <assert xmlns="" test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-wrap-caption-checks-pattern">
+  <pattern id="table-wrap-caption-checks-pattern">
     <rule context="table-wrap/caption" id="table-wrap-caption-checks">
       <let name="label" value="if (ancestor::table-wrap/label) then ancestor::table-wrap[1]/label[1] else 'inline table'"/>
       <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="table-wrap-caption-1">[table-wrap-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap/caption" role="error" id="table-wrap-caption-checks-xspec-assert">table-wrap/caption must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap/caption" role="error" id="table-wrap-caption-checks-xspec-assert">table-wrap/caption must be present.</assert>
     </rule>
   </pattern>
 </schema>

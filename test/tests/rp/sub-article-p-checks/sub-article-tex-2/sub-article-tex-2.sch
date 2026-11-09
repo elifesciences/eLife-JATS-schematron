@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-p-checks-pattern">
+  <pattern id="sub-article-p-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-p-checks">
       <report test="not(descendant::tex-math) and not(matches(.,'\$?\$.*?\$\$?')) and matches(.,'\\[a-z]+\p{Ps}')" role="warning" id="sub-article-tex-2">[sub-article-tex-2] sub-article contains what looks like potential latex: <value-of select="string-join(distinct-values(e:analyze-string(.,'\\[a-z]+\p{Ps}')//*:match),'; ')"/>. If this is maths it should either be represented in plain unicode or as an image.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
     </rule>
   </pattern>
 </schema>

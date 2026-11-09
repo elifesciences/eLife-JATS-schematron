@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="global-disp-formula-checks-pattern">
+  <pattern id="global-disp-formula-checks-pattern">
     <rule context="article" id="global-disp-formula-checks">
       <let name="raw-equ-labels" value="descendant::disp-formula/label/replace(normalize-space(.),'[^\d\.]','')[not(. = ('','.'))]"/>
       <let name="equ-label-gaps" value="e:equation-label-gaps($raw-equ-labels)"/>
       <assert test="empty($equ-label-gaps)" role="warning" id="disp-formula-label-sanity">[disp-formula-label-sanity] Equation numbering has gaps. Missing label values are: <value-of select="string-join($equ-label-gaps, '; ')"/>. Is that correct?</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="global-disp-formula-checks-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="global-disp-formula-checks-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
       </report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-non-prc-xspec-assert">article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-non-prc-xspec-assert">article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

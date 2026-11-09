@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="aff-institution-wrap-tests-pattern">
+  <pattern id="aff-institution-wrap-tests-pattern">
     <rule context="aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content','city'))],', ')"/>
       <report test="count(institution-id)=1 and text()" role="error" sqf:fix="delete-comments-and-whitespace" id="aff-institution-wrap-test-3">[aff-institution-wrap-test-3] institution-wrap cannot contain text. It can only contain elements.</report>
@@ -1306,10 +1306,10 @@
         <sqf:delete match=".//comment()|./text()[normalize-space(.)='']"/>
       </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>
+      <assert xmlns="" test="descendant::aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff[ancestor::contrib-group[not(@*)]/parent::article-meta]//institution-wrap must be present.</assert>
     </rule>
   </pattern>
 </schema>

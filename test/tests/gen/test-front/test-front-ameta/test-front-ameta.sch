@@ -967,9 +967,9 @@
       </assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front" role="error" id="test-front-xspec-assert">article/front must be present.</assert>
+      <assert xmlns="" test="descendant::article/front" role="error" id="test-front-xspec-assert">article/front must be present.</assert>
     </rule>
   </pattern>
 </schema>

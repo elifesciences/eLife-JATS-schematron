@@ -969,9 +969,9 @@
       <report test="@specific-use and @specific-use!='version'" role="error" id="prc-article-dois-7">Article DOI has a specific-use attribute value <value-of select="@specific-use"/>. The only permitted value is 'version'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
         <name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]" role="error" id="math-alternatives-tests-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula] must be present.</assert>
+      <assert xmlns="" test="descendant::alternatives[parent::inline-formula or parent::disp-formula]" role="error" id="math-alternatives-tests-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -970,9 +970,9 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-bio-test-3" test="matches(p[1],'\.$')" role="error" id="feature-bio-test-3">bio cannot end  with a full stop - '<value-of select="p[1]"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio must be present.</assert>
+      <assert xmlns="" test="descendant::article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" role="error" id="feature-bio-tests-xspec-assert">article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hnan2-gen-aff-test-3" test="count(label) gt 1" role="error" id="gen-aff-test-3">Affiliations cannot have more than 1 label. <value-of select="$display"/> has <value-of select="count(label)"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
+      <assert xmlns="" test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
     </rule>
   </pattern>
 </schema>

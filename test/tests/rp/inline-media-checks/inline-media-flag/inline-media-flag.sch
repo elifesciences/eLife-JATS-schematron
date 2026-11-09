@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="inline-media-checks-pattern">
+  <pattern id="inline-media-checks-pattern">
     <rule context="inline-media" id="inline-media-checks">
       <report test="." role="error" id="inline-media-flag">[inline-media-flag] The inline-media element is not permitted. Instead use inline-graphic for images or supplementary-material for downloadable files.</report>
     </rule>
-  </sch:pattern>
+  </pattern>
 </schema>

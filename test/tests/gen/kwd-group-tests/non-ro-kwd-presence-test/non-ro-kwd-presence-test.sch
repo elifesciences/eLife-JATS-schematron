@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#non-ro-kwd-presence-test" test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]" role="error" id="kwd-group-tests-xspec-assert">article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]" role="error" id="kwd-group-tests-xspec-assert">article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

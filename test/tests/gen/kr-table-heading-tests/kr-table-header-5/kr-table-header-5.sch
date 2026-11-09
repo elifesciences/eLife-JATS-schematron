@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-5" test="tr[1]/th[2] and (normalize-space(tr[1]/th[2]) != 'Designation')" role="warning" id="kr-table-header-5">The second column header in a Key resources table is usually 'Designation' but this one has '<value-of select="tr[1]/th[2]"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[contains(@id,'keyresource')]/table/thead[1]" role="error" id="kr-table-heading-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/thead[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

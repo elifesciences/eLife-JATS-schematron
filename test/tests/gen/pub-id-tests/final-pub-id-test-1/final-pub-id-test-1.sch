@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-pub-id-test-1" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="error" id="final-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

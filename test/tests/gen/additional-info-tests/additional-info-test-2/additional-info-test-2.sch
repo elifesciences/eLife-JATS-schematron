@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#additional-info-test-2" test="if ($author-count = 0) then ()         else not(fn-group[@content-type='competing-interest'])" role="error" id="additional-info-test-2">This type of sec must have a child fn-group[@content-type='competing-interest'].</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

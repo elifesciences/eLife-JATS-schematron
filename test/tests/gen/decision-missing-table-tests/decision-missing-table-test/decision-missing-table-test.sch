@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']" role="error" id="decision-missing-table-tests-xspec-assert">sub-article[@article-type='decision-letter'] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']" role="error" id="decision-missing-table-tests-xspec-assert">sub-article[@article-type='decision-letter'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

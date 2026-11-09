@@ -969,9 +969,9 @@
       <report test="italic" role="warning" id="ref-xref-italic-child-test">xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

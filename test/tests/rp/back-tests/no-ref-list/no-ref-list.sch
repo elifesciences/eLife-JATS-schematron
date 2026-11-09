@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="back-tests-pattern">
+  <pattern id="back-tests-pattern">
     <rule context="back" id="back-tests">
       <assert test="ref-list" role="error" id="no-ref-list">[no-ref-list] This preprint has no reference list (as a child of back), which must be incorrect.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert xmlns="" test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>
   </pattern>
 </schema>

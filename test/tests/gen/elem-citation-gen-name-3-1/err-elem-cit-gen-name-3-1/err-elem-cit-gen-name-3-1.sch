@@ -969,9 +969,9 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/person-group" role="error" id="elem-citation-gen-name-3-1-xspec-assert">element-citation/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

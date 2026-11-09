@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ref-given-names-test-1" test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="data-ref-given-names-xspec-assert">sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" role="error" id="data-ref-given-names-xspec-assert">sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names must be present.</assert>
     </rule>
   </pattern>
 </schema>

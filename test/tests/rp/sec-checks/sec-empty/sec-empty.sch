@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
+  <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <assert test="*[not(name()=('label','title','sec-meta'))]" role="error" id="sec-empty">[sec-empty] sec element is not populated with any content. Either there's a mistake or the section should be removed.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

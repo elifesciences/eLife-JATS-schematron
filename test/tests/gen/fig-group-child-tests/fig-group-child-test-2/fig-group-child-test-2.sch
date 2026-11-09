@@ -967,9 +967,9 @@
         <name/> which is a child of fig-group, must have an @mimetype containing 'video' - i.e. only video type media is allowed as a child of fig-group.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig-group/*" role="error" id="fig-group-child-tests-xspec-assert">fig-group/* must be present.</assert>
+      <assert xmlns="" test="descendant::fig-group/*" role="error" id="fig-group-child-tests-xspec-assert">fig-group/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

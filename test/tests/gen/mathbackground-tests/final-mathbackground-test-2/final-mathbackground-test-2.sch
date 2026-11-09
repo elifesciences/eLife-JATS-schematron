@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathbackground-test-2" test="ancestor::table-wrap" role="error" id="final-mathbackground-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. If it's not a mistake, and the background colour is deliberate, then either the background colour will need to added to the table cell (rather than the maths), or it needs to be removed.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:*[@mathbackground]" role="error" id="mathbackground-tests-xspec-assert">mml:*[@mathbackground] must be present.</assert>
+      <assert xmlns="" test="descendant::mml:*[@mathbackground]" role="error" id="mathbackground-tests-xspec-assert">mml:*[@mathbackground] must be present.</assert>
     </rule>
   </pattern>
 </schema>

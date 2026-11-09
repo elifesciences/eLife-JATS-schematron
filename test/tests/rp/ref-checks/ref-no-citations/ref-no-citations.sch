@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-checks-pattern">
+  <pattern id="ref-checks-pattern">
     <rule context="ref" id="ref-checks">
       <assert test="mixed-citation or element-citation" role="error" id="ref-no-citations">[ref-no-citations] <name/> must contain a child mixed-citation or element-citation. This one (with id=<value-of select="@id"/>) does not.</assert>
       <sqf:fix id="replace-to-distinct-refs">
@@ -1327,10 +1327,10 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
+      <assert xmlns="" test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

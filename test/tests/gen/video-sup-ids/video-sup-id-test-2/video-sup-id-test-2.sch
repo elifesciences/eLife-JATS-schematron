@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-2" test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" role="error" id="video-sup-ids-xspec-assert">article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

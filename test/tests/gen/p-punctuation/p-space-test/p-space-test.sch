@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)] or descendant::       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" role="error" id="p-punctuation-xspec-assert">article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)] must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)] or descendant::       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" role="error" id="p-punctuation-xspec-assert">article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

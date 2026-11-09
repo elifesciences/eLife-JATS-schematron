@@ -968,9 +968,9 @@
         <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::th[@style] or descendant::td[@style]" role="error" id="colour-table-2-xspec-assert">th[@style]|td[@style] must be present.</assert>
+      <assert xmlns="" test="descendant::th[@style] or descendant::td[@style]" role="error" id="colour-table-2-xspec-assert">th[@style]|td[@style] must be present.</assert>
     </rule>
   </pattern>
 </schema>

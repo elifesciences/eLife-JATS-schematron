@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-title-test" test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

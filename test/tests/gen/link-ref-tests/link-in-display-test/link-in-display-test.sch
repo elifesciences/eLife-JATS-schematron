@@ -971,9 +971,9 @@
         <value-of select="name()"/> element contains a url - <value-of select="."/>. The url must be moved to the appropriate field (if it is a doi, then it should be captured as a doi without the 'https://doi.org/' prefix), and the correct information should be included in this element (or queried if the information is missing).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation/source  or descendant:: element-citation/article-title  or descendant:: element-citation/chapter-title  or descendant:: element-citation/data-title" role="error" id="link-ref-tests-xspec-assert">element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation/source  or descendant:: element-citation/article-title  or descendant:: element-citation/chapter-title  or descendant:: element-citation/data-title" role="error" id="link-ref-tests-xspec-assert">element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-15" test="contains(.,$text)" role="error" id="fig-permissions-test-15">The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" role="error" id="fig-permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement must be present.</assert>
+      <assert xmlns="" test="descendant::permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" role="error" id="fig-permissions-2-xspec-assert">permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement must be present.</assert>
     </rule>
   </pattern>
 </schema>

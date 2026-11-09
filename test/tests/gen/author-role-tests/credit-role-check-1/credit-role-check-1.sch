@@ -970,9 +970,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-1" test="@vocab-identifier='http://credit.niso.org/'" role="error" id="credit-role-check-1">A CRediT taxonomy role must have a @vocab-identifier whose value is http://credit.niso.org/.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" role="error" id="author-role-tests-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" role="error" id="author-role-tests-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

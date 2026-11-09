@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#htfjl-aff-ror-name" test="exists($matching-ror) and not(contains(institution-wrap[1]/institution[1],$matching-ror/*:name))" role="warning" id="aff-ror-name">Affiliation has a ROR id, but it does not contain the name of the institution as captured in the ROR data within its institution. Is that OK? ROR has '<value-of select="$matching-ror/*:name"/>', but the institution is <value-of select="institution-wrap[1]/institution[1]"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
+      <assert xmlns="" test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-7" test="(ancestor::sec[@sec-type='supplementary-material']) and (media[starts-with(@mimetype,'video')])" role="error" id="supplementary-material-test-7">supplementary-material in additional files sections cannot have a media element with the attribute mimetype='video'. This should be mimetype='application'</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>
   </pattern>
 </schema>

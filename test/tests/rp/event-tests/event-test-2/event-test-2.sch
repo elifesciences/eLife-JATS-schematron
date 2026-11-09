@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="event-tests-pattern">
+  <pattern id="event-tests-pattern">
     <rule context="event" id="event-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
@@ -1303,10 +1303,10 @@
       <let name="date-type-vals" value="if ($dtd-version ge '1.4') then ($default-date-type-vals,'sent-for-review')         else $default-date-type-vals"/>
       <assert test="date[@date-type=$date-type-vals]" role="error" id="event-test-2">[event-test-2] <name/> must contain a date element with a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>. This one does not.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
+      <assert xmlns="" test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>
   </pattern>
 </schema>

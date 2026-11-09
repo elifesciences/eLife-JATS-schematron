@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#feature-abstract-test-1" test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')] must be present.</assert>
+      <assert xmlns="" test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="feature-abstract-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

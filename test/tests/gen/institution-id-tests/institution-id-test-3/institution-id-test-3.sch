@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-3" test="normalize-space(.) != ''" role="error" id="institution-id-test-3">The funding entry for <value-of select="parent::institution-wrap/institution"/> has an empty <name/> element, which is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
+      <assert xmlns="" test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
       <report test="@specific-use and (following-sibling::article-id[@pub-id-type='doi'] or preceding-sibling::article-id[@pub-id-type='doi' and @specific-use])" role="error" id="prc-article-dois-6">Article level version DOI must be second in article-meta. This version DOI has a following sibling DOI or a preceding version specific DOI.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

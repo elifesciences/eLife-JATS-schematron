@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-tests-pattern">
+  <pattern id="math-tests-pattern">
     <rule context="*:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <report test="matches($data,'^\s*=')" role="warning" id="math-starts-with-equals">[math-starts-with-equals] <name/> starts with an equal sign. Is that correct? Or has some processing error occurred?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
+      <assert xmlns="" test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
     </rule>
   </pattern>
 </schema>

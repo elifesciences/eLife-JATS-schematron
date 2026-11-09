@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-class-pi-checks-pattern">
+  <pattern id="fig-class-pi-checks-pattern">
     <rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
       <let name="supported-values" value="('full', 'half', 'quarter')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="$next-node-name=('fig','table-wrap')" role="error" id="fig-class-pi-1">[fig-class-pi-1] 'fig-class' processing-instructions must be placed directly before a fig or table-wrap element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
+      <assert xmlns="" test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
     </rule>
   </pattern>
 </schema>

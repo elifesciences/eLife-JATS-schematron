@@ -968,9 +968,9 @@
       <report test="($type = ($research-subj,$notice-article-types)) and ($pos=2) and  (meta-name != 'publishing-route')" role="error" id="custom-meta-test-17">The value of the 2nd meta-name can only be 'publishing-route'. Currently it is <value-of select="meta-name"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta" role="error" id="custom-meta-tests-xspec-assert">article-meta/custom-meta-group/custom-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta" role="error" id="custom-meta-tests-xspec-assert">article-meta/custom-meta-group/custom-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

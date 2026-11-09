@@ -968,9 +968,9 @@
       <report test="pub-id and ext-link" role="error" id="das-elem-cit-6">The reference in position <value-of select="$pos"/> of the data availability section has both a pub-id (<value-of select="pub-id[1]"/>) and an ext-link (<value-of select="ext-link[1]"/>), which is not allowed.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

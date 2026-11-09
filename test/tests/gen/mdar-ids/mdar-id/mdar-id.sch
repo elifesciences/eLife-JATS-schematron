@@ -966,9 +966,9 @@
       <assert test="matches(@id,'^mdar$')" role="error" id="mdar-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'mdar'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'mdar')]" role="error" id="mdar-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'mdar')] must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material[contains(lower-case(label[1]),'mdar')]" role="error" id="mdar-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'mdar')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

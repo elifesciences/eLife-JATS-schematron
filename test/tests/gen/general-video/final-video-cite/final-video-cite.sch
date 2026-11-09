@@ -973,9 +973,9 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#final-video-cite" test="$xrefs//*:match" role="warning" id="final-video-cite">There is no citation to <value-of select="$label"/>. Ensure this is added.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

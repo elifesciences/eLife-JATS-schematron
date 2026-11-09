@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1" test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" role="error" id="ed-eval-author-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" role="error" id="ed-eval-author-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name] must be present.</assert>
     </rule>
   </pattern>
 </schema>

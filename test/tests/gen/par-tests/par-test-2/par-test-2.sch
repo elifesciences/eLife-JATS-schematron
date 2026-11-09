@@ -968,9 +968,9 @@
       <assert test="$par-text = $authors" role="error" id="par-test-2">Author name in funding section (<value-of select="$par-text"/>) does not match any of the author names in the author list: <value-of select="string-join($authors,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group//principal-award-recipient" role="error" id="par-tests-xspec-assert">funding-group//principal-award-recipient must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group//principal-award-recipient" role="error" id="par-tests-xspec-assert">funding-group//principal-award-recipient must be present.</assert>
     </rule>
   </pattern>
 </schema>

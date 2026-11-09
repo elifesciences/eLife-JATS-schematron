@@ -967,9 +967,9 @@
       <report test="not(e:is-prc(.)) and ($dtd-version ge '1.4') and not(event[date[@date-type='accepted']])" role="error" id="pub-history-accepted">In legacy model content tagged in JATS 1.4 (or later) <name/> must contain an accepted date (an event containing a date with the date-type 'accepted'). This one does not.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history must be present.</assert>
     </rule>
   </pattern>
 </schema>

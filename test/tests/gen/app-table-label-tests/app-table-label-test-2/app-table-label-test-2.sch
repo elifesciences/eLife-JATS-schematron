@@ -968,9 +968,9 @@
         <value-of select="."/> - Table label does not begin with the title of the appendix it sits in. Either the table is in the incorrect appendix or the table has been labelled incorrectly.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
+      <assert xmlns="" test="descendant::app//table-wrap/label" role="error" id="app-table-label-tests-xspec-assert">app//table-wrap/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -972,9 +972,9 @@
       <report test="matches($article-text,$regex)" role="warning" id="text-v-cite-test">ref with id <value-of select="$id"/> has unlinked citations in the text - search <value-of select="$cite1"/> or <value-of select="$cite2"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list/ref/element-citation[year]" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation[year] must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list/ref/element-citation[year]" role="error" id="unlinked-ref-cite-xspec-assert">ref-list/ref/element-citation[year] must be present.</assert>
     </rule>
   </pattern>
 </schema>

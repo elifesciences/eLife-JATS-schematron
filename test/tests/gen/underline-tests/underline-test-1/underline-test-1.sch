@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::underline" role="error" id="underline-tests-xspec-assert">underline must be present.</assert>
+      <assert xmlns="" test="descendant::underline" role="error" id="underline-tests-xspec-assert">underline must be present.</assert>
     </rule>
   </pattern>
 </schema>

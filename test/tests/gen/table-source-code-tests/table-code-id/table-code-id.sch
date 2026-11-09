@@ -972,9 +972,9 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#table-code-id" test="@id=concat($table-id,'scode',$pos)" role="error" id="table-code-id">The id for table level source code must be the id of its ancestor table, followed by 'scode', followed by its position relative to other source data for the same table. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($table-id,'scode',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap//supplementary-material[contains(label[1],' code ')]" role="error" id="table-source-code-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' code ')] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap//supplementary-material[contains(label[1],' code ')]" role="error" id="table-source-code-tests-xspec-assert">table-wrap//supplementary-material[contains(label[1],' code ')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

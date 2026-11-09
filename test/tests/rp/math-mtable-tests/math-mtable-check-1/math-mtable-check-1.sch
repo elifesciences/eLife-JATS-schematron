@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-mtable-tests-pattern">
+  <pattern id="math-mtable-tests-pattern">
     <rule context="*:mtable" id="math-mtable-tests">
       <assert test="*:mtr or *:mlabeledtr" role="error" id="math-mtable-check-1">[math-mtable-check-1] <name/> element must have either a child mml:mtr or mml:mlabeledtr element. This one has neither.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
+      <assert xmlns="" test="descendant::*:mtable" role="error" id="math-mtable-tests-xspec-assert">*:mtable must be present.</assert>
     </rule>
   </pattern>
 </schema>

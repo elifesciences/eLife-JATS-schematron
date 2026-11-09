@@ -970,9 +970,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-2" test="if (count($labels) gt 1) then (some $label in $labels satisfies not(contains(.,$label)))               else not(contains(.,$labels))" role="warning" id="equ-xref-conformity-2">equation link content does not match what it directs to (content = <value-of select="."/>; label(s) = <value-of select="string-join($labels,'; ')"/>). Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

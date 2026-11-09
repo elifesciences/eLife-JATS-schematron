@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-child-checks-pattern">
+  <pattern id="fig-child-checks-pattern">
     <rule context="fig/*" id="fig-child-checks">
       <let name="supported-fig-children" value="('label','caption','graphic','alternatives','permissions','attrib')"/>
       <assert test="name()=$supported-fig-children" role="error" sqf:fix="delete-node" id="fig-child-conformance">[fig-child-conformance] <name/> is not supported as a child of &lt;fig&gt;.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
+      <assert xmlns="" test="descendant::fig/*" role="error" id="fig-child-checks-xspec-assert">fig/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

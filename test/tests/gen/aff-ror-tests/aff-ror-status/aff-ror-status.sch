@@ -969,9 +969,9 @@
       <report test="$matching-ror[@status='withdrawn']" role="error" id="aff-ror-status">Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
+      <assert xmlns="" test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

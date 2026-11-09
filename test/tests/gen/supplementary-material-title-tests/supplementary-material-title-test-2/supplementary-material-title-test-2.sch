@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-2" test="matches(.,'[\.\?]$')" role="error" id="supplementary-material-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

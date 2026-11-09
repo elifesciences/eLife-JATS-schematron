@@ -966,9 +966,9 @@
       <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
+      <assert xmlns="" test="descendant::year[ancestor::article-meta]" role="error" id="year-article-meta-tests-xspec-assert">year[ancestor::article-meta] must be present.</assert>
     </rule>
   </pattern>
 </schema>

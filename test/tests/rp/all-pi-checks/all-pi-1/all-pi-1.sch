@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="all-pi-checks-pattern">
+  <pattern id="all-pi-checks-pattern">
     <rule context="processing-instruction()" id="all-pi-checks">
       <let name="allowed-names" value="('fig-class','fig-width','math-size','page-break','table-escape')"/>
       <assert test="name()=($allowed-names,'oxygen')" role="error" id="all-pi-1">[all-pi-1] '<value-of select="name()"/>' is not an allowed processing-instruction. The only ones that can be used are: <value-of select="string-join($allowed-names,'; ')"/>
       </assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
+      <assert xmlns="" test="descendant::processing-instruction()" role="error" id="all-pi-checks-xspec-assert">processing-instruction() must be present.</assert>
     </rule>
   </pattern>
 </schema>

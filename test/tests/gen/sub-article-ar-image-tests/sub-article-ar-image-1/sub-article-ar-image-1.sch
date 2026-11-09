@@ -966,9 +966,9 @@
       <report test="matches(.,'[Aa]uthor response image \d')" role="error" flag="dl-ar" id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//bold" role="error" id="sub-article-ar-image-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//bold must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('reply','author-comment')]/body//bold" role="error" id="sub-article-ar-image-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

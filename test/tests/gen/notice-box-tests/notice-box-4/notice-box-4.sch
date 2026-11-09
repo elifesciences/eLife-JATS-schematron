@@ -969,9 +969,9 @@
       <assert test="contains(p[1],'eLife')" role="error" id="notice-box-4">The first paragraph in boxed text at the start of a <value-of select="$display-subject"/> should contain the citation details for the related article, but this one does not contain the word 'eLife'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -970,9 +970,9 @@
       <report test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else count(sec[@sec-type='additional-information']) != 1" role="error" id="back-test-1">One and only one sec[@sec-type="additional-information"] must be present in back.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert xmlns="" test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>
   </pattern>
 </schema>

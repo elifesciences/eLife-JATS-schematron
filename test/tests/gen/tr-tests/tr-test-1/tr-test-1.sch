@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-1" test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
+      <assert xmlns="" test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
     </rule>
   </pattern>
 </schema>

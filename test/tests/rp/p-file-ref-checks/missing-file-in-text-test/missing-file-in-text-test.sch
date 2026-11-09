@@ -1295,17 +1295,17 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="p-file-ref-checks-pattern">
+  <pattern id="p-file-ref-checks-pattern">
     <rule context="article//p[not(ancestor::sub-article) and not(ancestor::ack)]" id="p-file-ref-checks">
       <let name="text" value="lower-case(string-join(for $x in self::*/(*|text())                                             return if ($x/local-name()='xref') then ()                                                    else if ($x//*:p) then ($x/text())                                                    else string($x),''))"/>
       <let name="missing-file-regex" value="'\s(fig(\.|ure)?|table|file|movie|video)s?(\s+supp(\.|l[ae]m[ae]nt(ary|al)?)?s?)?\s+s?\d'"/>
       <report test="matches($text,$missing-file-regex)" role="warning" id="missing-file-in-text-test">[missing-file-in-text-test] <name/> element contains possible unlinked citation to a figure, table or file - search - <value-of select="string-join(e:analyze-string($text,$missing-file-regex)//*:match,'; ')"/>
       </report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-file-ref-checks-xspec-assert">article//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
+      <assert xmlns="" test="descendant::article//p[not(ancestor::sub-article) and not(ancestor::ack)]" role="error" id="p-file-ref-checks-xspec-assert">article//p[not(ancestor::sub-article) and not(ancestor::ack)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

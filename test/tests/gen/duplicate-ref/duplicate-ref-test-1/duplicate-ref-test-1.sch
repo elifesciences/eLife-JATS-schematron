@@ -971,9 +971,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-1" test="(element-citation/@publication-type != 'book') and ($doi = preceding-sibling::ref/element-citation/pub-id[@pub-id-type='doi'])" role="error" id="duplicate-ref-test-1">ref '<value-of select="@id"/>' has the same doi as another reference, which is incorrect. Is it a duplicate?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

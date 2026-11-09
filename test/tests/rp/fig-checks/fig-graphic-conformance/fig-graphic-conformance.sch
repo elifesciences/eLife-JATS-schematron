@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-checks-pattern">
+  <pattern id="fig-checks-pattern">
     <rule context="fig" id="fig-checks">
       <assert test="graphic" role="error" id="fig-graphic-conformance">[fig-graphic-conformance] <value-of select="if (label) then label else name()"/> does not have a child graphic element, which must be incorrect.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
+      <assert xmlns="" test="descendant::fig" role="error" id="fig-checks-xspec-assert">fig must be present.</assert>
     </rule>
   </pattern>
 </schema>

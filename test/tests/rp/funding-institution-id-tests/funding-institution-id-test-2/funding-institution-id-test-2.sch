@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-institution-id-tests-pattern">
+  <pattern id="funding-institution-id-tests-pattern">
     <rule context="funding-source//institution-id" id="funding-institution-id-tests">
       <assert test="matches(.,'^(https?://ror\.org/[a-z0-9]{9}|http[s]?://d?x?\.?doi.org/10.13039/\d*)$')" role="error" sqf:fix="delete-node" id="funding-institution-id-test-2">[funding-institution-id-test-2] institution-id in funding must a value which is either a valid ROR id or open funder registry DOI. This one has '<value-of select="."/>'.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
+      <assert xmlns="" test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

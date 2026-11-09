@@ -969,9 +969,9 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hentg-aff-ror" test="exists($matching-ror)" role="warning" id="aff-ror">Affiliation (<value-of select="$display"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
+      <assert xmlns="" test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

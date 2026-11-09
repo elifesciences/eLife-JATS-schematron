@@ -969,9 +969,9 @@
         <value-of select="$type"/> articles should not usually have any Author contributions. This <value-of select="$type"/> has <value-of select="          string-join(for $x in back/fn-group[@content-type='author-contribution']/fn          return concat('&quot;', $x,'&quot;')          ,          '; '          )          "/>. Are they required?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-template-tests-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
+      <assert xmlns="" test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-template-tests-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
     </rule>
   </pattern>
 </schema>

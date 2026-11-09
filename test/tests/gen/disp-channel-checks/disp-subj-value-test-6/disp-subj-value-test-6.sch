@@ -968,9 +968,9 @@
       <report test="($article-type = 'discussion') and not(.='Feature Article')" role="error" id="disp-subj-value-test-6">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Feature Article' according to the article-type.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
+      <assert xmlns="" test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-2" test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
+      <assert xmlns="" test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

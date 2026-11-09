@@ -967,9 +967,9 @@
         <name/> element contains 'Ã¥' - this should instead be the character 'å'. - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article//p[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//td[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//th[matches(.,'[âÂÅÃËÆ]')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article//p[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//td[matches(.,'[âÂÅÃËÆ]')] or descendant::sub-article//th[matches(.,'[âÂÅÃËÆ]')]" role="error" id="unicode-tests-xspec-assert">sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

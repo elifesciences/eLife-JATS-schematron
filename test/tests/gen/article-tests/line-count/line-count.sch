@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#line-count" test="not(descendant::code) and ($line-count gt 1)" role="error" id="line-count">Articles without code blocks must only have one line in the xml. The xml for this article has <value-of select="$line-count"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

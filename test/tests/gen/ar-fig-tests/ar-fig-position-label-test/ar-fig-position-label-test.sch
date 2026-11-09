@@ -971,9 +971,9 @@
       <report test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)" role="error" id="ar-fig-position-label-test">Author response image has the label '<value-of select="label"/>', but the figure number in its id (<value-of select="$no"/> in <value-of select="@id"/>) suggests the label should be '<value-of select="$id-based-label"/>'. Which is correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
+      <assert xmlns="" test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hnc5o-corr-impact-statement" test="descendant::meta-name[text() = 'Author impact statement']" role="error" id="corr-impact-statement">Correction notices should not contain an impact statement.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

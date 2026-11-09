@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mtext-test-1" test="matches(.,'^\p{Zs}*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mtext" role="error" id="mtext-tests-xspec-assert">mml:mtext must be present.</assert>
+      <assert xmlns="" test="descendant::mml:mtext" role="error" id="mtext-tests-xspec-assert">mml:mtext must be present.</assert>
     </rule>
   </pattern>
 </schema>

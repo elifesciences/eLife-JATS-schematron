@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-3" test="matches(.,' vs\.$')" role="warning" id="fig-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

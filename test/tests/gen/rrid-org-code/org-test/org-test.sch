@@ -974,9 +974,9 @@
         <name/> element contains organism name(s) that are not in an italic element with that correct capitalisation or spacing - <value-of select="string-join($organisms//*:organism,'; ')"/>. Is this correct? <name/> element begins with <value-of select="concat(.,substring(.,1,15))"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
+      <assert xmlns="" test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
     </rule>
   </pattern>
 </schema>

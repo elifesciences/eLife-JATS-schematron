@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hp09b-sec-title-abbr-check" test="matches(.,'^[Aa]bbreviation[s]?')" role="warning" id="sec-title-abbr-check">Section title contains the word abbreviation - '<value-of select="."/>'. Is it an abbreviation section? eLife house style is to define abbreviations in the text when they are first mentioned.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
+      <assert xmlns="" test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

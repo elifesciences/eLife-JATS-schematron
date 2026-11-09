@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4qcy-err-elem-cit-book-17" test="@pub-id-type=('doi','pmid','isbn')" role="error" id="err-elem-cit-book-17">Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']/pub-id" role="error" id="elem-citation-book-pub-id-xspec-assert">element-citation[@publication-type='book']/pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']/pub-id" role="error" id="elem-citation-book-pub-id-xspec-assert">element-citation[@publication-type='book']/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

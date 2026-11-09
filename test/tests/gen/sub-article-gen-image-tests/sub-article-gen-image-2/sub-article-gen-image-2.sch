@@ -967,9 +967,9 @@
         <value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions a table: <value-of select="."/>. Is there a missing table?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image or descendant::table) \d or descendant::[Rr]eview (image or descendant::table) \d or descendant::[Aa]uthor response (image or descendant::table) \d'))]" role="error" id="sub-article-gen-image-tests-xspec-assert">sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image or descendant::table) \d or descendant::[Rr]eview (image or descendant::table) \d or descendant::[Aa]uthor response (image or descendant::table) \d'))]" role="error" id="sub-article-gen-image-tests-xspec-assert">sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))] must be present.</assert>
     </rule>
   </pattern>
 </schema>

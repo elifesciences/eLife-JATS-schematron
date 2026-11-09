@@ -967,9 +967,9 @@
         <name/> in funding must have a vocab-identifier="10.13039/open-funder-registry" attribute. This one does not.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" role="error" id="institution-id-doi-tests-xspec-assert">article//award-group//institution-wrap/institution-id[@institution-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" role="error" id="institution-id-doi-tests-xspec-assert">article//award-group//institution-wrap/institution-id[@institution-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

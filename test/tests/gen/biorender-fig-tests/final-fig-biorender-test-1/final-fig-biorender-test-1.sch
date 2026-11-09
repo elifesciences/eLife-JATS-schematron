@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty?shr=rqdavyty#hquuu-final-fig-biorender-test-1" test="not(descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com/[a-z\d]')]) and (descendant::ext-link[matches(lower-case(@xlink:href),'biorender.com')] or matches(lower-case(.),'biorender.com'))" role="error" id="final-fig-biorender-test-1">Caption or attrib for <value-of select="$label"/> contains a BioRender link, but it does not look like a BioRender 'unique figure citation URL'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption/p[not(child::supplementary-material)]  or descendant:: fig/attrib" role="error" id="biorender-fig-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] | fig/attrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

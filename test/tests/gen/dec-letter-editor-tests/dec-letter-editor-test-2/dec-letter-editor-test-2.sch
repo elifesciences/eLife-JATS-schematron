@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2" test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" flag="dl-ar" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

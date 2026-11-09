@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-contrib-checks-pattern">
+  <pattern id="author-contrib-checks-pattern">
     <rule context="article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" id="author-contrib-checks">
       <assert test="xref[@ref-type='aff']" role="error" id="author-contrb-no-aff-xref">[author-contrb-no-aff-xref] Author <value-of select="e:get-name(name[1])"/> has no affiliation.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)]" role="error" id="author-contrib-checks-xspec-assert">article-meta/contrib-group/contrib[@contrib-type='author' and not(collab or collab-wrap)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#body-top-level-sec-id-test" test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body/sec" role="error" id="body-top-level-sec-ids-xspec-assert">article/body/sec must be present.</assert>
+      <assert xmlns="" test="descendant::article/body/sec" role="error" id="body-top-level-sec-ids-xspec-assert">article/body/sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

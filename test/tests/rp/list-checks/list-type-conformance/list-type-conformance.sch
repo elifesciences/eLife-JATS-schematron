@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="list-checks-pattern">
+  <pattern id="list-checks-pattern">
     <rule context="list" id="list-checks">
       <let name="supported-list-types" value="('bullet','simple','order','alpha-lower','alpha-upper','roman-lower','roman-upper')"/>
       <assert test="@list-type=$supported-list-types" role="error" id="list-type-conformance">[list-type-conformance] &lt;list&gt; element must have a list-type attribute with one of the supported values: <value-of select="string-join($supported-list-types,'; ')"/>.<value-of select="if (./@list-type) then concat(' list-type ',@list-type,' is not supported.') else ()"/>
       </assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
+      <assert xmlns="" test="descendant::list" role="error" id="list-checks-xspec-assert">list must be present.</assert>
     </rule>
   </pattern>
 </schema>

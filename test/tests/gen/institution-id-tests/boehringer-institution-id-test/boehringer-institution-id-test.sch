@@ -966,9 +966,9 @@
       <report test=".=('http://dx.doi.org/10.13039/100001003','http://dx.doi.org/10.13039/100008349','http://dx.doi.org/10.13039/100016133','http://dx.doi.org/10.13039/100017346','http://dx.doi.org/10.13039/100019718','http://dx.doi.org/10.13039/100020968','http://dx.doi.org/10.13039/501100001645','http://dx.doi.org/10.13039/501100008454','http://dx.doi.org/10.13039/501100014089')" role="warning" id="boehringer-institution-id-test">Please check funding for <value-of select="parent::institution-wrap/institution"/> carefully, as there are numerous similarly named, but different insitutions (e.g. Boehringer Ingelheim Stiftung; Boehringer Ingelheim Fonds; Boehringer Ingelheim; Boehringer Ingelheim [insert-country-name]).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
+      <assert xmlns="" test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

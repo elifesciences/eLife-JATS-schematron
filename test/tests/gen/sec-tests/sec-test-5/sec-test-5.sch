@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

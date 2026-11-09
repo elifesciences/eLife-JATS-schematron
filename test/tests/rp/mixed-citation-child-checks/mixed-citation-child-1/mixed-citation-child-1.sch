@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="mixed-citation-child-checks-pattern">
+  <pattern id="mixed-citation-child-checks-pattern">
     <rule context="mixed-citation/*" id="mixed-citation-child-checks">
       <report test="normalize-space(.)=''" role="error" id="mixed-citation-child-1">[mixed-citation-child-1] <name/> in reference (id=<value-of select="ancestor::ref/@id"/>) is empty, which cannot be correct.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation/*" role="error" id="mixed-citation-child-checks-xspec-assert">mixed-citation/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

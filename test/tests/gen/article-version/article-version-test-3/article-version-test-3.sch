@@ -966,9 +966,9 @@
       <report test="@*[name()!='article-version-type']" role="error" id="article-version-test-3">The only attribute permitted on <name/> is article-version-type (with the value "publication-state"). This one has the following unallowed attribute(s): <value-of select="string-join(@*[name()!='article-version-type']/name(),'; ')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-version" role="error" id="article-version-xspec-assert">article-version must be present.</assert>
+      <assert xmlns="" test="descendant::article-version" role="error" id="article-version-xspec-assert">article-version must be present.</assert>
     </rule>
   </pattern>
 </schema>

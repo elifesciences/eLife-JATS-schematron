@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-res-comm-test" test="($subj = 'Research Communication') and (not(matches(self::*/descendant::p[2],'^Editorial note')))" role="warning" id="pre-res-comm-test">'<value-of select="$subj"/>' has only one paragraph in its abstract or the second paragraph does not begin with 'Editorial note', which is incorrect. Please ensure to check with eLife staff for the required wording.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[not(@*)]" role="error" id="abstract-house-tests-xspec-assert">abstract[not(@*)] must be present.</assert>
+      <assert xmlns="" test="descendant::abstract[not(@*)]" role="error" id="abstract-house-tests-xspec-assert">abstract[not(@*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

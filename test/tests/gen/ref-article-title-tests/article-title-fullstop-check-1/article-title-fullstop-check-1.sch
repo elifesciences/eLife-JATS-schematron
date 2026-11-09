@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-fullstop-check-1" test="(matches($rep,'[A-Za-z][A-Za-z]+\. [A-Za-z]'))" role="info" id="article-title-fullstop-check-1">ref '<value-of select="ancestor::ref/@id"/>' has an article-title with a full stop. Is this correct, or has the journal/source title been included? Or perhaps the full stop should be a colon ':'?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

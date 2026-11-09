@@ -969,9 +969,9 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-6" test="not(concat($YYYY, 'a')=.) or (concat($YYYY, 'a')=. and         (some $y in //element-citation/descendant::year         satisfies (normalize-space($y) = concat($YYYY,'b'))         and (ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-') = $y/ancestor::element-citation/person-group[1]/name[1]/surname/replace(.,'[-‐–—]','-')         or ancestor::element-citation/person-group[1]/collab[1] = $y/ancestor::element-citation/person-group[1]/collab[1]         or ancestor::element-citation/person-group[1]/collab-name[1] = $y/ancestor::element-citation/person-group[1]/collab-name[1]         )))" role="error" id="err-elem-cit-gen-date-1-6">If the &lt;year&gt; element contains the letter 'a' after the digits, there must be another reference with the same first author surname (or collab-name) with a letter "b" after the year. Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
     </rule>
   </pattern>
 </schema>

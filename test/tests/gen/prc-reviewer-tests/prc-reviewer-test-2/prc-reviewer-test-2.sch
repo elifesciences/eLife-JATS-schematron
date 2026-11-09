@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-2" test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

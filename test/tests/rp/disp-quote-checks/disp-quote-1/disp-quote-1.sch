@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-quote-checks-pattern">
+  <pattern id="disp-quote-checks-pattern">
     <rule context="disp-quote" id="disp-quote-checks">
       <assert test="ancestor::sub-article[@article-type='author-comment']" role="warning" id="disp-quote-1">[disp-quote-1] Display quotes are uncommon in eLife content outside the author response. Please check whether this content has been captured correctly (and is rendered approriately).</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-quote" role="error" id="disp-quote-checks-xspec-assert">disp-quote must be present.</assert>
+      <assert xmlns="" test="descendant::disp-quote" role="error" id="disp-quote-checks-xspec-assert">disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hx30h-p-test-3" test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
+      <assert xmlns="" test="descendant::permissions/license[@xlink:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@xlink:href]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

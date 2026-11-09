@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-1" test="$data = ''" role="error" id="math-test-1">mml:math must not be empty.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
+      <assert xmlns="" test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>
   </pattern>
 </schema>

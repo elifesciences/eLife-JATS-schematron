@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-pub-id-checks-pattern">
+  <pattern id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <report test="(@pub-id-type='arxiv') and not(matches(.,'^(\d{2}(0[1-9]|1[0-2])\.\d{4,5}|\d{2}(0[1-9]|1[0-2])\d{3})$'))" role="error" id="ref-arxiv-conformance">[ref-arxiv-conformance] pub-id is tagged as an arxiv id, but it is not a valid arxiv id (a number in the format yymm.nnnnn or yymmnnn) - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

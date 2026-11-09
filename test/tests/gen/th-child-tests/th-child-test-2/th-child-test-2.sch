@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" test="name() = ('bold','underline') and . = ./parent::th" role="warning" id="th-child-test-2">The content of this th element is entirely in <value-of select="name()"/> emphasis - <value-of select="."/>. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::th/*" role="error" id="th-child-tests-xspec-assert">th/* must be present.</assert>
+      <assert xmlns="" test="descendant::th/*" role="error" id="th-child-tests-xspec-assert">th/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

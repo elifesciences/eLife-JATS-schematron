@@ -968,9 +968,9 @@
         <value-of select="$display-subject"/> notices should not contain a self-uri element (as the PDF is not published).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = ('retraction','expression-of-concern')]" role="error" id="retraction-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern')] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = ('retraction','expression-of-concern')]" role="error" id="retraction-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

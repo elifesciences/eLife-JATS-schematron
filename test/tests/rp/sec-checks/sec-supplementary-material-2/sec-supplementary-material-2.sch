@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
+  <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='supplementary-material' and not(supplementary-material)" role="error" id="sec-supplementary-material-2">[sec-supplementary-material-2] &lt;sec sec-type="supplementary-material"&gt; must contain at least one &lt;supplementary-material&gt; element, but this one does not. If this section contains captions, then these should be added to the appropriate &lt;supplementary-material&gt;. If the files are not present in the article at all, the captions should be removed (or the files added as new &lt;supplementary-material&gt;).</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test" test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
+      <assert xmlns="" test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

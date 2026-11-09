@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="media-checks-pattern">
+  <pattern id="media-checks-pattern">
     <rule context="media" id="media-checks">
       <let name="link" value="@*:href"/>
       <assert test="parent::supplementary-material" role="error" id="media-test-1">[media-test-1] media element should only be placed as a child of supplementary-material. This one has the parent <value-of select="parent::*/name()"/>
       </assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
+      <assert xmlns="" test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

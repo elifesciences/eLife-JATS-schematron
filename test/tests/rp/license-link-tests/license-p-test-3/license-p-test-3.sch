@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="license-link-tests-pattern">
+  <pattern id="license-link-tests-pattern">
     <rule context="permissions/license[@*:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@*:href"/>
       <assert test="some $x in ext-link satisfies $x/@*:href = $license-link" role="error" id="license-p-test-3">[license-p-test-3] If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@*:href,'; ')"/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
+      <assert xmlns="" test="descendant::permissions/license[@*:href]/license-p" role="error" id="license-link-tests-xspec-assert">permissions/license[@*:href]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

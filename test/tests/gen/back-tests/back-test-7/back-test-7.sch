@@ -970,9 +970,9 @@
       <report test="($article-type = $features-article-types) and (count(fn-group[@content-type='competing-interest']) != 1)" role="error" id="back-test-7">An fn-group[@content-type='competing-interest'] must be present as a child of back <value-of select="$subj-type"/> content.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
+      <assert xmlns="" test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>
   </pattern>
 </schema>

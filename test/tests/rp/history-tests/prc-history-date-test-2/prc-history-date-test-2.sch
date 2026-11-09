@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="history-tests-pattern">
+  <pattern id="history-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]/article-meta/history" id="history-tests">
       <report test="date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">[prc-history-date-test-2] Reviewed preprints can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/history" role="error" id="history-tests-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/history must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/history" role="error" id="history-tests-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/history must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-2" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" flag="dl-ar" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" role="error" id="dec-letter-reviewer-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" role="error" id="dec-letter-reviewer-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2] must be present.</assert>
     </rule>
   </pattern>
 </schema>

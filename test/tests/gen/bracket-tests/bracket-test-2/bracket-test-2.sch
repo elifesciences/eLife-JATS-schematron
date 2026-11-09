@@ -972,9 +972,9 @@
       </report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
+      <assert xmlns="" test="descendant::p[matches(.,'[\(\)\[\]]')] or descendant::th[matches(.,'[\(\)\[\]]')] or descendant::td[matches(.,'[\(\)\[\]]')] or descendant::title[matches(.,'[\(\)\[\]]')]" role="error" id="bracket-tests-xspec-assert">p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

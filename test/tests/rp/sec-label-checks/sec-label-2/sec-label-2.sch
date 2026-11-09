@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-label-checks-pattern">
+  <pattern id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
       <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="sec-label-2">[sec-label-2] Section label is empty. This is not permitted.</report>
       <sqf:fix id="move-to-title" use-when="parent::sec/title">
@@ -1314,10 +1314,10 @@
           <sqf:delete match="."/>
         </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
+      <assert xmlns="" test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

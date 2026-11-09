@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-3" test="$count gt 2" role="error" flag="dl-ar" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

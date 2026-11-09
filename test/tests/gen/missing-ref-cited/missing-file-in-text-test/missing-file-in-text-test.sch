@@ -970,9 +970,9 @@
         <name/> element contains possible citation to a file which is unlinked or missing. If you are unsure what object needs to be cited then please add the following author query (replacing XXXX as appropriate): Please confirm which XXXXXX this refers to, or confirm that this citation refers to another article.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)] or descendant::td[ancestor::app or ancestor::body[parent::article]] or descendant::th[ancestor::app or ancestor::body[parent::article]]" role="error" id="missing-ref-cited-xspec-assert">article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]] must be present.</assert>
+      <assert xmlns="" test="descendant::article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)] or descendant::td[ancestor::app or ancestor::body[parent::article]] or descendant::th[ancestor::app or ancestor::body[parent::article]]" role="error" id="missing-ref-cited-xspec-assert">article[not(@article-type=('correction','retraction'))]//p[(ancestor::app or ancestor::body[parent::article]) and not(child::table-wrap) and not(child::supplementary-material)]|td[ancestor::app or ancestor::body[parent::article]]|th[ancestor::app or ancestor::body[parent::article]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

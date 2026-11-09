@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-tests-pattern">
+  <pattern id="math-tests-pattern">
     <rule context="*:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-2" test="descendant::*:merror" role="error" id="math-test-2">[math-test-2] math contains an mml:merror with '<value-of select="descendant::*:merror[1]/*"/>'. This will almost certainly not render correctly.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
+      <assert xmlns="" test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
     </rule>
   </pattern>
 </schema>

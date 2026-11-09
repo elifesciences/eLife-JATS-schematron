@@ -985,9 +985,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-test-3" test="name and (collab or collab-wrap)" role="error" id="contrib-test-3">author contains both a child name element and a child collab-wrap (or collab) element. This is not correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

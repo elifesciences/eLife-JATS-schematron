@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-info" test=". = ('1','2','3','4','5')" role="info" id="feat-custom-meta-test-info">Template <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

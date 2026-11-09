@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-child-test" test="*[local-name() != 'italic']" role="error" id="kwd-child-test">research-organism keywords cannot have child elements such as <value-of select="*/local-name()"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" role="error" id="ro-kwd-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" role="error" id="ro-kwd-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</assert>
     </rule>
   </pattern>
 </schema>

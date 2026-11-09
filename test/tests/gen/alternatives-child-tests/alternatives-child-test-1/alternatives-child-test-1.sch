@@ -967,9 +967,9 @@
         <name/> element is not allowed as a child of alternatives.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives/*" role="error" id="alternatives-child-tests-xspec-assert">alternatives/* must be present.</assert>
+      <assert xmlns="" test="descendant::alternatives/*" role="error" id="alternatives-child-tests-xspec-assert">alternatives/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

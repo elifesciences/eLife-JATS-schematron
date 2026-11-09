@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-5" test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <assert test="matches(year[1],'^[0-9]{4}$')" role="error" id="final-pub-date-test-10">pub-date must contain year in the format 0000. Currently it is '<value-of select="year"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
+      <assert xmlns="" test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>
   </pattern>
 </schema>

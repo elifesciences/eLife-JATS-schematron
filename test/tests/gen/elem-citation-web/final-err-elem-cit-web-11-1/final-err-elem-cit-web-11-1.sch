@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#final-err-elem-cit-web-11-1" test="count(date-in-citation) lt 1" role="error" id="final-err-elem-cit-web-11-1">Web Reference '<value-of select="ancestor::ref/@id"/>' has no accessed date (&lt;date-in-citation&gt; element) which is required.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''" role="error" id="final-p-test-8">p element contains one or more inline-graphics and no other text, which is not permitted.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[not(inline-formula or disp-formula or code)]" role="error" id="p-text-tests-xspec-assert">p[not(inline-formula or disp-formula or code)] must be present.</assert>
+      <assert xmlns="" test="descendant::p[not(inline-formula or disp-formula or code)]" role="error" id="p-text-tests-xspec-assert">p[not(inline-formula or disp-formula or code)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

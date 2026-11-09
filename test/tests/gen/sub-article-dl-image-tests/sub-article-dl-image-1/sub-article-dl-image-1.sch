@@ -966,9 +966,9 @@
       <report test="matches(.,'[Dd]ecision letter image \d')" role="error" flag="dl-ar" id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/body//bold" role="error" id="sub-article-dl-image-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//bold must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/body//bold" role="error" id="sub-article-dl-image-tests-xspec-assert">sub-article[@article-type='decision-letter']/body//bold must be present.</assert>
     </rule>
   </pattern>
 </schema>

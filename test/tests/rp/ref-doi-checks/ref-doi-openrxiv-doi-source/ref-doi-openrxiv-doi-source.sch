@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-doi-checks-pattern">
+  <pattern id="ref-doi-checks-pattern">
     <rule context="ref//pub-id[@pub-id-type='doi']" id="ref-doi-checks">
       <report test="matches(normalize-space(lower-case(.)),'^(10\.1101|10\.64898)/(\d{5,6}|20[1-3][0-9]\.)') and not(           parent::mixed-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           or           parent::element-citation/source[matches(lower-case(.),'(bio|med)rxiv')]           )" role="warning" id="ref-doi-openrxiv-doi-source">[ref-doi-openrxiv-doi-source] Ref has an openRxiv DOI (<value-of select="."/>), but it does not have a source containing 'bioRxiv' or 'medRxiv'.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-doi-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
+      <assert xmlns="" test="descendant::ref//pub-id[@pub-id-type='doi']" role="error" id="ref-doi-checks-xspec-assert">ref//pub-id[@pub-id-type='doi'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

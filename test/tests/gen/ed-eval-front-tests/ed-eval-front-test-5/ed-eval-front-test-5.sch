@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

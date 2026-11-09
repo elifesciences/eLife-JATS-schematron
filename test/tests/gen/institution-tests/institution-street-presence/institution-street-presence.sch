@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h69nr-institution-street-presence" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="institution-street-presence">institution likely contains a street or building name, which is likely to be incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
+      <assert xmlns="" test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

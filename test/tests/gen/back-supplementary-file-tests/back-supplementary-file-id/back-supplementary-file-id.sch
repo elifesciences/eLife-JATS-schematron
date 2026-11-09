@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-supplementary-file-id" test="matches(@id,'^supp\d{1,2}$')" role="error" id="back-supplementary-file-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Supplementary files need to have ids in the format 'supp0'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" role="error" id="back-supplementary-file-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

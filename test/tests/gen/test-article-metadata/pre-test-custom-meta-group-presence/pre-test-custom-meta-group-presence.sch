@@ -976,9 +976,9 @@
       <report test="if ($subj-type = $exceptions) then ()       else count(custom-meta-group) != 1" role="warning" id="pre-test-custom-meta-group-presence">One custom-meta-group should be present in article-meta for all article types except Insights, Retractions, Corrections and Expressions of Concern.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
       </report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article//styled-content must be present.</assert>
+      <assert xmlns="" test="descendant::article//styled-content" role="error" id="colour-styled-content-v2-xspec-assert">article//styled-content must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
         <name/> element cannot have a content-type attribute. The only elements that can have that can have a content-type attribtue are named-content, contrib-group, self-uri, institution, fn-group, and disp-quote.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::*[@content-type]" role="error" id="content-type-attribute-test-xspec-assert">*[@content-type] must be present.</assert>
+      <assert xmlns="" test="descendant::*[@content-type]" role="error" id="content-type-attribute-test-xspec-assert">*[@content-type] must be present.</assert>
     </rule>
   </pattern>
 </schema>

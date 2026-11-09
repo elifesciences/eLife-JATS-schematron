@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="p-td-th-checks-pattern">
+  <pattern id="p-td-th-checks-pattern">
     <rule context="p|td|th" id="p-td-th-checks">
       <let name="rrid-link-count" value="count(descendant::ext-link[matches(@*:href,'identifiers\.org/RRID(:|/).*')])"/>
       <let name="rrid-text-count" value="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
@@ -1305,10 +1305,10 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlvnh-unlinked-url" test="not(descendant::p or descendant::td or descendant::th or descendant::title) and not(ancestor::sub-article or child::element-citation) and not(ancestor::fn-group[@content-type='ethics-information']) and not($url-text = '')" role="warning" id="unlinked-url">[unlinked-url] '<name/>' element contains possible unlinked urls. Check - <value-of select="$url-text"/>
       </report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p or descendant::td or descendant::th" role="error" id="p-td-th-checks-xspec-assert">p|td|th must be present.</assert>
+      <assert xmlns="" test="descendant::p or descendant::td or descendant::th" role="error" id="p-td-th-checks-xspec-assert">p|td|th must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report test="($dtd-version le '1.3') and not(date[@date-type='accepted'])" role="error" id="history-date-test-2">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='accepted']</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" role="error" id="history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history must be present.</assert>
+      <assert xmlns="" test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" role="error" id="history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history must be present.</assert>
     </rule>
   </pattern>
 </schema>

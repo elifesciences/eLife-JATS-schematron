@@ -967,9 +967,9 @@
         <name/> is captured as a child of <name/>, which is not permitted.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub or descendant::sup" role="error" id="sub-sup-tests-xspec-assert">sub|sup must be present.</assert>
+      <assert xmlns="" test="descendant::sub or descendant::sup" role="error" id="sub-sup-tests-xspec-assert">sub|sup must be present.</assert>
     </rule>
   </pattern>
 </schema>

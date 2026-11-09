@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#self-cite-1" test="lower-case(pub-id[@pub-id-type='doi'][1]) = $article-doi" role="error" id="self-cite-1">'<value-of select="@publication-type"/>' type reference has a doi which is the same as this article - <value-of select="pub-id[@pub-id-type='doi']"/>. Is the reference correct? If it is intentional, please remove the reference, and replace citations in the text with the text 'current work' or similar.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

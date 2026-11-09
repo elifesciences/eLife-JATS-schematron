@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#ack-funding" test="p[* or not(normalize-space(.)='')]" role="warning" id="ack-funding">Please check the acknowledgements section to ensure that all funding information is captured in the funding section.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
+      <assert xmlns="" test="descendant::ack" role="error" id="ack-title-tests-xspec-assert">ack must be present.</assert>
     </rule>
   </pattern>
 </schema>

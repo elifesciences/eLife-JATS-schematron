@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hg0km-gen-aff-test-2" test="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept']) ge 1" role="warning" id="gen-aff-test-2">Affiliation has <value-of select="count(institution[@content-type='dept']) + count(institution-wrap/institution[@content-type='dept'])"/> department field(s) - <value-of select="$display"/>. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
+      <assert xmlns="" test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
     </rule>
   </pattern>
 </schema>

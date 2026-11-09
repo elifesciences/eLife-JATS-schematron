@@ -969,9 +969,9 @@
         <value-of select="ancestor::aff/@id"/> has 'Washington' as its city. Either it should be changed to 'Washington, DC' or if referring to the US state then changed to the correct city.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
+      <assert xmlns="" test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

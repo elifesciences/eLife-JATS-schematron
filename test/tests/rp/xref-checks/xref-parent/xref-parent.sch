@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="xref-checks-pattern">
+  <pattern id="xref-checks-pattern">
     <rule context="xref" id="xref-checks">
       <let name="allowed-attributes" value="('ref-type','rid')"/>
       <report test="parent::xref" role="error" sqf:fix="strip-tags" id="xref-parent">[xref-parent] This xref element containing '<value-of select="."/>' is a child of another xref. Nested xrefs are not supported - it must be either stripped or moved so that it is a child of another element.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
+      <assert xmlns="" test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
     </rule>
   </pattern>
 </schema>

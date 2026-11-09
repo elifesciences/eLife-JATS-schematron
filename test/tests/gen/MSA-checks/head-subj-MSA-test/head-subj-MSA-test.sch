@@ -966,9 +966,9 @@
       <assert test=". = $MSAs" role="error" id="head-subj-MSA-test">Content of the heading must match one of the MSAs.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
+      <assert xmlns="" test="descendant::article-categories/subj-group[@subj-group-type='heading']/subject" role="error" id="MSA-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading']/subject must be present.</assert>
     </rule>
   </pattern>
 </schema>

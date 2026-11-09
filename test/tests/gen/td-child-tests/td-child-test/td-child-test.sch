@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#td-child-test" test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::td/*" role="error" id="td-child-tests-xspec-assert">td/* must be present.</assert>
+      <assert xmlns="" test="descendant::td/*" role="error" id="td-child-tests-xspec-assert">td/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

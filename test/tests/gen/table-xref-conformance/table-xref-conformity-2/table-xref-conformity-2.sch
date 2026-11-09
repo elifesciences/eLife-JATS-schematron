@@ -972,9 +972,9 @@
         <value-of select="."/> - citation points to an Appendix table, but does not include the string 'table', which is very unusual.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

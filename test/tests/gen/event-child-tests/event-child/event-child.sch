@@ -968,9 +968,9 @@
         <name/> is not allowed in an event element. The only permitted children of event are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
+      <assert xmlns="" test="descendant::event/*" role="error" id="event-child-tests-xspec-assert">event/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

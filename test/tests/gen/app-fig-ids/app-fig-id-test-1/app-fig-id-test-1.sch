@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-1" test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/back//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-ids-xspec-assert">article/back//app//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert xmlns="" test="descendant::article/back//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-ids-xspec-assert">article/back//app//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

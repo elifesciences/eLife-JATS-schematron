@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-2" test="funding-source" role="error" id="award-group-test-2">award-group must contain a funding-source.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

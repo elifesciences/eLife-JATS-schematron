@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-4-1" test="count(source)=1" role="warning" id="pre-err-elem-cit-journal-4-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;source&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> &lt;source&gt; elements. If you are unable to determine this then please query the authors for this information.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

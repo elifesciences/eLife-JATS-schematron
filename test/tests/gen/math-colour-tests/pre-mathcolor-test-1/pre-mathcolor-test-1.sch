@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathcolor-test-1" test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a colour style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
+      <assert xmlns="" test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
     </rule>
   </pattern>
 </schema>

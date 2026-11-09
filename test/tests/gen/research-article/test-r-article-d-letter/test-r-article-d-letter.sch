@@ -969,9 +969,9 @@
         <value-of select="if ($is-prc) then 'Public reviews and recomendations for the authors' else 'A decision letter'"/> should almost always be present for research articles. This one doesn't have one. Check that this is correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

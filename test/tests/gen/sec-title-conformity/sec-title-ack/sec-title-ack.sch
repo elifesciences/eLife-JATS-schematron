@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#h9cd3-sec-title-ack" test="matches(.,'^[\p{Zs}\p{P}]*[Aa][ck][ck]n?ow[le][le]?[dg][dg]?e?ments?[\p{Zs}\p{P}]*$')" role="error" id="sec-title-ack">Section title indicates that it is an acknowledgements section - <value-of select="."/>. Acknowledgements must be tagged as an &lt;ack&gt; element in the back of the article.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
+      <assert xmlns="" test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-test-1" test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" role="error" id="box-fig-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]/label must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" role="error" id="box-fig-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

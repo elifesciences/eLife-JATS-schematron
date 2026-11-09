@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="event-desc-tests-pattern">
+  <pattern id="event-desc-tests-pattern">
     <rule context="event-desc" id="event-desc-tests">
       <report test="parent::event/self-uri[1][@content-type='preprint'] and .!='Preprint posted'" role="error" id="event-desc-content">[event-desc-content] <name/> that's a child of a preprint event must contain the text 'Preprint posted'. This one does not (<value-of select="."/>).</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
+      <assert xmlns="" test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
     </rule>
   </pattern>
 </schema>

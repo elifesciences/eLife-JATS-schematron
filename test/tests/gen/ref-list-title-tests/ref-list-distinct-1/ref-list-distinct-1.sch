@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-list-distinct-1" test="$non-distinct//*:item" role="error" id="ref-list-distinct-1">In the reference list, each reference must be unique in its citation style (combination of authors and year). If a reference's citation is the same as anothers, a lowercase letter should be suffixed to the year (e.g. Smith et al., 2020a). <value-of select="string-join(for $x in $non-distinct//*:item return concat($x,' with the id ',$x/@id),' and ')"/> does not meet this requirement.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list" role="error" id="ref-list-title-tests-xspec-assert">ref-list must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list" role="error" id="ref-list-title-tests-xspec-assert">ref-list must be present.</assert>
     </rule>
   </pattern>
 </schema>

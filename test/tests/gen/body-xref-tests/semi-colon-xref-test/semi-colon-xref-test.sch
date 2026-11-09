@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#semi-colon-xref-test" test="ends-with(.,';') or ends-with(.,'; ')" role="error" id="semi-colon-xref-test">xref ends with semi-colon - '<value-of select="."/>' - which is incorrect. The semi-colon should be placed after the link as 'normal' text.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::body//xref" role="error" id="body-xref-tests-xspec-assert">body//xref must be present.</assert>
+      <assert xmlns="" test="descendant::body//xref" role="error" id="body-xref-tests-xspec-assert">body//xref must be present.</assert>
     </rule>
   </pattern>
 </schema>

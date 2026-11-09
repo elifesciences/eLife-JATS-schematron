@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#PMCID-link-test" test="matches(.,'PMCID[:]?\p{Zs}?PMC[0-9][0-9][0-9]+') and (count(ext-link[matches(@xlink:href,'ncbi.nlm.nih.gov/pmc|pmc.ncbi.nlm.nih.gov')]) = 0)" role="error" id="PMCID-link-test">td element containing - '<value-of select="."/>' - looks like it contains a PMCID, but it contains no link pointing to PMC, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']//td" role="error" id="KRT-td-checks-xspec-assert">table-wrap[@id='keyresource']//td must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[@id='keyresource']//td" role="error" id="KRT-td-checks-xspec-assert">table-wrap[@id='keyresource']//td must be present.</assert>
     </rule>
   </pattern>
 </schema>

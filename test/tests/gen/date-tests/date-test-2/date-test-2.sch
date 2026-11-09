@@ -966,9 +966,9 @@
       <assert test="matches(month[1],'^[0-9]{2}$')" role="error" id="date-test-2">date must contain month in the format 00. Currently it is '<value-of select="month"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
+      <assert xmlns="" test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
     </rule>
   </pattern>
 </schema>

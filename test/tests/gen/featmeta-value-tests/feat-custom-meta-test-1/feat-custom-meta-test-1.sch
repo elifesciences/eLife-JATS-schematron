@@ -968,9 +968,9 @@
         <value-of select="child::*[1]/name()"/> is not allowed in a Template type meta-value.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

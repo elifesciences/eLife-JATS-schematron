@@ -966,9 +966,9 @@
       <assert test="@journal-id-type=('nlm-ta','publisher-id')" role="error" id="test-journal-id">The only journal-id-types permitted are 'nlm-ta' or 'publisher-id'. <value-of select="@journal-id-type"/> is not permitted.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/journal-meta/journal-id" role="error" id="journal-id-xspec-assert">article/front/journal-meta/journal-id must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/journal-meta/journal-id" role="error" id="journal-id-xspec-assert">article/front/journal-meta/journal-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

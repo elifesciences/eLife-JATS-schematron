@@ -967,9 +967,9 @@
       <report test="($dtd-version le '1.3') and date[@date-type!='sent-for-review' or not(@date-type)]" role="error" id="prc-history-date-test-2">PRC articles can only have sent-for-review dates in their history. This one has a <value-of select="if (date[@date-type!='sent-for-review']) then date[@date-type!='sent-for-review']/@date-type else 'undefined'"/> date.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" role="error" id="prc-history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history must be present.</assert>
+      <assert xmlns="" test="descendant::article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" role="error" id="prc-history-tests-xspec-assert">article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history must be present.</assert>
     </rule>
   </pattern>
 </schema>

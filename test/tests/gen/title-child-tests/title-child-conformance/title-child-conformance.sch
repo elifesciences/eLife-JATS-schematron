@@ -968,9 +968,9 @@
         <name/> is not allowed in a title element. The only permitted elements are <value-of select="string-join($allowed-elems,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::title/*" role="error" id="title-child-tests-xspec-assert">title/* must be present.</assert>
+      <assert xmlns="" test="descendant::title/*" role="error" id="title-child-tests-xspec-assert">title/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

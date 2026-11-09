@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-preprint-check" test="matches(normalize-space(lower-case(source[1])),'^biorxiv$|^africarxiv$|^arxiv$|^cell\s+sneak\s+peak$|^chemrxiv$|^chinaxiv$|^eartharxiv$|^medrxiv$|^osf\s+preprints$|^paleorxiv$|^peerj\s+preprints$|^preprints$|^preprints\.org$|^psyarxiv$|^research\s+square$|^scielo\s+preprints$|^ssrn$|^vixra$')" role="error" id="journal-preprint-check">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="source[1]"/>, but it is captured as a journal not a preprint.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

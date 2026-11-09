@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-caption-checks-pattern">
+  <pattern id="fig-caption-checks-pattern">
     <rule context="fig/caption" id="fig-caption-checks">
       <let name="label" value="if (ancestor::fig/label) then ancestor::fig[1]/label[1] else 'unlabelled figure'"/>
       <let name="is-revised-rp" value="if (ancestor::article//article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <report test="not(title) and (count(p) gt 1)" role="warning" sqf:fix="replace-p-to-title" id="fig-caption-1">[fig-caption-1] Caption for <value-of select="$label"/> doesn't have a title, but there are mutliple paragraphs. Is the first paragraph actually the title?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption" role="error" id="fig-caption-checks-xspec-assert">fig/caption must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption" role="error" id="fig-caption-checks-xspec-assert">fig/caption must be present.</assert>
     </rule>
   </pattern>
 </schema>

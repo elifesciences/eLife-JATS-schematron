@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#sec-test-3" test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']//sec[not(@sec-type)]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type)] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']//sec[not(@sec-type)]" role="error" id="res-data-sec-xspec-assert">article[@article-type='research-article']//sec[not(@sec-type)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

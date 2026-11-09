@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#corr-abstract-presence" test="descendant::abstract" role="error" id="corr-abstract-presence">Correction notices should not contain abstracts.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

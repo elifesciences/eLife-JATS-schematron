@@ -970,9 +970,9 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#max-planck-fund-statement" test="some $aff in ($nested-affs,$group-affs) satisfies matches(lower-case($aff),'^max[\p{Zs}-]+plan[ck]+|\p{Zs}max[\p{Zs}-]+plan[ck]+')" role="warning" id="max-planck-fund-statement">This article has a corresponding author that is affiliated with a Max Planck Institute, but the funding statement does not contain the text 'Open access funding provided by Max Planck Society.' Should it? The funding statement currently reads: <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" role="error" id="max-planck-fund-statement-tests-xspec-assert">article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))] must be present.</assert>
     </rule>
   </pattern>
 </schema>

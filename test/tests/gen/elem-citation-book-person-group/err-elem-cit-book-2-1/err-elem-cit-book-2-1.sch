@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcob2-err-elem-cit-book-2-1" test="@person-group-type" role="error" id="err-elem-cit-book-2-1">Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']/person-group" role="error" id="elem-citation-book-person-group-xspec-assert">element-citation[@publication-type='book']/person-group must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']/person-group" role="error" id="elem-citation-book-person-group-xspec-assert">element-citation[@publication-type='book']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

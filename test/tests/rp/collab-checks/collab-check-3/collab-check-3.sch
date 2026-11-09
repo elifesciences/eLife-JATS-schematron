@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-checks-pattern">
+  <pattern id="collab-checks-pattern">
     <rule context="collab | collab-name" id="collab-checks">
       <assert test="normalize-space(.)=." role="warning" sqf:fix="replace-normalize-space" id="collab-check-3">[collab-check-3] <name/> element seems to contain odd spacing. Is it correct? '<value-of select="."/>'</assert>
       <sqf:fix id="replace-collab-to-string-name">
@@ -1309,10 +1309,10 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
+      <assert xmlns="" test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

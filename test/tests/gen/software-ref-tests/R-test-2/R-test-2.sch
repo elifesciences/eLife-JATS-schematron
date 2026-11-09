@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-2" test="matches($lc,'r: a language and environment for statistical computing') and (count(person-group[@person-group-type='author']/*[name()=('collab','collab-name')]) != 1)" role="error" id="R-test-2">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it has <value-of select="count(person-group[@person-group-type='author']/*[name()=('collab','collab-name')])"/> collab-name element(s).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

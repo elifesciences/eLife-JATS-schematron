@@ -1295,17 +1295,17 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="abstract-lang-checks-pattern">
+  <pattern id="abstract-lang-checks-pattern">
     <rule context="abstract[@xml:lang]" id="abstract-lang-checks">
       <let name="xml-lang-value" value="@xml:lang"/>
       <let name="languages" value="'../../../../../src/languages.xml'"/>
       <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
       <report test="$subtag-description!=''" role="warning" id="abstract-lang-test-2">[abstract-lang-test-2] <name/> has an xml:lang attribute with the value '<value-of select="$xml-lang-value"/>', which corresponds to the following language: <value-of select="$subtag-description"/>. Please check this is correct.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
+      <assert xmlns="" test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
     </rule>
   </pattern>
 </schema>

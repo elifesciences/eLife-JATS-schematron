@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-checks-pattern">
+  <pattern id="table-checks-pattern">
     <rule context="table" id="table-checks">
       <report test="descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]" role="warning" id="table-style-test-3">[table-style-test-3] <value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with some kind of styling (<value-of select="string-join(distinct-values(descendant::*[name()=('tr','td','th') and @style[not(matches(.,'background-color|border'))]]/@style),'; ')"/>). Is this really necessary?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table" role="error" id="table-checks-xspec-assert">table must be present.</assert>
+      <assert xmlns="" test="descendant::table" role="error" id="table-checks-xspec-assert">table must be present.</assert>
     </rule>
   </pattern>
 </schema>

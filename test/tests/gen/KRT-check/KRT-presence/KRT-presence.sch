@@ -968,9 +968,9 @@
       <report test="($subj = 'Research Article') and not(descendant::table-wrap[@id = 'keyresource']) and (descendant::sec[@sec-type=$methods]/*[2]/local-name()='table-wrap')" role="warning" id="KRT-presence">'<value-of select="$subj"/>' does not have a key resources table, but the <value-of select="descendant::sec[@sec-type=$methods]/title"/> starts with a table. Should this table be a key resources table?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="KRT-check-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="KRT-check-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

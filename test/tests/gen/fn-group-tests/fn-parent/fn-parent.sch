@@ -968,9 +968,9 @@
       </assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

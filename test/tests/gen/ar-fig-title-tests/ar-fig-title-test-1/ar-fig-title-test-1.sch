@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-title-test-1" test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::fig[ancestor::sub-article]/caption/title" role="error" id="ar-fig-title-tests-xspec-assert">fig[ancestor::sub-article]/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

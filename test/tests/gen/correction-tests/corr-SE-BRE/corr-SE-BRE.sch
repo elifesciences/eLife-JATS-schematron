@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hs0ll-corr-se-bre" test="descendant::contrib-group[@content-type='section']" role="error" id="corr-SE-BRE">Correction notices must not contain any Senior or Reviewing Editors.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

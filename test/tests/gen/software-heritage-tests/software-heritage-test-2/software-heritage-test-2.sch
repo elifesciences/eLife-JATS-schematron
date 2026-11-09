@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" role="error" id="software-heritage-test-2">Software heritage links in references must be the directory link with contextual information. '<value-of select="ext-link[1]/@xlink:href"/>' is not a directory link with contextual information.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" role="error" id="software-heritage-tests-xspec-assert">ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]] must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" role="error" id="software-heritage-tests-xspec-assert">ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]] must be present.</assert>
     </rule>
   </pattern>
 </schema>

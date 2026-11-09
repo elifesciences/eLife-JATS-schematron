@@ -970,9 +970,9 @@
         <name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute contains '<value-of select="@*:href"/>', which is not an extension of the reviewed preprint doi listed under this event - '<value-of select="preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
+      <assert xmlns="" test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>
   </pattern>
 </schema>

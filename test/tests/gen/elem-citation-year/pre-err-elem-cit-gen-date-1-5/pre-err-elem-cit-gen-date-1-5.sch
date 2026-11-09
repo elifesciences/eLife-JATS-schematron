@@ -969,9 +969,9 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-err-elem-cit-gen-date-1-5" test="not(./@iso-8601-date) or substring(normalize-space(./@iso-8601-date),1,4) = $YYYY" role="warning" id="pre-err-elem-cit-gen-date-1-5">The numeric value of the 4 digits in the @iso-8601-date attribute must match the first 4 digits on the  &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as the element contains the value '<value-of select="."/>' and the attribute contains the value '<value-of select="./@iso-8601-date"/>'. If there is no year, and you are unable to determine this, please query with the authors.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
     </rule>
   </pattern>
 </schema>

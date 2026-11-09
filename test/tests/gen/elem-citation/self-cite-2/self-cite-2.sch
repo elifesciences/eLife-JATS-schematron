@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#self-cite-1" test="(lower-case(pub-id[@pub-id-type='doi'][1]) != $article-doi) and                (lower-case(source[1]) = 'elife') and                ((lower-case(article-title[1]) = $title) or (lower-case(chapter-title[1]) = $title)) " role="error" id="self-cite-2">'<value-of select="@publication-type"/>' type reference looks to possibly be citing itself. If that's the case (and this isn't an error within the reference), please delete the reference and replace any citations in the text with the text 'current work'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation" role="error" id="elem-citation-xspec-assert">element-citation must be present.</assert>
     </rule>
   </pattern>
 </schema>

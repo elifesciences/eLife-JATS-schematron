@@ -969,9 +969,9 @@
         <value-of select="ancestor::aff/@id"/> has 'Singapore' as its city but '<value-of select="ancestor::aff/country/text()"/>' as its country, which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
+      <assert xmlns="" test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

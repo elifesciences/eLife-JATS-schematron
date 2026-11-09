@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ar-image-labels-pattern">
+  <pattern id="ar-image-labels-pattern">
     <rule context="sub-article[@article-type='author-comment']//fig/label" id="ar-image-labels">
       <assert test="matches(.,'^Author response image \d\d?\.$')" role="error" id="ar-image-label-1">[ar-image-label-1] Label for figures in the author response must be in the format 'Author response image 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='author-comment']//fig/label" role="error" id="ar-image-labels-xspec-assert">sub-article[@article-type='author-comment']//fig/label must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='author-comment']//fig/label" role="error" id="ar-image-labels-xspec-assert">sub-article[@article-type='author-comment']//fig/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

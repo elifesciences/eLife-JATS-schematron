@@ -968,9 +968,9 @@
         <name/> contains a genus name followed by 'oocytes'. 'oocytes' should not be in italics.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[matches(lower-case(.),$genus-regex)]" role="error" id="italic-genus-xspec-assert">italic[matches(lower-case(.),$genus-regex)] must be present.</assert>
+      <assert xmlns="" test="descendant::italic[matches(lower-case(.),$genus-regex)]" role="error" id="italic-genus-xspec-assert">italic[matches(lower-case(.),$genus-regex)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

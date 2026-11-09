@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-data-id" test="matches(@id,'^sdata\d{1,2}$')" role="error" id="back-source-data-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source data need to have ids in the format 'sdata0'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" role="error" id="back-source-data-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')] must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" role="error" id="back-source-data-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

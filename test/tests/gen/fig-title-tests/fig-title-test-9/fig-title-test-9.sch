@@ -968,9 +968,9 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="fig-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

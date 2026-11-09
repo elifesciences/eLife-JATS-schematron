@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="refinery-comment-checks-pattern">
+  <pattern id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
       <assert test="matches(lower-case(.),'refinery:')" role="error" sqf:fix="delete-node" id="ref-comment-2">[ref-comment-2] Ref (with id <value-of select="ancestor::ref/@id"/>) has comment node with the content '<value-of select="."/>'. Comments should be removed.</assert>
       <sqf:fix id="update-refinery">
@@ -1321,10 +1321,10 @@
         <sqf:delete match=".|./preceding-sibling::text()[1]"/>
       </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
+      <assert xmlns="" test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
     </rule>
   </pattern>
 </schema>

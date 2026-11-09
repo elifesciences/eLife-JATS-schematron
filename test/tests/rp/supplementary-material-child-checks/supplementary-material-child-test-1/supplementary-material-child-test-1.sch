@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="supplementary-material-child-checks-pattern">
+  <pattern id="supplementary-material-child-checks-pattern">
     <rule context="supplementary-material/*" id="supplementary-material-child-checks">
       <let name="permitted-children" value="('label','caption','media')"/>
       <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="supplementary-material-child-test-1">[supplementary-material-child-test-1] <name/> is not supported as a child of supplementary-material. The only permitted children are: <value-of select="string-join($permitted-children,'; ')"/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material/*" role="error" id="supplementary-material-child-checks-xspec-assert">supplementary-material/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="country-tests-pattern">
+  <pattern id="country-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
@@ -1303,10 +1303,10 @@
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <assert test="$valid-country" role="warning" id="gen-country-test">[gen-country-test] affiliation contains a country which is not in the list of standardised countriy names - <value-of select="."/>. Is that OK? For a list of allowed countries, refer to https://github.com/elifesciences/eLife-JATS-schematron/blob/master/src/countries.xml.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
     </rule>
   </pattern>
 </schema>

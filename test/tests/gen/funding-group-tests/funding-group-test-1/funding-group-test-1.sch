@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-1" test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

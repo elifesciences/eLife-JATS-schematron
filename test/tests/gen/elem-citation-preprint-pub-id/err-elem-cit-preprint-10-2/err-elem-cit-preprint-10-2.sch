@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='preprint']/pub-id" role="error" id="elem-citation-preprint-pub-id-xspec-assert">element-citation[@publication-type='preprint']/pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='preprint']/pub-id" role="error" id="elem-citation-preprint-pub-id-xspec-assert">element-citation[@publication-type='preprint']/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <assert test="@content-type" role="error" id="fn-content-type-1">fn-group that is descendant of back must have a content-type attribute.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

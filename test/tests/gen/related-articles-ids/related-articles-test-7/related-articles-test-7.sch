@@ -966,9 +966,9 @@
       <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">related-article element must contain a @id, the value of which should be in the form ra0.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-ids-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-ids-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

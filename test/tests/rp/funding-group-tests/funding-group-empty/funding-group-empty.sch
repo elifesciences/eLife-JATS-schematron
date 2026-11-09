@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-group-tests-pattern">
+  <pattern id="funding-group-tests-pattern">
     <rule context="funding-group" id="funding-group-tests">
       <assert test="award-group or funding-statement" role="error" id="funding-group-empty">[funding-group-empty] funding-group must contain at least either am award-group or a funding-statement element. This one has neither</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

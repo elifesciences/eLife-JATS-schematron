@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-2" test="matches(.,'\.$|\?$')" role="error" id="video-title-test-2">title for <value-of select="$label"/> must end with a full stop.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

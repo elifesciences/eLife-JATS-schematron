@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="strike-checks-pattern">
+  <pattern id="strike-checks-pattern">
     <rule context="strike" id="strike-checks">
       <report test="." role="warning" sqf:fix="strip-tags" id="strike-warning">[strike-warning] strike element is present. Is this tracked change formatting that's been erroneously retained? Should this text be deleted?</report>
     </rule>
-  </sch:pattern>
+  </pattern>
 </schema>

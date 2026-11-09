@@ -967,9 +967,9 @@
         <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::addr-line" role="error" id="addr-line-parent-test-xspec-assert">addr-line must be present.</assert>
+      <assert xmlns="" test="descendant::addr-line" role="error" id="addr-line-parent-test-xspec-assert">addr-line must be present.</assert>
     </rule>
   </pattern>
 </schema>

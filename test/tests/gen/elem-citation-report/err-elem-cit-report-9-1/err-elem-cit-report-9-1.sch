@@ -971,9 +971,9 @@
         <value-of select="count(source)"/> &lt;source&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='report']" role="error" id="elem-citation-report-xspec-assert">element-citation[@publication-type='report'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='report']" role="error" id="elem-citation-report-xspec-assert">element-citation[@publication-type='report'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

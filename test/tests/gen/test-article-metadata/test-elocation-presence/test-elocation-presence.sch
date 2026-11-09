@@ -976,9 +976,9 @@
       <assert test="elocation-id" role="error" id="test-elocation-presence">There must be a child elocation-id in article-meta.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

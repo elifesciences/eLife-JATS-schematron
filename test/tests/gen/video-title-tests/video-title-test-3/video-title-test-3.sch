@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-3" test="matches(.,' vs\.$')" role="warning" id="video-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

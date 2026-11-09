@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-4" test="matches(.,'^\p{Zs}')" role="error" id="supplementary-material-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

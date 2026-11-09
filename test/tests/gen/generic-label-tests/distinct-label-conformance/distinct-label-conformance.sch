@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#distinct-label-conformance" test="some $x in preceding::label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="distinct-label-conformance">Duplicated labels - <value-of select="$label"/> is present more than once in the text.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
+      <assert xmlns="" test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

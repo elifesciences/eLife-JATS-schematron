@@ -966,9 +966,9 @@
       <report test="(name and anonymous) or ((collab or collab-wrap) and anonymous) or (name and (collab or collab-wrap))" role="error" flag="dl-ar" id="sub-article-contrib-test-3">sub-article contrib can only have a child name element or a child anonymous element or a child collab element (with descendant group members as required), it cannot have more than one of these elements. This has <value-of select="string-join(for $x in *[name()=('name','anonymous','collab','collab-wrap')] return concat('a ',$x/name()),' and ')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-label-checks-pattern">
+  <pattern id="ref-label-checks-pattern">
     <rule context="ref-list[ref/label]/ref" id="ref-label-checks">
       <report test="not(label) and not(contains(@id,'dataref')) and (preceding-sibling::ref[label] or following-sibling::ref[label])" role="warning" id="ref-label-2">[ref-label-2] ref with id <value-of select="@id"/> doesn't have a label, but other refs within the same ref-list do. Has there been a processing error?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list[ref/label]/ref" role="error" id="ref-label-checks-xspec-assert">ref-list[ref/label]/ref must be present.</assert>
     </rule>
   </pattern>
 </schema>

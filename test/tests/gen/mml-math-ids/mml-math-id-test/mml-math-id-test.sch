@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mml-math-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/mml:math" role="error" id="mml-math-ids-xspec-assert">disp-formula/mml:math must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula/mml:math" role="error" id="mml-math-ids-xspec-assert">disp-formula/mml:math must be present.</assert>
     </rule>
   </pattern>
 </schema>

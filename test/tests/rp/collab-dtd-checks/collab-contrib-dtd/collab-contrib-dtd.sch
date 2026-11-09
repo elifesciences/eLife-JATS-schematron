@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-dtd-checks-pattern">
+  <pattern id="collab-dtd-checks-pattern">
     <rule context="article[@dtd-version ge '1.4']//collab" id="collab-dtd-checks">
       <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="ancestor::contrib" role="error" id="collab-contrib-dtd">[collab-contrib-dtd] The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib&gt; use &lt;collab-wrap&gt; instead.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-dtd-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
+      <assert xmlns="" test="descendant::article[@dtd-version ge '1.4']//collab" role="error" id="collab-dtd-checks-xspec-assert">article[@dtd-version ge '1.4']//collab must be present.</assert>
     </rule>
   </pattern>
 </schema>

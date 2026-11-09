@@ -968,9 +968,9 @@
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/sub-article//p[not(ancestor::disp-quote)]" role="error" id="dec-letter-reply-content-tests-2-xspec-assert">article/sub-article//p[not(ancestor::disp-quote)] must be present.</assert>
+      <assert xmlns="" test="descendant::article/sub-article//p[not(ancestor::disp-quote)]" role="error" id="dec-letter-reply-content-tests-2-xspec-assert">article/sub-article//p[not(ancestor::disp-quote)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

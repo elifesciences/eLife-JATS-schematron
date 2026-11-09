@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hh47s-err-elem-cit-book-6-4" test="count(../fpage) eq 0" role="error" id="err-elem-cit-book-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']/comment" role="error" id="elem-citation-book-comment-xspec-assert">element-citation[@publication-type='book']/comment must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']/comment" role="error" id="elem-citation-book-comment-xspec-assert">element-citation[@publication-type='book']/comment must be present.</assert>
     </rule>
   </pattern>
 </schema>

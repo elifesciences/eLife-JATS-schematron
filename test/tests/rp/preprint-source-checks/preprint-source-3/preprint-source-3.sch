@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="preprint-source-checks-pattern">
+  <pattern id="preprint-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
       <let name="lc" value="lower-case(.)"/>
       <report test="matches($lc,'biorxiv') and matches($lc,'medrxiv')" role="error" id="preprint-source-3">[preprint-source-3] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains both bioRxiv and medRxiv, which must be wrong.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

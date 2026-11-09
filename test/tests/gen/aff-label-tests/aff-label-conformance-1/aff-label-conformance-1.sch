@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw7yy-aff-label-conformance-1" test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
+      <assert xmlns="" test="descendant::aff/label" role="error" id="aff-label-tests-xspec-assert">aff/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

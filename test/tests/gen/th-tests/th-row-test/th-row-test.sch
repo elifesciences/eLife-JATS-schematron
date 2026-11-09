@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-row-test" test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::th" role="error" id="th-tests-xspec-assert">th must be present.</assert>
+      <assert xmlns="" test="descendant::th" role="error" id="th-tests-xspec-assert">th must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -968,9 +968,9 @@
         <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
+      <assert xmlns="" test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
     </rule>
   </pattern>
 </schema>

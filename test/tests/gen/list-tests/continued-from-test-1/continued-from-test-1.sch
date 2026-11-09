@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hzkm6-continued-from-test-1" test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::list" role="error" id="list-tests-xspec-assert">list must be present.</assert>
+      <assert xmlns="" test="descendant::list" role="error" id="list-tests-xspec-assert">list must be present.</assert>
     </rule>
   </pattern>
 </schema>

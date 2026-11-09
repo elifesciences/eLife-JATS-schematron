@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-3" test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

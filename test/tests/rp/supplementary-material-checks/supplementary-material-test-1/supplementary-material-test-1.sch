@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="supplementary-material-checks-pattern">
+  <pattern id="supplementary-material-checks-pattern">
     <rule context="supplementary-material" id="supplementary-material-checks">
       <assert test="media" role="error" sqf:fix="delete-node" id="supplementary-material-test-1">[supplementary-material-test-1] supplementary-material does not have a child media. It must either have a file or be deleted.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material" role="error" id="supplementary-material-checks-xspec-assert">supplementary-material must be present.</assert>
     </rule>
   </pattern>
 </schema>

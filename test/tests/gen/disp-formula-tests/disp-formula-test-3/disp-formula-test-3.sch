@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-3" test="parent::p" role="warning" id="disp-formula-test-3">In the vast majority of cases disp-formula should be a child of p. <value-of select="label"/> is a child of <value-of select="parent::*/local-name()"/>. Is that correct?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

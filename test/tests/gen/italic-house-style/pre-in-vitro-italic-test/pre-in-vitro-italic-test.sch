@@ -967,9 +967,9 @@
         <name/> element contains 'in vitro' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::italic[not(ancestor::ref) and not(ancestor::sub-article)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref) and not(ancestor::sub-article)] must be present.</assert>
+      <assert xmlns="" test="descendant::italic[not(ancestor::ref) and not(ancestor::sub-article)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref) and not(ancestor::sub-article)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

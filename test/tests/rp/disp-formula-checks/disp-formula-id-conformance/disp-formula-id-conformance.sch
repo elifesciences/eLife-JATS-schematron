@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-formula-checks-pattern">
+  <pattern id="disp-formula-checks-pattern">
     <rule context="disp-formula" id="disp-formula-checks">
       <assert test="@id" role="error" id="disp-formula-id-conformance">[disp-formula-id-conformance] <value-of select="name()"/> does not have a id attribute, which must be incorrect.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula" role="error" id="disp-formula-checks-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

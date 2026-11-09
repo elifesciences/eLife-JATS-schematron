@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-3" test="(count(award-group) = 0) and (funding-statement!='No external funding was received for this work.')" role="warning" id="funding-group-test-3">Is this funding-statement correct? - '<value-of select="funding-statement"/>' Usually it should be 'No external funding was received for this work.'</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

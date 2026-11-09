@@ -967,9 +967,9 @@
       <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='evidence-strength']" role="error" flag="dl-ar" id="ed-eval-front-test-4b">eLife Assessment front-stub contains a strength term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
     </rule>
   </pattern>
 </schema>

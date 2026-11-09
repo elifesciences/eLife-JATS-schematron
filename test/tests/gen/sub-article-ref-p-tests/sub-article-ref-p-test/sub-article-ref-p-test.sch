@@ -967,9 +967,9 @@
       </report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p'] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" role="error" id="sub-article-ref-p-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

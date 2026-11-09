@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article//ext-link" role="error" id="sub-article-ext-link-tests-xspec-assert">sub-article//ext-link must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article//ext-link" role="error" id="sub-article-ext-link-tests-xspec-assert">sub-article//ext-link must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-ror-tests-pattern">
+  <pattern id="funding-ror-tests-pattern">
     <rule context="funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="funding-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       <assert test="exists($matching-ror)" role="error" id="funding-ror">[funding-ror] Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
+      <assert xmlns="" test="descendant::funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="funding-ror-tests-xspec-assert">funding-source[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

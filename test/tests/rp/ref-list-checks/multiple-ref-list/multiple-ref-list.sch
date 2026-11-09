@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-list-checks-pattern">
+  <pattern id="ref-list-checks-pattern">
     <rule context="ref-list" id="ref-list-checks">
       <let name="labels" value="./ref/label"/>
       <let name="indistinct-labels" value="for $label in distinct-values($labels) return $label[count($labels[. = $label]) gt 1]"/>
       <report test="parent::back and preceding-sibling::ref-list[parent::back]" role="warning" id="multiple-ref-list">[multiple-ref-list] This is the <value-of select="e:get-ordinal(count(preceding-sibling::ref-list[parent::back]) + 1)"/> reference list that is a child of back, which is possibly incorrect. Most commonly <value-of select="e:get-ordinal(count(preceding-sibling::ref-list[parent::back]) + 1)"/> reference list would be included within a appendix or methods section. Is there an appendix that this should be placed?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
+      <assert xmlns="" test="descendant::ref-list" role="error" id="ref-list-checks-xspec-assert">ref-list must be present.</assert>
     </rule>
   </pattern>
 </schema>

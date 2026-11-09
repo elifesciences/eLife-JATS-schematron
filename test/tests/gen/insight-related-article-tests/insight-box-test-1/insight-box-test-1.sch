@@ -972,9 +972,9 @@
       <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#insight-box-test-1" test="contains($text,$citation)" role="warning" id="insight-box-test-1">A citation for related article <value-of select="$doi"/> is not included in the related-article box text in the body of the article. '<value-of select="$citation"/>' is not present (or is different to the relevant passage) in '<value-of select="$text"/>'. The following word(s) are in the boxed text but not in the citation: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='cite'],'; ')"/>. The following word(s) are in the citation but not in the boxed text: <value-of select="string-join(e:insight-box($text,$citation)//*:item[@type='box'],'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

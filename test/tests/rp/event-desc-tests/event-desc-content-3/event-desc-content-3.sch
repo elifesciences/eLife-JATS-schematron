@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="event-desc-tests-pattern">
+  <pattern id="event-desc-tests-pattern">
     <rule context="event-desc" id="event-desc-tests">
       <report test="parent::event/date[@date-type='sent-for-review'] and not(.='Sent for review')" role="error" id="event-desc-content-3">[event-desc-content-3] <name/> that's a child of a sent for review event must contain the text 'Sent for review'. This one has '<value-of select="."/>'.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
+      <assert xmlns="" test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
     </rule>
   </pattern>
 </schema>

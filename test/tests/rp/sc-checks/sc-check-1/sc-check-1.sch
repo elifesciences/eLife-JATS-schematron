@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sc-checks-pattern">
+  <pattern id="sc-checks-pattern">
     <rule context="sc" id="sc-checks">
       <report test="." role="warning" sqf:fix="strip-tags strip-tags-all-caps" id="sc-check-1">[sc-check-1] Content is in small caps - <value-of select="."/> - This formatting is not supported on EPP. Consider removing it or replacing the content with other formatting or (if necessary) different glyphs/characters in order to retain the original meaning.</report>
       <sqf:fix id="strip-tags-all-caps">
@@ -1307,5 +1307,5 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </sch:pattern>
+  </pattern>
 </schema>

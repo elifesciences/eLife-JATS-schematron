@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hra66-city-street-presence" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
+      <assert xmlns="" test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

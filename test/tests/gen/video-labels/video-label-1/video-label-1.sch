@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-label-1" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media/label[matches(lower-case(.),'^video \d+\.$')]" role="error" id="video-labels-xspec-assert">media/label[matches(lower-case(.),'^video \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

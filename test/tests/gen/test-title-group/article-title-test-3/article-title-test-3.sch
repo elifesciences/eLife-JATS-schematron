@@ -971,9 +971,9 @@
       <report test="article-title[text() != ''] = upper-case(article-title[1])" role="error" id="article-title-test-3">Article title must not be entirely in upper case - <value-of select="article-title"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

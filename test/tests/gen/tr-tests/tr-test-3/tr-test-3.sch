@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-3" test="td and (parent::thead)" role="error" id="tr-test-3">table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
+      <assert xmlns="" test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
     </rule>
   </pattern>
 </schema>

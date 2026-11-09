@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-test-2" test="not($pre-text/following-sibling::*[1]/local-name()='disp-formula') and not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}]$')" role="warning" id="inline-formula-test-2">There is no space between inline-formula and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),descendant::mml:math[1])"/> - Is this correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
+      <assert xmlns="" test="descendant::inline-formula" role="error" id="inline-formula-tests-xspec-assert">inline-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

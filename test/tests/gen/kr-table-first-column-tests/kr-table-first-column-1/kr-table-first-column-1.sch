@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-first-column-1" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide|^recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')" role="warning" id="kr-table-first-column-1">A cell in the first column of the body of a key resources table should start with one of the standard values. '<value-of select="."/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, Recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" role="error" id="kr-table-first-column-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" role="error" id="kr-table-first-column-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1] must be present.</assert>
     </rule>
   </pattern>
 </schema>

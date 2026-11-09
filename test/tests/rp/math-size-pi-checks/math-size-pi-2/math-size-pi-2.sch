@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-size-pi-checks-pattern">
+  <pattern id="math-size-pi-checks-pattern">
     <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="matches(normalize-space(.),'^([1-4]?[0-9](\.[5])?|50)$')" role="error" id="math-size-pi-2">[math-size-pi-2] 'math-size' processing-instructions must contain a number greater than 0 and less than 50, 
       and must be either a whole number (integer) or a half-number (e.g., 1.5, 2.5). <value-of select="normalize-space(.)"/> is not.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
+      <assert xmlns="" test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
     </rule>
   </pattern>
 </schema>

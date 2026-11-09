@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-formula-label-checks-pattern">
+  <pattern id="disp-formula-label-checks-pattern">
     <rule context="disp-formula/label" id="disp-formula-label-checks">
       <assert test="matches(.,'\d')" role="warning" id="disp-formula-label-digit">[disp-formula-label-digit] disp-formula has a label that does not contain a digit: '<value-of select="label"/>'. Is that correct?</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula/label" role="error" id="disp-formula-label-checks-xspec-assert">disp-formula/label must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula/label" role="error" id="disp-formula-label-checks-xspec-assert">disp-formula/label must be present.</assert>
     </rule>
   </pattern>
 </schema>

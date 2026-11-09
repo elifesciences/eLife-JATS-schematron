@@ -977,9 +977,9 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-11" test="matches($pre-sentence,' from\p{Zs}*[\(]+$| in\p{Zs}*[\(]+$| by\p{Zs}*[\(]+$| of\p{Zs}*[\(]+$| on\p{Zs}*[\(]+$| to\p{Zs}*[\(]+$| see\p{Zs}*[\(]+$| see also\p{Zs}*[\(]+$| at\p{Zs}*[\(]+$| per\p{Zs}*[\(]+$| follows\p{Zs}*[\(]+$| following\p{Zs}*[\(]+$')" role="warning" id="ref-xref-test-11">'<value-of select="concat(substring($pre-text,string-length($pre-text)-10),.)"/>' - citation is preceded by text ending with a possessive, preposition or verb and bracket which suggests the bracket should be removed.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

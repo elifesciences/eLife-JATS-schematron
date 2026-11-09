@@ -968,9 +968,9 @@
         <name/> is not allowed as a child of media.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/*" role="error" id="media-children-xspec-assert">media/* must be present.</assert>
+      <assert xmlns="" test="descendant::media/*" role="error" id="media-children-xspec-assert">media/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

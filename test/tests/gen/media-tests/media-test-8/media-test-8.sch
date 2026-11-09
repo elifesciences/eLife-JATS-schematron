@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-8" test="if (ancestor::sec[@sec-type='supplementary-material']) then ()         else if (starts-with(@mimetype,'video')) then (not(label))         else ()" role="error" id="media-test-8">video does not contain a label, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
+      <assert xmlns="" test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-2" test="th and (parent::tbody)" role="warning" id="tr-test-2">table row in body contains a th element (a header). Please check that this is correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
+      <assert xmlns="" test="descendant::tr" role="error" id="tr-tests-xspec-assert">tr must be present.</assert>
     </rule>
   </pattern>
 </schema>

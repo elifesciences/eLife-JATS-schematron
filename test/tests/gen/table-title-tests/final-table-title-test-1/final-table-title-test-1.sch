@@ -967,9 +967,9 @@
         <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" role="error" id="table-title-tests-xspec-assert">table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" role="error" id="table-title-tests-xspec-assert">table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label] must be present.</assert>
     </rule>
   </pattern>
 </schema>

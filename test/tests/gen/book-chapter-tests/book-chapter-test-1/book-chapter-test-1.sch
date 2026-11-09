@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hm8cf-book-chapter-test-1" test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[(@publication-type='book') and chapter-title]" role="error" id="book-chapter-tests-xspec-assert">element-citation[(@publication-type='book') and chapter-title] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[(@publication-type='book') and chapter-title]" role="error" id="book-chapter-tests-xspec-assert">element-citation[(@publication-type='book') and chapter-title] must be present.</assert>
     </rule>
   </pattern>
 </schema>

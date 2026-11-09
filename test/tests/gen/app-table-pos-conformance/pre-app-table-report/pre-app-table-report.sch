@@ -973,9 +973,9 @@
         <value-of select="label"/> does not appear in sequence. Relative to the other numbered tables in the same appendix it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" role="error" id="app-table-pos-conformance-xspec-assert">article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</assert>
+      <assert xmlns="" test="descendant::article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" role="error" id="app-table-pos-conformance-xspec-assert">article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

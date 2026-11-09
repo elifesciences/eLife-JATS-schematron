@@ -966,9 +966,9 @@
       <assert test="matches(@id,'^igrf$')" role="error" id="igrf-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'igrf'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
+      <assert xmlns="" test="descendant::supplementary-material[matches(label[1],'^Inclusion in global research form$')]" role="error" id="igrf-ids-xspec-assert">supplementary-material[matches(label[1],'^Inclusion in global research form$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

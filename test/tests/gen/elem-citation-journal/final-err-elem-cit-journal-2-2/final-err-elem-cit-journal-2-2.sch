@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#final-err-elem-cit-journal-2-2" test="person-group[@person-group-type='author']" role="error" id="final-err-elem-cit-journal-2-2">Each  &lt;element-citation&gt; of type 'journal' must contain one &lt;person-group&gt;  with the attribute person-group-type 'author'. Reference '<value-of select="ancestor::ref/@id"/>' has a  &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

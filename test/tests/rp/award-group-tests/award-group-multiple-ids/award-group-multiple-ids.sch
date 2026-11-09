@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="award-group-tests-pattern">
+  <pattern id="award-group-tests-pattern">
     <rule context="funding-group/award-group" id="award-group-tests">
       <report test="count(funding-source/institution-wrap/institution-id) gt 1" role="error" sqf:fix="pick-funding-ror-1 pick-funding-ror-2 pick-funding-ror-3" id="award-group-multiple-ids">[award-group-multiple-ids] Funding contains more than one institution-id element: <value-of select="string-join(descendant::institution-id,'; ')"/> in <value-of select="."/>
       </report>
@@ -1318,10 +1318,10 @@
         <sqf:delete match="descendant::institution-wrap/comment()|           descendant::institution-wrap/institution-id[position() != 3]|           descendant::institution-wrap/text()[not(position()=(1,last()))]"/>
       </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
+      <assert xmlns="" test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

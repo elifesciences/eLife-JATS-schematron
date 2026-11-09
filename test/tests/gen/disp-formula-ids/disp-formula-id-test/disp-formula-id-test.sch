@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula" role="error" id="disp-formula-ids-xspec-assert">disp-formula must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula" role="error" id="disp-formula-ids-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

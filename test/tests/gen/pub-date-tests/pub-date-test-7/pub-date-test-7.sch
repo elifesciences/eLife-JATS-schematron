@@ -967,9 +967,9 @@
       <assert test="@date-type" role="error" id="pub-date-test-7">pub-date must have the attribute date-type.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
+      <assert xmlns="" test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>
   </pattern>
 </schema>

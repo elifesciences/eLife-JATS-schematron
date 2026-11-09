@@ -966,9 +966,9 @@
       <assert test="parent::app-group" role="error" id="app-test-1">app must be captured as a child of an app-group element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back//app" role="error" id="app-tests-xspec-assert">back//app must be present.</assert>
+      <assert xmlns="" test="descendant::back//app" role="error" id="app-tests-xspec-assert">back//app must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -985,9 +985,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-email-2" test="not(@corresp='yes') and (not(ancestor::*[name()=('collab','collab-wrap')]/parent::contrib[@corresp='yes'])) and (child::email)" role="error" id="contrib-email-2">Non-corresponding authors must not have an email.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

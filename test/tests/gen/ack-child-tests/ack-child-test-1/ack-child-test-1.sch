@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hdl9z-ack-child-test-1" test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back/ack/*" role="error" id="ack-child-tests-xspec-assert">back/ack/* must be present.</assert>
+      <assert xmlns="" test="descendant::back/ack/*" role="error" id="ack-child-tests-xspec-assert">back/ack/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

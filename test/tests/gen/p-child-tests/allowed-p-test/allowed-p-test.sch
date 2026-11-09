@@ -967,9 +967,9 @@
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')  else self::*/local-name() = $allowed-p-blocks" role="error" id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article//p/*" role="error" id="p-child-tests-xspec-assert">article//p/* must be present.</assert>
+      <assert xmlns="" test="descendant::article//p/*" role="error" id="p-child-tests-xspec-assert">article//p/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

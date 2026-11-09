@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h2922-err-elem-cit-book-31" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-book-31">A &lt;chapter-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

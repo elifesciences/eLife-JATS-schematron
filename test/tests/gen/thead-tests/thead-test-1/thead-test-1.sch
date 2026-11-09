@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#thead-test-1" test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table/thead" role="error" id="thead-tests-xspec-assert">table/thead must be present.</assert>
+      <assert xmlns="" test="descendant::table/thead" role="error" id="thead-tests-xspec-assert">table/thead must be present.</assert>
     </rule>
   </pattern>
 </schema>

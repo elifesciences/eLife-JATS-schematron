@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-16" test="count(*) = count(person-group | year | data-title | source | version | publisher-name | publisher-loc | ext-link | pub-id)" role="error" id="err-elem-cit-software-16">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="software" are: &lt;person-group&gt;, &lt;year&gt;, &lt;data-title&gt;, &lt;source&gt;, &lt;version&gt;, &lt;publisher-name&gt;, &lt;publisher-loc&gt;, &lt;ext-link&gt;, and &lt;pub-id&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

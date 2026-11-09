@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1" test="name or collab or collab-wrap" role="error" id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab','collab-wrap')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" role="error" id="prc-reviewer-tests-xspec-assert">sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']] must be present.</assert>
     </rule>
   </pattern>
 </schema>

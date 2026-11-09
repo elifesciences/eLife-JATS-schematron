@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type='decision-letter']/body" role="error" id="dec-letter-body-tests-xspec-assert">sub-article[@article-type='decision-letter']/body must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type='decision-letter']/body" role="error" id="dec-letter-body-tests-xspec-assert">sub-article[@article-type='decision-letter']/body must be present.</assert>
     </rule>
   </pattern>
 </schema>

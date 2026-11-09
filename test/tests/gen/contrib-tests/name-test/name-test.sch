@@ -985,9 +985,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#name-test" test="if (collab or collab-wrap) then ()         else count(name) != 1" role="error" id="name-test">Contrib contains no collab-wrap but has <value-of select="count(name)"/> name(s). This is not correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>
   </pattern>
 </schema>

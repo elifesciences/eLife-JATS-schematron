@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#xref-column-test" test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::table-wrap[@id='keyresource']//xref[@ref-type='bibr']" role="error" id="KRT-xref-tests-xspec-assert">table-wrap[@id='keyresource']//xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#test-contrib-group-presence-1" test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article']/front/article-meta" role="error" id="test-research-article-metadata-xspec-assert">article[@article-type='research-article']/front/article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article']/front/article-meta" role="error" id="test-research-article-metadata-xspec-assert">article[@article-type='research-article']/front/article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

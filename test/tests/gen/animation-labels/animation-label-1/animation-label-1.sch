@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#animation-label-1" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
+      <assert xmlns="" test="descendant::media/label[matches(lower-case(.),'^animation \d+\.$')]" role="error" id="animation-labels-xspec-assert">media/label[matches(lower-case(.),'^animation \d+\.$')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

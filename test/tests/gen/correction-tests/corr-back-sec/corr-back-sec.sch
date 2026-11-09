@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hg8b8-corr-back-sec" test="(back/sec[not(@sec-type='supplementary-material')]) or (count(back/sec) gt 1)" role="error" id="corr-back-sec">Correction notices should not contain any sections in the backmatter which are not for supplementary files.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

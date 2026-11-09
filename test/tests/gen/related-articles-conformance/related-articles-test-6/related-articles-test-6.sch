@@ -968,9 +968,9 @@
       <assert test="matches(@xlink:href,'^10\.7554/e[lL]ife\.[\d]{5,6}$')" role="error" id="related-articles-test-6">related-article element must contain a @xlink:href, the value of which should be in the form 10.7554/eLife.00000.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

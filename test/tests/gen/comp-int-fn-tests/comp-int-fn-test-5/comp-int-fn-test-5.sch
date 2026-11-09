@@ -968,9 +968,9 @@
       </report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
     </rule>
   </pattern>
 </schema>

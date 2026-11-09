@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-sibling-test" test="normalize-space(preceding-sibling::text()[preceding-sibling::*[1]/local-name()='code'][1])=''" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
+      <assert xmlns="" test="descendant::p[count(code) gt 1]/code[2]" role="error" id="code-tests-2-xspec-assert">p[count(code) gt 1]/code[2] must be present.</assert>
     </rule>
   </pattern>
 </schema>

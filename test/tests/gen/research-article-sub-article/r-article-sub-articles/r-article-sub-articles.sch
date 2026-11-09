@@ -968,9 +968,9 @@
         <value-of select="$disp-channel"/> type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[@article-type='research-article' and sub-article]" role="error" id="research-article-sub-article-xspec-assert">article[@article-type='research-article' and sub-article] must be present.</assert>
+      <assert xmlns="" test="descendant::article[@article-type='research-article' and sub-article]" role="error" id="research-article-sub-article-xspec-assert">article[@article-type='research-article' and sub-article] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
         with <value-of select="count(name)"/> authors.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='thesis']/person-group" role="error" id="elem-citation-thesis-preson-group-xspec-assert">element-citation[@publication-type='thesis']/person-group must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='thesis']/person-group" role="error" id="elem-citation-thesis-preson-group-xspec-assert">element-citation[@publication-type='thesis']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

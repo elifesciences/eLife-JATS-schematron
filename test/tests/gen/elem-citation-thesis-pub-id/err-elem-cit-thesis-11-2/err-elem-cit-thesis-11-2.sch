@@ -969,9 +969,9 @@
         '<value-of select="@pub-id-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='thesis']/pub-id" role="error" id="elem-citation-thesis-pub-id-xspec-assert">element-citation[@publication-type='thesis']/pub-id must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='thesis']/pub-id" role="error" id="elem-citation-thesis-pub-id-xspec-assert">element-citation[@publication-type='thesis']/pub-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

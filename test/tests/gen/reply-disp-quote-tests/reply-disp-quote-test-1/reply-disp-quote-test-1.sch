@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//disp-quote must be present.</assert>
+      <assert xmlns="" test="descendant::sub-article[@article-type=('reply','author-comment')]/body//disp-quote" role="error" id="reply-disp-quote-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//disp-quote must be present.</assert>
     </rule>
   </pattern>
 </schema>

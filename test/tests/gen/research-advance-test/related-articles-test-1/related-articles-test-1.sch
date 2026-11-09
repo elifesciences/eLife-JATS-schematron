@@ -966,9 +966,9 @@
       <assert test="count(related-article[@related-article-type='article-reference']) gt 0" role="error" id="related-articles-test-1">Research Advance must contain an article-reference link to the original article it is building upon.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
+      <assert xmlns="" test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" role="error" id="research-advance-test-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta must be present.</assert>
     </rule>
   </pattern>
 </schema>

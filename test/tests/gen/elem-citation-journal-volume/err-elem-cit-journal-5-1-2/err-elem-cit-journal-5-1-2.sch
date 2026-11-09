@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or child elements.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/volume" role="error" id="elem-citation-journal-volume-xspec-assert">element-citation[@publication-type='journal']/volume must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']/volume" role="error" id="elem-citation-journal-volume-xspec-assert">element-citation[@publication-type='journal']/volume must be present.</assert>
     </rule>
   </pattern>
 </schema>

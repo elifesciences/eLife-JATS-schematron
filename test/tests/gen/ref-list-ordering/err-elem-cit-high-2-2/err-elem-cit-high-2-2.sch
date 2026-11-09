@@ -968,9 +968,9 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-2-2" test="($order-value gt $preceding-ref-order-value)" role="error" id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
+      <assert xmlns="" test="descendant::ref[preceding-sibling::ref]" role="error" id="ref-list-ordering-xspec-assert">ref[preceding-sibling::ref] must be present.</assert>
     </rule>
   </pattern>
 </schema>

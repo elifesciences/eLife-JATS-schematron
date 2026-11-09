@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-child-1" test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/* or descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" role="error" id="das-elem-citation-children-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/* must be present.</assert>
+      <assert xmlns="" test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/* or descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" role="error" id="das-elem-citation-children-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

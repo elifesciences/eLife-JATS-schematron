@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="inline-equation-alternatives-checks-pattern">
+  <pattern id="inline-equation-alternatives-checks-pattern">
     <rule context="alternatives[parent::inline-formula]" id="inline-equation-alternatives-checks">
       <assert test="inline-graphic and *:math" role="error" id="inline-equation-alternatives-conformance">[inline-equation-alternatives-conformance] alternatives element within <value-of select="parent::*/name()"/> must have both an inline-graphic (or numerous graphics) and mathml representation of the equation. This one does not.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
+      <assert xmlns="" test="descendant::alternatives[parent::inline-formula]" role="error" id="inline-equation-alternatives-checks-xspec-assert">alternatives[parent::inline-formula] must be present.</assert>
     </rule>
   </pattern>
 </schema>

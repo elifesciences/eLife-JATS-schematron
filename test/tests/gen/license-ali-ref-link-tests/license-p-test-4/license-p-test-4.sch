@@ -967,9 +967,9 @@
       <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" role="error" id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::permissions/license[ali:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[ali:license_ref]/license-p must be present.</assert>
+      <assert xmlns="" test="descendant::permissions/license[ali:license_ref]/license-p" role="error" id="license-ali-ref-link-tests-xspec-assert">permissions/license[ali:license_ref]/license-p must be present.</assert>
     </rule>
   </pattern>
 </schema>

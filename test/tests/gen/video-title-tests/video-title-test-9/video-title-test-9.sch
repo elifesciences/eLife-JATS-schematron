@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-9" test="matches(.,'\p{Zs}$')" role="error" id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
+      <assert xmlns="" test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>
   </pattern>
 </schema>

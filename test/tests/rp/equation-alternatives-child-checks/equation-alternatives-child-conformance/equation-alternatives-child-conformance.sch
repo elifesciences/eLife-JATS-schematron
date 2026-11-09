@@ -1295,16 +1295,16 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="equation-alternatives-child-checks-pattern">
+  <pattern id="equation-alternatives-child-checks-pattern">
     <rule context="alternatives[parent::inline-formula or parent::disp-formula]/*" id="equation-alternatives-child-checks">
       <let name="math-elems" value="('mml:math','tex-math')"/>
       <let name="allowed-elems" value="if (ancestor::disp-formula) then ('graphic', $math-elems)                                          else ('inline-graphic', $math-elems)"/>
       <assert test="name() = $allowed-elems" role="error" id="equation-alternatives-child-conformance">[equation-alternatives-child-conformance] <value-of select="name()"/> is not supported within alternatives in <value-of select="parent::alternatives/parent::*/name()"/>. Only the following elements are permitted: <value-of select="string-join($allowed-elems,'; ')"/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
+      <assert xmlns="" test="descendant::alternatives[parent::inline-formula or parent::disp-formula]/*" role="error" id="equation-alternatives-child-checks-xspec-assert">alternatives[parent::inline-formula or parent::disp-formula]/* must be present.</assert>
     </rule>
   </pattern>
 </schema>

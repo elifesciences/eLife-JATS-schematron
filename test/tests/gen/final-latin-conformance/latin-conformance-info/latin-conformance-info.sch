@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-conformance-info" test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="final-latin-conformance-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="final-latin-conformance-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

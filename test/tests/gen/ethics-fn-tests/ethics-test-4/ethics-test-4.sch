@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-fn-tests-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
     </rule>
   </pattern>
 </schema>

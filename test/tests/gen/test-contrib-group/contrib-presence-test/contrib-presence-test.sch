@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-presence-test" test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
+      <assert xmlns="" test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

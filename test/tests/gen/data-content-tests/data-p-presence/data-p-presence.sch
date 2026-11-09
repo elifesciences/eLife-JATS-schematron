@@ -966,9 +966,9 @@
       <assert test="count(p) gt 0" role="error" id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
+      <assert xmlns="" test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

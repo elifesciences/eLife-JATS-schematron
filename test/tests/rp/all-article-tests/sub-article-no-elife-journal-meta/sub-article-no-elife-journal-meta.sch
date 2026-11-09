@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="all-article-tests-pattern">
+  <pattern id="all-article-tests-pattern">
     <rule context="article" id="all-article-tests">
       <report test="not(e:is-reviewed-preprint(.)) and sub-article" role="error" id="sub-article-no-elife-journal-meta">[sub-article-no-elife-journal-meta] article has a child sub-article element, but the journal-meta does not have a journal-id containing 'eLife'. Either the journal-meta is incorrect, or the sub-article has been incorrectly included.</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article" role="error" id="all-article-tests-xspec-assert">article must be present.</assert>
+      <assert xmlns="" test="descendant::article" role="error" id="all-article-tests-xspec-assert">article must be present.</assert>
     </rule>
   </pattern>
 </schema>

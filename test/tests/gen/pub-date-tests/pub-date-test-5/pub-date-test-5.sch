@@ -967,9 +967,9 @@
       <report test="preceding-sibling::pub-date" role="error" id="pub-date-test-5">There can only be one pub-date in article-meta. But this pub-date has a preceding one.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
+      <assert xmlns="" test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>
   </pattern>
 </schema>

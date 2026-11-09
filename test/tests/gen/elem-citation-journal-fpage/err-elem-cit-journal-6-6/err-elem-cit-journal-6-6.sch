@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-6" test="matches(normalize-space(.),'^\D\d') and ../lpage and not(starts-with(../lpage[1],substring(.,1,1)))" role="error" id="err-elem-cit-journal-6-6">If the content of &lt;fpage&gt; begins with a letter and digit, then the content of  &lt;lpage&gt; must begin with the same letter. Reference '<value-of select="ancestor::ref/@id"/>' does not.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='journal']/fpage" role="error" id="elem-citation-journal-fpage-xspec-assert">element-citation[@publication-type='journal']/fpage must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='journal']/fpage" role="error" id="elem-citation-journal-fpage-xspec-assert">element-citation[@publication-type='journal']/fpage must be present.</assert>
     </rule>
   </pattern>
 </schema>

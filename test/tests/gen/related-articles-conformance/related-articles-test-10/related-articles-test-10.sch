@@ -968,9 +968,9 @@
       <report test="@xlink:href = preceding::related-article/@xlink:href" role="error" id="related-articles-test-10">related-article elements must contain a distinct @xlink:href. There is more than 1 related article link for <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

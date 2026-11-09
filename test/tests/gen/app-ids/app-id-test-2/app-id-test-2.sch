@@ -967,9 +967,9 @@
       <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
+      <assert xmlns="" test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
     </rule>
   </pattern>
 </schema>

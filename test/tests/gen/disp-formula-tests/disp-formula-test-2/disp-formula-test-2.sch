@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math or alternatives/mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
+      <assert xmlns="" test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
     </rule>
   </pattern>
 </schema>

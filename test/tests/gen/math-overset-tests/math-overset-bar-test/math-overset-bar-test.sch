@@ -967,9 +967,9 @@
         <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
+      <assert xmlns="" test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
     </rule>
   </pattern>
 </schema>

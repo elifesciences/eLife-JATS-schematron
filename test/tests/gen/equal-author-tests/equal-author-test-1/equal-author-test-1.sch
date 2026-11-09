@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-author-test-1" test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta//contrib[@contrib-type='author']" role="error" id="equal-author-tests-xspec-assert">article-meta//contrib[@contrib-type='author'] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta//contrib[@contrib-type='author']" role="error" id="equal-author-tests-xspec-assert">article-meta//contrib[@contrib-type='author'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

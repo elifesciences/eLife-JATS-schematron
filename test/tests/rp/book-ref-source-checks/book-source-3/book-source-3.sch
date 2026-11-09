@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="book-ref-source-checks-pattern">
+  <pattern id="book-ref-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
       <report test="matches(lower-case(.),'^(symposium|conference|proc\.|proceeding|meeting|workshop)|\s(symposium|conference|proc\.|proceeding|meeting|workshop)\s|(symposium|conference|proc\.|proceeding|meeting|workshop)$')" role="warning" sqf:fix="convert-to-confproc" id="book-source-3">[book-source-3] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has the following source, '<value-of select="."/>'. Should it be captured as a conference proceeding instead?</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

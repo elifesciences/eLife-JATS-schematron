@@ -967,9 +967,9 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#github-web-test" test="contains($link,'github') and not(contains($link,'github.io'))" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

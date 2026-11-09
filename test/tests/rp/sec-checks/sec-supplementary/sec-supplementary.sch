@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
+  <pattern id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="(not(@sec-type='supplementary')) and not(sec) and not(p[*[not(name()=('fig','table-wrap'))]]) and (descendant::fig or descendant::table-wrap) and (not(title) or title[1][matches(lower-case(.),'^supplement| supplement')])" role="warning" id="sec-supplementary">[sec-supplementary] sec element <value-of select="if (not(title)) then 'without title' else concat('(',title[1],')')"/> only contains figures and tables but it doesn't have a sec-type="supplementary" attribute. Is this correct? (This attribute is used to assist with PDF generation).</report>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

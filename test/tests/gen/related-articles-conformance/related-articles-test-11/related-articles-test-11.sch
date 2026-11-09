@@ -968,9 +968,9 @@
       <report test="contains(@xlink:href,$article-doi)" role="error" id="related-articles-test-11">An article cannot contain a related-article link to itself - please delete the related article link to <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
+      <assert xmlns="" test="descendant::related-article" role="error" id="related-articles-conformance-xspec-assert">related-article must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='confproc']/person-group" role="error" id="elem-citation-confproc-preson-group-xspec-assert">element-citation[@publication-type='confproc']/person-group must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='confproc']/person-group" role="error" id="elem-citation-confproc-preson-group-xspec-assert">element-citation[@publication-type='confproc']/person-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

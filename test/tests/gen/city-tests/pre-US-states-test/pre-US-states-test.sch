@@ -968,9 +968,9 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hh80v-pre-us-states-test" test="matches($lc,$states-regex)" role="warning" id="pre-US-states-test">city contains a US state (or an abbreviation for it) - <value-of select="."/>. Please raise with eLife production staff.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
+      <assert xmlns="" test="descendant::front//aff//named-content[@content-type='city']" role="error" id="city-tests-xspec-assert">front//aff//named-content[@content-type='city'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -969,9 +969,9 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-parent-test" test="$parent = $formatting-elems" role="error" id="xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

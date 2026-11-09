@@ -970,9 +970,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-4" test="(count($credit-role) = 1) and $vocab-term=$credit-role/@term and $vocab-term-id= $credit-role/@uri" role="error" flag="version-2" id="credit-role-check-4">A CRediT taxonomy role must have a @vocab-term, whose value is a specific CRediT taxonomy term, and a @vocab-term-identifier, whose value is the URL for that corresponding CRediT term. <value-of select="concat('Either the @vocab-term - ', $vocab-term, ' - is incorrect and must be ', if ($credit-role[@uri=$vocab-term-id]) then $credit-role[@uri=$vocab-term-id]/@term else 'unknown', ', or the @vocab-term-identifier - ', $vocab-term-id,' - is incorrect and must be ', $credit-role[@term=$vocab-term]/@uri)"/>.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" role="error" id="author-role-tests-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit'] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" role="error" id="author-role-tests-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

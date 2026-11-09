@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-1" test="title" role="error" id="sec-test-1">sec must have a title</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
+      <assert xmlns="" test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
     </rule>
   </pattern>
 </schema>

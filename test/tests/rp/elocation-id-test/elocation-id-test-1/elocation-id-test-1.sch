@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="elocation-id-test-pattern">
+  <pattern id="elocation-id-test-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" id="elocation-id-test">
       <let name="msid" value="parent::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <assert test="matches(.,'^RP\d{5,6}$')" role="error" id="elocation-id-test-1">[elocation-id-test-1] The content of elocation-id must 'RP' followed by a 5 or 6 digit MSID. This is not in that format: <value-of select="."/>.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/elocation-id must be present.</assert>
+      <assert xmlns="" test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/elocation-id" role="error" id="elocation-id-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/elocation-id must be present.</assert>
     </rule>
   </pattern>
 </schema>

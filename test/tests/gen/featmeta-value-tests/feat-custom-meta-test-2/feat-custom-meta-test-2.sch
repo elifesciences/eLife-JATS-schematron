@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-2" test=". = ('1','2','3','4','5')" role="error" id="feat-custom-meta-test-2">Template type meta-value must one of '1','2','3','4', or '5'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
     </rule>
   </pattern>
 </schema>

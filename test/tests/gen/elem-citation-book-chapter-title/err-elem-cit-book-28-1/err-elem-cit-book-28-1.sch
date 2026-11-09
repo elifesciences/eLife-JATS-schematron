@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hhtxz-err-elem-cit-book-28-1" test="count(../person-group[@person-group-type='editor']) le 1" role="error" id="err-elem-cit-book-28-1">If there is a &lt;chapter-title&gt; element there may be a maximum of one &lt;person-group person-group-type="editor"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
     </rule>
   </pattern>
 </schema>

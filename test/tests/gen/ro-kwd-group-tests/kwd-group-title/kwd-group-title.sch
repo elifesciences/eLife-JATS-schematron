@@ -966,9 +966,9 @@
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-title" test="title = 'Research organism'" role="error" id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']" role="error" id="ro-kwd-group-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</assert>
+      <assert xmlns="" test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']" role="error" id="ro-kwd-group-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

@@ -977,9 +977,9 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-29" test="matches($post-text,'^\);\p{Zs}?$') and (starts-with(following-sibling::*[1]/following-sibling::text()[1],')') or starts-with(following-sibling::*[1]/following-sibling::text()[1],';)'))" role="warning" id="ref-xref-test-29">citation is followed by ');', which in turn is followed by something else followed by ')'. Is this punctuation correct? - '<value-of select="concat(.,$post-text,following-sibling::*[1],tokenize(following-sibling::*[1]/following-sibling::text()[1],'\. ')[position() = 1])"/>'.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
+      <assert xmlns="" test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

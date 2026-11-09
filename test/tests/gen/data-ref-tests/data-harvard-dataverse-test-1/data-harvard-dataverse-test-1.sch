@@ -966,9 +966,9 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-harvard-dataverse-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.7910') and (source[1]!='Harvard Dataverse')" role="warning" id="data-harvard-dataverse-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.7910' but the database name is not 'Harvard Dataverse' - <value-of select="source[1]"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
+      <assert xmlns="" test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

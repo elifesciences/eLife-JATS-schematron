@@ -1295,17 +1295,17 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="article-tests-pattern">
+  <pattern id="article-tests-pattern">
     <rule context="article[e:is-reviewed-preprint(.)]" id="article-tests">
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
       <let name="is-revised-rp" value="if (descendant::article-meta/pub-history/event/self-uri[@content-type='reviewed-preprint']) then true() else false()"/>
       <let name="rp-version" value="replace(descendant::article-meta[1]/article-id[@specific-use='version'][1],'^.*\.','')"/>
       <assert test="sub-article[@article-type='editor-report']" role="error" id="no-assessment">[no-assessment] A Reviewed Preprint must have an eLife Assessment, but this one does not.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article[e:is-reviewed-preprint(.)]" role="error" id="article-tests-xspec-assert">article[e:is-reviewed-preprint(.)] must be present.</assert>
+      <assert xmlns="" test="descendant::article[e:is-reviewed-preprint(.)]" role="error" id="article-tests-xspec-assert">article[e:is-reviewed-preprint(.)] must be present.</assert>
     </rule>
   </pattern>
 </schema>

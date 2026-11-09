@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="journal-source-checks-pattern">
+  <pattern id="journal-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/source" id="journal-source-checks">
       <let name="preprint-regex" value="'biorxiv|africarxiv|arxiv|cell\s+sneak\s+peak|chemrxiv|chinaxiv|eartharxiv|medrxiv|osf\s+preprints|paleorxiv|peerj\s+preprints|preprints|preprints\.org|psyarxiv|research\s+square|scielo\s+preprints|ssrn|vixra'"/>
       <report test="matches(lower-case(.),'^in[^a-z]')" role="warning" id="journal-source-4">[journal-source-4] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
@@ -1387,10 +1387,10 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='journal']/source" role="error" id="journal-source-checks-xspec-assert">mixed-citation[@publication-type='journal']/source must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='journal']/source" role="error" id="journal-source-checks-xspec-assert">mixed-citation[@publication-type='journal']/source must be present.</assert>
     </rule>
   </pattern>
 </schema>

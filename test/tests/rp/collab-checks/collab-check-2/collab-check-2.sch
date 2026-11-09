@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-checks-pattern">
+  <pattern id="collab-checks-pattern">
     <rule context="collab | collab-name" id="collab-checks">
       <report test="matches(.,'\p{Z}+$')" role="error" sqf:fix="replace-normalize-space" id="collab-check-2">[collab-check-2] <name/> element cannot end with space(s). This one does: <value-of select="."/>
       </report>
@@ -1310,10 +1310,10 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
+      <assert xmlns="" test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
     </rule>
   </pattern>
 </schema>

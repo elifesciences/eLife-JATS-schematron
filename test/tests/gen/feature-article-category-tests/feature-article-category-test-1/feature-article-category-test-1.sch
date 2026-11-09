@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-article-category-test-1" test="$count = 1" role="error" id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
+      <assert xmlns="" test="descendant::article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-article-category-tests-xspec-assert">article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
     </rule>
   </pattern>
 </schema>

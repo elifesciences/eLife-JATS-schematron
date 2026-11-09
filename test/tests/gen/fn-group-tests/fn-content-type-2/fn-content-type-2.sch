@@ -967,9 +967,9 @@
       <report test="@content-type and not(@content-type=$allowed-content-types)" role="error" id="fn-content-type-2">fn-group with content-type '<value-of select="@content-type"/>' is not permitted. The only permitted fn-group types are <value-of select="string-join($allowed-content-types,'; ')"/>.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
+      <assert xmlns="" test="descendant::fn-group" role="error" id="fn-group-tests-xspec-assert">fn-group must be present.</assert>
     </rule>
   </pattern>
 </schema>

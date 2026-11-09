@@ -967,9 +967,9 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-1" test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
+      <assert xmlns="" test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>
   </pattern>
 </schema>

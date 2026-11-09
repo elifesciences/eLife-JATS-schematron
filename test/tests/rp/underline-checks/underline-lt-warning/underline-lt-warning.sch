@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="underline-checks-pattern">
+  <pattern id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="replace(.,'[\s\.]','')='&lt;'" role="warning" sqf:fix="add-le-symbol strip-tags" id="underline-lt-warning">[underline-lt-warning] underline element contains a less than symbol (<value-of select="."/>). Should this a less than or equal to symbol instead (≤)?</report>
       <sqf:fix id="add-ge-symbol">
@@ -1315,10 +1315,10 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
+      <assert xmlns="" test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
     </rule>
   </pattern>
 </schema>

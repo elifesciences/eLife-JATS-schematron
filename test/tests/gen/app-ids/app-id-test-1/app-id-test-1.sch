@@ -967,9 +967,9 @@
       <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
+      <assert xmlns="" test="descendant::app" role="error" id="app-ids-xspec-assert">app must be present.</assert>
     </rule>
   </pattern>
 </schema>

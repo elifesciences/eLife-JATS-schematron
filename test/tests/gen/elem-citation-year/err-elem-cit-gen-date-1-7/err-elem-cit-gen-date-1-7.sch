@@ -972,9 +972,9 @@
         Reference '<value-of select="ancestor::ref/@id"/>' does not fulfill this requirement.</assert>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
+      <assert xmlns="" test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
     </rule>
   </pattern>
 </schema>

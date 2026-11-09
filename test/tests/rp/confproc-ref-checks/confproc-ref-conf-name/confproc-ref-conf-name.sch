@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="confproc-ref-checks-pattern">
+  <pattern id="confproc-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='confproc']" id="confproc-ref-checks">
       <assert test="conf-name" role="error" id="confproc-ref-conf-name">[confproc-ref-conf-name] This conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has no conf-name element.</assert>
     </rule>
-  </sch:pattern>
-  <pattern xmlns="" id="root-pattern">
+  </pattern>
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::mixed-citation[@publication-type='confproc']" role="error" id="confproc-ref-checks-xspec-assert">mixed-citation[@publication-type='confproc'] must be present.</assert>
+      <assert xmlns="" test="descendant::mixed-citation[@publication-type='confproc']" role="error" id="confproc-ref-checks-xspec-assert">mixed-citation[@publication-type='confproc'] must be present.</assert>
     </rule>
   </pattern>
 </schema>

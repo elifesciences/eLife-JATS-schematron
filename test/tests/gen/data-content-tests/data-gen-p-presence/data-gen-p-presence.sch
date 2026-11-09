@@ -966,9 +966,9 @@
       <report test="count(p[matches(.,'^The following datasets? w(as|ere) generated:\s?$')]) gt 1" role="error" id="data-gen-p-presence">Data availabilty section contains more than one p element describing that the datasets were generated. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
   </pattern>
-  <pattern xmlns="" id="root-pattern">
+  <pattern id="root-pattern">
     <rule context="root" id="root-rule">
-      <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
+      <assert xmlns="" test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
     </rule>
   </pattern>
 </schema>
