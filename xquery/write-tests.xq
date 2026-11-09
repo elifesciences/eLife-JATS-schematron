@@ -43,15 +43,15 @@ Message: ',replace($test/data(),'[-—–][-—–]',''),' ')}
     ,
     if(file:exists($pass)) then 
       let $new-pass := elife:new-test-case($pass,$comment)
-      return file:write($pass,$new-pass,map{'indent':'no'})
+      return file:write($pass,$new-pass,map{'indent':false()})
     else file:write($pass,$node)
     ,
     if(file:exists($fail)) then 
      let $new-fail := elife:new-test-case($fail,$comment)
-      return file:write($fail,$new-fail,map{'indent':'no'})
+      return file:write($fail,$new-fail,map{'indent':false()})
     else file:write($fail,$node)
     ,
-    file:write(concat($path,$test/@id,'.sch'),$schema-let,map{'indent':'yes'})
+    file:write(concat($path,$test/@id,'.sch'),$schema-let,map{'indent':true()})
   )
 ,
 

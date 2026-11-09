@@ -108,7 +108,7 @@ declare function elife:sch2pre($sch){
       let $id := ($x/@id || '-pattern')
       return 
       if (starts-with($x/@id,'final-')) then delete node $x
-      else (replace node $x with <pattern id="{$id}">{$x}</pattern>)
+      else (replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>)
     )
     return
     copy $copy3 := $copy2
@@ -147,7 +147,7 @@ declare function elife:sch2dl($sch){
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
       return 
-      if ($x/*[@flag="dl-ar"]) then replace node $x with <pattern id="{$id}">{$x}</pattern>
+      if ($x/*[@flag="dl-ar"]) then replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>
       else delete node $x
     )
     return 
@@ -175,7 +175,7 @@ declare function elife:sch2final($sch){
       let $id := ($x/@id || '-pattern')
       return 
       if (starts-with($x/@id,'pre-')) then delete node $x
-      else (replace node $x with <pattern id="{$id}">{$x}</pattern>)
+      else (replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>)
     )
     return
     copy $copy3 := $copy2
@@ -250,7 +250,7 @@ declare function elife:sch2final-package($sch){
     modify(
       for $x in $copy2//*:rule
       let $id := ($x/@id || '-pattern')
-      return replace node $x with <pattern id="{$id}">{$x}</pattern>
+      return replace node $x with <sch:pattern id="{$id}">{$x}</sch:pattern>
     )
     return
     copy $copy3 := $copy2

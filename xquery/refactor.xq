@@ -58,8 +58,8 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
     file:write(($outputDir||'/dl-schematron.xsl'),$dl-xsl),
     file:write(($outputDir||'/final-JATS-schematron.xsl'),$final-xsl),
     file:write(($outputDir||'/final-package-JATS-schematron.sch'),$final-package-sch),
-    file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch,map{'indent':'yes'}),
-    file:write(($root||'/test/xspec/schematron.xspec'),$xspec,map{'indent':'yes'})
+    file:write(($root||'/test/xspec/schematron.sch'),$xspec-sch,map{'indent':true()}),
+    file:write(($root||'/test/xspec/schematron.xspec'),$xspec,map{'indent':true()})
   )
 ,
 
@@ -83,8 +83,8 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
     file:write(($outputDir||'/rp-schematron.sch'),$rp-sch-mod),
     file:write(($outputDir||'/rp-schematron.xsl'),$rp-xsl),
     file:write(($outputDir||'/meca-manifest-schematron.xsl'),$manifest-xsl),
-    file:write(($root||'/test/xspec/rp-schematron.sch'),$rp-xspec-sch,map{'indent':'yes'}),
-    file:write(($root||'/test/xspec/rp-schematron.xspec'),$rp-xspec,map{'indent':'yes'})
+    file:write(($root||'/test/xspec/rp-schematron.sch'),$rp-xspec-sch,map{'indent':true()}),
+    file:write(($root||'/test/xspec/rp-schematron.xspec'),$rp-xspec,map{'indent':true()})
   )
   
 ,
@@ -98,6 +98,6 @@ declare variable $preprint-changes-xsl := doc(concat($outputDir,'/preprint-chang
   (: Generate xspec file for preprint-changes xsl :)
   let $preprint-changes-xspec := elife:xsl2xspec($preprint-changes-xsl,'preprint-changes')
   return (
-    file:write(($root||'/test/xspec/preprint-changes.xspec'),$preprint-changes-xspec,map{'indent':'yes'})
+    file:write(($root||'/test/xspec/preprint-changes.xspec'),$preprint-changes-xspec,map{'indent':true()})
   )
 )
