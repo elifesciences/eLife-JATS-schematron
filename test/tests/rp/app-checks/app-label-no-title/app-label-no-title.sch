@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="app-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="app-checks-pattern">
     <rule context="app" id="app-checks">
       <report test="label and not(title)" role="error" sqf:fix="label-to-title" id="app-label-no-title">[app-label-no-title] app element has a label but not title. This is not correct. Please capture the label as the title.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::app" role="error" id="app-checks-xspec-assert">app must be present.</assert>
     </rule>

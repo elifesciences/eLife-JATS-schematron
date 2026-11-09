@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-group-test-1" test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='competing-interest']" role="error" id="comp-int-fn-group-tests-xspec-assert">fn-group[@content-type='competing-interest'] must be present.</assert>
     </rule>

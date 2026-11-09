@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-kwds-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-kwds-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       <assert test="some $x in ancestor::sub-article[1]/body/p//bold satisfies contains(lower-case($x),lower-case(.))" role="error" id="ed-report-kwd-2">[ed-report-kwd-2] Keyword contains <value-of select="."/>, but this term is not bolded in the text of the <value-of select="ancestor::front-stub/title-group/article-title"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" role="error" id="ed-report-kwds-xspec-assert">sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd must be present.</assert>
     </rule>

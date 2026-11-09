@@ -968,7 +968,7 @@
       <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/article-categories" role="error" id="test-article-categories-xspec-assert">article-meta/article-categories must be present.</assert>
     </rule>

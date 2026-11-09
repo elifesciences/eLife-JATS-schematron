@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#data-cite-person-group" test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='data']/person-group" role="error" id="elem-citation-data-person-group-xspec-assert">element-citation[@publication-type='data']/person-group must be present.</assert>
     </rule>

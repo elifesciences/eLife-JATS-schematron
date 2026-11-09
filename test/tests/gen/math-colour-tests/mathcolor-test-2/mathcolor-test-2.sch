@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mathcolor-test-2" test="@mathcolor = $allowed-values" role="warning" id="mathcolor-test-2">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has <value-of select="@mathcolor"/> colour formatting. Is this OK?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
     </rule>

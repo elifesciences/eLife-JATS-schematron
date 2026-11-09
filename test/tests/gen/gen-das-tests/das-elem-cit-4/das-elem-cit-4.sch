@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-4" test="pub-id[1] = preceding::element-citation[(@publication-type='data') and ancestor::sec[@sec-type='data-availability']]/pub-id[1]" role="warning" id="das-elem-cit-4">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as another dataset reference in that section. This is very likely incorrect. Dataset reference pub-id should be distinct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>

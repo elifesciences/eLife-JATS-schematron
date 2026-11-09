@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="country-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="country-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'../../../../../src/countries.xml'"/>
@@ -1303,8 +1303,8 @@
       <let name="valid-country" value="document($countries)/countries/country[text() = $text]"/>
       <report test="not(@country = $valid-country/@country)" role="warning" id="gen-country-iso-3166-test">[gen-country-iso-3166-test] country does not have a 2 letter ISO 3166-1 @country value. Should it be @country='<value-of select="$valid-country/@country"/>'?.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]//aff/country" role="error" id="country-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//aff/country must be present.</assert>
     </rule>

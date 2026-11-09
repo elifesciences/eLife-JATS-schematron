@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-1" test="($type = $specifics) and not(starts-with(.,e:article-type2title($type)))" role="error" id="article-type-title-test-1">title of a '<value-of select="$type"/>' must start with '<value-of select="e:article-type2title($type)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
     </rule>

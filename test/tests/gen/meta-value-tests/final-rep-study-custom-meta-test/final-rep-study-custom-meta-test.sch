@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-rep-study-custom-meta-test" test="($subj = 'Replication Study') and not(matches(.,'^Editors[\p{Po}] Summary: '))" role="error" id="final-rep-study-custom-meta-test">Impact statement in Replication studies must begin with 'Editors' summary: '. This does not - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value must be present.</assert>
     </rule>

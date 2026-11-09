@@ -967,7 +967,7 @@
         <name/> is not allowed as a child of fig-group.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig-group/*" role="error" id="fig-group-child-tests-xspec-assert">fig-group/* must be present.</assert>
     </rule>

@@ -968,7 +968,7 @@
         <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a version number. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>

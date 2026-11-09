@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-front-stub-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-front-stub-checks-pattern">
     <rule context="sub-article/front-stub" id="sub-article-front-stub-checks">
       <assert test="count(article-id[@pub-id-type='doi']) = 1" role="error" id="sub-article-front-stub-check-1">[sub-article-front-stub-check-1] Sub-article must have one (and only one) &lt;article-id pub-id-type="doi"&gt; element. This one does not.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/front-stub" role="error" id="sub-article-front-stub-checks-xspec-assert">sub-article/front-stub must be present.</assert>
     </rule>

@@ -968,7 +968,7 @@
         <name/> contains an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//article-meta/title-group/article-title  or descendant:: article/body//sec/title  or descendant:: article//article-meta//kwd" role="error" id="org-title-kwd-xspec-assert">article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd must be present.</assert>
     </rule>

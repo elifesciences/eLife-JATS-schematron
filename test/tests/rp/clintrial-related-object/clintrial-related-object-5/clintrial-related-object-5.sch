@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="clintrial-related-object-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
       <assert test="@document-id-type='clinical-trial-number'" role="error" id="clintrial-related-object-5">[clintrial-related-object-5] <name/> must have an @document-id-type='clinical-trial-number'.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
     </rule>

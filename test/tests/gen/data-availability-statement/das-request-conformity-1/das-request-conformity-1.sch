@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-request-conformity-1" test="matches(.,'[Rr]equest')" role="warning" id="das-request-conformity-1">Data Availability Statement contains the phrase 'request'. Does it state data is available upon request, and if so, has this been approved by editorial?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']/p[1]" role="error" id="data-availability-statement-xspec-assert">sec[@sec-type='data-availability']/p[1] must be present.</assert>
     </rule>

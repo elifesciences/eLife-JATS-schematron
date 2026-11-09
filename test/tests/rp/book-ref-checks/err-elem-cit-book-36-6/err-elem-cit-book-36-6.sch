@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="book-ref-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="book-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']" id="book-ref-checks">
       <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hgboy-err-elem-cit-book-36-6" test="count(lpage) &gt; 1 or count(fpage) &gt; 1" role="error" id="err-elem-cit-book-36-6">[err-elem-cit-book-36-6] At most one &lt;lpage&gt; and one &lt;fpage&gt; are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(lpage)"/> &lt;lpage&gt; elements and <value-of select="count(fpage)"/> &lt;fpage&gt; elements.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='book']" role="error" id="book-ref-checks-xspec-assert">mixed-citation[@publication-type='book'] must be present.</assert>
     </rule>

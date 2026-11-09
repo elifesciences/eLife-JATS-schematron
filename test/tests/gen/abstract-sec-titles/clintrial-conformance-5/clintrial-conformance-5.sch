@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-5" test="($pos = 6) and (title != 'Clinical trial number:')" role="error" id="clintrial-conformance-5">Sixth section title is '<value-of select="title"/>' - but the only allowed value is 'Clinical trial number:'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[not(@abstract-type)]/sec" role="error" id="abstract-sec-titles-xspec-assert">abstract[not(@abstract-type)]/sec must be present.</assert>
     </rule>

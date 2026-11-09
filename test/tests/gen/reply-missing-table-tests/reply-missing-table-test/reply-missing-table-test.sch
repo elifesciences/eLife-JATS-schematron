@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]" role="error" id="reply-missing-table-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')] must be present.</assert>
     </rule>

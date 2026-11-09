@@ -969,7 +969,7 @@
       <report test="($dtd-version ge '1.4') and not(matches(@mimetype,'^(video|application|text|image|audio|chemical)/'))" role="error" id="media-test-1a">media must have @mimetype, the value of which has to start with one of 'video','application','text','image', or 'audio', 'chemical'. This one has '<value-of select="@mimetype"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>

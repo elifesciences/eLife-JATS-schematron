@@ -966,7 +966,7 @@
       <report test="@pub-id-type='doi' and (@xlink:href)" role="error" id="das-pub-id-3">A pub-id with the type doi does not need an xlink:href attribute. <value-of select="concat('xlink:href=&quot;',.,'&quot;')"/> should be removed from the pub-id containing <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" role="error" id="das-elem-citation-data-pub-id-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id must be present.</assert>
     </rule>

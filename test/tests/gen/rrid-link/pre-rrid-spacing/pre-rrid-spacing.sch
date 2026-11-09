@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/rri-ds-5k19v560#pre-rrid-spacing" test="ends-with($lc,'rrid: ') or ends-with($lc,'rrid ')" role="error" id="pre-rrid-spacing">RRID link should be preceded by 'RRID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" role="error" id="rrid-link-xspec-assert">ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)] must be present.</assert>
     </rule>

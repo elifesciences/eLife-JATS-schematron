@@ -969,7 +969,7 @@
       <assert test="parent::back" role="error" id="additional-info-test-1">sec[@sec-type='additional-information'] must be a child of back.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
     </rule>

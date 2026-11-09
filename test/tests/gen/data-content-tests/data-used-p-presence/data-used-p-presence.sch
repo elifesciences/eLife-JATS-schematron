@@ -966,7 +966,7 @@
       <report test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1" role="error" id="data-used-p-presence">Data availabilty section contains more than one p element describing that previously published datasets were used. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::back/sec[@sec-type='data-availability']" role="error" id="data-content-tests-xspec-assert">back/sec[@sec-type='data-availability'] must be present.</assert>
     </rule>

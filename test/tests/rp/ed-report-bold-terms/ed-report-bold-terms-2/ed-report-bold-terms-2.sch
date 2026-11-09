@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-bold-terms-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-bold-terms-pattern">
     <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
       <let name="sig-kwds" value="('landmark', 'fundamental', 'important', 'valuable', 'useful')"/>
@@ -1305,8 +1305,8 @@
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       <report test="lower-case(.)=$allowed-vals and not($title-case-kwd=ancestor::sub-article/front-stub/kwd-group/kwd)" role="error" id="ed-report-bold-terms-2">[ed-report-bold-terms-2] Bold phrase in eLife Assessment - <value-of select="."/> - is one of the permitted vocabulary terms, but there's no corresponding keyword in the metadata (in a kwd-group in the front-stub).</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
     </rule>

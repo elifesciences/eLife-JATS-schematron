@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6n1g-report-chapter-title-test" test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" role="warning" id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="ref-chapter-title-tests-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
     </rule>

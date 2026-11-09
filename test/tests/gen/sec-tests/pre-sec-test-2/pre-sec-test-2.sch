@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#pre-sec-test-2" test="p or sec or fig or fig-group or media or table-wrap or boxed-text or list or fn-group or supplementary-material or related-object or code" role="warning" id="pre-sec-test-2">sec appears to contain no content. This cannot be correct. If the heading is correct and the content is missing, please ensure to query the authors asking for them to update accordingly.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec" role="error" id="sec-tests-xspec-assert">sec must be present.</assert>
     </rule>

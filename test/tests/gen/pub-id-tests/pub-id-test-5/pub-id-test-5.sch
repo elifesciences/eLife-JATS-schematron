@@ -967,7 +967,7 @@
         <value-of select="@pub-id-type"/> pub-id ends with a full stop - <value-of select="."/> - which is not correct. Please remove the full stop.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/pub-id" role="error" id="pub-id-tests-xspec-assert">element-citation/pub-id must be present.</assert>
     </rule>

@@ -970,7 +970,7 @@
         <name/> in boxed-text at the start of a <value-of select="$display-subject"/> notice is not allowed. Only p is permitted.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
     </rule>

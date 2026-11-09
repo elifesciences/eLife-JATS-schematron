@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-1" test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$|^keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::app//table-wrap[label]" role="error" id="app-table-wrap-ids-xspec-assert">app//table-wrap[label] must be present.</assert>
     </rule>

@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-ext-links-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-ext-links-pattern">
     <rule context="sub-article/body//ext-link" id="sub-article-ext-links">
       <report test="inline-graphic" role="error" id="ext-link-inline-graphic">[ext-link-inline-graphic] ext-link in sub-article has a child inline-graphic. Is this a figure or table (e.g. Author response image X) that should be captured semantically appropriately in the XML?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/body//ext-link" role="error" id="sub-article-ext-links-xspec-assert">sub-article/body//ext-link must be present.</assert>
     </rule>

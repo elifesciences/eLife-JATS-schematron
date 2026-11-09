@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="isbn-conformity-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="isbn-conformity-pattern">
     <rule context="ref//pub-id[@pub-id-type='isbn']|isbn" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       <assert test="e:is-valid-isbn($t)" role="error" id="isbn-conformity-test">[isbn-conformity-test] <name/> element contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//pub-id[@pub-id-type='isbn'] or descendant::isbn" role="error" id="isbn-conformity-xspec-assert">ref//pub-id[@pub-id-type='isbn']|isbn must be present.</assert>
     </rule>

@@ -977,7 +977,7 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-7" test="($open - $close) gt 1" role="warning" id="ref-xref-test-7">citation is preceded by text containing 2 or more open brackets, '('. eLife style is that parenthetical citations already in brackets should be contained in square brackets, '['. Either there is a superfluous '(' in the preceding text, or the '(' needs changing to a '['  - <value-of select="concat(substring($pre-text,string-length($pre-text)-10),.,substring($post-text,1,10))"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

@@ -971,7 +971,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-6" test="$top-doi = $doi" role="error" id="duplicate-ref-test-6">ref '<value-of select="@id"/>' has a doi which is the same as the article itself '<value-of select="$top-doi"/>' which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
     </rule>

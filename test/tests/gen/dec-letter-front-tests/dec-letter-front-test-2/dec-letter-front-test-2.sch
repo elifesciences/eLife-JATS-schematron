@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-2" test="$count gt 0" role="error" flag="dl-ar" id="dec-letter-front-test-2">decision letter front-stub must contain at least 1 contrib-group element.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub" role="error" id="dec-letter-front-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub must be present.</assert>
     </rule>

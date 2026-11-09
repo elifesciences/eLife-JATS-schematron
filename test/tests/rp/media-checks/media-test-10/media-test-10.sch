@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="media-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="media-checks-pattern">
     <rule context="media" id="media-checks">
       <let name="link" value="@*:href"/>
       <report test="preceding::media/@*:href = $link" role="error" id="media-test-10">[media-test-10] Media file for <value-of select="if (parent::*/label) then parent::*/label else 'media'"/> (<value-of select="$link"/>) is the same as the one used for <value-of select="if (preceding::media[@*:href=$link][1]/parent::*/label) then preceding::media[@*:href=$link][1]/parent::*/label         else 'another file'"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
     </rule>

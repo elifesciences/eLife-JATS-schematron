@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-case" test="($word-count gt 4) and ($title-word-count gt ($word-count div 2))" role="warning" id="article-title-case">Journal ref has <name/> in mostly title case. Is that correct? eLife style is to use sentence case. "<value-of select="."/>"</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
     </rule>

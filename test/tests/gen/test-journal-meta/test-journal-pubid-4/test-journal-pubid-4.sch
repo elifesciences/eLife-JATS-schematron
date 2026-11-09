@@ -966,7 +966,7 @@
       <assert test="issn[@publication-format='electronic'][@pub-type='epub']" role="error" id="test-journal-pubid-4">The journal issn element must have a @publication-format='electronic' and a @pub-type='epub'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/journal-meta" role="error" id="test-journal-meta-xspec-assert">article/front/journal-meta must be present.</assert>
     </rule>

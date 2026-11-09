@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hmlys-back-test-8" test="if ($article-type = ($features-article-types,$notice-article-types)) then ()         else if ($subj-type = 'Scientific Correspondence') then ()         else (not(ack))" role="warning" id="back-test-8">'<value-of select="$article-type"/>' usually have acknowledgement sections, but there isn't one here. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>

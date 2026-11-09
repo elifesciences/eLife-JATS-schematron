@@ -966,7 +966,7 @@
       <assert test="count(p) = 1" role="error" id="das-p-count">Version 2 xml cannot have more than one p element in the data availability section.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//sec[@sec-type='data-availability']" role="error" id="data-availability-version-2-xspec-assert">article[e:get-version(.)!='1']//sec[@sec-type='data-availability'] must be present.</assert>
     </rule>

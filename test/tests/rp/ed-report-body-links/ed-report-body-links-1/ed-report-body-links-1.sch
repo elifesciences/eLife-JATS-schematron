@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-body-links-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-body-links-pattern">
     <rule context="sub-article[@article-type='editor-report']/body/p//ext-link" id="ed-report-body-links">
       <report test="matches(@*:href,'\p{Pe}\s*$')" role="warning" id="ed-report-body-links-1">[ed-report-body-links-1] Link in eLife Assessment ends with closing punctuation - '<value-of select="@*:href"/>'. Is that deliberate?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p//ext-link" role="error" id="ed-report-body-links-xspec-assert">sub-article[@article-type='editor-report']/body/p//ext-link must be present.</assert>
     </rule>

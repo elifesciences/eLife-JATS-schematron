@@ -969,7 +969,7 @@
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='thesis']/person-group" role="error" id="elem-citation-thesis-preson-group-xspec-assert">element-citation[@publication-type='thesis']/person-group must be present.</assert>
     </rule>

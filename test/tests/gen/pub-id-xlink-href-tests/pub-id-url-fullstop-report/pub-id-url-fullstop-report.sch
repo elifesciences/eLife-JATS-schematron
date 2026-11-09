@@ -966,7 +966,7 @@
       <report test="matches(@xlink:href,'\.$')" role="error" id="pub-id-url-fullstop-report">'<value-of select="@xlink:href"/>' - Link ends in a full stop which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
     </rule>

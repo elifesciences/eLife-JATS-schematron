@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-degree-symbol-sup" test="contains(.,'°')" role="error" id="degree-symbol-sup">'<name/>' element contains the degree symbol, '°', which is unnecessary. It does not need to be superscript.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
     </rule>

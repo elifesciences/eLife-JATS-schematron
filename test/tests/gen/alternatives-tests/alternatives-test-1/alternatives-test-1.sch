@@ -967,7 +967,7 @@
         <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::alternatives" role="error" id="alternatives-tests-xspec-assert">alternatives must be present.</assert>
     </rule>

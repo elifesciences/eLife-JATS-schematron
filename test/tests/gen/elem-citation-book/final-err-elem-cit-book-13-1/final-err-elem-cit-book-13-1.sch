@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h5k88-final-err-elem-cit-book-13-1" test="count(publisher-name)=1" role="error" id="final-err-elem-cit-book-13-1">One and only one &lt;publisher-name&gt; is required in a book reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(publisher-name)"/> &lt;publisher-name&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
     </rule>

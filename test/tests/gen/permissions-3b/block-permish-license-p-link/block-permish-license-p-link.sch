@@ -968,7 +968,7 @@
       <report test=".=$article-license or @xlink:href=$article-license" role="error" id="block-permish-license-p-link">ext-link in license text in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="$article-license"/> - which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::permissions[not(parent::article-meta)]//license-p//ext-link" role="error" id="permissions-3b-xspec-assert">permissions[not(parent::article-meta)]//license-p//ext-link must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert test="name or anonymous or collab or collab-wrap" role="error" flag="dl-ar" id="sub-article-contrib-test-2">sub-article contrib must have either a child name or a child anonymous element.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
     </rule>

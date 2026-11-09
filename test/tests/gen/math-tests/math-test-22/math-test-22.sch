@@ -968,7 +968,7 @@
       <report test="descendant::mml:mstyle[@displaystyle='true'] and ancestor::inline-formula and not(ancestor::sub-article) and not(ancestor::table-wrap) and (descendant::*[name()=('mml:mfrac','mml:mroot','mml:msqrt')] or descendant::mml:mo[matches(.,'[∑∫∏⋃⋂\(\){}\[\]\|]')])" role="warning" id="math-test-22">Inline formula has display style. Is that correct? (inline-formula has a descendant mml:mstyle with the attribute displaystyle="true").</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>

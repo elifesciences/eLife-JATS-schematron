@@ -969,7 +969,7 @@
         <value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-template-tests-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
     </rule>

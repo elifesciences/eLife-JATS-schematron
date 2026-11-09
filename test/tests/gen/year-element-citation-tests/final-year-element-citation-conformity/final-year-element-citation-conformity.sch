@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-year-element-citation-conformity" test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="error" id="final-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::year[ancestor::element-citation]" role="error" id="year-element-citation-tests-xspec-assert">year[ancestor::element-citation] must be present.</assert>
     </rule>

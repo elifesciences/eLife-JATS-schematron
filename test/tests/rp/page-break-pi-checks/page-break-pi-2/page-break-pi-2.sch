@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="page-break-pi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="page-break-pi-checks-pattern">
     <rule context="processing-instruction('page-break')" id="page-break-pi-checks">
       <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
       <assert test="normalize-space(.)=''" role="error" id="page-break-pi-2">[page-break-pi-2] 'page-break' processing-instructions must be empty. This one has the value <value-of select="."/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
     </rule>

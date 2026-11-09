@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-5" test="matches(.,&quot;^[\p{L}\p{M}\(\)\s'’-]*$&quot;)" role="error" id="given-names-test-5">given-names should usually only contain letters, spaces, or hyphens. <value-of select="."/> contains other characters.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::name/given-names" role="error" id="given-names-tests-xspec-assert">name/given-names must be present.</assert>
     </rule>

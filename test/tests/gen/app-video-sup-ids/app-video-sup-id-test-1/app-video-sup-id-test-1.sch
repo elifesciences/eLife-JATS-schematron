@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-1" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-sup-id-test-1">video supplement must have an @id in the format app0fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" role="error" id="app-video-sup-ids-xspec-assert">article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)] must be present.</assert>
     </rule>

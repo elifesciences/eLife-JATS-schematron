@@ -966,7 +966,7 @@
       <report test="* or normalize-space(.)!=''" role="error" id="anonymous-test-2">anonymous element cannot contain any elements on text.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::anonymous" role="error" id="anonymous-tests-xspec-assert">anonymous must be present.</assert>
     </rule>

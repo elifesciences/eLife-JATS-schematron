@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-subj-test-4" test="preceding-sibling::subject" role="error" id="feature-subj-test-4">There is more than one sub-display-channel subject. This is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::subj-group[@subj-group-type='sub-display-channel']/subject" role="error" id="feature-subj-tests-xspec-assert">subj-group[@subj-group-type='sub-display-channel']/subject must be present.</assert>
     </rule>

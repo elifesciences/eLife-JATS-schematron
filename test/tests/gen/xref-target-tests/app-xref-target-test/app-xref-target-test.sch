@@ -968,7 +968,7 @@
       <report test="(@ref-type='app') and ($target/local-name() != 'app')" role="error" id="app-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' points to <value-of select="$target/local-name()"/>. This is not correct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
     </rule>

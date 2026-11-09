@@ -1038,16 +1038,16 @@
   <!-- Taken from here https://stackoverflow.com/questions/2917655/how-do-i-check-for-the-existence-of-an-external-file-with-xsl -->
   
   
-  <pattern id="covid-prologue-pattern">
-    <rule context="article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" id="covid-prologue">
+  <pattern xmlns="" id="covid-prologue-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" id="covid-prologue">
       
       <assert see="https://elifeproduction.slab.com/posts/article-content-house-style-k617122o#h1vp1-covid-processing-instruction" test="preceding::processing-instruction('covid-19-tdm')" role="warning" id="covid-processing-instruction">The article title (<value-of select="front/article-meta//article-title"/>) suggests that this article should probably have the covid processing instruction - '&lt;?covid-19-tdm?&gt;' - but it does not. Should it?</assert>
       
     </rule>
   </pattern>
   
- <pattern id="article-tests-pattern">
-    <rule context="article" id="article-tests">
+ <pattern xmlns="" id="article-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article" id="article-tests">
       <let name="line-count" value="e:line-count(.)"/>
       
 	  <report test="@dtd-version" role="info" id="dtd-info">DTD version is <value-of select="@dtd-version"/>
@@ -1073,8 +1073,8 @@
         <value-of select="@article-type"/> type articles cannot have sub-articles (peer review materials).</report>
  	</rule>
   </pattern>
-  <pattern id="research-article-pattern">
-    <rule context="article[@article-type='research-article']" id="research-article">
+  <pattern xmlns="" id="research-article-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']" id="research-article">
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
@@ -1091,8 +1091,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="research-article-sub-article-pattern">
-    <rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
+  <pattern xmlns="" id="research-article-sub-article-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
      
      <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])" flag="dl-ar" role="error" id="r-article-sub-articles">
@@ -1101,8 +1101,8 @@
    </rule>
   </pattern>
 
-  <pattern id="test-front-pattern">
-    <rule context="article/front" id="test-front">
+  <pattern xmlns="" id="test-front-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front" id="test-front">
 	 
   	  <assert test="count(journal-meta) = 1" role="error" id="test-front-jmeta">There must be one journal-meta that is a child of front. Currently there are <value-of select="count(journal-meta)"/>
       </assert>
@@ -1113,8 +1113,8 @@
 	 </rule>
   </pattern>
 
-  <pattern id="test-journal-meta-pattern">
-    <rule context="article/front/journal-meta" id="test-journal-meta">
+  <pattern xmlns="" id="test-journal-meta-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/journal-meta" id="test-journal-meta">
 	 
 		<assert test="journal-id[@journal-id-type='nlm-ta'] = 'elife'" role="error" id="test-journal-nlm">journal-id[@journal-id-type='nlm-ta'] must only contain 'elife'. Currently it is <value-of select="journal-id[@journal-id-type='nlm-ta']"/>
       </assert>
@@ -1132,15 +1132,15 @@
 	    
 	 </rule>
   </pattern>
-  <pattern id="journal-id-pattern">
-    <rule context="article/front/journal-meta/journal-id" id="journal-id">
+  <pattern xmlns="" id="journal-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/journal-meta/journal-id" id="journal-id">
       
       <assert test="@journal-id-type=('nlm-ta','publisher-id')" role="error" id="test-journal-id">The only journal-id-types permitted are 'nlm-ta' or 'publisher-id'. <value-of select="@journal-id-type"/> is not permitted.</assert>
     </rule>
   </pattern>
 
-  <pattern id="test-article-metadata-pattern">
-    <rule context="article/front/article-meta" id="test-article-metadata">
+  <pattern xmlns="" id="test-article-metadata-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta" id="test-article-metadata">
     <let name="article-id" value="article-id[@pub-id-type='publisher-id'][1]"/>
     <let name="article-type" value="ancestor::article/@article-type"/>
     <let name="subj-type" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
@@ -1216,8 +1216,8 @@
     <report test="($subj-type=('Research Article','Research Advance','Tools and Resources','Short Report')) and (history/date[@date-type='received']/@iso-8601-date gt '2021-07-01') and not(pub-history[event[self-uri[@content-type='preprint']]])" role="warning" id="preprint-presence">This <value-of select="$subj-type"/> was received on '<value-of select="history/date[@date-type='received']/@iso-8601-date"/>' (after the preprint mandate) but does not have preprint information. Is that correct?</report>
    </rule>
   </pattern>
-  <pattern id="article-dois-non-prc-pattern">
-    <rule context="article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-non-prc">
+  <pattern xmlns="" id="article-dois-non-prc-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(e:is-prc(.))]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-non-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       
       <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="nprc-article-dois-1">Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
@@ -1233,8 +1233,8 @@
       
     </rule>
   </pattern>
-  <pattern id="article-dois-prc-pattern">
-    <rule context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
+  <pattern xmlns="" id="article-dois-prc-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois-prc">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="latest-rp-doi-version" value="tokenize($latest-rp-doi,'\.')[last()]"/>
@@ -1261,8 +1261,8 @@
       
     </rule>
   </pattern>
-  <pattern id="test-research-article-metadata-pattern">
-    <rule context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
+  <pattern xmlns="" id="test-research-article-metadata-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']/front/article-meta" id="test-research-article-metadata">
    
     <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#test-contrib-group-presence-1" test="contrib-group" role="error" id="test-contrib-group-presence-1">contrib-group (with no attributes containing authors) must be present (as a child of article-meta) for research articles.</assert>
      
@@ -1270,23 +1270,23 @@
    
    </rule>
   </pattern>
-  <pattern id="editorial-metadata-pattern">
-    <rule context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
+  <pattern xmlns="" id="editorial-metadata-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='editorial']/front/article-meta" id="editorial-metadata">
       
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editorial-editors-presence" test="contrib-group[@content-type='section']" role="error" id="editorial-editors-presence">Editorials cannot contain Editors and/or Reviewers. This one has a contrib-group[@content-type='section'] containing <value-of select="string-join(for $x in contrib-group[@content-type='section']/contrib return concat('&quot;',e:get-name($x/*[1][name()=('name','collab')]),'&quot;',' as ','&quot;',$x/role[1],'&quot;'),' and ')"/>.</report>
       
     </rule>
   </pattern>
-  <pattern id="article-metadata-exceptions-pattern">
-    <rule context="article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta" id="article-metadata-exceptions">
+  <pattern xmlns="" id="article-metadata-exceptions-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta" id="article-metadata-exceptions">
       
       <report test="funding-group" role="error" id="funding-exception">
         <value-of select="descendant::subj-group[@subj-group-type='display-channel'][1]/subject[1]"/>s cannot have funding, but this one has a funding-group element. Please remove it.</report>
       
     </rule>
   </pattern>
-  <pattern id="article-version-pattern">
-    <rule context="article-version" id="article-version">
+  <pattern xmlns="" id="article-version-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-version" id="article-version">
       
       <assert test="parent::article-meta" role="error" id="article-version-test-1">
         <name/> must be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
@@ -1301,8 +1301,8 @@
       
     </rule>
   </pattern>
-  <pattern id="test-article-categories-pattern">
-    <rule context="article-meta/article-categories" id="test-article-categories">
+  <pattern xmlns="" id="test-article-categories-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/article-categories" id="test-article-categories">
 	 <let name="article-type" value="ancestor::article/@article-type"/>
    <let name="template" value="parent::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
 	   
@@ -1319,8 +1319,8 @@
      <assert test="count(subj-group[@subj-group-type='heading']/subject) = count(distinct-values(subj-group[@subj-group-type='heading']/subject))" role="error" id="head-subj-distinct-test">Where there are two headings, the content of one must not match the content of the other (each heading should be unique)</assert>
 	</rule>
   </pattern>
-  <pattern id="disp-channel-checks-pattern">
-    <rule context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
+  <pattern xmlns="" id="disp-channel-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-categories/subj-group[@subj-group-type='display-channel']/subject" id="disp-channel-checks">
     <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="research-disp-channels" value="('Research Article', 'Short Report', 'Tools and Resources', 'Research Advance', 'Registered Report', 'Replication Study', 'Research Communication', 'Scientific Correspondence')"/>
       
@@ -1343,21 +1343,21 @@
       <report test="($article-type = 'expression-of-concern') and not(.='Expression of Concern')" role="error" id="disp-subj-value-test-9">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Expression of Concern' according to the article-type.</report>
   </rule>
   </pattern>
-  <pattern id="MSA-checks-pattern">
-    <rule context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
+  <pattern xmlns="" id="MSA-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-categories/subj-group[@subj-group-type='heading']/subject" id="MSA-checks">
       
       <assert test=". = $MSAs" role="error" id="head-subj-MSA-test">Content of the heading must match one of the MSAs.</assert>
     </rule>
   </pattern>
-  <pattern id="head-subj-checks-pattern">
-    <rule context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
+  <pattern xmlns="" id="head-subj-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-categories/subj-group[@subj-group-type='heading']" id="head-subj-checks">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert test="count(subject) = 1" role="error" id="head-subj-test-1">Each subj-group[@subj-group-type='heading'] must contain one and only one subject. This one contains <value-of select="count(subject)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="test-title-group-pattern">
-    <rule context="article/front/article-meta/title-group" id="test-title-group">
+  <pattern xmlns="" id="test-title-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta/title-group" id="test-title-group">
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 	  <let name="lc" value="normalize-space(lower-case(article-title[1]))"/>
 	  <let name="title" value="replace(article-title[1],'\p{P}','')"/>
@@ -1395,8 +1395,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="review-article-title-tests-pattern">
-    <rule context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]" id="review-article-title-tests">
+  <pattern xmlns="" id="review-article-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]" id="review-article-title-tests">
       <let name="pre-colon" value="substring-before(.,':')"/>
       <let name="post-colon" value="substring-after(.,': ')"/>
       
@@ -1405,8 +1405,8 @@
       <assert test="substring($post-colon,1,1) = upper-case(substring($post-colon,1,1))" role="error" id="review-article-title-2">The first character after the colon in the title for a review article should be upper case. '<value-of select="substring($post-colon,1,1)"/>' in '<value-of select="."/>'</assert>
     </rule>
   </pattern>
-  <pattern id="test-contrib-group-pattern">
-    <rule context="article/front/article-meta/contrib-group" id="test-contrib-group">
+  <pattern xmlns="" id="test-contrib-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta/contrib-group" id="test-contrib-group">
 		
     <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-presence-test" test="contrib" role="error" id="contrib-presence-test">contrib-group must contain at least one contrib.</assert>
 		  
@@ -1415,8 +1415,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="auth-contrib-group-pattern">
-    <rule context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
+  <pattern xmlns="" id="auth-contrib-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta/contrib-group[1]" id="auth-contrib-group">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
@@ -1433,8 +1433,8 @@
       
     </rule>
   </pattern>
-  <pattern id="test-editor-contrib-group-pattern">
-    <rule context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
+  <pattern xmlns="" id="test-editor-contrib-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta/contrib-group[@content-type='section']" id="test-editor-contrib-group">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-1" test="count(contrib[@contrib-type='senior_editor']) = 1" role="error" id="editor-conformance-1">contrib-group[@content-type='section'] must contain one (and only 1) Senior Editor (contrib[@contrib-type='senior_editor']).</assert>
       
@@ -1442,8 +1442,8 @@
       
     </rule>
   </pattern>
-  <pattern id="test-editors-contrib-pattern">
-    <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
+  <pattern xmlns="" id="test-editors-contrib-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <let name="author-contribs" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author']"/>
@@ -1460,15 +1460,15 @@
       
     </rule>
   </pattern>
-  <pattern id="auth-cont-tests-pattern">
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests">
+  <pattern xmlns="" id="auth-cont-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-test-1" test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" flag="version-1" id="auth-cont-test-1">
         <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
-  <pattern id="duplicated-cont-tests-pattern">
-    <rule context="article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" id="duplicated-cont-tests">
+  <pattern xmlns="" id="duplicated-cont-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" id="duplicated-cont-tests">
       <let name="credit-regex" value="'^(conceptuali[sz]ation|data\s\p{Pd}?\s?curation|formal\sanalysis|funding\sacquisition|investigation|methodology|project\sadministration|resources|software|supervision|validation|visuali[sz]ation|writing\s\p{Pd}?\s?(original\sdraft|review\s(&amp;|and)\sediting))$'"/>
       <let name="cont-rid" value="xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]/@rid"/>
       <let name="cont-fn" value="ancestor::article//back//fn[@id=$cont-rid]/p"/>
@@ -1478,8 +1478,8 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-1" test="empty($indistinct-conts)" role="error" flag="version-1" id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="auth-cont-tests-v2-pattern">
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests-v2">
+  <pattern xmlns="" id="auth-cont-tests-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and not(collab or collab-wrap) and not(ancestor::collab or ancestor::collab-wrap)]" id="auth-cont-tests-v2">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-test-1-v2" test="role" role="warning" flag="version-2" id="auth-cont-test-1-v2">
         <value-of select="e:get-name(name[1])"/> has no contributions. Please ensure to query this with the authors.</assert>
@@ -1488,15 +1488,15 @@
         <value-of select="e:get-name(name[1])"/> has no CRediT contributions. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern id="collab-cont-tests-pattern">
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" id="collab-cont-tests">
+  <pattern xmlns="" id="collab-cont-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('research-article','review-article') and e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and *[name()=('collab','collab-wrap')]]" id="collab-cont-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#collab-cont-test-1" test="child::xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]" role="warning" flag="version-1" id="collab-cont-test-1">
         <value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
     </rule>
   </pattern>
-  <pattern id="collab-cont-tests-v2-pattern">
-    <rule context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)]" id="collab-cont-tests-v2">
+  <pattern xmlns="" id="collab-cont-tests-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('research-article','review-article') and e:get-version(.)!='1']//article-meta//contrib[(@contrib-type='author') and (collab or collab-wrap)]" id="collab-cont-tests-v2">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-collab-cont-test-1-v2" test="role" role="warning" flag="version-2" id="pre-collab-cont-test-1-v2">
         <value-of select="e:get-surname(.)"/> has no contributions. Please ensure to query this with the authors.</assert>
@@ -1508,8 +1508,8 @@
         <value-of select="e:get-surname(.)"/> has no CRediT contributions. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern id="collab-checks-pattern">
-    <rule context="article[@dtd-version ge '1.4']//collab" id="collab-checks">
+  <pattern xmlns="" id="collab-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@dtd-version ge '1.4']//collab" id="collab-checks">
       <let name="dtd" value="ancestor::article/@dtd-version"/>
       
       <report test="ancestor::contrib" role="error" id="collab-contrib-dtd">The collab element is deprecated in JATS version <value-of select="$dtd"/>. In &lt;contrib&gt; use &lt;collab-wrap&gt; instead.</report>
@@ -1518,8 +1518,8 @@
       
     </rule>
   </pattern>
-  <pattern id="duplicated-cont-tests-v2-pattern">
-    <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
+  <pattern xmlns="" id="duplicated-cont-tests-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" id="duplicated-cont-tests-v2">
       <let name="roles" value="for $x in role return lower-case($x)"/>
       <let name="indistinct-conts" value="for $role in distinct-values($roles) return $role[count($roles[. = $role]) gt 1]"/>
      
@@ -1527,8 +1527,8 @@
       
     </rule>
   </pattern>
-  <pattern id="collab-tests-pattern">
-    <rule context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group" id="collab-tests">
+  <pattern xmlns="" id="collab-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group" id="collab-tests">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
       <let name="orcids" value="for $x in contrib[@contrib-type='author']/contrib-id[@contrib-id-type='orcid'] return substring-after($x,'orcid.org/')"/>
@@ -1539,8 +1539,8 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#duplicate-member-orcid-test" test="empty($indistinct-orcids)" role="error" id="duplicate-member-orcid-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following ORCiD(s) - <value-of select="if (count($indistinct-orcids) gt 1) then concat(string-join($indistinct-orcids[position() != last()],', '),' and ',$indistinct-orcids[last()]) else $indistinct-orcids"/> - which must be incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="collab-tests-2-pattern">
-    <rule context="article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" id="collab-tests-2">
+  <pattern xmlns="" id="collab-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" id="collab-tests-2">
       <let name="top-names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="members" value="for $member in contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group/contrib[@contrib-type='author']/name[1]         return e:get-name($member)"/>
       <let name="auth-and-member" value="$top-names[.=$members]"/>
@@ -1548,8 +1548,8 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-and-member-test" test="empty($auth-and-member)" role="warning" id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule>
   </pattern>
-  <pattern id="collab-name-tests-pattern">
-    <rule context="collab-name" id="collab-name-tests">
+  <pattern xmlns="" id="collab-name-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="collab-name" id="collab-name-tests">
       
       <report test="ancestor::article-meta and not(parent::collab-wrap)" role="error" id="collab-name-test-1">
         <name/> that is a descendant of article-meta must be captured as a child of collab-wrap. This one has the parent <value-of select="parent::*/name()"/>.</report>
@@ -1562,8 +1562,8 @@
       
     </rule>
   </pattern>
-  <pattern id="author-xref-tests-pattern">
-    <rule context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
+  <pattern xmlns="" id="author-xref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//contrib[@contrib-type='author']/xref" id="author-xref-tests">
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hzwb3-author-xref-test-1" test="(@ref-type='aff') and preceding-sibling::xref[not(@ref-type='aff')]" role="error" id="author-xref-test-1">Affiliation footnote links (xrefs) from authors must be the first type of link to be listed. For <value-of select="e:get-name(preceding-sibling::name[1])"/>, their affiliation link - <value-of select="."/> - appears after another non-affiliation link, when it should appear before it.</report>
       
@@ -1574,8 +1574,8 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-xref-test-4" test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule>
   </pattern>
-  <pattern id="name-tests-pattern">
-    <rule context="contrib-group//name" id="name-tests">
+  <pattern xmlns="" id="name-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib-group//name" id="name-tests">
 		
     	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-1" test="count(surname) = 1" role="error" id="surname-test-1">Each name must contain only one surname.</assert>
 	  
@@ -1585,8 +1585,8 @@
 	  
 	</rule>
   </pattern>
-  <pattern id="surname-tests-pattern">
-    <rule context="contrib-group//name/surname" id="surname-tests">
+  <pattern xmlns="" id="surname-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib-group//name/surname" id="surname-tests">
 		
 	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-2" test="normalize-space(.)=''" role="error" id="surname-test-2">surname must not be empty.</report>
 		
@@ -1608,8 +1608,8 @@
 		
 	  </rule>
   </pattern>
-  <pattern id="given-names-tests-pattern">
-    <rule context="name/given-names" id="given-names-tests">
+  <pattern xmlns="" id="given-names-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="name/given-names" id="given-names-tests">
 		
 	  <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#given-names-test-3" test="normalize-space(.)=''" role="error" id="given-names-test-3">given-names must not be empty.</report>
 		
@@ -1640,8 +1640,8 @@
 		
 	</rule>
   </pattern>
-  <pattern id="suffix-tests-pattern">
-    <rule context="contrib-group//name/suffix" id="suffix-tests">
+  <pattern xmlns="" id="suffix-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib-group//name/suffix" id="suffix-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#suffix-assert" test=".=('Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="suffix-assert">suffix can only have one of these values - 'Jr', 'Jnr', 'Sr', 'Snr', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'.</assert>
       
@@ -1650,16 +1650,16 @@
       
     </rule>
   </pattern>
-  <pattern id="name-child-tests-pattern">
-    <rule context="contrib-group//name/*" id="name-child-tests">
+  <pattern xmlns="" id="name-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib-group//name/*" id="name-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#disallowed-child-assert" test="local-name() = ('surname','given-names','suffix')" role="error" id="disallowed-child-assert">
         <value-of select="local-name()"/> is not allowed as a child of name.</assert>
       
     </rule>
   </pattern>
-  <pattern id="contrib-tests-pattern">
-    <rule context="article-meta//contrib" id="contrib-tests">
+  <pattern xmlns="" id="contrib-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//contrib" id="contrib-tests">
 	  <let name="type" value="@contrib-type"/>
 	  <let name="subj-type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
 	  <let name="aff-rid1" value="xref[@ref-type='aff'][1]/@rid"/>
@@ -1708,8 +1708,8 @@
 		
 		</rule>
   </pattern>
-  <pattern id="corresp-author-initial-tests-pattern">
-    <rule context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
+  <pattern xmlns="" id="corresp-author-initial-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type=('research-article','review-article','discussion')]//article-meta[not(descendant::custom-meta[meta-name='Template']/meta-value='3')]/contrib-group[1][count(contrib[@contrib-type='author' and @corresp='yes']) gt 1]/contrib[@contrib-type='author' and @corresp='yes' and name]" id="corresp-author-initial-tests">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="normalized-name" value="e:stripDiacritics($name)"/>
       
@@ -1718,8 +1718,8 @@
       
     </rule>
   </pattern>
-  <pattern id="author-children-tests-pattern">
-    <rule context="article[e:get-version(.)='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
+  <pattern xmlns="" id="author-children-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests">
 		  <let name="article-type" value="ancestor::article/@article-type"/> 
 		  <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
 			<let name="allowed-contrib-blocks" value="('name', 'collab', 'collab-wrap', 'contrib-id', 'email', 'xref')"/>
@@ -1731,8 +1731,8 @@
 		
 		</rule>
   </pattern>
-  <pattern id="author-children-tests-v2-pattern">
-    <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests-v2">
+  <pattern xmlns="" id="author-children-tests-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/*" id="author-children-tests-v2">
       <let name="article-type" value="ancestor::article/@article-type"/> 
       <let name="template" value="ancestor::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
       <let name="allowed-contrib-blocks" value="('name', 'collab', 'collab-wrap', 'contrib-id', 'email', 'xref','role')"/>
@@ -1744,8 +1744,8 @@
       
     </rule>
   </pattern>
-  <pattern id="author-role-tests-pattern">
-    <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" id="author-role-tests">
+  <pattern xmlns="" id="author-role-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" id="author-role-tests">
       <let name="credit-roles" value="'credit-roles.xml'"/>
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
@@ -1761,8 +1761,8 @@
       
     </rule>
   </pattern>
-  <pattern id="author-role-tests-2-pattern">
-    <rule context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" id="author-role-tests-2">
+  <pattern xmlns="" id="author-role-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" id="author-role-tests-2">
       <let name="vocab-term" value="@vocab-term"/>
       <let name="vocab-term-id" value="lower-case(@vocab-term-identifier)"/>
       
@@ -1772,8 +1772,8 @@
       
     </rule>
   </pattern>
-  <pattern id="orcid-tests-pattern">
-    <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
+  <pattern xmlns="" id="orcid-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
 	  <let name="text" value="."/>
 		
     	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#orcid-test-1" test="@authenticated='true'" role="error" id="orcid-test-1">contrib-id[@contrib-id-type="orcid"] must have an @authenticated="true"</assert>
@@ -1791,23 +1791,23 @@
 		
 		</rule>
   </pattern>
-  <pattern id="email-tests-pattern">
-    <rule context="article-meta//email" id="email-tests">
+  <pattern xmlns="" id="email-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//email" id="email-tests">
 		
     	<assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#email-test" test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" role="error" id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
 		
 	</rule>
   </pattern>
-  <pattern id="history-exception-tests-pattern">
-    <rule context="history" id="history-exception-tests">
+  <pattern xmlns="" id="history-exception-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="history" id="history-exception-tests">
       
       <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="history-exception-1">
         <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
       
     </rule>
   </pattern>
-  <pattern id="history-tests-pattern">
-    <rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" id="history-tests">
+  <pattern xmlns="" id="history-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and not(e:is-prc(.))]//article-meta/history" id="history-tests">
 	   <let name="dtd-version" value="ancestor::article/@dtd-version"/>
 	  
     	<report test="($dtd-version le '1.3') and not(date[@date-type='received'])" role="error" id="history-date-test-1">history in JATS version <value-of select="$dtd-version"/> must contain date[@date-type='received']</report>
@@ -1818,8 +1818,8 @@
 	  
 	</rule>
   </pattern>
-  <pattern id="prc-history-tests-pattern">
-    <rule context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" id="prc-history-tests">
+  <pattern xmlns="" id="prc-history-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[(not(@article-type) or @article-type=('research-article','review-article','discussion','')) and e:is-prc(.)]//article-meta/history" id="prc-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <report test="($dtd-version le '1.3') and not(date[@date-type='sent-for-review'])" role="error" id="prc-history-date-test-1">history must contain date[@date-type='sent-for-review'] in PRC articles tagged in JATS version <value-of select="$dtd-version"/>.</report>
@@ -1830,8 +1830,8 @@
       
     </rule>
   </pattern>
-  <pattern id="date-tests-pattern">
-    <rule context="date" id="date-tests">
+  <pattern xmlns="" id="date-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="date" id="date-tests">
 	  
 	  <assert test="matches(day[1],'^[0-9]{2}$')" role="error" id="date-test-1">date must contain day in the format 00. Currently it is '<value-of select="day"/>'.</assert>
 	  
@@ -1843,29 +1843,29 @@
 	
 	</rule>
   </pattern>
-  <pattern id="day-tests-pattern">
-    <rule context="day[not(parent::string-date)]" id="day-tests">
+  <pattern xmlns="" id="day-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="day[not(parent::string-date)]" id="day-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1-2][0-9]$|^[3][0-1]$')" role="error" id="day-conformity">day must contain 2 digits which are between '01' and '31' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
-  <pattern id="month-tests-pattern">
-    <rule context="month[not(parent::string-date)]" id="month-tests">
+  <pattern xmlns="" id="month-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="month[not(parent::string-date)]" id="month-tests">
       
       <assert test="matches(.,'^[0][1-9]$|^[1][0-2]$')" role="error" id="month-conformity">month must contain 2 digits which are between '01' and '12' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
-  <pattern id="year-article-meta-tests-pattern">
-    <rule context="year[ancestor::article-meta]" id="year-article-meta-tests">
+  <pattern xmlns="" id="year-article-meta-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="year[ancestor::article-meta]" id="year-article-meta-tests">
       
       <assert test="matches(.,'^[2]0[0-2][0-9]$')" role="error" id="year-article-meta-conformity">year in article-meta must contain 4 digits which match the regular expression '^[2]0[0-2][0-9]$' - '<value-of select="."/>' doesn't meet this requirement.</assert>
       
     </rule>
   </pattern>
-  <pattern id="year-element-citation-tests-pattern">
-    <rule context="year[ancestor::element-citation]" id="year-element-citation-tests">
+  <pattern xmlns="" id="year-element-citation-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="year[ancestor::element-citation]" id="year-element-citation-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-year-element-citation-conformity" test="matches(.,'^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$')" role="warning" id="pre-year-element-citation-conformity">year in reference must contain content which matches the regular expression '^[1][6-9][0-9][0-9][a-z]?$|^[2]0[0-2][0-9][a-z]?$' - '<value-of select="."/>' doesn't meet this requirement. If there is no year, and this cannot be determined yourself, please query this with the authors.</assert>
       
@@ -1873,8 +1873,8 @@
       
     </rule>
   </pattern>
-  <pattern id="pub-date-tests-pattern">
-    <rule context="pub-date" id="pub-date-tests">
+  <pattern xmlns="" id="pub-date-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="pub-date" id="pub-date-tests">
       <let name="allowed-attributes" value="('publication-format','date-type','iso-8601-date')"/>
       
       <assert test="parent::article-meta" role="error" id="pub-date-test-1">pub-date can only be a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>
@@ -1900,8 +1900,8 @@
       
     </rule>
   </pattern>
-  <pattern id="pub-date-child-tests-pattern">
-    <rule context="pub-date/*" id="pub-date-child-tests">
+  <pattern xmlns="" id="pub-date-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="pub-date/*" id="pub-date-child-tests">
       <let name="allowed-children" value="('day','month','year')"/>
 
     <assert test="name()=$allowed-children" role="error" id="pub-date-child-test-1">
@@ -1909,24 +1909,24 @@
 
      </rule>
   </pattern>
-  <pattern id="press-pub-date-pattern">
-    <rule context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
+  <pattern xmlns="" id="press-pub-date-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="pub-date[not(@pub-type='collection') and day and month and year][concat(year[1],'-',month[1],'-',day[1]) gt format-date(current-date(), '[Y0001]-[M01]-[D01]')]" id="press-pub-date">
       <let name="date" value="concat(year[1],'-',month[1],'-',day[1])"/>
       
       <report test="e:get-weekday($date) != 2" role="warning" id="press-pub-date-check">The publication date for this article is in the future (<value-of select="$date"/>), but the day of publication is not a Tuesday (for Press). Is that correct?</report>
       
     </rule>
   </pattern>
-  <pattern id="pub-history-exception-tests-pattern">
-    <rule context="pub-history" id="pub-history-exception-tests">
+  <pattern xmlns="" id="pub-history-exception-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="pub-history" id="pub-history-exception-tests">
       
       <report test="ancestor::article/@article-type=('article-commentary','editorial',$notice-article-types)" role="error" id="pub-history-exception-1">
         <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
       
     </rule>
   </pattern>
-  <pattern id="pub-history-tests-pattern">
-    <rule context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
+  <pattern xmlns="" id="pub-history-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(@article-type) or @article-type=('research-article','review-article','discussion','')]//pub-history" id="pub-history-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       
       <assert test="parent::article-meta" role="error" id="pub-history-parent">
@@ -1961,8 +1961,8 @@
         <name/> has <value-of select="count(event/date[@date-type='sent-for-review'])"/> sent for review event elements. Under JATS version <value-of select="$dtd-version"/> this must be captured in pub-history.</report>
     </rule>
   </pattern>
-  <pattern id="event-tests-pattern">
-    <rule context="event" id="event-tests">
+  <pattern xmlns="" id="event-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event" id="event-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
@@ -1982,8 +1982,8 @@
       <report test="date and self-uri and date[1]/@date-type != self-uri[1]/@content-type" role="error" id="event-test-5">This event in pub-history has a date with the date-type <value-of select="date[1]/@date-type"/>, but a self-uri with the content-type <value-of select="self-uri[1]/@content-type"/>. These values should be the same, so one (or both of them) are incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="rp-event-tests-pattern">
-    <rule context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
+  <pattern xmlns="" id="rp-event-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" id="rp-event-tests">
       <let name="rp-link" value="self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>
       <let name="rp-version" value="replace($rp-link,'^.*\.','')"/>
       <let name="rp-pub-date" value="date[@date-type='reviewed-preprint']/@iso-8601-date"/>
@@ -1999,8 +1999,8 @@
       
     </rule>
   </pattern>
-  <pattern id="event-child-tests-pattern">
-    <rule context="event/*" id="event-child-tests">
+  <pattern xmlns="" id="event-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event/*" id="event-child-tests">
       <let name="allowed-elems" value="('event-desc','date','self-uri')"/>
       
       <assert test="name()=$allowed-elems" role="error" id="event-child">
@@ -2010,8 +2010,8 @@
         <name/> is not allowed in a sent for review event element. The only permitted children of that event type are <value-of select="string-join($allowed-elems[.!='self-uri'],', ')"/>.</report>
     </rule>
   </pattern>
-  <pattern id="event-desc-tests-pattern">
-    <rule context="event-desc" id="event-desc-tests">
+  <pattern xmlns="" id="event-desc-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event-desc" id="event-desc-tests">
       <let name="template-descriptions" value="('This manuscript was published as a reviewed preprint.','The reviewed preprint was revised.','Reviewed preprint posted','Reviewed preprint revised')"/>
       
       <report test="(parent::event/date[@date-type='preprint'] or (self-uri and not(matches(parent::event/self-uri[1]/@xlink:href,'elifesciences\.org|10.7554/e[lL]ife')))) and not(.='Preprint posted' or starts-with(.,'This manuscript was published as a preprint at ') or .='This manuscript was published as a preprint.')" role="error" id="event-desc-content">
@@ -2028,8 +2028,8 @@
       
     </rule>
   </pattern>
-  <pattern id="event-date-tests-pattern">
-    <rule context="event/date" id="event-date-tests">
+  <pattern xmlns="" id="event-date-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event/date" id="event-date-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="date" value="date[1]/@iso-8601-date"/>
       <let name="default-date-type-vals" value="('preprint','reviewed-preprint')"/>
@@ -2042,8 +2042,8 @@
         <name/> in event must have a date-type attribute with one of the following values: <value-of select="string-join($date-type-vals,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="event-self-uri-tests-pattern">
-    <rule context="event/self-uri" id="event-self-uri-tests">
+  <pattern xmlns="" id="event-self-uri-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="event/self-uri" id="event-self-uri-tests">
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="content-type" value="@content-type"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
@@ -2091,8 +2091,8 @@
         <name/> in event has the attribute content-type="<value-of select="@content-type"/>", but the xlink:href attribute contains '<value-of select="@*:href"/>', which is not an extension of the reviewed preprint doi listed under this event - '<value-of select="preceding-sibling::self-uri[@content-type='reviewed-preprint'][1]/@xlink:href"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="front-permissions-tests-pattern">
-    <rule context="front//permissions" id="front-permissions-tests">
+  <pattern xmlns="" id="front-permissions-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//permissions" id="front-permissions-tests">
 	  <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
 	  <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
 	  <let name="license-type" value="license/@xlink:href"/>
@@ -2108,8 +2108,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="cc-by-permissions-tests-pattern">
-    <rule context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
+  <pattern xmlns="" id="cc-by-permissions-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]" id="cc-by-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@xlink:href"/>
@@ -2136,8 +2136,8 @@
       <report test="ancestor::article-meta/contrib-group[1]/aff[count(descendant::institution-id) = 1 and descendant::institution-id=$nih-rors]" role="warning" id="permissions-test-17">This article is CC-BY, but one or more of the authors are affiliated with the NIH (<value-of select="string-join(for $x in ancestor::article-meta/contrib-group[1]/aff[count(descendant::institution-id) = 1 and descendant::institution-id=$nih-rors] return $x,'; ')"/>). Should it be CC0 instead?</report>
     </rule>
   </pattern>
-  <pattern id="cc-0-permissions-tests-pattern">
-    <rule context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
+  <pattern xmlns="" id="cc-0-permissions-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" id="cc-0-permissions-tests">
       <let name="license-type" value="license/@xlink:href"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" test="copyright-statement" role="error" id="cc-0-test-1">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-statement (<value-of select="copyright-statement"/>) which is not correct.</report>
@@ -2148,8 +2148,8 @@
       
     </rule>
   </pattern>
-  <pattern id="license-tests-pattern">
-    <rule context="front//permissions/license" id="license-tests">
+  <pattern xmlns="" id="license-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//permissions/license" id="license-tests">
 	
 	  <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-1" test="ali:license_ref" role="error" id="license-test-1">license must contain ali:license_ref.</assert>
 	
@@ -2157,8 +2157,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="license-p-tests-pattern">
-    <rule context="front//permissions/license/license-p" id="license-p-tests">
+  <pattern xmlns="" id="license-p-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//permissions/license/license-p" id="license-p-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
       
@@ -2171,22 +2171,22 @@
       
     </rule>
   </pattern>
-  <pattern id="license-link-tests-pattern">
-    <rule context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
+  <pattern xmlns="" id="license-link-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions/license[@xlink:href]/license-p" id="license-link-tests">
       <let name="license-link" value="parent::license/@xlink:href"/>
       
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hx30h-p-test-3" test="some $x in ext-link satisfies $x/@xlink:href = $license-link" role="error" id="license-p-test-3">If a license element has an xlink:href attribute, there must be a link in license-p that matches the link in the license/@xlink:href attribute. License link: <value-of select="$license-link"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="license-ali-ref-link-tests-pattern">
-    <rule context="permissions/license[ali:license_ref]/license-p" id="license-ali-ref-link-tests">
+  <pattern xmlns="" id="license-ali-ref-link-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions/license[ali:license_ref]/license-p" id="license-ali-ref-link-tests">
       <let name="ali-ref" value="parent::license/ali:license_ref"/>
       
       <assert test="some $x in ext-link satisfies $x/@xlink:href = $ali-ref" role="error" id="license-p-test-4">If a license contains an ali:license_ref element, there must be a link in license-p that matches the link in the ali:license_ref element. ali:license_ref link: <value-of select="$ali-ref"/>. Links in the license-p: <value-of select="string-join(ext-link/@xlink:href,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="abstract-tests-pattern">
-    <rule context="front//abstract" id="abstract-tests">
+  <pattern xmlns="" id="abstract-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//abstract" id="abstract-tests">
 	  <let name="article-type" value="ancestor::article/@article-type"/>
 	
 	  <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-2" test="(count(p) + count(sec[descendant::p])) lt 1" role="error" id="abstract-test-2">At least 1 p element or sec element (with descendant p) must be present in abstract.</report>
@@ -2207,30 +2207,30 @@
 		
     </rule>
   </pattern>
-  <pattern id="medicine-abstract-tests-pattern">
-    <rule context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
+  <pattern xmlns="" id="medicine-abstract-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']//article-meta[article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and contains(title-group[1]/article-title[1],': ')]/abstract[not(@abstract-type)]" id="medicine-abstract-tests">
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#medicine-abstract-conformance" test="sec" role="warning" id="medicine-abstract-conformance">Medicine articles with a colon in their title should likely have a structured abstract. If there is no note in eJP about this, either the colon in the title is incorrect, or the abstract should be changed to a structured format.</assert>
       
     </rule>
   </pattern>
-  <pattern id="medicine-abstract-tests-2-pattern">
-    <rule context="article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
+  <pattern xmlns="" id="medicine-abstract-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']//article-meta[article-categories[not(subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article'])]/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received' and @iso-8601-date]]/abstract[not(@abstract-type) and not(sec)]" id="medicine-abstract-tests-2">
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#medicine-abstract-conformance-2" test="parent::article-meta/history/date[@date-type='received']/@iso-8601-date lt '2021-04-05'" role="warning" id="medicine-abstract-conformance-2">
         <value-of select="parent::article-meta/article-categories/subj-group[@subj-group-type='heading']/subject[. = ('Medicine','Epidemiology and Global Health')]"/> articles submitted after 4th April 2021 should have a structured abstract, but this one does not. eLife: please check this with Editorial if there are no related notes from eJP. Exeter: Please flag this to the eLife Production team.</assert>
       
     </rule>
   </pattern>
-  <pattern id="abstract-children-tests-pattern">
-    <rule context="front//abstract/*" id="abstract-children-tests">
+  <pattern xmlns="" id="abstract-children-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//abstract/*" id="abstract-children-tests">
       <let name="allowed-elems" value="('p','sec','title')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-child-test-1" test="local-name() = $allowed-elems" role="error" id="abstract-child-test-1">
         <name/> is not allowed as a child of abstract.</assert>
     </rule>
   </pattern>
-  <pattern id="abstract-sec-titles-pattern">
-    <rule context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
+  <pattern xmlns="" id="abstract-sec-titles-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="abstract[not(@abstract-type)]/sec" id="abstract-sec-titles">
       <let name="pos" value="count(ancestor::abstract/sec) - count(following-sibling::sec)"/>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-conformance-1" test="($pos = 1) and (title != 'Background:')" role="error" id="clintrial-conformance-1">First section title is '<value-of select="title"/>' - but the only allowed value is 'Background:'.</report>
@@ -2256,15 +2256,15 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-clintrial-conformance-9" test="starts-with(lower-case(title),'clinical trial number') and not(descendant::related-object[@document-id-type='clinical-trial-number'])" role="error" id="final-clintrial-conformance-9">A section with the title <value-of select="title"/> in the abstract must have at least one related-object element that contains all the information related to the clinical trial. This one does not.</report>
     </rule>
   </pattern>
-  <pattern id="abstract-sec-title-content-pattern">
-    <rule context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
+  <pattern xmlns="" id="abstract-sec-title-content-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="abstract[not(@abstract-type)]/sec/title" id="abstract-sec-title-content">
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#struct-abs-title-1" test="*" role="error" id="struct-abs-title-1">A title in a structured abstract cannot contain a child element. It should only contain text. This title with the content '<value-of select="."/>' has the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       
     </rule>
   </pattern>
-  <pattern id="clintrial-related-object-pattern">
-    <rule context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
+  <pattern xmlns="" id="clintrial-related-object-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="abstract[not(@abstract-type) and sec]//related-object" id="clintrial-related-object">
       <let name="registries" value="'clinical-trial-registries.xml'"/>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-1" test="ancestor::sec[title = 'Clinical trial number:']" role="error" id="clintrial-related-object-1">
@@ -2312,15 +2312,15 @@
       
     </rule>
   </pattern>
-  <pattern id="clintrial-related-object-p-pattern">
-    <rule context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
+  <pattern xmlns="" id="clintrial-related-object-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="abstract[not(@abstract-type)]/sec[//related-object[@document-id-type='clinical-trial-number']]" id="clintrial-related-object-p">
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#clintrial-related-object-13" test="count(descendant::related-object[@document-id-type='clinical-trial-number']) gt 3" role="warning" id="clintrial-related-object-13">There are <value-of select="count(descendant::related-object)"/> clinical trial numbers tagged in the structured abstract, which seems like a large number. Please check that this is correct and has not been mistagged.</report>
       
     </rule>
   </pattern>
-  <pattern id="abstract-word-count-pattern">
-    <rule context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
+  <pattern xmlns="" id="abstract-word-count-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//abstract[not(@abstract-type) and not(sec)]" id="abstract-word-count">
       <let name="p-words" value="string-join(child::p[not(starts-with(.,'DOI:') or starts-with(.,'Editorial note:'))],' ')"/>
 	    <let name="count" value="count(tokenize(normalize-space(replace($p-words,'\p{P}','')),' '))"/>
 	     
@@ -2329,14 +2329,14 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#final-abstract-word-count-restriction" test="($count gt 300)" role="warning" id="final-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 300. Abstracts with more than 280 words should be checked with the eLife Editorial team.</report>
 	   </rule>
   </pattern>
-  <pattern id="aff-tests-pattern">
-    <rule context="article-meta/contrib-group/aff" id="aff-tests">
+  <pattern xmlns="" id="aff-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/contrib-group/aff" id="aff-tests">
       
     <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h5tdf-aff-test-1" test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
   </pattern>
-  <pattern id="author-aff-tests-pattern">
-    <rule context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
+  <pattern xmlns="" id="author-aff-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/contrib-group[not(@*)]//aff" id="author-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hdxya-pre-auth-aff-test-1" test="country" role="warning" id="pre-auth-aff-test-1">Author affiliations must have a country. This one does not - <value-of select="$display"/>. Please query with the authors.</assert>
@@ -2354,8 +2354,8 @@
       </assert>
     </rule>
   </pattern>
-  <pattern id="aff-institution-wrap-tests-pattern">
-    <rule context="aff//institution-wrap" id="aff-institution-wrap-tests">
+  <pattern xmlns="" id="aff-institution-wrap-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff//institution-wrap" id="aff-institution-wrap-tests">
       <let name="display" value="string-join(parent::aff//*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hx5tv-aff-institution-wrap-test-1" test="institution-id and institution[not(@*)]" role="error" id="aff-institution-wrap-test-1">If an affiliation has an institution wrap, then it must have both an institution-id and an institution. If there is no ROR for this institution, then it should be captured as a single institution element without institution-wrap. This institution-wrap does not have both elements - <value-of select="$display"/>
@@ -2371,8 +2371,8 @@
       
     </rule>
   </pattern>
-  <pattern id="aff-institution-id-tests-pattern">
-    <rule context="aff//institution-id" id="aff-institution-id-tests">
+  <pattern xmlns="" id="aff-institution-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff//institution-id" id="aff-institution-id-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h9fxi-aff-institution-id-test-1" test="@institution-id-type='ror'" role="error" id="aff-institution-id-test-1">institution-id in aff must have the attribute institution-id-type="ror".</assert>
       
@@ -2384,8 +2384,8 @@
       
     </rule>
   </pattern>
-  <pattern id="gen-aff-tests-pattern">
-    <rule context="aff" id="gen-aff-tests">
+  <pattern xmlns="" id="gen-aff-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff" id="gen-aff-tests">
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hxnmu-gen-aff-test-1" test="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)]) gt 1" role="error" id="gen-aff-test-1">Affiliations cannot have more than 1 top level institutions. <value-of select="$display"/> has <value-of select="count(institution[not(@*)]) + count(institution-wrap/institution[not(@*)])"/>.</report>
@@ -2401,8 +2401,8 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hf1l4-gen-aff-test-6" test="text()" role="error" id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule>
   </pattern>
-  <pattern id="aff-child-tests-pattern">
-    <rule context="aff/*" id="aff-child-tests">
+  <pattern xmlns="" id="aff-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff/*" id="aff-child-tests">
       <let name="allowed-elems" value="('label','institution','institution-wrap','addr-line','country')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hrsm6-aff-child-conformity" test="name()=$allowed-elems" role="error" id="aff-child-conformity">
@@ -2410,8 +2410,8 @@
       
     </rule>
   </pattern>
-  <pattern id="aff-ror-tests-pattern">
-    <rule context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
+  <pattern xmlns="" id="aff-ror-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff[institution-wrap/institution-id[@institution-id-type='ror']]" id="aff-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content'))],', ')"/>
@@ -2429,15 +2429,15 @@
       <report test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')" role="error" id="aff-ror-cal-coast">Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - <value-of select="institution-wrap[1]/institution[1]"/>. The ROR id is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="addr-line-parent-test-pattern">
-    <rule context="addr-line" id="addr-line-parent-test">
+  <pattern xmlns="" id="addr-line-parent-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="addr-line" id="addr-line-parent-test">
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjjnh-addr-line-parent" test="parent::aff" role="error" id="addr-line-parent">
         <value-of select="name()"/> is not allowed as a child of &lt;<value-of select="parent::*[1]/local-name()"/>&gt;.</assert>
     </rule>
   </pattern>
-  <pattern id="addr-line-child-tests-pattern">
-    <rule context="addr-line/*" id="addr-line-child-tests">
+  <pattern xmlns="" id="addr-line-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="addr-line/*" id="addr-line-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h1gbm-addr-line-child-1" test="name()='named-content'" role="error" id="addr-line-child-1">
         <value-of select="name()"/> is not allowed as a child of &lt;addr-line&gt;.</assert>
@@ -2446,8 +2446,8 @@
         <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
   </pattern>
-  <pattern id="funding-group-tests-pattern">
-    <rule context="article-meta/funding-group" id="funding-group-tests">
+  <pattern xmlns="" id="funding-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/funding-group" id="funding-group-tests">
 		
 		<assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-1" test="count(funding-statement) = 1" role="error" id="funding-group-test-1">One funding-statement should be present in funding-group.</assert>
 		
@@ -2458,15 +2458,15 @@
 	  <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-4" test="(count(award-group) != 0) and not(matches(funding-statement[1],'^The funders? had no role in study design, data collection,? and interpretation, or the decision to submit the work for publication\.(\sFor the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission\.|\sOpen access funding provided by Max Planck Society\.)?$'))" role="warning" id="funding-group-test-4">Is the funding-statement correct? There are funders, but the statement is '<value-of select="funding-statement[1]"/>'. If there are funders it should usually be 'The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.'</report>
     </rule>
   </pattern>
-  <pattern id="wellcome-fund-statement-tests-pattern">
-    <rule context="article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" id="wellcome-fund-statement-tests">
+  <pattern xmlns="" id="wellcome-fund-statement-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/funding-group[descendant::institution[matches(lower-case(.),'wellcome') and not(matches(lower-case(.),'burroughs'))]]/funding-statement" id="wellcome-fund-statement-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-fund-statement" test="matches(lower-case(.),'for the purpose of open access, the authors have applied a cc by public copyright license to any author accepted manuscript version arising from this submission\.')" role="warning" id="wellcome-fund-statement">This article has Wellcome funding declared, but the funding statement does not end with "For the purpose of Open Access, the authors have applied a CC BY public copyright license to any Author Accepted Manuscript version arising from this submission." is that correct? The funding statement is currently <value-of select="."/>.</assert>
       
     </rule>
   </pattern>
-  <pattern id="max-planck-fund-statement-tests-pattern">
-    <rule context="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" id="max-planck-fund-statement-tests">
+  <pattern xmlns="" id="max-planck-fund-statement-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/funding-group/funding-statement[not(contains(lower-case(.),'open access funding provided by max planck society'))]" id="max-planck-fund-statement-tests">
       <let name="corresp-authors" value="ancestor::article-meta/contrib-group[1]/contrib[@contrib-type='author' and @corresp='yes']"/>
       <let name="nested-affs" value="$corresp-authors//aff//institution"/>
       <let name="corresp-author-rids" value="$corresp-authors/xref[@ref-type='aff']/@rid"/>
@@ -2476,8 +2476,8 @@
       
     </rule>
   </pattern>
-  <pattern id="award-group-tests-pattern">
-    <rule context="funding-group/award-group" id="award-group-tests">
+  <pattern xmlns="" id="award-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group" id="award-group-tests">
 	  <let name="id" value="@id"/>
 	  <let name="institution" value="funding-source[1]/institution-wrap[1]/institution[1]"/>
 		
@@ -2495,8 +2495,8 @@
 	  
 	</rule>
   </pattern>
-  <pattern id="general-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
+  <pattern xmlns="" id="general-grant-doi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id[not(.=$grant-doi-exception-funder-ids)]]" id="general-grant-doi-tests">
       <let name="award-id" value="award-id"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
@@ -2511,8 +2511,8 @@
       
 	</rule>
   </pattern>
-  <pattern id="general-funding-no-award-id-tests-pattern">
-    <rule context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
+  <pattern xmlns="" id="general-funding-no-award-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group[not(award-id) and funding-source/institution-wrap/institution-id]" id="general-funding-no-award-id-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
       <let name="grant-doi-count" value="count($funder-entry//*:grant)"/>
@@ -2520,8 +2520,8 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#grant-doi-test-3" test="$grant-doi-count gt 29" role="warning" id="grant-doi-test-3">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has no award-id, but the funder is known to mint grant DOIs (for example in the format <value-of select="$funder-entry/descendant::*:grant[1]/@doi"/> for ID <value-of select="$funder-entry/descendant::*:grant[1]/@award"/>). Is there a missing grant DOI or award ID for this funding?</report>
     </rule>
   </pattern>
-  <pattern id="wellcome-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" id="wellcome-grant-doi-tests">
+  <pattern xmlns="" id="wellcome-grant-doi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" id="wellcome-grant-doi-tests">
       <let name="funder-entries" value="key('ror-by-any-id', $wellcome-funder-ids, $rors-doc)"/>
       <let name="grants" value="$funder-entries/*:grant"/>
       <let name="award-id-elem" value="award-id"/>
@@ -2533,8 +2533,8 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="wellcome-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
   </pattern>
-  <pattern id="eu-horizon-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" id="eu-horizon-grant-doi-tests">
+  <pattern xmlns="" id="eu-horizon-grant-doi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" id="eu-horizon-grant-doi-tests">
       <let name="funder-entries" value="key('ror-by-any-id', ($eu-ror-ids,$eu-horizon-fundref-ids), $rors-doc)"/>
       <let name="grants" value="$funder-entries/*:grant"/>
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
@@ -2546,8 +2546,8 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="eu-horizon-grant-doi-test-2">Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
   </pattern>
-  <pattern id="known-grant-funder-grant-doi-tests-pattern">
-    <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ids]" id="known-grant-funder-grant-doi-tests">
+  <pattern xmlns="" id="known-grant-funder-grant-doi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$known-grant-funder-ids]" id="known-grant-funder-grant-doi-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entry" value="key('ror-by-any-id', $funder-id, $rors-doc)"/>
       <let name="grants" value="$funder-entry/*:grant"/>
@@ -2562,8 +2562,8 @@
 
     </rule>
   </pattern>
-  <pattern id="award-id-tests-pattern">
-    <rule context="funding-group/award-group/award-id" id="award-id-tests">
+  <pattern xmlns="" id="award-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
       <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
@@ -2592,15 +2592,15 @@
       
     </rule>
   </pattern>
-  <pattern id="institution-wrap-tests-pattern">
-    <rule context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
+  <pattern xmlns="" id="institution-wrap-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//award-group//institution-wrap" id="institution-wrap-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test" test="institution-id[@institution-id-type=('FundRef','ror')]" role="warning" id="institution-id-test">Whenever possible, a funder should have an insitution id (either a ROR or doi from the open funder registry). (institution-id with an allowed institution-id-type is not present in institution-wrap).</assert>
       
     </rule>
   </pattern>
-  <pattern id="institution-id-tests-pattern">
-    <rule context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
+  <pattern xmlns="" id="institution-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//award-group//institution-wrap/institution-id" id="institution-id-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#institution-id-test-2" test="@institution-id-type=('ror','FundRef')" role="error" id="institution-id-test-2">
         <name/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</assert>
@@ -2619,8 +2619,8 @@
       
     </rule>
   </pattern>
-  <pattern id="institution-id-doi-tests-pattern">
-    <rule context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
+  <pattern xmlns="" id="institution-id-doi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//award-group//institution-wrap/institution-id[@institution-id-type='doi']" id="institution-id-doi-tests">
       
       <assert test="@vocab='open-funder-registry'" role="error" id="institution-id-test-6">
         <name/> in funding must have a vocab="open-funder-registry" attribute. This one does not.</assert>
@@ -2630,8 +2630,8 @@
       
     </rule>
   </pattern>
-  <pattern id="funding-ror-tests-pattern">
-    <rule context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
+  <pattern xmlns="" id="funding-ror-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" id="funding-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="key('ror-by-ror-id', $ror, $rors-doc)"/>
       
@@ -2641,8 +2641,8 @@
       
     </rule>
   </pattern>
-  <pattern id="par-tests-pattern">
-    <rule context="funding-group//principal-award-recipient" id="par-tests">
+  <pattern xmlns="" id="par-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group//principal-award-recipient" id="par-tests">
       <let name="authors" value="for $x in ancestor::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']         return if ($x/name) then e:get-name($x/name[1])         else if ($x/collab or $x/collab-name) then e:get-collab($x/*[name()=('collab','collab-name')][1])         else ''"/>
       <let name="par-text" value="if (name) then e:get-name(name[1])         else if (string-name) then string-name         else if (institution) then institution         else e:get-collab(*[name()=('collab','collab-name')][1])"/>
       
@@ -2653,8 +2653,8 @@
       
     </rule>
   </pattern>
-  <pattern id="multi-par-tests-pattern">
-    <rule context="funding-group//principal-award-recipient[count(name) gt 1]" id="multi-par-tests">
+  <pattern xmlns="" id="multi-par-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group//principal-award-recipient[count(name) gt 1]" id="multi-par-tests">
       <let name="names" value="for $name in name return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
       
@@ -2662,8 +2662,8 @@
       
     </rule>
   </pattern>
-  <pattern id="par-name-tests-pattern">
-    <rule context="funding-group//principal-award-recipient/name" id="par-name-tests">
+  <pattern xmlns="" id="par-name-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group//principal-award-recipient/name" id="par-name-tests">
       
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-name-test-1" test="contains(.,'.')" role="error" id="par-name-test-1">Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.</report>
       
@@ -2671,16 +2671,16 @@
       
     </rule>
   </pattern>
-  <pattern id="kwd-group-tests-pattern">
-    <rule context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
+  <pattern xmlns="" id="kwd-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/kwd-group[not(@kwd-group-type='research-organism')]" id="kwd-group-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-type" test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#non-ro-kwd-presence-test" test="kwd" role="warning" id="non-ro-kwd-presence-test">kwd-group must contain at least one kwd</assert>
     </rule>
   </pattern>
-  <pattern id="ro-kwd-group-tests-pattern">
-    <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
+  <pattern xmlns="" id="ro-kwd-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/kwd-group[@kwd-group-type='research-organism']" id="ro-kwd-group-tests">
 	  
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-title" test="title = 'Research organism'" role="error" id="kwd-group-title">kwd-group title is <value-of select="title"/>, which is wrong. It should be 'Research organism'.</assert>
       
@@ -2688,8 +2688,8 @@
 	
 	</rule>
   </pattern>
-  <pattern id="ro-kwd-tests-pattern">
-    <rule context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
+  <pattern xmlns="" id="ro-kwd-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" id="ro-kwd-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-upper-case" test="substring(.,1,1) = upper-case(substring(.,1,1))" role="error" id="kwd-upper-case">research-organism kwd elements should start with an upper-case letter.</assert>
       
@@ -2699,8 +2699,8 @@
       
     </rule>
   </pattern>
-  <pattern id="custom-meta-group-tests-pattern">
-    <rule context="article-meta/custom-meta-group" id="custom-meta-group-tests">
+  <pattern xmlns="" id="custom-meta-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group" id="custom-meta-group-tests">
       <let name="type" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="($type = $research-subj) and not(count(custom-meta[@specific-use='meta-only'])=(1,2))" role="error" id="custom-meta-presence">Only 1 or 2 custom-meta[@specific-use='meta-only'] elements are permitted in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
@@ -2709,8 +2709,8 @@
       
     </rule>
   </pattern>
-  <pattern id="custom-meta-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
+  <pattern xmlns="" id="custom-meta-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group/custom-meta" id="custom-meta-tests">
       <let name="type" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::custom-meta-group/custom-meta) - count(following-sibling::custom-meta)"/>
       
@@ -2730,8 +2730,8 @@
       
     </rule>
   </pattern>
-  <pattern id="meta-value-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
+  <pattern xmlns="" id="meta-value-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" id="meta-value-tests">
       <let name="subj" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <let name="we-token" value="substring-before(substring-after(lower-case(.),' we '),' ')"/>
@@ -2766,8 +2766,8 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-16" test="$we-token = $verbs" role="warning" id="custom-meta-test-16">Impact statement contains 'we' followed by a verb - '<value-of select="concat('we ',$we-token)"/>' in '<value-of select="."/>'. Is this possessive language relating to the article or research itself (which should be removed)?</report>
     </rule>
   </pattern>
-  <pattern id="meta-value-child-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
+  <pattern xmlns="" id="meta-value-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group/custom-meta/meta-value/*" id="meta-value-child-tests">
       <let name="allowed-elements" value="('italic','sup','sub')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-child-test-1" test="local-name() = $allowed-elements" role="error" id="custom-meta-child-test-1">
@@ -2775,8 +2775,8 @@
       
     </rule>
   </pattern>
-  <pattern id="featmeta-value-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
+  <pattern xmlns="" id="featmeta-value-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" id="featmeta-value-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feat-custom-meta-test-1" test="child::*" role="error" id="feat-custom-meta-test-1">
@@ -2797,15 +2797,15 @@
       
     </rule>
   </pattern>
-  <pattern id="schema-value-tests-pattern">
-    <rule context="article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value" id="schema-value-tests">
+  <pattern xmlns="" id="schema-value-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value" id="schema-value-tests">
       
       <assert test=".='2.0.0'" role="error" id="schema-custom-meta-test-1">The meta-value element for schema-version must have a value of '2.0.0'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elocation-id-tests-pattern">
-    <rule context="article-meta/elocation-id" id="elocation-id-tests">
+  <pattern xmlns="" id="elocation-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/elocation-id" id="elocation-id-tests">
       <let name="article-id" value="parent::article-meta/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="is-prc" value="e:is-prc(.)"/>
       
@@ -2814,16 +2814,16 @@
       <report test="$is-prc and . != concat('RP' , $article-id)" role="error" id="test-elocation-conformance-prc">elocation-id is incorrect. In PRC articles its value should be a concatenation of 'RP' and the article id, in this case <value-of select="concat('RP',$article-id)"/>. Currently it is <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="related-object-tests-pattern">
-    <rule context="related-object" id="related-object-tests">
+  <pattern xmlns="" id="related-object-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="related-object" id="related-object-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#related-object-ancestor" test="ancestor::abstract[not(@abstract-type)] or parent::front-stub/parent::sub-article[@article-type='editor-report']" role="error" id="related-object-ancestor">
         <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or in the front-stub for an editor's evaluation.</assert>
     </rule>
   </pattern>
   
-  <pattern id="volume-test-pattern">
-    <rule context="article-meta/volume" id="volume-test">
+  <pattern xmlns="" id="volume-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta/volume" id="volume-test">
       <let name="is-prc" value="e:is-prc(.)"/>
       <!-- @date-type='pub' included for legacy content -->
       <let name="pub-date" value=" if ($is-prc) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]         else parent::article-meta/pub-date[@publication-format='electronic'][@date-type=('publication','pub')]/year[1]"/>
@@ -2832,8 +2832,8 @@
     </rule>
   </pattern>
 
-  <pattern id="equal-author-tests-pattern">
-    <rule context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
+  <pattern xmlns="" id="equal-author-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//contrib[@contrib-type='author']" id="equal-author-tests">
     	
     <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#equal-author-test-1" test="@equal-contrib='yes' and not(xref[matches(@rid,'^equal-contrib[0-9]$')])" role="error" id="equal-author-test-1">Equal authors must contain an xref[@ref-type='fn'] with an @rid that starts with 'equal-contrib' and ends in a digit.</report>
     
@@ -2842,8 +2842,8 @@
 		</rule>
   </pattern> 	
   
-  <pattern id="p-tests-pattern">
-    <rule context="p" id="p-tests">
+  <pattern xmlns="" id="p-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p" id="p-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <!--<report test="not(matches(.,'^[\p{Lu}\p{N}\p{Ps}\p{S}\p{Pi}\p{Z}]')) and not(parent::list-item) and not(parent::td)"
@@ -2860,8 +2860,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="p-text-tests-pattern">
-    <rule context="p[not(inline-formula or disp-formula or code)]" id="p-text-tests">
+  <pattern xmlns="" id="p-text-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[not(inline-formula or disp-formula or code)]" id="p-text-tests">
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'±[Ss][Dd]|±standard|±SEM|±S\.E\.M|±s\.e\.m|\+[Ss][Dd]|\+standard|\+SEM|\+S\.E\.M|\+s\.e\.m')) then $x else ()"/>
       
       <assert test="count($text-tokens) = 0" role="error" id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
@@ -2871,15 +2871,15 @@
       <report test="(count(descendant::*:inline-graphic) ge 1) and normalize-space(.)=''" role="error" id="final-p-test-8">p element contains one or more inline-graphics and no other text, which is not permitted.</report>
     </rule>
   </pattern>
-  <pattern id="p-child-tests-pattern">
-    <rule context="article//p/*" id="p-child-tests">
+  <pattern xmlns="" id="p-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//p/*" id="p-child-tests">
       <let name="allowed-p-blocks" value="('bold', 'sup', 'sub', 'sc', 'italic', 'underline', 'xref','inline-formula', 'disp-formula','supplementary-material', 'code', 'ext-link', 'named-content', 'inline-graphic', 'monospace', 'related-object', 'table-wrap','styled-content')"/>
       
       <assert test="if (ancestor::sec[@sec-type='data-availability']) then self::*/local-name() = ($allowed-p-blocks,'element-citation')  else self::*/local-name() = $allowed-p-blocks" role="error" id="allowed-p-test">p element cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-p-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="xref-target-tests-pattern">
-    <rule context="xref" id="xref-target-tests">
+  <pattern xmlns="" id="xref-target-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref" id="xref-target-tests">
       <let name="rid" value="tokenize(@rid,' ')[1]"/>
       <let name="target" value="self::*/ancestor::article//*[@id = $rid]"/>
       
@@ -2916,8 +2916,8 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-target-conformance" test="boolean($target) = false()" role="error" id="xref-target-conformance">xref with @ref-type='<value-of select="@ref-type"/>' points to an element with an @id='<value-of select="$rid"/>', but no such element exists.</report>
     </rule>
   </pattern>
-  <pattern id="body-xref-tests-pattern">
-    <rule context="body//xref" id="body-xref-tests">
+  <pattern xmlns="" id="body-xref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="body//xref" id="body-xref-tests">
       
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#empty-xref-test" test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
       
@@ -2925,8 +2925,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ext-link-tests-pattern">
-    <rule context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
+  <pattern xmlns="" id="ext-link-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ext-link[@ext-link-type='uri']" id="ext-link-tests">
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
       <let name="parent" value="parent::*[1]/local-name()"/>
       <let name="form-children" value="string-join(         for $x in child::* return if ($x/local-name()=$formatting-elems) then $x/local-name()         else ()         ,', ')"/>
@@ -2972,8 +2972,8 @@
       <report test="matches(@xlink:href,'^mailto:')" role="error" id="ext-link-mailto-check">Embedded URL within text starts with the mailto prefix - <value-of select="if (not(. = (@xlink:href,replace(@xlink:href,'^mailto:','')))) then concat(@xlink:href,' embedded in ',.) else ."/>. This will fail ingestion at PMC. Remove this link (the text can remain).</report>
     </rule>
   </pattern>
-  <pattern id="software-heritage-tests-pattern">
-    <rule context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
+  <pattern xmlns="" id="software-heritage-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation[ext-link[1][contains(@xlink:href,'softwareheritage')]]" id="software-heritage-tests">
       <let name="version" value="replace(substring-after(ext-link[1]/@xlink:href,'anchor='),'(;path=.*)?/$','')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-2" test="matches(ext-link[1]/@xlink:href,'.*swh:.:dir.*origin=.*visit=.*anchor=.*')" role="error" id="software-heritage-test-2">Software heritage links in references must be the directory link with contextual information. '<value-of select="ext-link[1]/@xlink:href"/>' is not a directory link with contextual information.</assert>
@@ -2984,8 +2984,8 @@
       
     </rule>
   </pattern>
-  <pattern id="software-heritage-cite-tests-pattern">
-    <rule context="article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']" id="software-heritage-cite-tests">
+  <pattern xmlns="" id="software-heritage-cite-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']" id="software-heritage-cite-tests">
       <let name="rid" value="@rid"/>
       <let name="ref" value="ancestor::article//ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')] and @id=$rid]"/>
       <let name="origin" value="lower-case(substring-before(substring-after($ref/descendant::ext-link[1]/@xlink:href,'origin='),';'))"/>
@@ -2994,15 +2994,15 @@
       
     </rule>
   </pattern>
-  <pattern id="ext-link-tests-2-pattern">
-    <rule context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" id="ext-link-tests-2">
+  <pattern xmlns="" id="ext-link-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ext-link[@ext-link-type='uri' and not(ancestor::sec[@sec-type='data-availability']) and not(parent::element-citation) and not(ancestor::table-wrap) and string-length(.) gt 59]" id="ext-link-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho1mi-ext-link-length" test=". = @xlink:href" role="info" id="ext-link-length">Consider embedding long URLs in text instead of displaying in full, where appropriate. This is a very long URL - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
-  <pattern id="fig-group-tests-pattern">
-    <rule context="fig-group" id="fig-group-tests">
+  <pattern xmlns="" id="fig-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig-group" id="fig-group-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-1" test="count(child::fig[not(@specific-use='child-fig')]) = 1" role="error" id="fig-group-test-1">fig-group must have one and only one main figure.</assert>
       
@@ -3010,8 +3010,8 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-group-child-tests-pattern">
-    <rule context="fig-group/*" id="fig-group-child-tests">
+  <pattern xmlns="" id="fig-group-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig-group/*" id="fig-group-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-child-test-1" test="local-name() = ('fig','media')" role="error" id="fig-group-child-test-1">
         <name/> is not allowed as a child of fig-group.</assert>
@@ -3021,8 +3021,8 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-tests-pattern">
-    <rule context="fig[not(ancestor::sub-article)]" id="fig-tests">
+  <pattern xmlns="" id="fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig[not(ancestor::sub-article)]" id="fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-test-2" test="@position" role="error" id="fig-test-2">fig must have a @position.</assert>
@@ -3049,8 +3049,8 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-7" test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
   </pattern>
-  <pattern id="ar-fig-tests-pattern">
-    <rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
+  <pattern xmlns="" id="ar-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -3072,8 +3072,8 @@
       <report test="matches(label[1],'^Author response image \d+\.$') and (label[1]!=$id-based-label)" role="error" id="ar-fig-position-label-test">Author response image has the label '<value-of select="label"/>', but the figure number in its id (<value-of select="$no"/> in <value-of select="@id"/>) suggests the label should be '<value-of select="$id-based-label"/>'. Which is correct?</report>
     </rule>
   </pattern>
-  <pattern id="graphic-tests-pattern">
-    <rule context="graphic|inline-graphic" id="graphic-tests">
+  <pattern xmlns="" id="graphic-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="graphic|inline-graphic" id="graphic-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="link" value="@xlink:href"/>
       <let name="file" value="lower-case($link)"/>
@@ -3103,8 +3103,8 @@
       <report test="contains($link,'&amp;')" role="error" id="graphic-test-8">Image file-name for <value-of select="if (name()='inline-graphic') then 'inline-graphic' else replace(parent::fig/label,'\.','')"/> contains an ampersand - <value-of select="tokenize($link,'/')[last()]"/>. Please rename the file so that this ampersand is removed.</report>
     </rule>
   </pattern>
-  <pattern id="media-tests-pattern">
-    <rule context="media" id="media-tests">
+  <pattern xmlns="" id="media-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media" id="media-tests">
       <let name="dtd-version" value="ancestor::article/@dtd-version"/>
       <let name="file" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <let name="link" value="@xlink:href"/>
@@ -3145,15 +3145,15 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#media-test-13" test="not(starts-with(@mimetype,'video/') or @mimetype='video') and *" role="error" id="media-test-13">Media element that is not a mimetype="video" cannot contain elements. This one has the following element(s) <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
   </pattern>
-  <pattern id="file-extension-tests-pattern">
-    <rule context="graphic[@xlink:href]|media[@xlink:href]" id="file-extension-tests">
+  <pattern xmlns="" id="file-extension-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="graphic[@xlink:href]|media[@xlink:href]" id="file-extension-tests">
       
       <assert test="matches(@xlink:href,'\.[a-z0-9]+$')" role="error" id="file-extension-conformance">The file extenstion for a file must be in lower case. This <name/> element has an xlink:href which does not end with a lowercase file extension (<value-of select="tokenize(@xlink:href,'\.')[last()]"/> in <value-of select="@xlink:href"/>).</assert>
       
     </rule>
   </pattern>
-  <pattern id="video-test-pattern">
-    <rule context="media[child::label]" id="video-test">
+  <pattern xmlns="" id="video-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media[child::label]" id="video-test">
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-video-title" test="caption/title" role="warning" id="pre-video-title">
         <value-of select="replace(label,'\.$,','')"/> does not have a title. Please query the authors for one.</assert>
@@ -3166,8 +3166,8 @@
       
     </rule>
   </pattern>
-  <pattern id="supplementary-material-tests-pattern">
-    <rule context="supplementary-material" id="supplementary-material-tests">
+  <pattern xmlns="" id="supplementary-material-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material" id="supplementary-material-tests">
       <let name="link" value="media[1]/@xlink:href"/>
       <let name="file" value="if (contains($link,'.')) then lower-case(tokenize($link,'\.')[last()]) else ()"/>
       <let name="code-files" value="('m','py','lib','jl','c','sh','for','cpproj','ipynb','mph','cc','rmd','nlogo','stan','wrl','pl','r','fas','ijm','llb','ipf','mdl','h')"/>
@@ -3212,15 +3212,15 @@
       <report test="not(ancestor::article/@article-type='correction') and not(parent::p/parent::caption/parent::*[name()=('fig','table-wrap','media')]         or parent::sec[@sec-type='supplementary-material'])" role="error" id="supp-mat-placement">supplementary-material must be either a child of a caption p for a fig, table or video, or it must be plaed in the additional files section (sec[@sec-type='supplementary-material']). This one with the label <value-of select="label[1]"/> is not.</report>
     </rule>
   </pattern>
-  <pattern id="box-supp-tests-pattern">
-    <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" id="box-supp-tests"> 
+  <pattern xmlns="" id="box-supp-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" id="box-supp-tests"> 
       <let name="fig-label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       
       <assert test="matches(.,concat('^',$fig-label,'—(source data \d|source code \d)\.$'))" role="error" id="box-fig-sup-test-1">label for supplementary-material for a fig inside boxed-text must begin with the label from its parent fig. '<value-of select="."/>' is not in one of the following formats: '<value-of select="concat($fig-label,'—source data 0')"/>' or '<value-of select="concat($fig-label,'—source code 0')"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="back-supplementary-file-tests-pattern">
-    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" id="back-supplementary-file-tests">
+  <pattern xmlns="" id="back-supplementary-file-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'upplementary file')]" id="back-supplementary-file-tests">
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'upplementary file')]) - count(following::supplementary-material[contains(label[1],'upplementary file')])"/>
       <let name="no" value="substring-after(@id,'supp')"/>
       
@@ -3231,8 +3231,8 @@
       
     </rule>
   </pattern>
-  <pattern id="back-source-data-tests-pattern">
-    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" id="back-source-data-tests">
+  <pattern xmlns="" id="back-source-data-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource data')]" id="back-source-data-tests">
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource data')]) - count(following-sibling::supplementary-material[contains(label[1],'ource data')])"/>
       <let name="no" value="substring-after(@id,'sdata')"/>
       
@@ -3243,8 +3243,8 @@
       
     </rule>
   </pattern>
-  <pattern id="back-source-code-tests-pattern">
-    <rule context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" id="back-source-code-tests">
+  <pattern xmlns="" id="back-source-code-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" id="back-source-code-tests">
       <let name="pos" value="count(parent::*/supplementary-material[contains(label[1],'ource code')]) - count(following-sibling::supplementary-material[contains(label[1],'ource code')])"/>
       <let name="no" value="substring-after(@id,'scode')"/>
       
@@ -3255,8 +3255,8 @@
       
     </rule>
   </pattern>
-  <pattern id="source-data-specific-tests-pattern">
-    <rule context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
+  <pattern xmlns="" id="source-data-specific-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" id="source-data-specific-tests">
       
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-test-1" test="matches(label[1],'^Figure \d{1,4}—source data \d{1,4}|^Appendix \d{1,4}—figure \d{1,4}—source data \d{1,4}') and (count(descendant::xref[@ref-type='fig'])=1) and (descendant::xref[(@ref-type='fig') and contains(.,'upplement')])" role="warning" id="fig-data-test-1">
         <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
@@ -3266,8 +3266,8 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-source-data-tests-pattern">
-    <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" id="fig-source-data-tests">
+  <pattern xmlns="" id="fig-source-data-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" id="fig-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
       <let name="fig-label" value="replace(ancestor::fig[1]/label[1],'\.$','')"/>
@@ -3282,8 +3282,8 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-label" test="$label = concat($fig-label,'—source data ',$pos,'.')" role="error" id="fig-data-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern id="fig-source-code-tests-pattern">
-    <rule context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
+  <pattern xmlns="" id="fig-source-code-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig//supplementary-material[not(ancestor::media) and contains(label[1],' code ')]" id="fig-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="fig-id" value="ancestor::fig[1]/@id"/>
       <let name="fig-label" value="replace(ancestor::fig[1]/label[1],'\.$','')"/>
@@ -3299,8 +3299,8 @@
       
     </rule>
   </pattern>
-  <pattern id="vid-source-data-tests-pattern">
-    <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" id="vid-source-data-tests">
+  <pattern xmlns="" id="vid-source-data-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" id="vid-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="vid-id" value="ancestor::media[1]/@id"/>
       <let name="vid-label" value="replace(ancestor::media[1]/label[1],'\.$','')"/>
@@ -3315,8 +3315,8 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-label" test="$label = concat($vid-label,'—source data ',$pos,'.')" role="error" id="vid-data-label">Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern id="vid-source-code-tests-pattern">
-    <rule context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
+  <pattern xmlns="" id="vid-source-code-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" id="vid-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="vid-id" value="ancestor::media[1]/@id"/>
       <let name="vid-label" value="replace(ancestor::media[1]/label[1],'\.$','')"/>
@@ -3331,8 +3331,8 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-label" test="$label = concat($vid-label,'—source code ',$pos,'.')" role="error" id="vid-code-label">Video source code label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source code ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern id="table-source-data-tests-pattern">
-    <rule context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
+  <pattern xmlns="" id="table-source-data-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap//supplementary-material[contains(label[1],' data ')]" id="table-source-data-tests">
       <let name="label" value="label[1]"/>
       <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
       <let name="table-label" value="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
@@ -3348,8 +3348,8 @@
       
     </rule>
   </pattern>
-  <pattern id="table-source-code-tests-pattern">
-    <rule context="table-wrap//supplementary-material[contains(label[1],' code ')]" id="table-source-code-tests">
+  <pattern xmlns="" id="table-source-code-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap//supplementary-material[contains(label[1],' code ')]" id="table-source-code-tests">
       <let name="label" value="label[1]"/>
       <let name="table-id" value="ancestor::table-wrap[1]/@id"/>
       <let name="table-label" value="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/>
@@ -3365,8 +3365,8 @@
       
     </rule>
   </pattern>
-  <pattern id="disp-formula-tests-pattern">
-    <rule context="disp-formula" id="disp-formula-tests">
+  <pattern xmlns="" id="disp-formula-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="disp-formula" id="disp-formula-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-test-2" test="mml:math or alternatives/mml:math" role="error" id="disp-formula-test-2">disp-formula must contain an mml:math element.</assert>
       
@@ -3376,8 +3376,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="inline-formula-tests-pattern">
-    <rule context="inline-formula" id="inline-formula-tests">
+  <pattern xmlns="" id="inline-formula-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="inline-formula" id="inline-formula-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       
@@ -3392,8 +3392,8 @@
       </assert>
     </rule>
   </pattern>
-  <pattern id="math-tests-pattern">
-    <rule context="mml:math" id="math-tests">
+  <pattern xmlns="" id="math-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <let name="children" value="string-join(for $x in .//*[(local-name()!='mo') and (local-name()!='mn') and (normalize-space(.)!='')] return $x/local-name(),'')"/>
       
@@ -3452,22 +3452,22 @@
         <name/> is a descendant of an disp-formula but it has the attribute display="inline". This is likely incorrect. Either the disp-formula is really a inline-formula, or the display="inline" attribute should be removed (or changed to "block").</report>
     </rule>
   </pattern>
-  <pattern id="math-descendant-tests-pattern">
-    <rule context="mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" id="math-descendant-tests">
+  <pattern xmlns="" id="math-descendant-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:math//*[contains(@class,'font') and matches(.,'[A-Za-z]')]" id="math-descendant-tests">
       
       <assert test="@mathvariant" role="error" id="math-descendant-test-1">Equation has character(s) - <value-of select="."/> - which have a font in a class element - <value-of select="@class"/> - but the element does not have a mathvariant attribute. This means that while the font will display in the PDF, it will not display on continuum. Either it needs a mathvariant attribute, or the specific unicode for that character in the script/font should be used.</assert>
       
     </rule>
   </pattern>
-  <pattern id="mrow-tests-pattern">
-    <rule context="mml:mrow" id="mrow-tests">
+  <pattern xmlns="" id="mrow-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:mrow" id="mrow-tests">
       
       <report test="not(*) and (normalize-space(.)='')" role="error" id="final-mrow-test-1">mrow cannot be empty.</report>
       
     </rule>
   </pattern>
-  <pattern id="math-overset-tests-pattern">
-    <rule context="mml:mover" id="math-overset-tests">
+  <pattern xmlns="" id="math-overset-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:mover" id="math-overset-tests">
       
       <report test="mml:mo='−'" role="warning" id="math-overset-bar-test">
         <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that are overset by a minus sign (<value-of select="."/>). Has the latex \overset{}{} function been used, and should the \bar{} function (or \overline{} if covering numerous characters) be used instead?</report>
@@ -3477,16 +3477,16 @@
       
     </rule>
   </pattern>
-  <pattern id="math-mi-tests-pattern">
-    <rule context="mml:mi" id="math-mi-tests">
+  <pattern xmlns="" id="math-mi-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:mi" id="math-mi-tests">
       
       <report test="matches(.,'^\p{Zs}$')" role="error" id="math-mi-space-test">
         <name/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</report>
       
     </rule>
   </pattern>
-  <pattern id="math-empty-child-tests-pattern">
-    <rule context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
+  <pattern xmlns="" id="math-empty-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover" id="math-empty-child-tests">
       <let name="script-name" value="if (./local-name() = 'msub') then 'subscript'                                      else if (./local-name() = 'msup') then 'superscript'                                      else if (./local-name() = 'msubsup') then 'subscript'                                      else if (./local-name() = 'munder') then 'underscript'                                      else if (./local-name() = 'mover') then 'overscript'                                      else if (./local-name() = 'munderover') then 'underscript'                                      else 'second'"/>
       
       <report test="*[1][matches(.,'^\p{Z}*$')]" role="warning" id="math-empty-base-check">
@@ -3500,8 +3500,8 @@
       
     </rule>
   </pattern>
-  <pattern id="math-multiscripts-tests-pattern">
-    <rule context="mml:mmultiscripts" id="math-multiscripts-tests">
+  <pattern xmlns="" id="math-multiscripts-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:mmultiscripts" id="math-multiscripts-tests">
       <!-- REVIST: should we allow mml:none here? -->
       <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>    
 
@@ -3516,8 +3516,8 @@
 
     </rule>
   </pattern>
-  <pattern id="tex-math-tests-pattern">
-    <rule context="tex-math" id="tex-math-tests">
+  <pattern xmlns="" id="tex-math-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tex-math" id="tex-math-tests">
       <!-- Strip the document commands from the start and end -->
       <let name="document-stripped-text" value="replace(.,'^\\begin\{document.|\\end\{document.$','')"/>
       <!-- Remove the formula commands to find the actual expression -->
@@ -3553,43 +3553,43 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="disp-formula-child-tests-pattern">
-    <rule context="disp-formula/*" id="disp-formula-child-tests">
+  <pattern xmlns="" id="disp-formula-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="disp-formula/*" id="disp-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-child-test-1" test="not(local-name()=('label','math','alternatives'))" role="error" id="disp-formula-child-test-1">
         <name/> element is not allowed as a child of disp-formula.</report>
     </rule>
   </pattern>
-  <pattern id="inline-formula-child-tests-pattern">
-    <rule context="inline-formula/*" id="inline-formula-child-tests">
+  <pattern xmlns="" id="inline-formula-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="inline-formula/*" id="inline-formula-child-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-child-test-1" test="not(local-name()=('math','alternatives'))" role="error" id="inline-formula-child-test-1">
         <name/> element is not allowed as a child of inline-formula.</report>
     </rule>
   </pattern>
-  <pattern id="alternatives-tests-pattern">
-    <rule context="alternatives" id="alternatives-tests">
+  <pattern xmlns="" id="alternatives-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="alternatives" id="alternatives-tests">
       
       <assert test="parent::inline-formula or parent::disp-formula" role="error" id="alternatives-test-1">
         <name/> element is not allowed as a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="math-alternatives-tests-pattern">
-    <rule context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
+  <pattern xmlns="" id="math-alternatives-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="alternatives[parent::inline-formula or parent::disp-formula]" id="math-alternatives-tests">
       
       <assert test="mml:math and tex-math" role="error" id="math-alternatives-test-1">
         <name/> element should ony be used in a formula if there is both a MathML representation and a LaTeX representation of the content. There is not both a child mml:math and tex-math element.</assert>
     </rule>
   </pattern>
-  <pattern id="alternatives-child-tests-pattern">
-    <rule context="alternatives/*" id="alternatives-child-tests">
+  <pattern xmlns="" id="alternatives-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="alternatives/*" id="alternatives-child-tests">
       
       <report test="not(local-name()=('math','tex-math'))" role="error" id="alternatives-child-test-1">
         <name/> element is not allowed as a child of alternatives.</report>
     </rule>
   </pattern>
-  <pattern id="table-wrap-tests-pattern">
-    <rule context="table-wrap" id="table-wrap-tests">
+  <pattern xmlns="" id="table-wrap-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap" id="table-wrap-tests">
       <let name="id" value="@id"/>
       <let name="lab" value="replace(label[1],'\.$','')"/>
       <let name="article-type" value="ancestor::article/@article-type"/>
@@ -3626,8 +3626,8 @@
       
     </rule>
   </pattern>
-  <pattern id="table-title-tests-pattern">
-    <rule context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
+  <pattern xmlns="" id="table-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[not(ancestor::sub-article) and not(contains(@id,'keyresource')) and label]" id="table-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-table-title-test-1" test="caption/title" role="warning" id="pre-table-title-test-1">
         <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
@@ -3636,8 +3636,8 @@
         <value-of select="replace(label[1],'\.$','')"/> does not have a title. Please ensure to query the authors for one.</assert>
     </rule>
   </pattern>
-  <pattern id="table-title-tests-2-pattern">
-    <rule context="table-wrap/caption/title" id="table-title-tests-2">
+  <pattern xmlns="" id="table-title-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap/caption/title" id="table-title-tests-2">
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-2" test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
@@ -3653,8 +3653,8 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="table-title-test-7">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="kr-table-heading-tests-pattern">
-    <rule context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
+  <pattern xmlns="" id="kr-table-heading-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[contains(@id,'keyresource')]/table/thead[1]" id="kr-table-heading-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-header-1" test="count(tr[1]/th) != 5" role="warning" id="kr-table-header-1">Key resources tables should have 5 column headings (th elements) but this one has <value-of select="count(tr[1]/th)"/>. Either it is incorrectly typeset or the author will need to be queried in order to provide the table in the correct format.</report>
       
@@ -3674,22 +3674,22 @@
       
     </rule>
   </pattern>
-  <pattern id="kr-table-body-tests-pattern">
-    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
+  <pattern xmlns="" id="kr-table-body-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" id="kr-table-body-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-body-1" test="local-name()='td'" role="error" id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td).</assert>
       
     </rule>
   </pattern>
-  <pattern id="kr-table-first-column-tests-pattern">
-    <rule context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" id="kr-table-first-column-tests">
+  <pattern xmlns="" id="kr-table-first-column-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*[1]" id="kr-table-first-column-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-first-column-1" test="matches(lower-case(.),'^gene|^strain|^genetic reagent|^cell line|^transfected construct|^biological sample|^antibody|^recombinant dna reagent|^sequence-based reagent|^peptide|^recombinant protein|^commercial (assay|kit)|^chemical compound|^drug|^software|^algorithm|^other')" role="warning" id="kr-table-first-column-1">A cell in the first column of the body of a key resources table should start with one of the standard values. '<value-of select="."/>' does not start with one of Gene; Strain, strain background; Genetic reagent; Cell line; Transfected construct; Biological sample; Antibody; Recombinant DNA reagent; Sequence-based reagent; Peptide, Recombinant protein; Commercial assay or kit; Chemical compound, drug; Software; Algorithm; Other.</assert>
       
     </rule>
   </pattern>
-  <pattern id="kr-table-tests-pattern">
-    <rule context="table-wrap[contains(@id,'keyresource')]" id="kr-table-tests">
+  <pattern xmlns="" id="kr-table-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[contains(@id,'keyresource')]" id="kr-table-tests">
       
       <report test="following::table-wrap[contains(@id,'keyresource') or contains(lower-case(label[1]),'key resources table')]" role="warning" id="pre-duplicate-kr-table-1">There appears to be more than one key resources table. Exeter please check with Production on how to proceed.</report>
       
@@ -3699,24 +3699,24 @@
       
     </rule>
   </pattern>
-  <pattern id="table-cell-tests-pattern">
-    <rule context="table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" id="table-cell-tests">
+  <pattern xmlns="" id="table-cell-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap/table/tbody/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]|table-wrap/table/thead/tr/*[xref[@ref-type='bibr'] and matches(.,'[\(\)\[\]]')]" id="table-cell-tests">
       <let name="stripped-text" value="string-join(for $x in self::*/(text()|*)         return if (($x/local-name()='xref') and $x/@ref-type='bibr') then ()         else $x,'')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#table-cell-1" test="matches($stripped-text,'[\p{N}\p{L}]')" role="warning" id="table-cell-1">Table cell in <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains '<value-of select="."/>'. Are the brackets around the citation(s) unnecessary?</assert>
       
     </rule>
   </pattern>
-  <pattern id="body-table-label-tests-pattern">
-    <rule context="body//table-wrap/label" id="body-table-label-tests">
+  <pattern xmlns="" id="body-table-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="body//table-wrap/label" id="body-table-label-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#body-table-label-test-1" test="matches(.,'^Table \d{1,4}\.$|^Key resources table$|^Author response table \d{1,4}\.$|^Decision letter table \d{1,4}\.$|^Review table \d{1,4}\.$')" role="error" id="body-table-label-test-1">
         <value-of select="."/> - Table label does not conform to the usual format.</assert>
       
     </rule>
   </pattern>
-  <pattern id="app-table-label-tests-pattern">
-    <rule context="app//table-wrap/label" id="app-table-label-tests">
+  <pattern xmlns="" id="app-table-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app//table-wrap/label" id="app-table-label-tests">
       <let name="app" value="ancestor::app/title[1]"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-label-test-1" test="matches(.,'^Appendix \d{1,4}—table \d{1,4}\.$|^Appendix \d{1,4}—key resources table$')" role="error" id="app-table-label-test-1">
@@ -3727,8 +3727,8 @@
       
     </rule>
   </pattern>
-  <pattern id="table-tests-pattern">
-    <rule context="table" id="table-tests">
+  <pattern xmlns="" id="table-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table" id="table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-test-1" test="count(tbody) = 0" role="error" id="table-test-1">table must have at least one body (tbody).</report>
       
@@ -3738,20 +3738,20 @@
         <value-of select="if (ancestor::table-wrap[1]/label[1]) then replace(ancestor::table-wrap[1]/label[1],'\.$','') else 'Table'"/> has a main header (thead), but it also has a header or headers in the body and contains 45 or more rows. The main (first) header will as a result appear at the start of any new pages in the PDF. Is this correct? Or should the main header be moved down into the body (but still captured with &lt;th&gt; instead of &lt;td&gt;) so that this header does not appear on the subsequent pages?</report>
     </rule>
   </pattern>
-  <pattern id="tbody-tests-pattern">
-    <rule context="table/tbody" id="tbody-tests">
+  <pattern xmlns="" id="tbody-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table/tbody" id="tbody-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tbody-test-1" test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one row (tr).</report>
     </rule>
   </pattern>
-  <pattern id="thead-tests-pattern">
-    <rule context="table/thead" id="thead-tests">
+  <pattern xmlns="" id="thead-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table/thead" id="thead-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#thead-test-1" test="count(tr) = 0" role="error" id="thead-test-1">thead must have at least one row (tr).</report>
     </rule>
   </pattern>
-  <pattern id="tr-tests-pattern">
-    <rule context="tr" id="tr-tests">
+  <pattern xmlns="" id="tr-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="tr" id="tr-tests">
       <let name="count" value="count(th) + count(td)"/> 
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-1" test="$count = 0" role="error" id="tr-test-1">row (tr) must contain at least one heading cell (th) or data cell (td).</report>
@@ -3761,15 +3761,15 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tr-test-3" test="td and (parent::thead)" role="error" id="tr-test-3">table row in header contains a td element (table data), which is not allowed. Only th elements (table heading cells) are allowed in a row in the table header.</report>
     </rule>
   </pattern>
-  <pattern id="td-child-tests-pattern">
-    <rule context="td/*" id="td-child-tests">
+  <pattern xmlns="" id="td-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="td/*" id="td-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','ext-link','xref', 'break', 'named-content', 'styled-content', 'monospace', 'code','inline-graphic','underline','inline-formula', 'list')"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#td-child-test" test="self::*/local-name() = $allowed-blocks" role="error" id="td-child-test">td cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-blocks,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="th-child-tests-pattern">
-    <rule context="th/*" id="th-child-tests">
+  <pattern xmlns="" id="th-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="th/*" id="th-child-tests">
       <let name="allowed-blocks" value="('bold','italic','sup','sub','sc','underline','ext-link','xref', 'break', 'named-content', 'monospace','inline-formula','inline-graphic', 'list')"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-1" test="self::*/local-name() = ($allowed-blocks)" role="error" id="th-child-test-1">th cannot contain <value-of select="self::*/local-name()"/>. Only the following elements are allowed - <value-of select="string-join($allowed-blocks,', ')"/>.</assert>
@@ -3777,42 +3777,42 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-child-test-2" test="name() = ('bold','underline') and . = ./parent::th" role="warning" id="th-child-test-2">The content of this th element is entirely in <value-of select="name()"/> emphasis - <value-of select="."/>. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="th-tests-pattern">
-    <rule context="th" id="th-tests">
+  <pattern xmlns="" id="th-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="th" id="th-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#th-row-test" test="following-sibling::td or preceding-sibling::td" role="warning" id="th-row-test">Table header cell containing '<value-of select="."/>' has table data (not header) cells next to it on the same row. Is this correct? Should the whole row be header cells, or should this cell extend across the whole row?</report>
       
     </rule>
   </pattern>
-  <pattern id="table-fn-label-tests-pattern">
-    <rule context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
+  <pattern xmlns="" id="table-fn-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap-foot//fn/p" id="table-fn-label-tests"> 
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-label-test-1" test="not(matches(.,'^\p{Zs}?[*†‡§¶]')) and matches(.,'^\p{Zs}?[\p{Ps}]?[\da-z][\p{Pe}]?\p{Zs}+[\p{Lu}\d]')" role="warning" id="table-fn-label-test-1">Footnote starts with what might be a label which is not in line with house style - <value-of select="."/>. If it is a label, then it should changed to one of the allowed symbols, so that the order of labels in the footnotes follows this sequence *, †, ‡, §, ¶, **, ††, ‡‡, §§, ¶¶, etc.</report>
     </rule>
   </pattern>
-  <pattern id="table-fn-tests-pattern">
-    <rule context="table-wrap-foot//fn" id="table-fn-tests"> 
+  <pattern xmlns="" id="table-fn-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap-foot//fn" id="table-fn-tests"> 
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-1" test="label and not(@id)" role="error" id="table-fn-test-1">Table footnote with a label must have an id. This one has the label '<value-of select="label"/>' but no id.</report>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
     </rule>
   </pattern>
-  <pattern id="fn-tests-pattern">
-    <rule context="fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" id="fn-tests">
+  <pattern xmlns="" id="fn-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn[@id][not(@fn-type='other') and not(ancestor::table-wrap)]" id="fn-tests">
       
       <assert test="ancestor::article//xref/@rid = @id" role="error" id="fn-xref-presence-test">fn element with an id must have at least one xref element pointing to it.</assert>
     </rule>
   </pattern>
-  <pattern id="list-tests-pattern">
-    <rule context="list" id="list-tests">
+  <pattern xmlns="" id="list-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="list" id="list-tests">
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hzkm6-continued-from-test-1" test="@continued-from" role="error" id="continued-from-test-1">The continued-from attribute is not allowed for lists, since this is not supported by Continuum. Please use an alternative method to capture lists which are interrupted.</report>
       
     </rule>
   </pattern>
-  <pattern id="list-item-tests-pattern">
-    <rule context="list-item" id="list-item-tests">
+  <pattern xmlns="" id="list-item-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="list-item" id="list-item-tests">
       <let name="type" value="ancestor::list[1]/@list-type"/>
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho2mz-bullet-test-1" test="($type='bullet') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-1">list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
@@ -3853,8 +3853,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="general-video-pattern">
-    <rule context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
+  <pattern xmlns="" id="general-video-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" id="general-video">
       <let name="label" value="replace(label,'\.$','')"/>
       <let name="id" value="@id"/>
       <let name="xrefs" value="e:get-xrefs(ancestor::article,$id,'video')"/>
@@ -3878,8 +3878,8 @@
       
     </rule>
   </pattern>
-  <pattern id="code-tests-pattern">
-    <rule context="code" id="code-tests">
+  <pattern xmlns="" id="code-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="code" id="code-tests">
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-child-test" test="child::*" role="error" id="code-child-test">code contains a child element, which will display in HTML with its tagging, i.e. '&lt;<value-of select="child::*[1]/name()"/>
         <value-of select="if (child::*[1]/@*) then for $x in child::*[1]/@* return concat(' ',$x/name(),'=&quot;',$x/string(),'&quot;') else ()"/>&gt;<value-of select="child::*[1]"/>&lt;/<value-of select="child::*[1]/name()"/>&gt;'. Strip any child elements.</report>
@@ -3888,23 +3888,23 @@
       
     </rule>
   </pattern>
-  <pattern id="code-tests-2-pattern">
-    <rule context="p[count(code) gt 1]/code[2]" id="code-tests-2">
+  <pattern xmlns="" id="code-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[count(code) gt 1]/code[2]" id="code-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-sibling-test" test="normalize-space(preceding-sibling::text()[preceding-sibling::*[1]/local-name()='code'][1])=''" role="warning" id="code-sibling-test">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
-  <pattern id="code-tests-3-pattern">
-    <rule context="p[count(code) = 1]/code" id="code-tests-3">
+  <pattern xmlns="" id="code-tests-3-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[count(code) = 1]/code" id="code-tests-3">
       <let name="previous-parent" value="parent::p/preceding-sibling::*[1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/code-blocks-947pcamv#code-sibling-test-2" test="$previous-parent/*[last()][(local-name()='code') and not(following-sibling::text())] and not(preceding-sibling::*) and not(preceding-sibling::text())" role="warning" id="code-sibling-test-2">code element (containing the content <value-of select="."/>) is directly preceded by another code element (containing the content <value-of select="preceding::*[1]"/>). If the content is part of the same code block, then it should be captured using only 1 code element and line breaks added in the xml. If these are separate code blocks (uncommon, but possible), then this markup is fine.</report>
       
     </rule>
   </pattern>
-  <pattern id="generic-label-tests-pattern">
-    <rule context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
+  <pattern xmlns="" id="generic-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label" id="generic-label-tests">
       <let name="label" value="replace(.,'\.$','')"/>
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
@@ -3918,8 +3918,8 @@
       
     </rule>
   </pattern>
-  <pattern id="equation-label-tests-pattern">
-    <rule context="article[not(@article-type) or @article-type!='correction']//disp-formula/label" id="equation-label-tests">
+  <pattern xmlns="" id="equation-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(@article-type) or @article-type!='correction']//disp-formula/label" id="equation-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       <let name="app-id" value="ancestor::app/@id"/>
       
@@ -3929,15 +3929,15 @@
       
     </rule>
   </pattern>
-  <pattern id="aff-label-tests-pattern">
-    <rule context="aff/label" id="aff-label-tests">
+  <pattern xmlns="" id="aff-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff/label" id="aff-label-tests">
       <let name="label-2" value="replace(.,'\p{P}','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hw7yy-aff-label-conformance-1" test="some $x in preceding::aff/label satisfies (replace($x,'\p{P}','') = $label-2)" role="error" id="aff-label-conformance-1">Duplicated affiliation labels - <value-of select="."/> is present more than once.</report>
     </rule>
   </pattern>
-  <pattern id="disp-quote-tests-pattern">
-    <rule context="disp-quote" id="disp-quote-tests">
+  <pattern xmlns="" id="disp-quote-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/>
@@ -3946,8 +3946,8 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hq129-disp-quote-test-2" test="not(ancestor::sub-article) and ($subj=($research-subj,$notice-article-types))" role="error" id="disp-quote-test-2">Display quote in a <value-of select="$subj"/> is not allowed. Please capture as paragraph instead - '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern id="bracket-tests-pattern">
-    <rule context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
+  <pattern xmlns="" id="bracket-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[matches(.,'[\(\)\[\]]')]|th[matches(.,'[\(\)\[\]]')]|td[matches(.,'[\(\)\[\]]')]|title[matches(.,'[\(\)\[\]]')]" id="bracket-tests">
       <let name="open-curly" value="string-length(replace(.,'[^\(]',''))"/>
       <let name="close-curly" value="string-length(replace(.,'[^\)]',''))"/>
       <let name="open-square" value="string-length(replace(.,'[^\[]',''))"/>
@@ -3978,16 +3978,16 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="body-box-tests-pattern">
-    <rule context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
+  <pattern xmlns="" id="body-box-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//boxed-text[not(parent::body) or preceding-sibling::*]" id="body-box-tests">
       
       <assert test="matches(label[1],'^Box \d{1,2}\.$')" role="error" id="body-box-label-test">
         <name/> element must have a label in the format "Box 0.".</assert>
       
     </rule>
   </pattern>
-  <pattern id="app-box-tests-pattern">
-    <rule context="app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" id="app-box-tests">
+  <pattern xmlns="" id="app-box-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" id="app-box-tests">
       <let name="app-title" value="ancestor::app[1]/title"/>
       
       <assert test="matches(label[1],'^Appendix \d{1,2}—box \d{1,2}\.$')" role="error" id="app-box-label-test">
@@ -3998,16 +3998,16 @@
       
     </rule>
   </pattern>
-  <pattern id="app-content-tests-pattern">
-    <rule context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
+  <pattern xmlns="" id="app-content-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app[not(preceding-sibling::app) and not(following-sibling::app) and not(descendant::sec or descendant::table-wrap or descendant::fig or descendant::media[starts-with(@mimetype,'video')] or descendant::disp-formula)]" id="app-content-tests">
       
       <report test="count(descendant::p) = (0,1)" role="warning" id="app-little-content">
         <value-of select="title"/> has no sibling appendices, contains no assets (figures, tables, videos, or display formula), and only has one paragraph. Does it need to be an appendix?</report>
       
     </rule>
   </pattern>
-  <pattern id="attrib-tests-pattern">
-    <rule context="attrib" id="attrib-tests">
+  <pattern xmlns="" id="attrib-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="attrib" id="attrib-tests">
       <let name="parent" value="parent::*/name()"/>
       <let name="allowed-parents" value="('fig','media','table-wrap','boxed-text','disp-quote')"/>
       
@@ -4020,8 +4020,8 @@
       
     </rule>
   </pattern>
-  <pattern id="attrib-child-tests-pattern">
-    <rule context="attrib/*" id="attrib-child-tests">
+  <pattern xmlns="" id="attrib-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="attrib/*" id="attrib-child-tests">
       <let name="allowed-children" value="('ext-link', 'xref', 'inline-graphic', 'italic', 'sub', 'bold', 'sup')"/>
       
       <assert test="name()=$allowed-children" role="error" id="attrib-child">
@@ -4031,8 +4031,8 @@
     </rule>
   </pattern>
   
-  <pattern id="body-video-specific-pattern">
-    <rule context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
+  <pattern xmlns="" id="body-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" id="body-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')][matches(label[1],'^Video [\d]+\.$')][ancestor::body])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -4064,8 +4064,8 @@
       
     </rule>
   </pattern>
-  <pattern id="app-video-specific-pattern">
-    <rule context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
+  <pattern xmlns="" id="app-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" id="app-video-specific">
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="count" value="count(ancestor::app//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[(starts-with(@mimetype,'video')) and (ancestor::app/@id = $app-id)])"/>
@@ -4078,8 +4078,8 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="app-fig-video-specific-pattern">
-    <rule context="app//fig-group//media[starts-with(@mimetype,'video')]" id="app-fig-video-specific">
+  <pattern xmlns="" id="app-fig-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app//fig-group//media[starts-with(@mimetype,'video')]" id="app-fig-video-specific">
       <let name="fig-id" value="ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id"/>
       <let name="count" value="count(ancestor::fig-group//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and (ancestor::fig-group/fig[not(@specific-use='child-fig')]/@id = $fig-id)])"/>
@@ -4092,8 +4092,8 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="fig-video-specific-pattern">
-    <rule context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
+  <pattern xmlns="" id="fig-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig-group/media[starts-with(@mimetype,'video')]" id="fig-video-specific">
       <let name="title" value="caption[1]/title[1]"/>
       <let name="is-explainer" value="matches(lower-case($title),'^(author )?explainer video for figure \d+\.$')"/>
       
@@ -4105,8 +4105,8 @@
       
     </rule>
   </pattern>
-  <pattern id="dl-video-specific-pattern">
-    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+  <pattern xmlns="" id="dl-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -4118,8 +4118,8 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="ar-video-specific-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
+  <pattern xmlns="" id="ar-video-specific-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -4131,16 +4131,16 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="video-labels-pattern">
-    <rule context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
+  <pattern xmlns="" id="video-labels-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/label[matches(lower-case(.),'^video \d+\.$')]" id="video-labels">
       <let name="number" value="number(replace(.,'[^\d]',''))"/>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-label-1" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^video \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="video-label-1">Video has the label '<value-of select="."/>', but there is no preceding video with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
     </rule>
   </pattern>
-  <pattern id="fig-video-labels-pattern">
-    <rule context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
+  <pattern xmlns="" id="fig-video-labels-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/label[matches(lower-case(.),'^figure \d+—video \d+\.$')]" id="fig-video-labels">
       <let name="figure-string" value="substring-before(.,'—video')"/>
       <let name="number" value="number(replace(substring-after(.,'—video'),'[^\d]',''))"/>
       
@@ -4148,16 +4148,16 @@
       
     </rule>
   </pattern>
-  <pattern id="animation-labels-pattern">
-    <rule context="media/label[matches(lower-case(.),'^animation \d+\.$')]" id="animation-labels">
+  <pattern xmlns="" id="animation-labels-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/label[matches(lower-case(.),'^animation \d+\.$')]" id="animation-labels">
       <let name="number" value="number(replace(.,'[^\d]',''))"/>
       
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#animation-label-1" test="$number != 1 and (not(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')]) or (number(preceding::media[matches(lower-case(*:label[1]),'^animation \d+\.$')][1]/label/replace(.,'[^\d]','')) != ($number - 1)))" role="error" id="animation-label-1">Animation has the label '<value-of select="."/>', but there is no preceding animation with the label number <value-of select="$number - 1"/>. Either they are not correctly ordered, or the label numbering is incorrect.</report>
       
     </rule>
   </pattern>
-  <pattern id="fig-animation-labels-pattern">
-    <rule context="media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" id="fig-animation-labels">
+  <pattern xmlns="" id="fig-animation-labels-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/label[matches(lower-case(.),'^figure \d+—animation \d+\.$')]" id="fig-animation-labels">
       <let name="figure-string" value="substring-before(.,'—animation')"/>
       <let name="number" value="number(replace(substring-after(.,'—animation'),'[^\d]',''))"/>
       
@@ -4166,8 +4166,8 @@
     </rule>
   </pattern>
   
-  <pattern id="body-table-pos-conformance-pattern">
-    <rule context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
+  <pattern xmlns="" id="body-table-pos-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" id="body-table-pos-conformance">
       <let name="count" value="count(ancestor::body//table-wrap[matches(@id,'^table[\d]+$')])"/>
       <let name="pos" value="$count - count(following::table-wrap[(matches(@id,'^table[\d]+$')) and (ancestor::body) and not(ancestor::sub-article)])"/>
       <let name="no" value="substring-after(@id,'table')"/>
@@ -4180,8 +4180,8 @@
       
     </rule>
   </pattern>
-  <pattern id="app-table-pos-conformance-pattern">
-    <rule context="article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" id="app-table-pos-conformance">
+  <pattern xmlns="" id="app-table-pos-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//app//table-wrap[matches(@id,'^app[\d]+table[\d]+$')]" id="app-table-pos-conformance">
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="app-no" value="substring-after($app-id,'appendix-')"/>
       <let name="id-regex" value="concat('^app',$app-no,'table[\d]+$')"/>
@@ -4198,8 +4198,8 @@
     </rule>
   </pattern>
   
-  <pattern id="fig-specific-tests-pattern">
-    <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
+  <pattern xmlns="" id="fig-specific-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-specific-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="id" value="@id"/>
       <let name="count" value="count(ancestor::article//fig[matches(label[1],'^Figure \d{1,4}\.$')])"/>
@@ -4241,14 +4241,14 @@
   
     </rule>
   </pattern>
-  <pattern id="fig-label-tests-pattern">
-    <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
+  <pattern xmlns="" id="fig-label-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]/label" id="fig-label-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-label-test-1" test="matches(.,'^Figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="fig-label-test-1">fig label must be in the format 'Figure 0.', 'Chemical structure 0.', or 'Scheme 0'.</assert>
     </rule>
   </pattern>
-  <pattern id="fig-sup-tests-pattern">
-    <rule context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
+  <pattern xmlns="" id="fig-sup-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig[@specific-use='child-fig']" id="fig-sup-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(parent::fig-group/fig[@specific-use='child-fig'])"/>
       <let name="pos" value="$count - count(following-sibling::fig[@specific-use='child-fig'])"/>
@@ -4275,8 +4275,8 @@
       
     </rule>
   </pattern>
-  <pattern id="rep-fig-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
+  <pattern xmlns="" id="rep-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
       
@@ -4284,8 +4284,8 @@
       
     </rule>
   </pattern>
-  <pattern id="dec-fig-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
+  <pattern xmlns="" id="dec-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-1" test="label" role="error" flag="dl-ar" id="dec-fig-test-1">fig must have a label.</assert>
       
@@ -4293,30 +4293,30 @@
       
     </rule>
   </pattern>
-  <pattern id="box-fig-tests-pattern">
-    <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
+  <pattern xmlns="" id="box-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//boxed-text//fig[not(@specific-use='child-fig')]/label" id="box-fig-tests"> 
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-test-1" test="matches(.,'^Box \d{1,4}—figure \d{1,4}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" id="box-fig-test-1">label for fig inside boxed-text must be in the format 'Box 1—figure 1.', or 'Chemical structure 1.', or 'Scheme 1'.</assert>
     </rule>
   </pattern>
-  <pattern id="app-fig-tests-pattern">
-    <rule context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
+  <pattern xmlns="" id="app-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//app//fig[not(@specific-use='child-fig')]/label" id="app-fig-tests"> 
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-test-1" test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$|^Appendix \d{1,4}—chemical structure \d{1,4}\.$|^Appendix \d{1,4}—scheme \d{1,4}\.$|^Appendix [A-Z]—chemical structure \d{1,4}\.$|^Appendix [A-Z]—scheme \d{1,4}\.$|^Appendix—chemical structure \d{1,4}\.$|^Appendix—scheme \d{1,4}\.$')" role="error" id="app-fig-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1.', 'Appendix A—figure 1.', or 'Appendix 1—chemical structure 1.', or 'Appendix A—scheme 1'.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-test-2" test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(starts-with(.,ancestor::app/title))" role="error" id="app-fig-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="app-fig-sup-tests-pattern">
-    <rule context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
+  <pattern xmlns="" id="app-fig-sup-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//app//fig[@specific-use='child-fig']/label" id="app-fig-sup-tests"> 
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-test-1" test="matches(.,'^Appendix \d{1,4}—figure \d{1,4}—figure supplement \d{1,4}\.$|^Appendix—figure \d{1,4}—figure supplement \d{1,4}\.$')" role="error" id="app-fig-sup-test-1">label for fig inside appendix must be in the format 'Appendix 1—figure 1—figure supplement 1.'.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-test-2" test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="app-fig-pos-tests-pattern">
-    <rule context="article//app//fig[not(@specific-use='child-fig')]" id="app-fig-pos-tests"> 
+  <pattern xmlns="" id="app-fig-pos-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//app//fig[not(@specific-use='child-fig')]" id="app-fig-pos-tests"> 
       <let name="id" value="@id"/>
       <let name="app-id" value="ancestor::app/@id"/>
       <let name="count" value="count(ancestor::app//fig[matches(label[1],'figure \d{1,4}\.$')])"/>
@@ -4331,8 +4331,8 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-permissions-pattern">
-    <rule context="permissions[not(parent::article-meta)]" id="fig-permissions">
+  <pattern xmlns="" id="fig-permissions-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta)]" id="fig-permissions">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-1" test="copyright-statement[lower-case(.)!='copyright undetermined'] and (not(copyright-year) or not(copyright-holder))" role="error" id="fig-permissions-test-1">permissions for <value-of select="$label"/> has a copyright-statement, but not a copyright-year or copyright-holder which is incorrect.</report>
@@ -4367,16 +4367,16 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-permissions-2-pattern">
-    <rule context="permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" id="fig-permissions-2">
+  <pattern xmlns="" id="fig-permissions-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta) and copyright-year and copyright-holder]/copyright-statement" id="fig-permissions-2">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       <let name="text" value="concat('© ',parent::*/copyright-year[1],', ',parent::*/copyright-holder[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-15" test="contains(.,$text)" role="error" id="fig-permissions-test-15">The &lt;copyright-statement&gt; element in the permissions for <value-of select="$label"/> does not contain the text '<value-of select="$text"/>' (a concatenation of '© ', copyright-year, a comma and space, and copyright-holder).</assert>
     </rule>
   </pattern>
-  <pattern id="permissions-2-pattern">
-    <rule context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
+  <pattern xmlns="" id="permissions-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta) and copyright-statement and not(license[1]/ali:license_ref[1][contains(.,'creativecommons.org')]) and not(contains(license[1]/@xlink:href,'creativecommons.org'))]" id="permissions-2">
       <let name="label" value="if (parent::*/label[1]) then replace(parent::*/label[1],'\.$','') else parent::*/local-name()"/>
       
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#fig-permissions-test-12" test="matches(license[1]/license-p[1],'[Ff]urther reproduction of (this|these) (panels?|illustrations?) would need permission from the copyright holder\.$|[Ff]urther reproduction of this figure would (need|require) permission from the copyright holder\.$')" role="warning" id="fig-permissions-test-12">
@@ -4387,8 +4387,8 @@
       
     </rule>
   </pattern>
-  <pattern id="permissions-3a-pattern">
-    <rule context="permissions[not(parent::article-meta)]//ali:license_ref" id="permissions-3a">
+  <pattern xmlns="" id="permissions-3a-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta)]//ali:license_ref" id="permissions-3a">
       <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
       <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
       
@@ -4398,8 +4398,8 @@
       
     </rule>
   </pattern>
-  <pattern id="permissions-3b-pattern">
-    <rule context="permissions[not(parent::article-meta)]//license-p//ext-link" id="permissions-3b">
+  <pattern xmlns="" id="permissions-3b-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta)]//license-p//ext-link" id="permissions-3b">
       <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
       <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
       
@@ -4407,8 +4407,8 @@
       
     </rule>
   </pattern>
-  <pattern id="permissions-3c-pattern">
-    <rule context="permissions[not(parent::article-meta)]//license" id="permissions-3c">
+  <pattern xmlns="" id="permissions-3c-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="permissions[not(parent::article-meta)]//license" id="permissions-3c">
       <let name="article-license" value="ancestor::article//article-meta//permissions//ali:license_ref"/>
       <let name="label" value="if (ancestor::permissions[1]/parent::*/label[1]) then replace(ancestor::permissions[1]/parent::*/label[1],'\.$','') else ancestor::permissions[1]/parent::*/local-name()"/>
       
@@ -4416,8 +4416,8 @@
       
     </rule>
   </pattern>
-  <pattern id="fig-caption-tests-pattern">
-    <rule context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
+  <pattern xmlns="" id="fig-caption-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/caption/p[not(child::supplementary-material)]" id="fig-caption-tests">
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>
       <let name="no-panels" value="replace(.,'\([a-zA-Z]\)|\([a-zA-Z]\-[a-zA-Z]\)','')"/>
       <let name="text-tokens" value="for $x in tokenize($no-panels,'\. ') return         if (string-length($x) lt 3) then ()         else if (matches($x,'^\p{Zs}{1,3}?[a-z]')) then $x         else ()"/>
@@ -4433,8 +4433,8 @@
 
     </rule>
   </pattern>
-  <pattern id="biorender-tests-pattern">
-    <rule context="article" id="biorender-tests">
+  <pattern xmlns="" id="biorender-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article" id="biorender-tests">
       <!-- exclude ref list and figures from this check -->
       <let name="article-text" value="string-join(for $x in self::*/*[local-name() = 'body' or local-name() = 'back']//*           return           if ($x/ancestor::ref-list) then ()           else if ($x/ancestor::caption[parent::fig] or $x/ancestor::permissions[parent::fig]) then ()           else $x/text(),'')"/>
 
@@ -4442,8 +4442,8 @@
 
     </rule>
   </pattern>
-  <pattern id="biorender-fig-tests-pattern">
-    <rule context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
+  <pattern xmlns="" id="biorender-fig-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/caption/p[not(child::supplementary-material)] | fig/attrib" id="biorender-fig-tests">
       <let name="is-cc0" value="contains(lower-case(ancestor::article[1]/front[1]/descendant::permissions[1]/license[1]/@xlink:href),'creativecommons.org/publicdomain/zero/')"/>
       <let name="label" value="replace(ancestor::fig[1]/label,'\.$','')"/>    
 
@@ -4455,8 +4455,8 @@
 
     </rule>
   </pattern>
-  <pattern id="fig-panel-tests-pattern">
-    <rule context="fig/caption/p/bold" id="fig-panel-tests">
+  <pattern xmlns="" id="fig-panel-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/caption/p/bold" id="fig-panel-tests">
       <let name="first-character" value="substring(.,1, 1)"/>
       <let name="last-character" value="substring(., string-length(.), 1)"/>
       
@@ -4465,8 +4465,8 @@
     </rule>
   </pattern>
   
-  <pattern id="ra-body-tests-pattern">
-    <rule context="article[@article-type='research-article']/body" id="ra-body-tests">
+  <pattern xmlns="" id="ra-body-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']/body" id="ra-body-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="method-count" value="count(sec[@sec-type='materials|methods']) + count(sec[@sec-type='methods']) + count(sec[@sec-type='model'])"/>
       <let name="res-disc-count" value="count(sec[@sec-type='results']) + count(sec[@sec-type='discussion'])"/>
@@ -4482,8 +4482,8 @@
     
     </rule>
   </pattern>
-  <pattern id="medicine-section-tests-pattern">
-    <rule context="article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
+  <pattern xmlns="" id="medicine-section-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article' and descendant::article-meta[not(//subj-group[@subj-group-type='display-channel']/subject[lower-case(.)='feature article']) and //subj-group[@subj-group-type='heading']/subject[.=('Medicine','Epidemiology and Global Health')] and history/date[@date-type='received']/@iso-8601-date gt '2021-04-05']]/body/sec" id="medicine-section-tests">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#medicine-introduction" test="$pos=1 and title[1]!='Introduction'" role="error" id="medicine-introduction">The first top level section in a Medicine article should be 'Introduction'. This one is '<value-of select="title[1]"/>'.</report>
@@ -4496,8 +4496,8 @@
       
     </rule>
   </pattern>
-  <pattern id="top-level-sec-tests-pattern">
-    <rule context="body/sec" id="top-level-sec-tests">
+  <pattern xmlns="" id="top-level-sec-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="body/sec" id="top-level-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
       <let name="allowed-titles" value="('Introduction', 'Results', 'Discussion', 'Materials and methods', 'Results and discussion','Methods', 'Model')"/>
@@ -4506,8 +4506,8 @@
       
     </rule>
   </pattern>
-  <pattern id="conclusion-sec-tests-pattern">
-    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" id="conclusion-sec-tests">
+  <pattern xmlns="" id="conclusion-sec-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" id="conclusion-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
         
@@ -4515,8 +4515,8 @@
       
     </rule>
   </pattern>
-  <pattern id="conclusion-lower-sec-tests-pattern">
-    <rule context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
+  <pattern xmlns="" id="conclusion-lower-sec-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" id="conclusion-lower-sec-tests">
       <let name="type" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="title" value="normalize-space(replace(lower-case(.),' ',' '))"/>
       
@@ -4525,8 +4525,8 @@
     </rule>
   </pattern>
   
-  <pattern id="article-title-tests-pattern">
-    <rule context="article-meta//article-title" id="article-title-tests">
+  <pattern xmlns="" id="article-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta//article-title" id="article-title-tests">
       <let name="type" value="ancestor::article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="specifics" value="('Replication Study','Registered Report',$notice-display-types)"/>
       <let name="count" value="string-length(.)"/>
@@ -4542,16 +4542,16 @@
       <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#absolute-title-length-restriction" test="$count gt 255" role="error" id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 255.</report>
     </rule>
   </pattern>
-  <pattern id="sec-title-tests-pattern">
-    <rule context="sec[@sec-type]/title" id="sec-title-tests">
+  <pattern xmlns="" id="sec-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type]/title" id="sec-title-tests">
       <let name="title" value="e:sec-type2title(parent::sec/@sec-type)"/>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-type-title-test" test="if ($title = 'undefined') then ()         else . != $title" role="warning" id="sec-type-title-test">title of a sec with an @sec-type='<value-of select="parent::sec/@sec-type"/>' should usually be '<value-of select="$title"/>'.</report>
       
     </rule>
   </pattern>
-  <pattern id="fig-title-tests-pattern">
-    <rule context="fig/caption/title" id="fig-title-tests"> 
+  <pattern xmlns="" id="fig-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/caption/title" id="fig-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
@@ -4575,8 +4575,8 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="fig-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="supplementary-material-title-tests-pattern">
-    <rule context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
+  <pattern xmlns="" id="supplementary-material-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material/caption/title" id="supplementary-material-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
@@ -4595,8 +4595,8 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="supplementary-material-title-test-9">title for <value-of select="$label"/> ends with space(s), which is not allowed - '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern id="video-title-tests-pattern">
-    <rule context="media/caption/title" id="video-title-tests"> 
+  <pattern xmlns="" id="video-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/caption/title" id="video-title-tests"> 
       <let name="label" value="parent::caption/preceding-sibling::label[1]"/>
       <let name="sentence-count" value="count(tokenize(replace(replace(lower-case(.),$org-regex,''),'[\p{Zs}]$',''),'\. '))"/>
       
@@ -4615,8 +4615,8 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-9" test="matches(.,'\p{Zs}$')" role="error" id="video-title-test-9">The title for <value-of select="$label"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="ack-title-tests-pattern">
-    <rule context="ack" id="ack-title-tests">
+  <pattern xmlns="" id="ack-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ack" id="ack-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hddcf-ack-title-test" test="title = 'Acknowledgements'" role="error" id="ack-title-test">ack must have a title that contains 'Acknowledgements'. Currently it is '<value-of select="title"/>'.</assert>
       
@@ -4626,8 +4626,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ack-content-tests-pattern">
-    <rule context="ack//p" id="ack-content-tests">
+  <pattern xmlns="" id="ack-content-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ack//p" id="ack-content-tests">
       <let name="hit" value="string-join(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else (),', ')"/>
       <let name="hit-count" value="count(for $x in tokenize(.,' ') return         if (matches($x,'^[A-Z]{1}\.$')) then $x         else ())"/>
       
@@ -4635,8 +4635,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="ref-list-title-tests-pattern">
-    <rule context="ref-list" id="ref-list-title-tests">
+  <pattern xmlns="" id="ref-list-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref-list" id="ref-list-title-tests">
       <let name="cite-list" value="e:ref-cite-list(.)"/>
       <let name="non-distinct" value="e:non-distinct-citations($cite-list)"/>
       
@@ -4646,15 +4646,15 @@
       
     </rule>
   </pattern>
-  <pattern id="app-title-tests-pattern">
-    <rule context="app/title" id="app-title-tests">
+  <pattern xmlns="" id="app-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app/title" id="app-title-tests">
       
       <assert test="matches(.,'^Appendix$|^Appendix [0-9]$|^Appendix [0-9][0-9]$')" role="error" id="app-title-test">app title must be in the format 'Appendix 1'. Currently it is '<value-of select="."/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="fn-group-tests-pattern">
-    <rule context="fn-group" id="fn-group-tests">
+  <pattern xmlns="" id="fn-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group" id="fn-group-tests">
       <let name="allowed-content-types" value="('competing-interest','author-contribution','ethics-information')"/>
       
       <assert test="@content-type" role="error" id="fn-content-type-1">fn-group that is descendant of back must have a content-type attribute.</assert>
@@ -4666,46 +4666,46 @@
       
     </rule>
   </pattern>
-  <pattern id="comp-int-title-tests-pattern">
-    <rule context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
+  <pattern xmlns="" id="comp-int-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='competing-interest']" id="comp-int-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-title-test" test="title = 'Competing interests'" role="error" id="comp-int-title-test">fn-group[@content-type='competing-interests'] must have a title that contains 'Competing interests'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="auth-cont-title-tests-pattern">
-    <rule context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
+  <pattern xmlns="" id="auth-cont-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='author-contribution']" id="auth-cont-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-title-test" test="title = 'Author contributions'" role="error" id="auth-cont-title-test">fn-group[@content-type='author-contribution'] must have a title that contains 'Author contributions'. Currently it is '<value-of select="title"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="ethics-title-tests-pattern">
-    <rule context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
+  <pattern xmlns="" id="ethics-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='ethics-information']" id="ethics-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-title-test" test="title = 'Ethics'" role="error" id="ethics-title-test">fn-group[@content-type='ethics-information'] must have a title that contains 'Ethics'. Currently it is '<value-of select="title"/>'.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-broken-unicode-test" test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="ed-eval-title-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
+  <pattern xmlns="" id="ed-eval-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="dec-letter-title-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
+  <pattern xmlns="" id="dec-letter-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" flag="dl-ar" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="reply-title-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
+  <pattern xmlns="" id="reply-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-title-test" test="article-title = 'Author response'" role="error" flag="dl-ar" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
     </rule>
   </pattern>
-  <pattern id="title-child-tests-pattern">
-    <rule context="title/*" id="title-child-tests">
+  <pattern xmlns="" id="title-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="title/*" id="title-child-tests">
       <let name="allowed-elems" value="('sub','xref','sup','bold','italic','inline-formula','underline','sc','ext-link','monospace','mml:math')"/>
      
       <assert see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#title-child-conformance" test="name()=$allowed-elems" role="error" id="title-child-conformance">
@@ -4714,14 +4714,14 @@
     </rule>
   </pattern>
   
-  <pattern id="award-group-ids-pattern">
-    <rule context="funding-group/award-group" id="award-group-ids">
+  <pattern xmlns="" id="award-group-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="funding-group/award-group" id="award-group-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-1" test="matches(substring-after(@id,'fund'),'^[0-9]{1,2}$')" role="error" id="award-group-test-1">award-group must have an @id, the value of which conforms to the convention 'fund', followed by a digit. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="fig-ids-pattern">
-    <rule context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
+  <pattern xmlns="" id="fig-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" id="fig-ids">
       
       <!-- Needs updating once scheme/checmical structure ids have been updated -->
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-id-test-1" test="matches(@id,'^fig[0-9]{1,3}$|^C[0-9]{1,3}$|^S[0-9]{1,3}$')" role="error" id="fig-id-test-1">fig must have an @id in the format fig0 (or C0 for chemical structures, or S0 for Schemes). <value-of select="@id"/> does not conform to this.</assert>
@@ -4737,14 +4737,14 @@
         id="fig-id-test-4">Schemes must have an @id in the format scheme0. <value-of select="@id"/> does not conform to this.</report>-->
     </rule>
   </pattern>
-  <pattern id="fig-sup-ids-pattern">
-    <rule context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
+  <pattern xmlns="" id="fig-sup-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig[@specific-use='child-fig'][not(ancestor::boxed-text)]" id="fig-sup-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-id-test" test="matches(@id,'^fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="fig-sup-id-test">figure supplement must have an @id in the format fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="box-fig-ids-pattern">
-    <rule context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
+  <pattern xmlns="" id="box-fig-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//boxed-text//fig[not(@specific-use='child-fig')]" id="box-fig-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-1" test="matches(@id,'^box[0-9]{1,3}fig[0-9]{1,3}$')" role="error" id="box-fig-id-1">fig must have @id in the format box0fig0. <value-of select="@id"/> does not conform to this.</assert>
@@ -4752,8 +4752,8 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-2" test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="app-fig-ids-pattern">
-    <rule context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
+  <pattern xmlns="" id="app-fig-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/back//app//fig[not(@specific-use='child-fig')]" id="app-fig-ids">
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-1" test="matches(label[1],'^Appendix \d{1,4}—figure \d{1,4}\.$|^Appendix [A-Z]—figure \d{1,4}\.$|^Appendix—figure \d{1,4}\.$') and not(matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}$'))" role="error" id="app-fig-id-test-1">figures in appendices must have an @id in the format app0fig0. <value-of select="@id"/> does not conform to this.</report>
       
@@ -4762,33 +4762,33 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-id-test-3" test="matches(label[1],'[Ss]cheme') and not(matches(@id,'^app[0-9]{1,3}scheme[0-9]{1,3}$'))" role="warning" id="app-fig-id-test-3">Schemes must have an @id in the format app0scheme0. <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
-  <pattern id="app-fig-sup-ids-pattern">
-    <rule context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
+  <pattern xmlns="" id="app-fig-sup-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/back//app//fig[@specific-use='child-fig']" id="app-fig-sup-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-id-test" test="matches(@id,'^app[0-9]{1,3}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" id="app-fig-sup-id-test">figure supplements in appendices must have an @id in the format app0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="rep-fig-ids-pattern">
-    <rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
+  <pattern xmlns="" id="rep-fig-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-id-test" test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" flag="dl-ar" id="resp-fig-id-test">fig in decision letter/author response must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="rep-fig-sup-ids-pattern">
-    <rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
+  <pattern xmlns="" id="rep-fig-sup-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-sup-id-test" test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" flag="dl-ar" id="resp-fig-sup-id-test">figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
     </rule>
   </pattern>
-  <pattern id="video-ids-pattern">
-    <rule context="article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
+  <pattern xmlns="" id="video-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//media[starts-with(@mimetype,'video') and not(ancestor::boxed-text) and not(parent::fig-group)]" id="video-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-id-test" test="matches(@id,'^video[0-9]{1,3}$')" role="error" id="video-id-test">main video must have an @id in the format video0.  <value-of select="@id"/> does not conform to this.</assert>
     </rule>
   </pattern>
-  <pattern id="video-sup-ids-pattern">
-    <rule context="article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" id="video-sup-ids">
+  <pattern xmlns="" id="video-sup-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//fig-group/media[starts-with(@mimetype,'video') and not(ancestor::boxed-text)]" id="video-sup-ids">
       <let name="id-prefix" value="parent::fig-group/fig[1]/@id"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-1" test="matches(@id,'^fig[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="video-sup-id-test-1">video supplement must have an @id in the format fig0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -4796,8 +4796,8 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-sup-id-test-2" test="starts-with(@id,$id-prefix)" role="error" id="video-sup-id-test-2">video supplement must have an @id which begins with the id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="app-video-ids-pattern">
-    <rule context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
+  <pattern xmlns="" id="app-video-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/back//app//media[starts-with(@mimetype,'video') and not(parent::fig-group)]" id="app-video-ids">
       <let name="id-prefix" value="substring-after(ancestor::app[1]/@id,'-')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-1" test="matches(@id,'^app[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="app-video-id-test-1">video in appendix must have an @id in the format app0video0. <value-of select="@id"/> does not conform to this.</assert>
@@ -4805,8 +4805,8 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-id-test-2" test="starts-with(@id,concat('app',$id-prefix))" role="error" id="app-video-id-test-2">video supplement must have an @id which begins with the id of its ancestor appendix. <value-of select="@id"/> does not start with <value-of select="concat('app',$id-prefix)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="app-video-sup-ids-pattern">
-    <rule context="article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" id="app-video-sup-ids">
+  <pattern xmlns="" id="app-video-sup-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/back//app//media[starts-with(@mimetype,'video') and (parent::fig-group)]" id="app-video-sup-ids">
       <let name="id-prefix-1" value="substring-after(ancestor::app[1]/@id,'-')"/>
       <let name="id-prefix-2" value="parent::fig-group/fig[1]/@id"/>
       
@@ -4817,8 +4817,8 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#app-video-sup-id-test-3" test="starts-with(@id,$id-prefix-2)" role="error" id="app-video-sup-id-test-3">video supplement must have an @id which begins with the id of its ancestor appendix, followed by id of its parent fig. <value-of select="@id"/> does not start with <value-of select="$id-prefix-2"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="box-vid-ids-pattern">
-    <rule context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
+  <pattern xmlns="" id="box-vid-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body//boxed-text//media[starts-with(@mimetype,'video')]" id="box-vid-ids">
       <let name="box-id" value="ancestor::boxed-text/@id"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-1" test="matches(@id,'^box[0-9]{1,3}video[0-9]{1,3}$')" role="error" id="box-vid-id-1">video must have @id in the format box0video0.  <value-of select="@id"/> does not conform to this.</assert>
@@ -4826,44 +4826,44 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#box-vid-id-2" test="starts-with(@id,$box-id)" role="error" id="box-vid-id-2">video id does not start with its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="related-articles-ids-pattern">
-    <rule context="related-article" id="related-articles-ids">
+  <pattern xmlns="" id="related-articles-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="related-article" id="related-articles-ids">
       
       <assert test="matches(@id,'^ra\d$')" role="error" id="related-articles-test-7">related-article element must contain a @id, the value of which should be in the form ra0.</assert>
     </rule>
   </pattern>
-  <pattern id="aff-ids-pattern">
-    <rule context="aff[not(parent::contrib)]" id="aff-ids">
+  <pattern xmlns="" id="aff-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff[not(parent::contrib)]" id="aff-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2lcw-aff-id-test" test="if (label) then @id = concat('aff',label[1])         else starts-with(@id,'aff')" role="error" id="aff-id-test">aff @id must be a concatenation of 'aff' and the child label value. In this instance it should be <value-of select="concat('aff',label[1])"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="fn-ids-pattern">
-    <rule context="fn" id="fn-ids">
+  <pattern xmlns="" id="fn-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn" id="fn-ids">
       <let name="type" value="@fn-type"/>
       <let name="parent" value="self::*/parent::*/local-name()"/>
       
       <report test="if ($parent = 'table-wrap-foot') then ()         else if ($type = 'conflict') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'con') then         if ($parent = 'author-notes') then not(matches(@id,'^equal-contrib[0-9]{1,3}$'))         else not(matches(@id,'^con[0-9]{1,3}$'))         else if ($type = 'present-address') then not(matches(@id,'^pa[0-9]{1,3}$'))         else if ($type = 'COI-statement') then not(matches(@id,'^conf[0-9]{1,3}$'))         else if ($type = 'fn') then not(matches(@id,'^fn[0-9]{1,3}$'))         else ()" role="error" id="fn-id-test">fn @id is not in the correct format. Refer to eLife kitchen sink for correct format.</report>
     </rule>
   </pattern>
-  <pattern id="disp-formula-ids-pattern">
-    <rule context="disp-formula" id="disp-formula-ids">
+  <pattern xmlns="" id="disp-formula-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="disp-formula" id="disp-formula-ids">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#disp-formula-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^equ[0-9]{1,9}$'))" role="error" id="disp-formula-id-test">disp-formula @id must be in the format 'equ0'.</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-disp-formula-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
-  <pattern id="mml-math-ids-pattern">
-    <rule context="disp-formula/mml:math" id="mml-math-ids">
+  <pattern xmlns="" id="mml-math-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="disp-formula/mml:math" id="mml-math-ids">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mml-math-id-test" test="not(ancestor::sub-article) and not(matches(@id,'^m[0-9]{1,9}$'))" role="error" id="mml-math-id-test">mml:math @id in disp-formula must be in the format 'm0'.  <value-of select="@id"/> does not conform to this.</report>
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-mml-math-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
     </rule>
   </pattern>
-  <pattern id="app-table-wrap-ids-pattern">
-    <rule context="app//table-wrap[label]" id="app-table-wrap-ids">
+  <pattern xmlns="" id="app-table-wrap-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app//table-wrap[label]" id="app-table-wrap-ids">
       <let name="app-no" value="substring-after(ancestor::app[1]/@id,'-')"/>
     
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-1" test="matches(@id, '^app[0-9]{1,3}table[0-9]{1,3}$|^app[0-9]{1,3}keyresource$|^keyresource$')" role="error" id="app-table-wrap-id-test-1">table-wrap @id in appendix must be in the format 'app0table0' for normal tables, or 'app0keyresource' or 'keyresource' for key resources tables in appendices. <value-of select="@id"/> does not conform to this.</assert>
@@ -4871,42 +4871,42 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#app-table-wrap-id-test-2" test="not(@id='keyresource') and not(starts-with(@id, concat('app' , $app-no)))" role="error" id="app-table-wrap-id-test-2">table-wrap @id must start with <value-of select="concat('app' , $app-no)"/>.</report>
     </rule>
   </pattern>
-  <pattern id="resp-table-wrap-ids-pattern">
-    <rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
+  <pattern xmlns="" id="resp-table-wrap-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#resp-table-wrap-id-test" test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" flag="dl-ar" id="resp-table-wrap-id-test">table-wrap @id in a sub-article must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not.</assert>
     </rule>
   </pattern>
-  <pattern id="table-wrap-ids-pattern">
-    <rule context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" id="table-wrap-ids">
+  <pattern xmlns="" id="table-wrap-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//table-wrap[not(ancestor::app) and not(ancestor::sub-article)]" id="table-wrap-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-id-test" test="if (label = 'Key resources table') then @id='keyresource'         else if (label) then matches(@id, '^table[0-9]{1,3}$')         else matches(@id, '^inlinetable[0-9]{1,3}$')" role="error" id="table-wrap-id-test">table-wrap @id must be in the format 'table0', unless it doesn't have a label, in which case it must be 'inlinetable0' or it is the key resource table which must be 'keyresource'.</assert>
     </rule>
   </pattern>
-  <pattern id="body-top-level-sec-ids-pattern">
-    <rule context="article/body/sec" id="body-top-level-sec-ids">
+  <pattern xmlns="" id="body-top-level-sec-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body/sec" id="body-top-level-sec-ids">
       <let name="pos" value="count(parent::body/sec) - count(following-sibling::sec)"/>
     
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#body-top-level-sec-id-test" test="@id = concat('s',$pos)" role="error" id="body-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to its siblings. It must be <value-of select="concat('s',$pos)"/>.</assert>
       </rule>
   </pattern>
-  <pattern id="back-top-level-sec-ids-pattern">
-    <rule context="article/back/sec" id="back-top-level-sec-ids">
+  <pattern xmlns="" id="back-top-level-sec-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/back/sec" id="back-top-level-sec-ids">
       <let name="pos" value="count(ancestor::article/body/sec) + count(parent::back/sec) - count(following-sibling::sec)"/>
       
       <assert test="@id = concat('s',$pos)" role="error" id="back-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="low-level-sec-ids-pattern">
-    <rule context="article/body/sec//sec|article/back/sec//sec" id="low-level-sec-ids">
+  <pattern xmlns="" id="low-level-sec-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/body/sec//sec|article/back/sec//sec" id="low-level-sec-ids">
       <let name="parent-sec" value="parent::sec/@id"/>
       <let name="pos" value="count(parent::sec/sec) - count(following-sibling::sec)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#low-level-sec-id-test" test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="app-ids-pattern">
-    <rule context="app" id="app-ids">
+  <pattern xmlns="" id="app-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="app" id="app-ids">
       <let name="pos" value="string(count(ancestor::article//app) - count(following::app))"/>
       
       <assert test="matches(@id,'^appendix-[0-9]{1,3}$')" role="error" id="app-id-test-1">app id must be in the format 'appendix-0'. <value-of select="@id"/> is not in this format.</assert>
@@ -4914,70 +4914,70 @@
       <assert test="substring-after(@id,'appendix-') = $pos" role="error" id="app-id-test-2">app id is <value-of select="@id"/>, but relative to other appendices it is in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="mdar-ids-pattern">
-    <rule context="supplementary-material[contains(lower-case(label[1]),'mdar')]" id="mdar-ids">
+  <pattern xmlns="" id="mdar-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material[contains(lower-case(label[1]),'mdar')]" id="mdar-ids">
       
       <assert test="matches(@id,'^mdar$')" role="error" id="mdar-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'mdar'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="igrf-ids-pattern">
-    <rule context="supplementary-material[matches(label[1],'^Inclusion in global research form$')]" id="igrf-ids">
+  <pattern xmlns="" id="igrf-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material[matches(label[1],'^Inclusion in global research form$')]" id="igrf-ids">
       
       <assert test="matches(@id,'^igrf$')" role="error" id="igrf-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'igrf'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="transrep-ids-pattern">
-    <rule context="supplementary-material[contains(lower-case(label[1]),'transparent')]" id="transrep-ids">
+  <pattern xmlns="" id="transrep-ids-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material[contains(lower-case(label[1]),'transparent')]" id="transrep-ids">
       
       <assert test="matches(@id,'^transrepform$')" role="error" id="transrep-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'transrepform'.</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="fig-children-pattern">
-    <rule context="fig/*" id="fig-children">
+  <pattern xmlns="" id="fig-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig/*" id="fig-children">
       <let name="allowed-children" value="('label', 'caption', 'graphic', 'permissions', 'attrib')"/>
       
       <assert test="local-name() = $allowed-children" role="error" id="fig-child-conformance">
         <name/> is not allowed as a child of fig.</assert>
     </rule>
   </pattern>
-  <pattern id="table-wrap-children-pattern">
-    <rule context="table-wrap/*" id="table-wrap-children">
+  <pattern xmlns="" id="table-wrap-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap/*" id="table-wrap-children">
       <let name="allowed-children" value="('label', 'caption', 'table', 'permissions', 'table-wrap-foot')"/>
       
       <assert test="local-name() = $allowed-children" role="error" id="table-wrap-child-conformance">
         <name/> is not allowed as a child of table-wrap.</assert>
     </rule>
   </pattern>
-  <pattern id="media-children-pattern">
-    <rule context="media/*" id="media-children">
+  <pattern xmlns="" id="media-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media/*" id="media-children">
       <let name="allowed-children" value="('label', 'caption', 'permissions', 'attrib')"/>
       
       <assert test="local-name() = $allowed-children" role="error" id="media-child-conformance">
         <name/> is not allowed as a child of media.</assert>
     </rule>
   </pattern>
-  <pattern id="supplementary-material-children-pattern">
-    <rule context="supplementary-material/*" id="supplementary-material-children">
+  <pattern xmlns="" id="supplementary-material-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="supplementary-material/*" id="supplementary-material-children">
       <let name="allowed-children" value="('label', 'caption', 'media', 'permissions')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-child-conformance" test="local-name() = $allowed-children" role="error" id="supplementary-material-child-conformance">
         <name/> is not allowed as a child of supplementary-material.</assert>
     </rule>
   </pattern>
-  <pattern id="author-notes-children-pattern">
-    <rule context="author-notes/*" id="author-notes-children">
+  <pattern xmlns="" id="author-notes-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="author-notes/*" id="author-notes-children">
       
       <assert test="local-name() = 'fn'" role="error" id="author-notes-child-conformance">
         <name/> is not allowed as a child of author-notes.</assert>
     </rule>
   </pattern>
   
-  <pattern id="sec-tests-pattern">
-    <rule context="sec" id="sec-tests">
+  <pattern xmlns="" id="sec-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec" id="sec-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-1" test="title" role="error" id="sec-test-1">sec must have a title</assert>
       
@@ -4988,24 +4988,24 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-test-5" test="count(ancestor::sec) ge 5" role="error" id="sec-test-5">Level <value-of select="count(ancestor::sec) + 1"/> sections are not allowed. Please either make this a level 5 heading, or capture the title as a bolded paragraph in its parent section.</report>
     </rule>
   </pattern>
-  <pattern id="res-data-sec-pattern">
-    <rule context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
+  <pattern xmlns="" id="res-data-sec-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']//sec[not(@sec-type)]" id="res-data-sec">
       <let name="title" value="lower-case(title[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#sec-test-3" test="contains($title,'data') and (contains($title,'availability') or contains($title,'code') or contains($title,'accessib') or contains($title,'statement'))" role="warning" id="sec-test-3">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of the data availability section (and therefore should be removed)?</report>
       
     </rule>
   </pattern>
-  <pattern id="res-ethics-sec-pattern">
-    <rule context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
+  <pattern xmlns="" id="res-ethics-sec-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" id="res-ethics-sec">
       
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#sec-test-4" test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" role="warning" id="sec-test-4">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(         ancestor::article//fn-group[@content-type='ethics-information']/fn         ,' '         )"/>'?</report>
       
     </rule>
   </pattern>
   
-  <pattern id="back-tests-pattern">
-    <rule context="back" id="back-tests">
+  <pattern xmlns="" id="back-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="back" id="back-tests">
       <let name="article-type" value="parent::article/@article-type"/>
       <let name="subj-type" value="parent::article//subj-group[@subj-group-type='display-channel']/subject"/>
       <let name="pub-date" value="e:get-iso-pub-date(self::*)"/>
@@ -5038,8 +5038,8 @@
       
     </rule>
   </pattern>
-  <pattern id="data-content-tests-pattern">
-    <rule context="back/sec[@sec-type='data-availability']" id="data-content-tests">
+  <pattern xmlns="" id="data-content-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="back/sec[@sec-type='data-availability']" id="data-content-tests">
       
       <assert test="count(p) gt 0" role="error" id="data-p-presence">At least one p element must be present in sec[@sec-type='data=availability'].</assert>
       
@@ -5048,28 +5048,28 @@
       <report test="count(p[matches(.,'^The following previously published datasets? w(as|ere) used:\s?$')]) gt 1" role="error" id="data-used-p-presence">Data availabilty section contains more than one p element describing that previously published datasets were used. Either the content of one (or more) is incorrect, or the duplicated sentence needs removing.</report>
     </rule>
   </pattern>
-  <pattern id="ack-tests-pattern">
-    <rule context="back/ack" id="ack-tests">
+  <pattern xmlns="" id="ack-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="back/ack" id="ack-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1" test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
   </pattern>
-  <pattern id="ack-child-tests-pattern">
-    <rule context="back/ack/*" id="ack-child-tests">
+  <pattern xmlns="" id="ack-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="back/ack/*" id="ack-child-tests">
     
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#hdl9z-ack-child-test-1" test="local-name() = ('p','sec','title')" role="error" id="ack-child-test-1">Only p, sec or title can be children of ack. <name/> is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern id="app-tests-pattern">
-    <rule context="back//app" id="app-tests">
+  <pattern xmlns="" id="app-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="back//app" id="app-tests">
       
       <assert test="parent::app-group" role="error" id="app-test-1">app must be captured as a child of an app-group element.</assert>
       
       <assert test="count(title) = 1" role="error" id="app-test-2">app must have one title.</assert>
     </rule>
   </pattern>
-  <pattern id="additional-info-tests-pattern">
-    <rule context="sec[@sec-type='additional-information']" id="additional-info-tests">
+  <pattern xmlns="" id="additional-info-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='additional-information']" id="additional-info-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="author-count" value="count(ancestor::article//article-meta//contrib[@contrib-type='author'])"/>
       <let name="non-contribs" value="('article-commentary', 'editorial', 'book-review', $notice-article-types)"/>
@@ -5088,8 +5088,8 @@
       
     </rule>
   </pattern>
-  <pattern id="additional-files-tests-pattern">
-    <rule context="sec[@sec-type='supplementary-material']" id="additional-files-tests">
+  <pattern xmlns="" id="additional-files-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='supplementary-material']" id="additional-files-tests">
       
       <assert test="title = 'Additional files'" role="error" id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
       
@@ -5097,31 +5097,31 @@
       
     </rule>
   </pattern>
-  <pattern id="trf-presence-pattern">
-    <rule context="article[@article-type='research-article']" id="trf-presence">
+  <pattern xmlns="" id="trf-presence-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']" id="trf-presence">
       
       <assert test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form|mdar checklist')]" role="warning" id="add-files-2">This article does not have a transparent reporting form or MDAR checklist. Is that correct?</assert>
       
     </rule>
   </pattern>
-  <pattern id="additional-files-child-tests-pattern">
-    <rule context="sec[@sec-type='supplementary-material']/*" id="additional-files-child-tests">
+  <pattern xmlns="" id="additional-files-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='supplementary-material']/*" id="additional-files-child-tests">
       
       <assert test="name()=('title','supplementary-material')" role="error" id="add-files-3">
         <value-of select="name()"/> is not allowed as a child element in the additional files section (sec[@sec-type='supplementary-material']).</assert>
       
     </rule>
   </pattern>
-  <pattern id="comp-int-fn-group-tests-pattern">
-    <rule context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
+  <pattern xmlns="" id="comp-int-fn-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='competing-interest']" id="comp-int-fn-group-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-1" test="count(fn) gt 0" role="error" id="comp-int-fn-test-1">At least one child fn element should be present in fn-group[@content-type='competing-interest'].</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-group-test-1" test="ancestor::back" role="error" id="comp-int-fn-group-test-1">This fn-group must be a descendant of back.</assert>
     </rule>
   </pattern>
-  <pattern id="comp-int-fn-tests-pattern">
-    <rule context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
+  <pattern xmlns="" id="comp-int-fn-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='competing-interest']/fn" id="comp-int-fn-tests">
       <let name="lower-case" value="lower-case(.)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-2" test="@fn-type='COI-statement'" role="error" id="comp-int-fn-test-2">fn element must have an @fn-type='COI-statement' as it is a child of fn-group[@content-type='competing-interest'].</assert>
@@ -5135,8 +5135,8 @@
       
     </rule>
   </pattern>
-  <pattern id="auth-cont-fn-tests-pattern">
-    <rule context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
+  <pattern xmlns="" id="auth-cont-fn-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='author-contribution']/fn" id="auth-cont-fn-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-fn-test-1" test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
 
@@ -5144,8 +5144,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="ethics-tests-pattern">
-    <rule context="fn-group[@content-type='ethics-information']" id="ethics-tests">
+  <pattern xmlns="" id="ethics-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='ethics-information']" id="ethics-tests">
       
       <!-- Exclusion included for Feature 5 -->
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-1" test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
@@ -5155,16 +5155,16 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-3" test="count(fn) = 0" role="error" id="ethics-test-3">Ethics fn-group must have at least one fn element.</report>
     </rule>
   </pattern>
-  <pattern id="ethics-fn-tests-pattern">
-    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
+  <pattern xmlns="" id="ethics-fn-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='ethics-information']/fn" id="ethics-fn-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-4" test="@fn-type='other'" role="error" id="ethics-test-4">This fn must have an @fn-type='other'</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="dec-letter-reply-tests-pattern">
-    <rule context="article/sub-article" id="dec-letter-reply-tests">
+  <pattern xmlns="" id="dec-letter-reply-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
@@ -5188,8 +5188,8 @@
       
     </rule>
   </pattern>
-  <pattern id="dec-letter-reply-content-tests-pattern">
-    <rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
+  <pattern xmlns="" id="dec-letter-reply-content-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-5" test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" flag="dl-ar" id="dec-letter-reply-test-5">
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
@@ -5198,8 +5198,8 @@
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-reply-content-tests-2-pattern">
-    <rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
+  <pattern xmlns="" id="dec-letter-reply-content-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
       <let name="regex" value="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
       
       <!-- Need to improve messaging -->
@@ -5207,8 +5207,8 @@
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="ed-eval-front-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
+  <pattern xmlns="" id="ed-eval-front-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
@@ -5226,29 +5226,29 @@
       <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" role="error" flag="dl-ar" id="ed-eval-front-test-5b">eLife Assessment front-stub contains a significance term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="ed-eval-front-child-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
+  <pattern xmlns="" id="ed-eval-front-child-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1" test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1">
         <name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
   </pattern>
-  <pattern id="ed-eval-contrib-group-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
+  <pattern xmlns="" id="ed-eval-contrib-group-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1" test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
     </rule>
   </pattern>
-  <pattern id="ed-eval-author-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
+  <pattern xmlns="" id="ed-eval-author-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
       <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <let name="name" value="e:get-name(name[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1" test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="ed-eval-rel-obj-tests-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
+  <pattern xmlns="" id="ed-eval-rel-obj-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
       <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[self-uri[@content-type='preprint']]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-1" test="matches(@id,'^sa0ro\d$')" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-1">related-object in editor's evaluation must have an id in the format sa0ro1. <value-of select="@id"/> does not meet this convention.</assert>
@@ -5267,8 +5267,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ed-report-kwd-group-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
+  <pattern xmlns="" id="ed-report-kwd-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-1" test="@kwd-group-type=('claim-importance','evidence-strength')" role="error" flag="dl-ar" id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
 
@@ -5283,8 +5283,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ed-report-claim-kwds-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
+  <pattern xmlns="" id="ed-report-claim-kwds-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
       <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-claim-kwd-1" test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/>
@@ -5292,8 +5292,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ed-report-evidence-kwds-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
+  <pattern xmlns="" id="ed-report-evidence-kwds-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
       <let name="wos-go-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid')"/>
       <let name="wos-no-go-vals" value="('Incomplete', 'Inadequate')"/>
       <let name="allowed-vals" value="($wos-go-vals,$wos-no-go-vals)"/>
@@ -5304,8 +5304,8 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-2" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]" role="warning" flag="dl-ar" id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</report>
     </rule>
   </pattern>
-  <pattern id="ed-report-kwds-pattern">
-    <rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
+  <pattern xmlns="" id="ed-report-kwds-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1" test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
@@ -5315,8 +5315,8 @@
       
     </rule>
   </pattern>
-  <pattern id="ed-report-bold-terms-pattern">
-    <rule context="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" id="ed-report-bold-terms">
+  <pattern xmlns="" id="ed-report-bold-terms-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='editor-report' and e:is-prc(.)]/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
       <let name="sig-kwds" value="('landmark', 'fundamental', 'important', 'valuable', 'useful')"/>
       <let name="allowed-vals" value="($str-kwds,$sig-kwds)"/>
@@ -5336,8 +5336,8 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-bold-terms-5" test="(lower-case(.)=$str-kwds) and matches($preceding-text,'\spotentially\s*$')" role="warning" id="ed-report-bold-terms-5">Assessment strength keyword (<value-of select="."/>) is preceded by 'potentially'. Has the keyword been deployed correctly?</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-front-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
+  <pattern xmlns="" id="dec-letter-front-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
@@ -5349,16 +5349,16 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-4" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" role="warning" flag="dl-ar" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-editor-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
+  <pattern xmlns="" id="dec-letter-editor-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1" test="count(contrib[@contrib-type='editor']) = 1" role="warning" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2" test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" flag="dl-ar" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-editor-tests-2-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
+  <pattern xmlns="" id="dec-letter-editor-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
@@ -5371,8 +5371,8 @@
         id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
     </rule>
   </pattern>
-  <pattern id="dec-letter-reviewer-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
+  <pattern xmlns="" id="dec-letter-reviewer-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1" test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
       
@@ -5381,28 +5381,28 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-6" test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" flag="dl-ar" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-reviewer-tests-2-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
+  <pattern xmlns="" id="dec-letter-reviewer-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-3" test="role='Reviewer'" role="error" flag="dl-ar" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="dec-letter-body-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
+  <pattern xmlns="" id="dec-letter-body-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="dec-letter-body-p-tests-pattern">
-    <rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
+  <pattern xmlns="" id="dec-letter-body-p-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-2" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" flag="dl-ar" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="dec-letter-box-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
+  <pattern xmlns="" id="dec-letter-box-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
       <let name="permitted-text-1" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below.$'"/>
       <let name="permitted-text-2" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.$'"/>
       <let name="permitted-text-3" value="'^In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.$'"/>
@@ -5414,90 +5414,90 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-3" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" role="error" flag="dl-ar" id="dec-letter-box-test-3">At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
     </rule>
   </pattern>
-  <pattern id="decision-missing-table-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
+  <pattern xmlns="" id="decision-missing-table-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
     </rule>
   </pattern>
-  <pattern id="reply-front-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
+  <pattern xmlns="" id="reply-front-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
     </rule>
   </pattern>
-  <pattern id="reply-body-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
+  <pattern xmlns="" id="reply-body-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2" test="count(p) = 0" role="error" flag="dl-ar" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="reply-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
+  <pattern xmlns="" id="reply-disp-quote-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="reply-missing-disp-quote-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+  <pattern xmlns="" id="reply-missing-disp-quote-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
-  <pattern id="reply-missing-disp-quote-tests-2-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+  <pattern xmlns="" id="reply-missing-disp-quote-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
-  <pattern id="reply-missing-table-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
+  <pattern xmlns="" id="reply-missing-table-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-ext-link-tests-pattern">
-    <rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
+  <pattern xmlns="" id="sub-article-ext-link-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-ref-p-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+  <pattern xmlns="" id="sub-article-ref-p-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/>
       </report>
     </rule>
   </pattern>
-  <pattern id="sub-article-dl-image-tests-pattern">
-    <rule context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
+  <pattern xmlns="" id="sub-article-dl-image-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
       
       <report test="matches(.,'[Dd]ecision letter image \d')" role="error" flag="dl-ar" id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Dd]ecision letter table \d')" role="error" flag="dl-ar" id="sub-article-dl-image-2">Decision letter contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the decision letter table is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-pr-image-tests-pattern">
-    <rule context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
+  <pattern xmlns="" id="sub-article-pr-image-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
       
       <report test="matches(.,'[Rr]eview image \d')" role="error" flag="dl-ar" id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Rr]eview table \d')" role="error" flag="dl-ar" id="sub-article-pr-image-2">Public review contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the review table is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-ar-image-tests-pattern">
-    <rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
+  <pattern xmlns="" id="sub-article-ar-image-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
       
       <report test="matches(.,'[Aa]uthor response image \d')" role="error" flag="dl-ar" id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Aa]uthor response table \d')" role="error" flag="dl-ar" id="sub-article-ar-image-2">Author response contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the author response table is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern id="sub-article-gen-image-tests-pattern">
-    <rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
+  <pattern xmlns="" id="sub-article-gen-image-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
       
       <report test="matches(.,'image \d')" role="error" flag="dl-ar" id="sub-article-gen-image-1">
         <value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
@@ -5507,8 +5507,8 @@
     </rule>
   </pattern>
   
-  <pattern id="ref-report-front-pattern">
-    <rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
+  <pattern xmlns="" id="ref-report-front-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
@@ -5516,8 +5516,8 @@
       <assert test="$count = 1" role="error" flag="dl-ar" id="ref-report-front-2">sub-article front-stub must contain one, and only one contrib-group elements.</assert>
     </rule>
   </pattern>
-  <pattern id="sub-article-contrib-tests-pattern">
-    <rule context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
+  <pattern xmlns="" id="sub-article-contrib-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
       
       <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have the attribute contrib-type='author'.</assert>
       
@@ -5529,8 +5529,8 @@
       
     </rule>
   </pattern>
-  <pattern id="sub-article-role-tests-pattern">
-    <rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
+  <pattern xmlns="" id="sub-article-role-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
       <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
       
@@ -5548,16 +5548,16 @@
       
     </rule>
   </pattern>
-  <pattern id="ref-report-editor-tests-pattern">
-    <rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
+  <pattern xmlns="" id="ref-report-editor-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
       
       <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="ref-report-editor-1">The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
       
       <assert test="count(descendant::contrib[role[@specific-use='referee']]) &gt; 0" role="error" flag="dl-ar" id="ref-report-reviewer-1">The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='referee']). This one has 0.</assert>
     </rule>
   </pattern>
-  <pattern id="ref-report-editor-tests-2-pattern">
-    <rule context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="ref-report-editor-tests-2">
+  <pattern xmlns="" id="ref-report-editor-tests-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='referee-report']/front-stub/contrib-group[1]/contrib[role[@specific-use='editor']]" id="ref-report-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <let name="top-contrib" value="ancestor::article//article-meta/contrib-group[2]/contrib[lower-case(role[1])=lower-case($role)]"/>
@@ -5566,16 +5566,16 @@
       <report test="($top-name!='') and ($top-name!=$name)" role="error" id="ref-report-editor-2">In <value-of select="ancestor::front-stub[1]//article-title"/> '<value-of select="$name"/>' is a '<value-of select="$role"/>', but in the top-level article details '<value-of select="$top-name"/>' is the '<value-of select="$top-contrib/role[1]"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="ref-report-reviewer-tests-pattern">
-    <rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
+  <pattern xmlns="" id="ref-report-reviewer-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
       
       <assert test="count(descendant::contrib[role[@specific-use='referee']])=1" role="error" flag="dl-ar" id="ref-report-reviewer-test-1">A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains <value-of select="count(descendant::contrib[role[@specific-use='referee']])"/>.</assert>
       
       <report test="descendant::contrib[not(role[@specific-use='referee'])]" role="error" flag="dl-ar" id="ref-report-reviewer-test-2">A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']).</report>
     </rule>
   </pattern>
-  <pattern id="anonymous-tests-pattern">
-    <rule context="anonymous" id="anonymous-tests">
+  <pattern xmlns="" id="anonymous-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="anonymous" id="anonymous-tests">
       
       <assert test="parent::contrib[role[@specific-use='referee']]" role="error" id="anonymous-test-1">The anonymous element can only be used for a reviewer who has opted not to reveal their name. It cannot be placed as a child of <value-of select="if (parent::contrib) then 'a non-reviewer contrib' else parent::*/name()"/>.</assert>
       
@@ -5584,23 +5584,23 @@
       <report test="@*" role="error" id="anonymous-test-3">anonymous element cannot have any attributes.</report>
     </rule>
   </pattern>
-  <pattern id="prc-reviewer-tests-pattern">
-    <rule context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" id="prc-reviewer-tests">
+  <pattern xmlns="" id="prc-reviewer-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article[e:is-prc(.)]//contrib[role[@specific-use='referee']]" id="prc-reviewer-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1" test="name or collab or collab-wrap" role="error" id="prc-reviewer-test-1">A reviewer contrib in a PRC article cannot have a child <value-of select="*[name()=('name','collab','collab-wrap')]/name()"/> element, since all reviewers are captured as anonymous. They must have an anonymous element instead.</report>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-2" test="anonymous" role="error" id="prc-reviewer-test-2">A reviewer contrib in a PRC article must have a child anonymous element. This one does not - <value-of select="."/>.</assert>
     </rule>
   </pattern>
-  <pattern id="prc-pub-review-tests-pattern">
-    <rule context="article[e:is-prc(.)]" id="prc-pub-review-tests">
+  <pattern xmlns="" id="prc-pub-review-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:is-prc(.)]" id="prc-pub-review-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#prc-reviewer-test-1" test="sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'reviewer #')] and (         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'consensus')]          or         sub-article[@article-type='referee-report']/front-stub//article-title[starts-with(lower-case(.),'joint')]         )" role="warning" id="prc-pub-review-test-1">This article has individual public reviews, and also either a consensus or a joint public review, which is highly unusual. Is this correct?</report>
     </rule>
   </pattern>
   
-  <pattern id="sub-article-doi-checks-pattern">
-    <rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
+  <pattern xmlns="" id="sub-article-doi-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="msid" value="ancestor::article//article-meta/article-id[@pub-id-type='publisher-id']"/>
       <let name="umbrella-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and not(@specific-use='version')]"/>
@@ -5615,50 +5615,50 @@
     </rule>
   </pattern>
   
-  <pattern id="research-advance-test-pattern">
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
+  <pattern xmlns="" id="research-advance-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Research Advance']//article-meta" id="research-advance-test">
       
       <assert test="count(related-article[@related-article-type='article-reference']) gt 0" role="error" id="related-articles-test-1">Research Advance must contain an article-reference link to the original article it is building upon.</assert>
       
     </rule>
   </pattern>
-  <pattern id="insight-test-pattern">
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
+  <pattern xmlns="" id="insight-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = 'Insight']//article-meta" id="insight-test">
       
       <assert test="count(related-article[@related-article-type='commentary-article']) gt 0" role="error" id="related-articles-test-2">Insight must contain an article-reference link (related-article[@related-article-type='commentary-article']) to the original article it is discussing.</assert>
       
     </rule>
   </pattern>
-  <pattern id="correction-test-pattern">
-    <rule context="article[@article-type='correction']//article-meta" id="correction-test">
+  <pattern xmlns="" id="correction-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='correction']//article-meta" id="correction-test">
       
       <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hzu2u-related-articles-test-8" test="count(related-article[@related-article-type='corrected-article']) gt 0" role="error" id="related-articles-test-8">Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="retraction-test-pattern">
-    <rule context="article[@article-type='retraction']//article-meta" id="retraction-test">
+  <pattern xmlns="" id="retraction-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='retraction']//article-meta" id="retraction-test">
       
       <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hl977-related-articles-test-9" test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="eoc-test-pattern">
-    <rule context="article[@article-type='expression-of-concern']//article-meta" id="eoc-test">
+  <pattern xmlns="" id="eoc-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='expression-of-concern']//article-meta" id="eoc-test">
       
       <assert test="count(related-article[@related-article-type='object-of-concern']) gt 0" role="error" id="related-articles-test-13">Expressions of Concern must contain at least 1 related-article link with the attribute related-article-type='object-of-concern'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="research-article-ra-test-pattern">
-    <rule context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
+  <pattern xmlns="" id="research-article-ra-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='research-article']//related-article" id="research-article-ra-test">
       
       <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" role="error" id="related-articles-test-12">The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to <value-of select="@xlink:href"/> is a <value-of select="@related-article-type"/> type link.</assert>
       
     </rule>
   </pattern>
-  <pattern id="related-articles-conformance-pattern">
-    <rule context="related-article" id="related-articles-conformance">
+  <pattern xmlns="" id="related-articles-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="related-article" id="related-articles-conformance">
       <let name="allowed-values" value="('article-reference', 'commentary', 'commentary-article', 'corrected-article', 'retracted-article', 'object-of-concern')"/>
       <let name="article-doi" value="parent::article-meta/article-id[@pub-id-type='doi'][1]"/>
       
@@ -5676,8 +5676,8 @@
     </rule>
   </pattern>
   
-  <pattern id="video-parent-conformance-pattern">
-    <rule context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
+  <pattern xmlns="" id="video-parent-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="media[starts-with(@mimetype,'video')]" id="video-parent-conformance">
       <let name="parent" value="name(..)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-parent-test" test="$parent = ('sec','fig-group','body','boxed-text','app')" role="error" id="video-parent-test">
@@ -5686,8 +5686,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-general-pattern">
-    <rule context="element-citation" id="elem-citation-general">
+  <pattern xmlns="" id="elem-citation-general-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation" id="elem-citation-general">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-5" test="descendant::etal" role="error" id="err-elem-cit-gen-name-5">The &lt;etal&gt; element in a reference is not allowed. Reference '<value-of select="ancestor::ref/@id"/>' contains it.</report>
       
@@ -5698,8 +5698,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-gen-name-3-1-pattern">
-    <rule context="element-citation/person-group" id="elem-citation-gen-name-3-1">
+  <pattern xmlns="" id="elem-citation-gen-name-3-1-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/person-group" id="elem-citation-gen-name-3-1">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-1" test=".[not (name or collab or collab-name)]" role="error" id="err-elem-cit-gen-name-3-1">[err-elem-cit-gen-name-3-1]
         Each &lt;person-group&gt; element in a reference must contain at least one
@@ -5708,8 +5708,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-gen-name-3-2-pattern">
-    <rule context="element-citation/person-group/collab | element-citation/person-group/collab-name" id="elem-citation-gen-name-3-2">
+  <pattern xmlns="" id="elem-citation-gen-name-3-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/person-group/collab | element-citation/person-group/collab-name" id="elem-citation-gen-name-3-2">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-3-2" test="count(*) = count(italic | sub | sup)" role="error" id="err-elem-cit-gen-name-3-2">[err-elem-cit-gen-name-3-2]
         A &lt;<name/>&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
@@ -5718,8 +5718,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-gen-name-4-pattern">
-    <rule context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
+  <pattern xmlns="" id="elem-citation-gen-name-4-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/person-group/name/suffix" id="elem-citation-gen-name-4">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-name-4" test=".=('Jr','Jnr', 'Sr','Snr', 'I', 'II', 'III', 'VI', 'V', 'VI', 'VII', 'VIII', 'IX', 'X')" role="error" id="err-elem-cit-gen-name-4">[err-elem-cit-gen-name-4]
         The &lt;suffix&gt; element in a reference may only contain one of the specified values
@@ -5729,8 +5729,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-year-pattern">
-    <rule context="ref/element-citation/year" id="elem-citation-year">
+  <pattern xmlns="" id="elem-citation-year-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation/year" id="elem-citation-year">
       <let name="YYYY" value="substring(normalize-space(.), 1, 4)"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="citation" value="e:citation-format1(parent::element-citation)"/>
@@ -5754,15 +5754,15 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-source-pattern">
-    <rule context="ref/element-citation/source" id="elem-citation-source">
+  <pattern xmlns="" id="elem-citation-source-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation/source" id="elem-citation-source">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#elem-cit-source" test="string-length(normalize-space(.)) ge 2" role="error" id="elem-cit-source">A  &lt;source&gt; element within a <value-of select="parent::element-citation/@publication-type"/> type &lt;element-citation&gt; must contain at least two characters. - <value-of select="."/>. See Ref '<value-of select="ancestor::ref/@id"/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-ext-link-pattern">
-    <rule context="ref/element-citation/ext-link" id="elem-citation-ext-link">
+  <pattern xmlns="" id="elem-citation-ext-link-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation/ext-link" id="elem-citation-ext-link">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ext-link-attribute-content-match" test="(normalize-space(@xlink:href)=normalize-space(.)) and (normalize-space(.)!='')" role="error" id="ext-link-attribute-content-match">&lt;ext-link&gt; must contain content and have an @xlink:href, the value of which must be the same as the content of &lt;ext-link&gt;. The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' has @xlink:href='<value-of select="@xlink:href"/>' and content '<value-of select="."/>'.</assert>
       
@@ -5770,8 +5770,8 @@
       
     </rule>
   </pattern>
-  <pattern id="collab-content-pattern">
-    <rule context="ref/element-citation//collab | ref/element-citation//collab-name" id="collab-content">
+  <pattern xmlns="" id="collab-content-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation//collab | ref/element-citation//collab-name" id="collab-content">
       
       <report test="matches(.,'[\[\]\(\)]')" role="warning" id="collab-brackets">
         <name/> in reference '<value-of select="ancestor::ref/@id"/>' contains brackets - <value-of select="."/>. Are the brackets necessary?</report>
@@ -5779,16 +5779,16 @@
     </rule>
   </pattern>
   
-  <pattern id="ref-list-ordering-pattern">
-    <rule context="ref[preceding-sibling::ref]" id="ref-list-ordering">
+  <pattern xmlns="" id="ref-list-ordering-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref[preceding-sibling::ref]" id="ref-list-ordering">
       <let name="order-value" value="e:ref-list-string(self::*)"/>
       <let name="preceding-ref-order-value" value="e:ref-list-string(preceding-sibling::ref[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-2-2" test="($order-value gt $preceding-ref-order-value)" role="error" id="err-elem-cit-high-2-2">The order of &lt;element-citation&gt;s in the reference list should be name and date, arranged alphabetically by the first author’s surname, or by the value of the first &lt;collab&gt; element. In the case of two authors, the sequence should be arranged by both authors' surnames, then date. For three or more authors, the sequence should be the first author's surname, then date. Reference '<value-of select="@id"/>' appears to be in a different order.</assert>
     </rule>
   </pattern>
-  <pattern id="ref-pattern">
-    <rule context="ref" id="ref">
+  <pattern xmlns="" id="ref-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref" id="ref">
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-1" test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
       
@@ -5800,15 +5800,15 @@
       
     </rule>
   </pattern>
-  <pattern id="xref-pattern">
-    <rule context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
+  <pattern xmlns="" id="xref-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" id="xref">
       
         <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-xref-high-2-1" test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-pattern">
-    <rule context="element-citation" id="elem-citation">
+  <pattern xmlns="" id="elem-citation-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation" id="elem-citation">
       <let name="article-doi" value="lower-case(ancestor::article/descendant::article-meta[1]/article-id[@pub-id-type='doi'][1])"/>
       <let name="title" value="lower-case(ancestor::article/descendant::article-meta[1]/descendant::article-title[1])"/>
       
@@ -5824,8 +5824,8 @@
       
     </rule>
   </pattern>
-  <pattern id="element-citation-descendants-pattern">
-    <rule context="element-citation//*" id="element-citation-descendants">
+  <pattern xmlns="" id="element-citation-descendants-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation//*" id="element-citation-descendants">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-empty-elem-cit-des" test="normalize-space(.)=''" role="warning" id="pre-empty-elem-cit-des">
         <name/> element is empty - this is not allowed. It must contain content. If the details are missing and cannot be determined, please query the authors.</report>
@@ -5839,8 +5839,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-journal-pattern">
-    <rule context="element-citation[@publication-type='journal']" id="elem-citation-journal">
+  <pattern xmlns="" id="elem-citation-journal-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']" id="elem-citation-journal">
       
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#pre-err-elem-cit-journal-2-1" test="count(person-group)=1" role="warning" id="pre-err-elem-cit-journal-2-1">Each  &lt;element-citation&gt; of type 'journal' must contain one and only one &lt;person-group&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements. If this information is missing, please query the authors for it.</assert>
       
@@ -5872,20 +5872,20 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-article-title-pattern">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
+  <pattern xmlns="" id="elem-citation-journal-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/article-title" id="elem-citation-journal-article-title">
       
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-3-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-journal-3-2">An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-volume-pattern">
-    <rule context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
+  <pattern xmlns="" id="elem-citation-journal-volume-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/volume" id="elem-citation-journal-volume">
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-5-1-2" test="count(*)=0 and (string-length(text()) ge 1)" role="error" id="err-elem-cit-journal-5-1-2">A &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal' must contain at least one character and may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters and/or child elements.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-fpage-pattern">
-    <rule context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
+  <pattern xmlns="" id="elem-citation-journal-fpage-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/fpage" id="elem-citation-journal-fpage">
       
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-2" test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
       
@@ -5893,15 +5893,15 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-elocation-id-pattern">
-    <rule context="element-citation[@publication-type='journal']/elocation-id" id="elem-citation-journal-elocation-id">
+  <pattern xmlns="" id="elem-citation-journal-elocation-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/elocation-id" id="elem-citation-journal-elocation-id">
       
       <assert test="count(../fpage) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-3">If &lt;elocation-id&gt; is present, neither &lt;fpage&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;elocation-id&gt; and one of those elements.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-comment-pattern">
-    <rule context="element-citation[@publication-type='journal']/comment" id="elem-citation-journal-comment">
+  <pattern xmlns="" id="elem-citation-journal-comment-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/comment" id="elem-citation-journal-comment">
       
       <assert test="count(../fpage) eq 0 and count(../elocation-id) eq 0" role="error" id="err-elem-cit-journal-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, neither &lt;fpage&gt; nor &lt;elocation-id&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
       
@@ -5909,16 +5909,16 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-journal-pub-id-pattern">
-    <rule context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
+  <pattern xmlns="" id="elem-citation-journal-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/pub-id" id="elem-citation-journal-pub-id">
       
       <assert test="@pub-id-type=('doi','pmid')" role="error" id="err-elem-cit-journal-9-1">Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid". The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-book-pattern">
-    <rule context="element-citation[@publication-type='book']" id="elem-citation-book">
+  <pattern xmlns="" id="elem-citation-book-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']" id="elem-citation-book">
       <let name="publisher-locations" value="'publisher-locations.xml'"/>
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hc12m-err-elem-cit-book-2-2" test="(count(person-group[@person-group-type='author']) + count(person-group[@person-group-type='editor'])) = count(person-group)" role="error" id="err-elem-cit-book-2-2">The only values allowed for @person-group-type in book references are "author" and "editor". Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; type of '<value-of select="person-group/@person-group-type"/>'.</assert> 
@@ -5951,13 +5951,13 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-person-group-pattern">
-    <rule context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
+  <pattern xmlns="" id="elem-citation-book-person-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/person-group" id="elem-citation-book-person-group">
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hcob2-err-elem-cit-book-2-1" test="@person-group-type" role="error" id="err-elem-cit-book-2-1">Each &lt;person-group&gt; must have a @person-group-type attribute. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; element with no @person-group-type attribute.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-chapter-title-pattern">
-    <rule context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
+  <pattern xmlns="" id="elem-citation-book-chapter-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/chapter-title" id="elem-citation-book-chapter-title">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h7i77-pre-err-elem-cit-book-22" test="count(../person-group[@person-group-type='author'])=1" role="warning" id="pre-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement. If this information is missing, please query the authors for it.</assert>
       
@@ -5969,29 +5969,29 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-publisher-name-pattern">
-    <rule context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
+  <pattern xmlns="" id="elem-citation-book-publisher-name-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/publisher-name" id="elem-citation-book-publisher-name">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hvmqu-err-elem-cit-book-13-2" test="count(*)=0" role="error" id="err-elem-cit-book-13-2">No elements are allowed inside &lt;publisher-name&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;publisher-name&gt; element.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-edition-pattern">
-    <rule context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
+  <pattern xmlns="" id="elem-citation-book-edition-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/edition" id="elem-citation-book-edition">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hi14u-err-elem-cit-book-15" test="count(*)=0" role="error" id="err-elem-cit-book-15">No elements are allowed inside &lt;edition&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;edition&gt; element.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-pub-id-pattern">
-    <rule context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
+  <pattern xmlns="" id="elem-citation-book-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/pub-id" id="elem-citation-book-pub-id">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4qcy-err-elem-cit-book-17" test="@pub-id-type=('doi','pmid','isbn')" role="error" id="err-elem-cit-book-17">Each &lt;pub-id&gt;, if present in a book reference, must have a @pub-id-type of one of these values: doi, pmid, isbn. The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-book-comment-pattern">
-    <rule context="element-citation[@publication-type='book']/comment" id="elem-citation-book-comment">
+  <pattern xmlns="" id="elem-citation-book-comment-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/comment" id="elem-citation-book-comment">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hh47s-err-elem-cit-book-6-4" test="count(../fpage) eq 0" role="error" id="err-elem-cit-book-6-4">If &lt;comment&gt;In press&lt;/comment&gt; is present, &lt;fpage&gt; cannot be present. Reference '<value-of select="ancestor::ref/@id"/>' has one of those elements.</assert>
       
@@ -6000,8 +6000,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-data-pattern">
-    <rule context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
+  <pattern xmlns="" id="elem-citation-data-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation[@publication-type='data']" id="elem-citation-data">
       
       <report see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-3-1" test="count(person-group[@person-group-type='author']) gt 1" role="error" id="err-elem-cit-data-3-1">Data references must have one and only one &lt;person-group person-group-type='author'&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/>.</report>
       
@@ -6029,29 +6029,29 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-data-v2-pattern">
-    <rule context="article[e:get-version(.)!='1']//element-citation[@publication-type='data']" id="elem-citation-data-v2">
+  <pattern xmlns="" id="elem-citation-data-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//element-citation[@publication-type='data']" id="elem-citation-data-v2">
       
       <assert test="@specific-use=('generated','analyzed')" role="error" flag="version-2" id="err-elem-cit-data-1-v2">element-citation[@publication-type='data'] must have a specific-use attribute is either 'generated' or 'analyzed'. Reference '<value-of select="ancestor::ref/@id"/>' does not have this attribute or the value is incorrect.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-data-person-group-pattern">
-    <rule context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
+  <pattern xmlns="" id="elem-citation-data-person-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='data']/person-group" id="elem-citation-data-person-group">
       
       <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#data-cite-person-group" test="@person-group-type='author'" role="error" id="data-cite-person-group">The person-group for a data reference must have the attribute person-group-type="author". This one in reference '<value-of select="ancestor::ref/@id"/>' has either no person-group attribute or the value is incorrect (<value-of select="@person-group-type"/>).</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-data-pub-id-doi-pattern">
-    <rule context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
+  <pattern xmlns="" id="elem-citation-data-pub-id-doi-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation[@publication-type='data']/pub-id[@pub-id-type='doi']" id="elem-citation-data-pub-id-doi">
       
       <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-14-2" test="not(@xlink:href)" role="error" id="err-elem-cit-data-14-2">If the pub-id is of pub-id-type doi, it may not have an @xlink:href. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with type doi and an @link-href with value '<value-of select="@link-href"/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-data-pub-id-pattern">
-    <rule context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
+  <pattern xmlns="" id="elem-citation-data-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref/element-citation[@publication-type='data']/pub-id" id="elem-citation-data-pub-id">
       
       <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#err-elem-cit-data-13-2" test="@pub-id-type=('accession','doi')" role="error" id="err-elem-cit-data-13-2">Each pub-id element must have a pub-id-type which is either accession or doi. Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;pub-id element with the type '<value-of select="@pub-id-type"/>'.</assert>
       
@@ -6059,8 +6059,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-data-gend-pattern">
-    <rule context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" id="elem-citation-data-gend">
+  <pattern xmlns="" id="elem-citation-data-gend-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" id="elem-citation-data-gend">
       <let name="year" value="replace(year[1],'[^\d]','')"/>
       <let name="current-year" value="year-from-date(current-date())"/>
       <let name="diff" value="number($current-year) - number($year)"/>
@@ -6070,8 +6070,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-patent-pattern">
-    <rule context="element-citation[@publication-type='patent']" id="elem-citation-patent">
+  <pattern xmlns="" id="elem-citation-patent-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='patent']" id="elem-citation-patent">
       
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#pre-err-elem-cit-patent-2-1" test="count(person-group[@person-group-type='inventor'])=1" role="warning" id="pre-err-elem-cit-patent-2-1">There must be one person-group with @person-group-type="inventor". Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='inventor'])"/> &lt;person-group&gt; elements of type 'inventor'. If this information is missing, please query the authors for it.</assert>
       
@@ -6101,22 +6101,22 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-patent-article-title-pattern">
-    <rule context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title"> 
+  <pattern xmlns="" id="elem-citation-patent-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='patent']/article-title" id="elem-citation-patent-article-title"> 
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-patent-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-patent-source-pattern">
-    <rule context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
+  <pattern xmlns="" id="elem-citation-patent-source-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='patent']/source" id="elem-citation-patent-source"> 
       
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-patent-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'patent' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-patent-patent-pattern">
-    <rule context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent"> 
+  <pattern xmlns="" id="elem-citation-patent-patent-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='patent']/patent" id="elem-citation-patent-patent"> 
       <let name="countries" value="'countries.xml'"/>
       
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-10-1-2" test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">The &lt;patent&gt; element may not have child elements. Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
@@ -6126,8 +6126,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-software-pattern">
-    <rule context="element-citation[@publication-type = 'software']" id="elem-citation-software">
+  <pattern xmlns="" id="elem-citation-software-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type = 'software']" id="elem-citation-software">
       
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-2-1" test="count(person-group[@person-group-type='author']) = 1" role="error" id="err-elem-cit-software-2-1">Each &lt;element-citation&gt; of type 'software' must contain one &lt;person-group&gt; element with attribute person-group-type = author. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='author'])"/> &lt;person-group&gt; elements.</assert>
       
@@ -6141,16 +6141,16 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-software-data-title-pattern">
-    <rule context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
+  <pattern xmlns="" id="elem-citation-software-data-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type = 'software']/data-title" id="elem-citation-software-data-title">
       
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-preprint-pattern">
-    <rule context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
+  <pattern xmlns="" id="elem-citation-preprint-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']" id="elem-citation-preprint">
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">There must be one and only one person-group. <value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
@@ -6168,37 +6168,37 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-preprint-person-group-pattern">
-    <rule context="element-citation[@publication-type='preprint']/person-group" id="elem-citation-preprint-person-group"> 
+  <pattern xmlns="" id="elem-citation-preprint-person-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']/person-group" id="elem-citation-preprint-person-group"> 
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-preprint-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-preprint-pub-id-pattern">
-    <rule context="element-citation[@publication-type='preprint']/pub-id" id="elem-citation-preprint-pub-id"> 
+  <pattern xmlns="" id="elem-citation-preprint-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']/pub-id" id="elem-citation-preprint-pub-id"> 
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-10-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-preprint-10-2">If present, the &lt;pub-id&gt; element must contain @pub-id-type='doi'. The &lt;pub-id&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @pub-id-type='<value-of select="@pub-id-type"/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-preprint-article-title-pattern">
-    <rule context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
+  <pattern xmlns="" id="elem-citation-preprint-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']/article-title" id="elem-citation-preprint-article-title"> 
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-preprint-8-2-1">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' must contain at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-8-2-2">A &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-preprint-source-pattern">
-    <rule context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
+  <pattern xmlns="" id="elem-citation-preprint-source-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']/source" id="elem-citation-preprint-source"> 
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-preprint-9-2-2">A &lt;source&gt; element within a &lt;element-citation&gt; of type 'preprint' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-web-pattern">
-    <rule context="element-citation[@publication-type='web']" id="elem-citation-web">
+  <pattern xmlns="" id="elem-citation-web-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']" id="elem-citation-web">
       
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-web-2-1">There must be one and only one person-group. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
       
@@ -6220,30 +6220,30 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-web-person-group-pattern">
-    <rule context="element-citation[@publication-type='web']/person-group" id="elem-citation-web-person-group"> 
+  <pattern xmlns="" id="elem-citation-web-person-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']/person-group" id="elem-citation-web-person-group"> 
       
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-web-article-title-pattern">
-    <rule context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title"> 
+  <pattern xmlns="" id="elem-citation-web-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']/article-title" id="elem-citation-web-article-title"> 
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-8-2-1" test="./string-length() + sum(*/string-length()) ge 2" role="error" id="err-elem-cit-web-8-2-1">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' must contain 
         at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-8-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-8-2-2">A  &lt;article-title&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-web-source-pattern">
-    <rule context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
+  <pattern xmlns="" id="elem-citation-web-source-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']/source" id="elem-citation-web-source"> 
       
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-web-9-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'web' may only contain the child elements &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</assert>
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-web-date-in-citation-pattern">
-    <rule context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation"> 
+  <pattern xmlns="" id="elem-citation-web-date-in-citation-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']/date-in-citation" id="elem-citation-web-date-in-citation"> 
       <let name="date-regex" value="'^[12][0-9][0-9][0-9]\-0[13578]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[13578]\-3[01]$|         ^[12][0-9][0-9][0-9]\-02\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-02\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-0[469]\-30$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-[1-2][02]\-3[01]$|         ^[12][0-9][0-9][0-9]\-11\-0[1-9]$|         ^[12][0-9][0-9][0-9]\-11\-[12][0-9]$|         ^[12][0-9][0-9][0-9]\-11\-30$'"/>
       
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-11-2-1" test="./@iso-8601-date" role="error" id="err-elem-cit-web-11-2-1">[err-elem-cit-web-11-2-1]
@@ -6274,8 +6274,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-report-pattern">
-    <rule context="element-citation[@publication-type='report']" id="elem-citation-report">
+  <pattern xmlns="" id="elem-citation-report-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='report']" id="elem-citation-report">
       <let name="publisher-locations" value="'publisher-locations.xml'"/> 
       
       <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-report-2-1">[err-elem-cit-report-2-1]
@@ -6308,16 +6308,16 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-report-preson-group-pattern">
-    <rule context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
+  <pattern xmlns="" id="elem-citation-report-preson-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='report']/person-group" id="elem-citation-report-preson-group">
       <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-report-2-2">[err-elem-cit-report-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-report-source-pattern">
-    <rule context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
+  <pattern xmlns="" id="elem-citation-report-source-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='report']/source" id="elem-citation-report-source">
       
       <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-9-2-2" test="count(*)=count(italic | sub | sup)" role="error" id="err-elem-cit-report-9-2-2">[err-elem-cit-report-9-2-2]
         A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'report' may only contain the child 
@@ -6326,8 +6326,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-report-publisher-name-pattern">
-    <rule context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
+  <pattern xmlns="" id="elem-citation-report-publisher-name-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='report']/publisher-name" id="elem-citation-report-publisher-name">
       
       <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-11-2" test="count(*)=0" role="error" id="err-elem-cit-report-11-2">[err-elem-cit-report-11-2]
         No elements are allowed inside &lt;publisher-name&gt;.
@@ -6336,8 +6336,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-report-pub-id-pattern">
-    <rule context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
+  <pattern xmlns="" id="elem-citation-report-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='report']/pub-id" id="elem-citation-report-pub-id">
       
       <assert see="https://elifeproduction.slab.com/posts/report-references-fzbgnm2d#err-elem-cit-report-12-2" test="@pub-id-type='doi' or @pub-id-type='isbn'" role="error" id="err-elem-cit-report-12-2">[err-elem-cit-report-12-2]
         The only allowed pub-id types are 'doi' and 'isbn'.
@@ -6347,8 +6347,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-confproc-pattern">
-    <rule context="element-citation[@publication-type='confproc']" id="elem-citation-confproc"> 
+  <pattern xmlns="" id="elem-citation-confproc-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']" id="elem-citation-confproc"> 
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxnwn-err-elem-cit-confproc-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-confproc-2-1">[err-elem-cit-confproc-2-1]
         One and only one person-group element is allowed.
@@ -6397,16 +6397,16 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-preson-group-pattern">
-    <rule context="element-citation[@publication-type='confproc']/person-group" id="elem-citation-confproc-preson-group">
+  <pattern xmlns="" id="elem-citation-confproc-preson-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/person-group" id="elem-citation-confproc-preson-group">
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hslvg-err-elem-cit-confproc-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-confproc-2-2">[err-elem-cit-confproc-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
         Reference '<value-of select="ancestor::ref/@id"/>' has a &lt;person-group&gt; 
         element with @person-group-type attribute '<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-article-title-pattern">
-    <rule context="element-citation[@publication-type='confproc']/article-title" id="elem-citation-confproc-article-title">
+  <pattern xmlns="" id="elem-citation-confproc-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/article-title" id="elem-citation-confproc-article-title">
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hubhw-err-elem-cit-confproc-8-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-confproc-8-2">[err-elem-cit-confproc-8-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
@@ -6415,8 +6415,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-conf-name-pattern">
-    <rule context="element-citation[@publication-type='confproc']/conf-name" id="elem-citation-confproc-conf-name">
+  <pattern xmlns="" id="elem-citation-confproc-conf-name-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/conf-name" id="elem-citation-confproc-conf-name">
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hwknk-err-elem-cit-confproc-10-2" test="count(*)=0" role="error" id="err-elem-cit-confproc-10-2">[err-elem-cit-confproc-10-2]
         No elements are allowed inside &lt;conf-name&gt;.
@@ -6425,8 +6425,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-conf-loc-pattern">
-    <rule context="element-citation[@publication-type='confproc']/conf-loc" id="elem-citation-confproc-conf-loc">
+  <pattern xmlns="" id="elem-citation-confproc-conf-loc-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/conf-loc" id="elem-citation-confproc-conf-loc">
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hiuzp-err-elem-cit-confproc-11-2" test="count(*)=0" role="error" id="err-elem-cit-confproc-11-2">[err-elem-cit-confproc-11-2]
         No elements are allowed inside &lt;conf-loc&gt;.
@@ -6435,8 +6435,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-fpage-pattern">
-    <rule context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
+  <pattern xmlns="" id="elem-citation-confproc-fpage-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/fpage" id="elem-citation-confproc-fpage">
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hxcbf-err-elem-cit-confproc-12-5" test="matches(normalize-space(.),'^\d.*') or (substring(normalize-space(../lpage[1]),1,1) = substring(normalize-space(.),1,1))" role="error" id="err-elem-cit-confproc-12-5">[err-elem-cit-confproc-12-5]
         If the content of &lt;fpage&gt; begins with a letter, then the content of &lt;lpage&gt; must begin with 
@@ -6446,8 +6446,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-confproc-pub-id-pattern">
-    <rule context="element-citation[@publication-type='confproc']/pub-id" id="elem-citation-confproc-pub-id">
+  <pattern xmlns="" id="elem-citation-confproc-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='confproc']/pub-id" id="elem-citation-confproc-pub-id">
       
       <assert see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#hzrg2-err-elem-cit-confproc-16-2" test="@pub-id-type='doi' or @pub-id-type='pmid'" role="error" id="err-elem-cit-confproc-16-2">[err-elem-cit-confproc-16-2]
         The only allowed pub-id types are 'doi' or 'pmid'.
@@ -6457,8 +6457,8 @@
     </rule>
   </pattern>
   
-  <pattern id="elem-citation-thesis-pattern">
-    <rule context="element-citation[@publication-type='thesis']" id="elem-citation-thesis"> 
+  <pattern xmlns="" id="elem-citation-thesis-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']" id="elem-citation-thesis"> 
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-thesis-2-1">[err-elem-cit-thesis-2-1]
         One and only one person-group element is allowed.
@@ -6499,8 +6499,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-thesis-preson-group-pattern">
-    <rule context="element-citation[@publication-type='thesis']/person-group" id="elem-citation-thesis-preson-group">
+  <pattern xmlns="" id="elem-citation-thesis-preson-group-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']/person-group" id="elem-citation-thesis-preson-group">
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-thesis-2-2">[err-elem-cit-thesis-2-2]
         Each &lt;person-group&gt; must have a @person-group-type attribute of type 'author'.
@@ -6513,8 +6513,8 @@
         with <value-of select="count(name)"/> authors.</assert>
     </rule>
   </pattern>
-  <pattern id="elem-citation-thesis-article-title-pattern">
-    <rule context="element-citation[@publication-type='thesis']/article-title" id="elem-citation-thesis-article-title">
+  <pattern xmlns="" id="elem-citation-thesis-article-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']/article-title" id="elem-citation-thesis-article-title">
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-8-2" test="count(*) = count(sub|sup|italic)" role="error" id="err-elem-cit-thesis-8-2">[err-elem-cit-thesis-8-2]
         An &lt;article-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. 
@@ -6523,8 +6523,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-thesis-publisher-name-pattern">
-    <rule context="element-citation[@publication-type='thesis']/publisher-name" id="elem-citation-thesis-publisher-name">
+  <pattern xmlns="" id="elem-citation-thesis-publisher-name-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']/publisher-name" id="elem-citation-thesis-publisher-name">
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-9-2" test="count(*)=0" role="error" id="err-elem-cit-thesis-9-2">[err-elem-cit-thesis-9-2]
         No elements are allowed inside &lt;publisher-name&gt;.
@@ -6533,8 +6533,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-thesis-publisher-loc-pattern">
-    <rule context="element-citation[@publication-type='thesis']/publisher-loc" id="elem-citation-thesis-publisher-loc">
+  <pattern xmlns="" id="elem-citation-thesis-publisher-loc-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']/publisher-loc" id="elem-citation-thesis-publisher-loc">
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-10-2" test="count(*)=0" role="error" id="err-elem-cit-thesis-10-2">[err-elem-cit-thesis-10-2]
         No elements are allowed inside &lt;publisher-loc&gt;.
@@ -6543,8 +6543,8 @@
       
     </rule>
   </pattern>
-  <pattern id="elem-citation-thesis-pub-id-pattern">
-    <rule context="element-citation[@publication-type='thesis']/pub-id" id="elem-citation-thesis-pub-id">
+  <pattern xmlns="" id="elem-citation-thesis-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='thesis']/pub-id" id="elem-citation-thesis-pub-id">
       
       <assert see="https://elifeproduction.slab.com/posts/thesis-references-27x10ocq#err-elem-cit-thesis-11-2" test="@pub-id-type='doi'" role="error" id="err-elem-cit-thesis-11-2">[err-elem-cit-thesis-11-2]
         The only allowed pub-id type is 'doi'.
@@ -6554,8 +6554,8 @@
     </rule>
   </pattern>
   
-  <pattern id="gen-das-tests-pattern">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
+  <pattern xmlns="" id="gen-das-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']" id="gen-das-tests">
       <let name="pos" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@publication-type='data']) - count(following::element-citation[@publication-type='data' and ancestor::sec[@sec-type='data-availability']])"/>
       <let name="specific-use-vals" value="('isSupplementedBy','references','generated','analyzed')"/>
       
@@ -6605,8 +6605,8 @@
       
     </rule>
   </pattern>
-  <pattern id="das-elem-citation-data-pub-id-pattern">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
+  <pattern xmlns="" id="das-elem-citation-data-pub-id-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" id="das-elem-citation-data-pub-id">
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="warning" id="pre-das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi. If this identifier is missing, then ensure to query the author for this information.</report>
       
@@ -6619,15 +6619,15 @@
       <report test="@pub-id-type='doi' and (@xlink:href)" role="error" id="das-pub-id-3">A pub-id with the type doi does not need an xlink:href attribute. <value-of select="concat('xlink:href=&quot;',.,'&quot;')"/> should be removed from the pub-id containing <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="das-elem-citation-children-pattern">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
+  <pattern xmlns="" id="das-elem-citation-children-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/source/*|sec[@sec-type='data-availability']//element-citation[@publication-type='data']/data-title/*" id="das-elem-citation-children">
       <let name="allowed-elems" value="('sup','sub','italic')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-child-1" test="name()=$allowed-elems" role="error" id="das-elem-citation-child-1">Reference in the data availability section has a <value-of select="name()"/> element in a <value-of select="parent::*/name()"/> element which is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern id="das-elem-citation-year-tests-pattern">
-    <rule context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
+  <pattern xmlns="" id="das-elem-citation-year-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" id="das-elem-citation-year-tests">
       <let name="digits" value="replace(.,'[^\d]','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-year-1" test="(.!='') and (@iso-8601-date!=$digits)" role="error" id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'.</report>
@@ -6638,8 +6638,8 @@
     </rule>
   </pattern>
   
-  <pattern id="pub-id-tests-pattern">
-    <rule context="element-citation/pub-id" id="pub-id-tests">
+  <pattern xmlns="" id="pub-id-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/pub-id" id="pub-id-tests">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-pub-id-test-1" test="(@xlink:href) and not(matches(@xlink:href,'^http[s]?://|^s?ftp://'))" role="warning" id="pre-pub-id-test-1">@xlink:href must start with an http:// or ftp:// protocol. - <value-of select="@xlink:href"/> does not. If this information is missing, please ensure to query it with the authors.</report>
       
@@ -6672,8 +6672,8 @@
       
     </rule>
   </pattern>
-  <pattern id="pub-id-xlink-href-tests-pattern">
-    <rule context="pub-id[@xlink:href]" id="pub-id-xlink-href-tests">
+  <pattern xmlns="" id="pub-id-xlink-href-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="pub-id[@xlink:href]" id="pub-id-xlink-href-tests">
       
       <assert test="matches(@xlink:href,'^https?:..(www\.)?[-a-zA-Z0-9@:%.,_\+~#=!]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:;%,_\\(\)+.~#?!&amp;//=]*)$|^ftp://.')" role="warning" id="pub-id-url-conformance-test">@xlink:href doesn't look like a URL - '<value-of select="@xlink:href"/>'. Is this correct?</assert>
       
@@ -6686,16 +6686,16 @@
     </rule>
   </pattern>
   
- <pattern id="feature-title-tests-pattern">
-    <rule context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
+ <pattern xmlns="" id="feature-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" id="feature-title-tests">
      <let name="sub-disp-channel" value="ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject[1]"/>
      
      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-title-test-1" test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
      
    </rule>
   </pattern>
-  <pattern id="feature-abstract-tests-pattern">
-    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" id="feature-abstract-tests">
+  <pattern xmlns="" id="feature-abstract-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]" id="feature-abstract-tests">
      
      <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#feature-abstract-test-1" test="count(title) = 1" role="error" id="feature-abstract-test-1">abstract must contain one and only one title.</assert>
      
@@ -6704,8 +6704,8 @@
      
    </rule>
   </pattern>
-  <pattern id="digest-tests-pattern">
-    <rule context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
+  <pattern xmlns="" id="digest-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" id="digest-tests">
      
      <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#digest-test-1" test="matches(.,'^\p{Ll}')" role="warning" id="digest-test-1">digest paragraph starts with a lowercase letter. Is that correct? Or has a paragraph been incorrectly split into two?</report>
      
@@ -6718,8 +6718,8 @@
      
    </rule>
   </pattern>
-  <pattern id="feature-subj-tests-pattern">
-    <rule context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">		
+  <pattern xmlns="" id="feature-subj-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="subj-group[@subj-group-type='sub-display-channel']/subject" id="feature-subj-tests">		
      <let name="token1" value="substring-before(.,' ')"/>
      <let name="token2" value="substring-after(.,$token1)"/>
 		
@@ -6732,22 +6732,22 @@
 		
 	</rule>
   </pattern>
-  <pattern id="feature-article-category-tests-pattern">
-    <rule context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
+  <pattern xmlns="" id="feature-article-category-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article-categories[subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-article-category-tests">
      <let name="count" value="count(subj-group[@subj-group-type='sub-display-channel'])"/>
      
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-article-category-test-1" test="$count = 1" role="error" id="feature-article-category-test-1">article categories for <value-of select="subj-group[@subj-group-type='display-channel']/subject"/>s must contain one, and only one, subj-group[@subj-group-type='sub-display-channel']</assert>
      
    </rule>
   </pattern>
-  <pattern id="feature-author-tests-pattern">
-    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
+  <pattern xmlns="" id="feature-author-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']" id="feature-author-tests">
      
      <assert see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-author-test-1" test="bio or collab or ancestor::collab or collab-wrap or ancestor::collab-wrap" role="error" id="feature-author-test-1">Author must contain child bio in feature content.</assert>
    </rule>
   </pattern>
-  <pattern id="feature-bio-tests-pattern">
-    <rule context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
+  <pattern xmlns="" id="feature-bio-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//article-meta[article-categories//subj-group[@subj-group-type='display-channel']/subject=$features-subj]//contrib[@contrib-type='author']/bio" id="feature-bio-tests">
      <let name="name" value="e:get-name(parent::contrib/name[1])"/>
      <let name="xref-rid" value="parent::contrib/xref[@ref-type='aff']/@rid"/>
      <let name="aff" value="if (parent::contrib/aff) then parent::contrib/aff[1]/institution[not(@content-type)][1]/normalize-space(.)        else ancestor::contrib-group/aff[@id/string() = $xref-rid]/institution[not(@content-type)][1]/normalize-space(.)"/>
@@ -6770,8 +6770,8 @@
       </report>
    </rule>
   </pattern>
-  <pattern id="feature-template-tests-pattern">
-    <rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
+  <pattern xmlns="" id="feature-template-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
@@ -6803,8 +6803,8 @@
         <value-of select="$type"/>s should have Author contributions. This one does not. Exeter please check with the Production team who will check with the Features team.</report>
    </rule>
   </pattern>
-  <pattern id="insight-asbtract-tests-pattern">
-    <rule context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
+  <pattern xmlns="" id="insight-asbtract-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='article-commentary']//article-meta/abstract" id="insight-asbtract-tests">
      <let name="impact-statement" value="parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]"/>
      <let name="impact-statement-element-count" value="count(parent::article-meta//custom-meta[meta-name='Author impact statement']/meta-value[1]/*)"/>
      
@@ -6814,8 +6814,8 @@
      
    </rule>
   </pattern>
-  <pattern id="insight-related-article-tests-pattern">
-    <rule context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
+  <pattern xmlns="" id="insight-related-article-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type='article-commentary']//article-meta/related-article" id="insight-related-article-tests">
      <let name="current-year" value="string(year-from-date(current-date()))"/>
      <let name="doi" value="@xlink:href"/>
      <let name="text" value="replace(ancestor::article/body/boxed-text[1],' ',' ')"/>
@@ -6832,8 +6832,8 @@
      <report test="$related-ref-year!='' and not($current-year = $related-ref-year)" role="warning" id="insight-related-article-test-3">This Insight is related to <value-of select="$doi"/>, but the reference in the ref-list with that doi has a year (<value-of select="$related-ref-year"/>) which is not the same as the current year (<value-of select="$current-year"/>). Is that correct?</report>
    </rule>
   </pattern>
-  <pattern id="feature-comment-tests-pattern">
-    <rule context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
+  <pattern xmlns="" id="feature-comment-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//p|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//td|      article[descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]]//th" id="feature-comment-tests">
      
      <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#final-feat-ok-test" test="matches(.,'\[[Oo][Kk]\??\]')" role="error" id="final-feat-ok-test">
         <value-of select="name()"/> element contains [OK] or [OK?] which should be removed - <value-of select="."/>
@@ -6846,8 +6846,8 @@
    </rule>
   </pattern>
   
-  <pattern id="correction-tests-pattern">
-    <rule context="article[@article-type = 'correction']" id="correction-tests">
+  <pattern xmlns="" id="correction-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type = 'correction']" id="correction-tests">
       
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hy53l-corr-aff-presence" test="descendant::article-meta//aff" role="error" id="corr-aff-presence">Correction notices should not contain affiliations.</report>
       
@@ -6865,8 +6865,8 @@
       
     </rule>
   </pattern>
-  <pattern id="retraction-tests-pattern">
-    <rule context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
+  <pattern xmlns="" id="retraction-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type = ('retraction','expression-of-concern')]" id="retraction-tests">
       <let name="display-subject" value="article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h577w-retr-aff-presence" test="descendant::article-meta//aff" role="error" id="retr-aff-presence">
@@ -6892,16 +6892,16 @@
        
     </rule>
   </pattern>
-  <pattern id="notice-body-tests-pattern">
-    <rule context="article[@article-type = ('retraction','expression-of-concern','correction')]/body" id="notice-body-tests">
+  <pattern xmlns="" id="notice-body-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type = ('retraction','expression-of-concern','correction')]/body" id="notice-body-tests">
       <let name="display-subject" value="ancestor::article//article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>    
 
       <assert test="*[1]/name()='boxed-text'" role="error" id="notice-body-test-1">The first child element of body in a <value-of select="$display-subject"/> must be boxed-text. This one has <value-of select="*[1]/name()"/>.</assert>
 
     </rule>
   </pattern>
-  <pattern id="notice-box-tests-pattern">
-    <rule context="article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" id="notice-box-tests">
+  <pattern xmlns="" id="notice-box-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" id="notice-box-tests">
       <let name="display-subject" value="ancestor::article//article-meta//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="notice-title" value="ancestor::article[1]/descendant::article-meta[1]/descendant::article-title[1]"/>
       <let name="obj-title" value="substring-after($notice-title,': ')"/>   
@@ -6921,8 +6921,8 @@
     </rule>
   </pattern>
   
-  <pattern id="gene-primer-sequence-pattern">
-    <rule context="p[not(child::table-wrap)]" id="gene-primer-sequence">
+  <pattern xmlns="" id="gene-primer-sequence-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[not(child::table-wrap)]" id="gene-primer-sequence">
       <let name="count" value="count(descendant::named-content[@content-type='sequence'])"/>
       <let name="text-tokens" value="for $x in tokenize(.,' ') return if (matches($x,'[ACGTacgt]{15,}')) then $x else ()"/>
       <let name="text-count" value="count($text-tokens)"/>
@@ -6931,8 +6931,8 @@
     </rule>
   </pattern>
   
-  <pattern id="rrid-org-code-pattern">
-    <rule context="p|td|th" id="rrid-org-code">
+  <pattern xmlns="" id="rrid-org-code-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p|td|th" id="rrid-org-code">
       <let name="count" value="count(descendant::ext-link[matches(@xlink:href,'identifiers\.org/RRID(:|/).*')])"/>
       <let name="text-count" value="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
       <let name="code-text" value="string-join(for $x in tokenize(.,' ') return if (matches($x,'^--[a-z]+')) then $x else (),'; ')"/>
@@ -6979,8 +6979,8 @@
     </rule>
   </pattern>
   
-  <pattern id="duplicate-ref-pattern">
-    <rule context="ref-list//ref" id="duplicate-ref">
+  <pattern xmlns="" id="duplicate-ref-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref-list//ref" id="duplicate-ref">
       <let name="doi" value="element-citation/pub-id[@pub-id-type='doi']"/>
       <let name="a-title" value="element-citation/article-title[1]"/>
       <let name="c-title" value="element-citation/chapter-title[1]"/>
@@ -6999,8 +6999,8 @@
     </rule>
   </pattern>
   
-  <pattern id="ref-xref-conformance-pattern">
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-conformance">
+  <pattern xmlns="" id="ref-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='bibr']" id="ref-xref-conformance">
       <let name="rid" value="@rid"/>
       <let name="ref" value="ancestor::article/descendant::ref-list[1]/ref[@id = $rid][1]"/>
       <let name="cite1" value="e:citation-format1($ref/descendant::element-citation[1])"/>
@@ -7071,8 +7071,8 @@
     </rule>
   </pattern>
   
-  <pattern id="unlinked-ref-cite-pattern">
-    <rule context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
+  <pattern xmlns="" id="unlinked-ref-cite-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref-list/ref/element-citation[year]" id="unlinked-ref-cite">
       <let name="id" value="parent::ref/@id"/>
       <let name="cite-name" value="e:cite-name-text(person-group[@person-group-type='author'][1])"/>
       <let name="cite1" value="e:citation-format1(.)"/>
@@ -7088,8 +7088,8 @@
   
   
   
-  <pattern id="unlinked-object-cite-pattern">
-    <rule context="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
+  <pattern xmlns="" id="unlinked-object-cite-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig[not(ancestor::sub-article) and label]|       table-wrap[not(ancestor::sub-article) and label[not(contains(.,'ey resources table'))]]|       media[not(ancestor::sub-article) and label]|       supplementary-material[not(ancestor::sub-article) and label]" id="unlinked-object-cite">
       <let name="cite1" value="replace(label[1],'[\[\]\(\)\.]','')"/>
       <let name="pre-regex" value="replace($cite1,'—','[—–\\-]')"/>
       <!-- Account for no break spaces in text -->
@@ -7102,8 +7102,8 @@
     </rule>
   </pattern>
   
-  <pattern id="vid-xref-conformance-pattern">
-    <rule context="xref[@ref-type='video']" id="vid-xref-conformance">
+  <pattern xmlns="" id="vid-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='video']" id="vid-xref-conformance">
       <let name="rids" value="tokenize(@rid,'\s')"/>
       <let name="target-nos" value="for $rid in $rids return substring-after($rid,'video')"/>
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
@@ -7140,8 +7140,8 @@
     </rule>
   </pattern>
   
-  <pattern id="fig-xref-conformance-pattern">
-    <rule context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
+  <pattern xmlns="" id="fig-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='fig' and @rid]" id="fig-xref-conformance">
       <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="type" value="e:fig-id-type($rid)"/>
       <let name="no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
@@ -7203,8 +7203,8 @@
     </rule>
   </pattern>
   
-  <pattern id="table-xref-conformance-pattern">
-    <rule context="xref[@ref-type='table']" id="table-xref-conformance">
+  <pattern xmlns="" id="table-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='table']" id="table-xref-conformance">
       <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="rid-no" value="replace($rid,'[^0-9]+','')"/>
@@ -7241,8 +7241,8 @@
     </rule>
   </pattern>
   
-  <pattern id="supp-file-xref-conformance-pattern">
-    <rule context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
+  <pattern xmlns="" id="supp-file-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='supplementary-material']" id="supp-file-xref-conformance">
       <let name="rid" value="tokenize(@rid,'\s')[1]"/>
       <let name="text-no" value="normalize-space(replace(.,'[^0-9]+',''))"/>
       <let name="last-text-no" value="substring($text-no,string-length($text-no), 1)"/>
@@ -7288,8 +7288,8 @@
     </rule>
   </pattern>
   
-  <pattern id="equation-xref-conformance-pattern">
-    <rule context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
+  <pattern xmlns="" id="equation-xref-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='disp-formula']" id="equation-xref-conformance">
       <let name="rids" value="replace(@rid,'^\s|\s$','')"/>
       <let name="labels" value="for $rid in tokenize($rids,'\s')[position()=(1,last())] return translate(ancestor::article//disp-formula[@id = $rid]/label,'()','')"/>
       <let name="prec-text" value="preceding-sibling::text()[1]"/>
@@ -7307,8 +7307,8 @@
     </rule>
   </pattern>
   
-  <pattern id="org-ref-article-book-title-pattern">
-    <rule context="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" id="org-ref-article-book-title">
+  <pattern xmlns="" id="org-ref-article-book-title-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title" id="org-ref-article-book-title">
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
@@ -7316,8 +7316,8 @@
     
     </rule>
   </pattern>
-  <pattern id="org-title-kwd-pattern">
-    <rule context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
+  <pattern xmlns="" id="org-title-kwd-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//article-meta/title-group/article-title | article/body//sec/title | article//article-meta//kwd" id="org-title-kwd">
       
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       
@@ -7326,8 +7326,8 @@
       
     </rule>
   </pattern>
-  <pattern id="italic-genus-pattern">
-    <rule context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
+  <pattern xmlns="" id="italic-genus-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="italic[matches(lower-case(.),$genus-regex)]" id="italic-genus">
       <let name="regex-prefix" value="concat('(',$genus-regex,')')"/>
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hxrsi-italic-genus-oocytes" test="matches(lower-case(.),concat($regex-prefix,'\p{Zs}*oocytes'))" role="error" id="italic-genus-oocytes">
@@ -7336,8 +7336,8 @@
     </rule>
   </pattern>
   
-  <pattern id="unallowed-symbol-tests-pattern">
-    <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
+  <pattern xmlns="" id="unallowed-symbol-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link" id="unallowed-symbol-tests">		
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7s38-copyright-symbol" test="contains(.,'©')" role="error" id="copyright-symbol">
         <name/> element contains the copyright symbol, '©', which is not allowed.</report>
@@ -7434,8 +7434,8 @@
         <name/> element contains the following non-roman script character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[԰-ۿ܀-ॿ฀-࿿]')//*:match),'; ')"/>. It is unusual for these characters to be present in eLife content. Are they correct?</report>
     </rule>
   </pattern>
-  <pattern id="unallowed-symbol-tests-sup-pattern">
-    <rule context="sup" id="unallowed-symbol-tests-sup">		
+  <pattern xmlns="" id="unallowed-symbol-tests-sup-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sup" id="unallowed-symbol-tests-sup">		
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-copyright-symbol-sup" test="contains(.,'©')" role="error" id="copyright-symbol-sup">'<name/>' element contains the copyright symbol, '©', which is not allowed.</report>
       
@@ -7458,23 +7458,23 @@
       <report test=". = 'SM'" role="warning" id="service-mark-symbol-2-sup">'<name/>' element contains the text 'SM', which means that it resembles the service mark symbol. The service mark symbol is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="underline-tests-pattern">
-    <rule context="underline" id="underline-tests">
+  <pattern xmlns="" id="underline-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="underline" id="underline-tests">
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hd9o3-underline-test-1" test="matches(.,'^\p{P}*$')" role="warning" id="underline-test-1">'<name/>' element only contains punctuation - <value-of select="."/> - Should it have underline formatting?</report>
       
     </rule>
   </pattern>
-  <pattern id="latex-tests-pattern">
-    <rule context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code" id="latex-tests">
+  <pattern xmlns="" id="latex-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[not(descendant::mml:math)]|td[not(descendant::mml:math)]|th[not(descendant::mml:math)]|monospace|code" id="latex-tests">
       
       <report test="matches(.,'\p{Zs}*\\[a-z]*\p{Ps}')" role="warning" id="latex-test">
         <name/> element contains what looks like possible LaTeX. Please check that this is correct (i.e. that it is not the case that the authors included LaTeX markup expecting the content to be rendered as it would be in LaTeX. Content - "<value-of select="."/>"</report>
       
     </rule>
   </pattern>
-  <pattern id="country-tests-pattern">
-    <rule context="front//aff/country" id="country-tests">
+  <pattern xmlns="" id="country-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//aff/country" id="country-tests">
       <let name="text" value="self::*/text()"/>
       <let name="countries" value="'countries.xml'"/>
       <let name="city" value="parent::aff/descendant::named-content[@content-type='city'][1]"/>
@@ -7505,8 +7505,8 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2i0t-n-korea-test" test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="city-tests-pattern">
-    <rule context="front//aff//named-content[@content-type='city']" id="city-tests">
+  <pattern xmlns="" id="city-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="front//aff//named-content[@content-type='city']" id="city-tests">
       <let name="lc" value="normalize-space(lower-case(.))"/>
       <let name="states-regex" value="'^alabama$|^al$|^alaska$|^ak$|^arizona$|^az$|^arkansas$|^ar$|^california$|^ca$|^colorado$|^co$|^connecticut$|^ct$|^delaware$|^de$|^florida$|^fl$|^georgia$|^ga$|^hawaii$|^hi$|^idaho$|^id$|^illinois$|^il$|^indiana$|^in$|^iowa$|^ia$|^kansas$|^ks$|^kentucky$|^ky$|^louisiana$|^la$|^maine$|^me$|^maryland$|^md$|^massachusetts$|^ma$|^michigan$|^mi$|^minnesota$|^mn$|^mississippi$|^ms$|^missouri$|^mo$|^montana$|^mt$|^nebraska$|^ne$|^nevada$|^nv$|^new hampshire$|^nh$|^new jersey$|^nj$|^new mexico$|^nm$|^ny$|^north carolina$|^nc$|^north dakota$|^nd$|^ohio$|^oh$|^oklahoma$|^ok$|^oregon$|^or$|^pennsylvania$|^pa$|^rhode island$|^ri$|^south carolina$|^sc$|^south dakota$|^sd$|^tennessee$|^tn$|^texas$|^tx$|^utah$|^ut$|^vermont$|^vt$|^virginia$|^va$|^wa$|^west virginia$|^wv$|^wisconsin$|^wi$|^wyoming$|^wy$'"/>
       
@@ -7528,8 +7528,8 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hra66-city-street-presence" test="matches(lower-case(.),'^rue | rue |^street | street |^building | building |^straße | straße |^stadt | stadt |^platz | platz |^strada | strada |^cedex | cedex |^blvd | blvd |^boulevard| boulevard ')" role="warning" id="city-street-presence">city likely contains a street or building name, which is almost certainly incorrect - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="institution-tests-pattern">
-    <rule context="aff/institution[not(@*)]" id="institution-tests">
+  <pattern xmlns="" id="institution-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff/institution[not(@*)]" id="institution-tests">
       <let name="city" value="parent::*/addr-line[1]/named-content[@content-type='city'][1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hfc9g-uc-no-test-1" test="matches(normalize-space(.),'[Uu]niversity of [Cc]alifornia$')" role="error" id="UC-no-test1">
@@ -7550,16 +7550,16 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hs0dc-institution-ampersand-presence" test="matches(replace(lower-case(.),'(texas a\s*&amp;\s*m|hygiene &amp; tropical|r\s*&amp;\s*d)',''),'&amp;')" role="warning" id="institution-ampersand-presence">institution contains an ampersand - <value-of select="."/>. It's eLife style to use 'and' instead of an ampersand except in cases where the ampersand is explicitly part of the institution name (e.g. Texas A&amp;M University). Should it be changed here?</report>
     </rule>
   </pattern>
-  <pattern id="department-tests-pattern">
-    <rule context="aff/institution[@content-type='dept']" id="department-tests">
+  <pattern xmlns="" id="department-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="aff/institution[@content-type='dept']" id="department-tests">
       
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hd64t-dept-replacement-character-presence" test="contains(.,'�')" role="error" id="dept-replacement-character-presence">
         <name/> element contains the replacement character '�' which is unallowed.</report>
       
     </rule>
   </pattern>
-  <pattern id="journal-title-tests-pattern">
-    <rule context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
+  <pattern xmlns="" id="journal-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/source" id="journal-title-tests">
       <let name="doi" value="ancestor::element-citation/pub-id[@pub-id-type='doi'][1]"/>
       <let name="uc" value="upper-case(.)"/>
         
@@ -7598,8 +7598,8 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-bracket-check" test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
     </rule>
   </pattern>
-  <pattern id="ref-article-title-tests-pattern">
-    <rule context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
+  <pattern xmlns="" id="ref-article-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']/article-title" id="ref-article-title-tests">
       <let name="rep" value="replace(.,' [Ii]{1,3}\. | IV\. | V. | [Cc]\. [Ee]legans| vs\. | sp\. ','')"/>
       <let name="word-count" value="count(tokenize(.,'\p{Zs}'))"/>
       <let name="title-word-count" value="count(tokenize(.,'\p{Zs}')[.=concat(upper-case(substring(.,1,1)),substring(.,2))])"/>
@@ -7627,8 +7627,8 @@
       
     </rule>
   </pattern>
-  <pattern id="journal-tests-pattern">
-    <rule context="element-citation[@publication-type='journal']" id="journal-tests">
+  <pattern xmlns="" id="journal-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='journal']" id="journal-tests">
       
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#eloc-page-assert" test="not(fpage) and not(elocation-id) and not(comment)" role="warning" id="eloc-page-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a page range or e-location. Is this right?</report>
       
@@ -7644,8 +7644,8 @@
       
     </rule>
   </pattern>
-  <pattern id="book-chapter-tests-pattern">
-    <rule context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
+  <pattern xmlns="" id="book-chapter-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='book') and chapter-title]" id="book-chapter-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hm8cf-book-chapter-test-1" test="person-group[@person-group-type='editor']" role="warning" id="book-chapter-test-1">ref '<value-of select="ancestor::ref/@id"/>' (<value-of select="e:citation-format1(.)"/>) is tagged as a book reference with a chapter title, but there are no editors. Is this correct, or are these details missing?</assert>
       
@@ -7653,15 +7653,15 @@
       
     </rule>
   </pattern>
-  <pattern id="ref-chapter-title-tests-pattern">
-    <rule context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
+  <pattern xmlns="" id="ref-chapter-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/chapter-title" id="ref-chapter-title-tests">
       
       <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6n1g-report-chapter-title-test" test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" role="warning" id="report-chapter-title-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the chapter title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
     </rule>
   </pattern>
-  <pattern id="ref-book-source-tests-pattern">
-    <rule context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
+  <pattern xmlns="" id="ref-book-source-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='book']/source" id="ref-book-source-tests">
       
       <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h1zta-report-book-source-test" test="matches(.,' [Rr]eport |^[Rr]eport | [Rr]eport[\p{Zs}\p{P}]?$')" role="warning" id="report-book-source-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a book reference, but the book title is <value-of select="."/>. Should it be captured as a report type reference instead?</report>
       
@@ -7669,8 +7669,8 @@
       
     </rule>
   </pattern>
-  <pattern id="preprint-title-tests-pattern">
-    <rule context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
+  <pattern xmlns="" id="preprint-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='preprint']/source" id="preprint-title-tests">
       <let name="lc" value="lower-case(.)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#not-rxiv-test" test="matches($lc,'biorxiv|arxiv|chemrxiv|medrxiv|osf preprints|peerj preprints|psyarxiv|paleorxiv|preprints|research square|zenodo|ecoevorxiv|africarxiv')" role="warning" id="not-rxiv-test">ref '<value-of select="ancestor::ref/@id"/>' is tagged as a preprint, but has a source <value-of select="."/>, which doesn't look like a preprint. Is it correct?</assert>
@@ -7704,8 +7704,8 @@
       <report test="matches($lc,'ecoevorxiv') and not(. = 'EcoEvoRxiv')" role="error" id="ecoevorxiv-test">ref '<value-of select="ancestor::ref/@id"/>' has a source <value-of select="."/>, which is not the correct proprietary capitalisation - 'EcoEvoRxiv'.</report>
     </rule>
   </pattern>
-  <pattern id="website-tests-pattern">
-    <rule context="element-citation[@publication-type='web']" id="website-tests">
+  <pattern xmlns="" id="website-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='web']" id="website-tests">
       <let name="link" value="lower-case(ext-link[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#github-web-test" test="contains($link,'github') and not(contains($link,'github.io'))" role="warning" id="github-web-test">web ref '<value-of select="ancestor::ref/@id"/>' has a link which contains 'github', therefore it should almost certainly be captured as a software ref (unless it's a blog post by GitHub).</report>
@@ -7732,8 +7732,8 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="software-ref-tests-pattern">
-    <rule context="element-citation[@publication-type='software']" id="software-ref-tests">
+  <pattern xmlns="" id="software-ref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='software']" id="software-ref-tests">
       <let name="lc" value="lower-case(data-title[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-1" test="matches($lc,'r: a language and environment for statistical computing') and not(matches(person-group[@person-group-type='author']/*[name()=('collab','collab-name')][1],'^R Development Core Team$'))" role="error" id="R-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has a data-title '<value-of select="data-title[1]"/>' but it does not have one collab-name element containing 'R Development Core Team'.</report>
@@ -7770,8 +7770,8 @@
         <value-of select="source[1]"/> software ref (with id '<value-of select="ancestor::ref/@id"/>') does not have a URL or a DOI which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="data-ref-tests-pattern">
-    <rule context="element-citation[@publication-type='data']" id="data-ref-tests">
+  <pattern xmlns="" id="data-ref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='data']" id="data-ref-tests">
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-geo-test" test="contains(pub-id[1]/@xlink:href,'www.ncbi.nlm.nih.gov/geo') and not(source[1]='NCBI Gene Expression Omnibus')" role="warning" id="data-geo-test">Data reference with the title '<value-of select="data-title[1]"/>' has a 'https://www.ncbi.nlm.nih.gov/geo' type link, but the database name is not 'NCBI Gene Expression Omnibus' - <value-of select="source[1]"/>. Is that correct?</report>
       
@@ -7912,15 +7912,15 @@
       
     </rule>
   </pattern>
-  <pattern id="ncbi-pub-id-checks-pattern">
-    <rule context="element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" id="ncbi-pub-id-checks">
+  <pattern xmlns="" id="ncbi-pub-id-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" id="ncbi-pub-id-checks">
       
       <assert test="contains(lower-case(@xlink:href),lower-case(.))" role="warning" id="ncbi-pub-id-1">Dataset reference is an NCBI dataset, but the link for the dataset - <value-of select="@xlink:href"/> - does not contain the accession number - <value-of select="."/> - which is particularly unusual, and its likely that one of these is incorrect.</assert>
       
     </rule>
   </pattern>
-  <pattern id="publisher-name-tests-pattern">
-    <rule context="element-citation/publisher-name" id="publisher-name-tests">
+  <pattern xmlns="" id="publisher-name-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/publisher-name" id="publisher-name-tests">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#publisher-name-colon" test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon - <value-of select="."/>. Should the text preceding the colon instead be captured as publisher-loc?</report>
       
@@ -7935,8 +7935,8 @@
         <name/> contains the text 'guardian', 'independent', 'times' or 'post' - <value-of select="."/> - is it a newspaper reference? If so, it should be captured as a web or a periodical reference.</report>
     </rule>
   </pattern>
-  <pattern id="ref-name-tests-pattern">
-    <rule context="element-citation//name" id="ref-name-tests">
+  <pattern xmlns="" id="ref-name-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation//name" id="ref-name-tests">
       <let name="type" value="ancestor::person-group[1]/@person-group-type"/>
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-1" test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
@@ -7958,8 +7958,8 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#given-names-count-2" test="count(given-names) lt 1" role="warning" id="given-names-count-2">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - is this incorrect?</report>
     </rule>
   </pattern>
-  <pattern id="page-conformity-pattern">
-    <rule context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
+  <pattern xmlns="" id="page-conformity-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='journal') and (fpage or lpage)]" id="page-conformity">
       <let name="cite" value="e:citation-format1(.)"/>
       
       <report test="matches(lower-case(source[1]),'plos|^elife$|^mbio$')" role="error" id="online-journal-w-page">
@@ -7967,24 +7967,24 @@
       
     </rule>
   </pattern>
-  <pattern id="isbn-conformity-pattern">
-    <rule context="element-citation/pub-id[@pub-id-type='isbn']" id="isbn-conformity">
+  <pattern xmlns="" id="isbn-conformity-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/pub-id[@pub-id-type='isbn']" id="isbn-conformity">
       <let name="t" value="translate(.,'-','')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test" test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
-  <pattern id="isbn-conformity-2-pattern">
-    <rule context="isbn" id="isbn-conformity-2">
+  <pattern xmlns="" id="isbn-conformity-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="isbn" id="isbn-conformity-2">
       <let name="t" value="translate(.,'-','')"/>
       
       <assert test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test-2">isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
-  <pattern id="data-availability-statement-pattern">
-    <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
+  <pattern xmlns="" id="data-availability-statement-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
       
-      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="warning" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-dryad-conformity" test="matches(.,'[Dd]ryad') and          not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]])         and not(ancestor::back//ref-list/ref[element-citation[@publication-type='data' and (contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))])]]/@id = xref[@ref-type='bibr']/@rid)" role="warning" id="pre-das-dryad-conformity">Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad doi and/or database name containing 'Dryad'. If there is a dryad dataset present, ensure that it is captured correctly, otherwise please query the authors for the reference details.</report>
       
@@ -7998,8 +7998,8 @@
       
     </rule>
   </pattern>
-  <pattern id="data-availability-version-2-pattern">
-    <rule context="article[e:get-version(.)!='1']//sec[@sec-type='data-availability']" id="data-availability-version-2">
+  <pattern xmlns="" id="data-availability-version-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//sec[@sec-type='data-availability']" id="data-availability-version-2">
       
       <report test="descendant::element-citation" role="error" id="das-no-refs">Version 2 xml cannot have references in the data availability section. Data references must instead be cited from the data availability section.</report>
       
@@ -8007,22 +8007,22 @@
       
     </rule>
   </pattern>
-  <pattern id="data-availability-child-version-2-pattern">
-    <rule context="article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/*" id="data-availability-child-version-2">
+  <pattern xmlns="" id="data-availability-child-version-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/*" id="data-availability-child-version-2">
       
       <assert test="name()=('p','title')" role="error" id="das-child-conformance">Only p and title elements are permitted within the data availability section. In version 2 XML <value-of select="name()"/> is not permitted.</assert>
       
     </rule>
   </pattern>
-  <pattern id="data-availability-p-pattern">
-    <rule context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
+  <pattern xmlns="" id="data-availability-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']/p[not(*)]" id="data-availability-p">
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
       
     </rule>
   </pattern>
-  <pattern id="data-availability-generated-p-pattern">
-    <rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" id="data-availability-generated-p">
+  <pattern xmlns="" id="data-availability-generated-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" id="data-availability-generated-p">
       <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('isSupplementedBy','generated')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following dataset was generated:\s?$'))" role="error" id="das-generated-p-1">p element before generated datasets in data availability sections that contain 1 generated dataset should contain 'The following dataset was generated:', but this one contains '<value-of select="."/>'.</report>
@@ -8031,8 +8031,8 @@
       
     </rule>
   </pattern>
-  <pattern id="data-availability-used-p-pattern">
-    <rule context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" id="data-availability-used-p">
+  <pattern xmlns="" id="data-availability-used-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" id="data-availability-used-p">
       <let name="ref-count" value="count(ancestor::sec[@sec-type='data-availability']//element-citation[@specific-use=('references','analyzed')])"/>
       
       <report test="$ref-count = 1 and not(matches(.,'^The following previously published dataset was used:\s?$'))" role="error" id="das-used-p-1">p element before used datasets in data availability sections that contain 1 used dataset should contain 'The following previously published dataset was used:', but this one contains '<value-of select="."/>'.</report>
@@ -8041,22 +8041,22 @@
       
     </rule>
   </pattern>
-  <pattern id="data-availability-extra-p-pattern">
-    <rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
+  <pattern xmlns="" id="data-availability-extra-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
       
       <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
       
     </rule>
   </pattern>
-  <pattern id="data-availability-without-extra-p-pattern">
-    <rule context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
+  <pattern xmlns="" id="data-availability-without-extra-p-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
       
       <assert test="count(p[not(element-citation)]) gt 1" role="error" id="das-without-extra-p">If a data availability section contains data references, then depending on whether the datasets were generated or previously published either the text 'The following previously published dataset(s) were used:' or 'The following previously published dataset(s) were used:', or both should be present.</assert>
       
     </rule>
   </pattern>
-  <pattern id="ethics-info-pattern">
-    <rule context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
+  <pattern xmlns="" id="ethics-info-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fn-group[@content-type='ethics-information']/fn" id="ethics-info">
       
       <assert see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-conformity" test="matches(replace(normalize-space(.),'&quot;',''),'\.$|\?$')" role="error" id="ethics-info-conformity">The ethics statement must end with a full stop.</assert>
       
@@ -8064,8 +8064,8 @@
       
     </rule>
   </pattern>
-  <pattern id="sec-title-conformity-pattern">
-    <rule context="sec/title" id="sec-title-conformity">
+  <pattern xmlns="" id="sec-title-conformity-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec/title" id="sec-title-conformity">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       <let name="no-link-text" value="translate(         normalize-space(string-join(for $x in self::*/(*[not(name()='xref')]|text()) return $x,''))         ,' ?.',' ')"/>
       <let name="new-org-regex" value="string-join(for $x in tokenize($org-regex,'\|') return concat('^',$x,'$'),'|')"/>
@@ -8112,8 +8112,8 @@
       
     </rule>
   </pattern>
-  <pattern id="abstract-house-tests-pattern">
-    <rule context="abstract[not(@*)]" id="abstract-house-tests">
+  <pattern xmlns="" id="abstract-house-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="abstract[not(@*)]" id="abstract-house-tests">
       <let name="subj" value="parent::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#xref-bibr-presence" test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
@@ -8125,15 +8125,15 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#res-art-test" test="(count(p) &gt; 1) and ($subj = 'Research Article')" role="warning" id="res-art-test">'<value-of select="$subj"/>' has more than one paragraph in its abstract, is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="KRT-xref-tests-pattern">
-    <rule context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
+  <pattern xmlns="" id="KRT-xref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[@id='keyresource']//xref[@ref-type='bibr']" id="KRT-xref-tests">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#xref-column-test" test="(count(ancestor::*:td/preceding-sibling::td) = 0) or (count(ancestor::*:td/preceding-sibling::td) = 1) or (count(ancestor::*:td/preceding-sibling::td) = 3)" role="warning" id="xref-column-test">'<value-of select="."/>' citation is in a column in the Key Resources Table which usually does not include references. Is it correct?</report>
       
     </rule>
   </pattern>
-  <pattern id="KRT-check-pattern">
-    <rule context="article" id="KRT-check">
+  <pattern xmlns="" id="KRT-check-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article" id="KRT-check">
       <let name="subj" value="descendant::subj-group[@subj-group-type='display-channel']/subject[1]"/>
       <let name="methods" value="('model', 'methods', 'materials|methods')"/>
       
@@ -8143,8 +8143,8 @@
       
     </rule>
   </pattern>
-  <pattern id="KRT-td-checks-pattern">
-    <rule context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
+  <pattern xmlns="" id="KRT-td-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap[@id='keyresource']//td" id="KRT-td-checks">
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#doi-link-test" test="matches(.,'10\.\d{4,9}/') and (count(ext-link[contains(@xlink:href,'doi.org')]) = 0)" role="error" id="doi-link-test">td element containing - '<value-of select="."/>' - looks like it contains a doi, but it contains no link with 'doi.org', which is incorrect.</report>
       
@@ -8156,16 +8156,16 @@
       
     </rule>
   </pattern>
-  <pattern id="colour-table-pattern">
-    <rule context="table-wrap" id="colour-table">
+  <pattern xmlns="" id="colour-table-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap" id="colour-table">
       <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#colour-check-table" test="descendant::th[@style=$allowed-values] or descendant::td[@style=$allowed-values]" role="warning" id="colour-check-table">
         <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
     </rule>
   </pattern>
-  <pattern id="colour-table-2-pattern">
-    <rule context="th[@style]|td[@style]" id="colour-table-2">
+  <pattern xmlns="" id="colour-table-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="th[@style]|td[@style]" id="colour-table-2">
       <let name="allowed-values" value="('background-color: #90CAF9;','background-color: #C5E1A5;','background-color: #FFB74D;','background-color: #FFF176;','background-color: #9E86C9;','background-color: #E57373;','background-color: #F48FB1;','background-color: #E6E6E6;')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#pre-colour-check-table-2" test="@style=($allowed-values)" role="warning" id="pre-colour-check-table-2">
@@ -8175,8 +8175,8 @@
         <name/> element contanining '<value-of select="."/>' has an @style with an unallowed value - '<value-of select="@style"/>'. The only allowed values are <value-of select="string-join($allowed-values,', ')"/> for blue, green orange, yellow, purple, red, pink and grey respectively.</assert>
     </rule>
   </pattern>
-  <pattern id="colour-styled-content-pattern">
-    <rule context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
+  <pattern xmlns="" id="colour-styled-content-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//body//named-content[not(@content-type='sequence')]|article//back//named-content[not(@content-type='sequence')]" id="colour-styled-content">
       <let name="parent" value="parent::*/local-name()"/>
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h8td5-pre-colour-styled-content-check" test="." role="warning" id="pre-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. If it is red, blue or purple then it should be tagged using &lt;styled-content&gt;. If it is not, then the author will need to be queried - 'eLife only supports the following colours for text - red, blue and purple. Please confirm how you would like the colour(s) here captured given this information.'</report>
@@ -8184,8 +8184,8 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hqmsd-final-colour-styled-content-check" test="." role="error" id="final-colour-styled-content-check">'<value-of select="."/>' - <value-of select="$parent"/> element contains a named content element. This is not allowed for coloured text. Please ensure that &lt;styled-content&gt; is used with the three permitted colours for text - red, blue and purple.</report>
     </rule>
   </pattern>
-  <pattern id="colour-styled-content-v2-pattern">
-    <rule context="article//styled-content" id="colour-styled-content-v2">
+  <pattern xmlns="" id="colour-styled-content-v2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//styled-content" id="colour-styled-content-v2">
       <let name="allowed-values" value="('color: #366BFB;','color: #9C27B0;','color: #D50000;')"/>
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h3819-colour-styled-content-flag" test="@style = $allowed-values" role="warning" id="colour-styled-content-flag">
@@ -8199,8 +8199,8 @@
         <value-of select="."/> - text in <value-of select="parent::*/name()"/> element is captured in a &lt;styled-content style="<value-of select="@style"/>"&gt;. The only allowed values for the @style are <value-of select="string-join($allowed-values,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="math-colour-tests-pattern">
-    <rule context="mml:*[@mathcolor]" id="math-colour-tests">
+  <pattern xmlns="" id="math-colour-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:*[@mathcolor]" id="math-colour-tests">
       <let name="allowed-values" value="('red','blue','purple')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathcolor-test-1" test="@mathcolor = $allowed-values" role="warning" id="pre-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a colour style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. If it is clear that colours are supposed to be used, but you are not sure which ones, then please query the authors - 'eLife only supports the following colours for text and maths - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) here captured given this information.'.</assert>
@@ -8211,8 +8211,8 @@
       
     </rule>
   </pattern>
-  <pattern id="mathbackground-tests-pattern">
-    <rule context="mml:*[@mathbackground]" id="mathbackground-tests">
+  <pattern xmlns="" id="mathbackground-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:*[@mathbackground]" id="mathbackground-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#pre-mathbackground-test-1" test="not(ancestor::table-wrap)" role="warning" id="pre-mathbackground-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has '<value-of select="@mathbackground"/>' colour background formatting. This likely means that there's a mistake in the content which will not render correctly online. Please check this carefully against the original manuscript. If it's not a mistake, and the background colour is deliberate, then please add the following author query -&gt; 'Where possible, we prefer that colours are not used in text in the interests of accessibility and because they may not display in downstream HTML. eLife does not support background colours for text, however we do support the following colours for text itself - 'red', 'blue' and 'purple'. Please confirm how you would like the colour(s) captured here given this information, and note that our preference would be to use more common forms of emphasis (such as bold, italic or underline) if possible to still convey the same meaning.'.</report>
       
@@ -8224,22 +8224,22 @@
       
     </rule>
   </pattern>
-  <pattern id="mtext-tests-pattern">
-    <rule context="mml:mtext" id="mtext-tests">
+  <pattern xmlns="" id="mtext-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="mml:mtext" id="mtext-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#mtext-test-1" test="matches(.,'^\p{Zs}*\\')" role="warning" id="mtext-test-1">math (<value-of select="name()"/> element) contains '<value-of select="."/>' which looks suspiciously like LaTeX markup. Is it correct? Or is there missing content or content which has been processed incompletely?</report>
       
     </rule>
   </pattern>
-  <pattern id="inline-formula-length-tests-pattern">
-    <rule context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
+  <pattern xmlns="" id="inline-formula-length-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" id="inline-formula-length-tests">
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(descendant::mml:math[1]) gt 89" role="warning" id="inline-formula-length-test-1">Inline formula containing '<value-of select="descendant::mml:math[1]"/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
       
     </rule>
   </pattern>
-  <pattern id="p-punctuation-pattern">
-    <rule context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
+  <pattern xmlns="" id="p-punctuation-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article[not(@article-type=($notice-article-types,'article-commentary'))]/body//p[not(parent::list-item) and not(descendant::*[last()]/ancestor::disp-formula) and not(table-wrap)]|       article[@article-type='article-commentary']/body//p[not(parent::boxed-text)]" id="p-punctuation">
       <let name="para" value="replace(.,' ',' ')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-punctuation-test" test="matches($para,'\p{P}\p{Zs}*?$')" role="warning" id="p-punctuation-test">paragraph doesn't end with punctuation - Is this correct?</assert>
@@ -8249,8 +8249,8 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbmr0-p-space-test" test="matches(.,'\p{Zs}$')" role="warning" id="p-space-test">paragraph ends with space(s). Is this correct? '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern id="italic-house-style-pattern">
-    <rule context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">  
+  <pattern xmlns="" id="italic-house-style-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="italic[not(ancestor::ref) and not(ancestor::sub-article)]" id="italic-house-style">  
       
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hvcr0-pre-et-al-italic-test" test="matches(.,'et al[\.]?')" role="warning" id="pre-et-al-italic-test">
         <name/> element contains 'et al.' - this should not be in italics (eLife house style).</report>
@@ -8305,8 +8305,8 @@
       
     </rule>
   </pattern>
-  <pattern id="final-latin-conformance-pattern">
-    <rule context="article" id="final-latin-conformance">
+  <pattern xmlns="" id="final-latin-conformance-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article" id="final-latin-conformance">
       <let name="latin-terms" value="e:get-latin-terms(.,$latin-regex)"/>
       <let name="roman-count" value="sum(for $x in $latin-terms//*:list[@list-type='roman']//*:match return number($x/@count))"/>
       <let name="italic-count" value="sum(for $x in $latin-terms//*:list[@list-type='italic']//*:match return number($x/@count))"/>
@@ -8318,8 +8318,8 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#h7l5o-latin-conformance-info" test="($roman-count != 0) and ($italic-count = $roman-count)" role="warning" id="latin-conformance-info">Latin terms are not consistently either roman or italic. There are an equal number of italic (<value-of select="$italic-count"/>) and roman (<value-of select="$roman-count"/>) terms. The following terms are italicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='italic'])"/>. The following terms are unitalicised: <value-of select="e:print-latin-terms($latin-terms//*:list[@list-type='roman'])"/>.</report>
     </rule>
   </pattern>
-  <pattern id="pubmed-link-pattern">
-    <rule context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" id="pubmed-link">
+  <pattern xmlns="" id="pubmed-link-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p//ext-link[not(ancestor::table-wrap) and not(ancestor::sub-article)]" id="pubmed-link">
       
       <report test="matches(@xlink:href,'^http[s]?://www.ncbi.nlm.nih.gov/pubmed/[\d]*')" role="warning" id="pubmed-presence">
         <value-of select="parent::*/local-name()"/> element contains what looks like a link to a PubMed article - <value-of select="."/> - should this be added a reference instead?</report>
@@ -8329,8 +8329,8 @@
       
     </rule>
   </pattern>
-  <pattern id="pubmed-link-2-pattern">
-    <rule context="table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]" id="pubmed-link-2">
+  <pattern xmlns="" id="pubmed-link-2-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="table-wrap//ext-link[(contains(@xlink:href,'ncbi.nlm.nih.gov/pubmed') or contains(@xlink:href,'pubmed.ncbi.nlm.nih.gov')) and not(ancestor::sub-article)]" id="pubmed-link-2">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
@@ -8339,8 +8339,8 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#final-pmid-spacing-table" test="ends-with($lc,'pmid: ') or ends-with($lc,'pmid ')" role="warning" id="final-pmid-spacing-table">PMID link should be preceding by 'PMID:' with no space but instead it is preceded by '<value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="rrid-link-pattern">
-    <rule context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
+  <pattern xmlns="" id="rrid-link-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ext-link[contains(lower-case(@xlink:href),'identifiers.org/rrid') and not(ancestor::sub-article)]" id="rrid-link">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="lc" value="lower-case($pre-text)"/>
       
@@ -8351,8 +8351,8 @@
       <report test="matches(@xlink:href,'identifiers\.org/RRID/RRID:')" role="error" id="rrid-link-format">RRID links should be in the format 'https://identifiers.org/RRID:XXXX', but this one is not - <value-of select="@xlink:href"/>.</report>
     </rule>
   </pattern>
-  <pattern id="ref-link-mandate-pattern">
-    <rule context="ref-list/ref" id="ref-link-mandate">
+  <pattern xmlns="" id="ref-link-mandate-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref-list/ref" id="ref-link-mandate">
       <let name="id" value="@id"/>
       
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#pre-ref-link-presence" test="ancestor::article//xref[@rid = $id]" role="warning" id="pre-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
@@ -8360,8 +8360,8 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#final-ref-link-presence" test="ancestor::article//xref[@rid = $id]" role="error" id="final-ref-link-presence">'<value-of select="$id"/>' has no linked citations. Either the reference should be removed or a citation linking to it needs to be added.</assert>
     </rule>
   </pattern>
-  <pattern id="fig-permissions-check-pattern">
-    <rule context="fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
+  <pattern xmlns="" id="fig-permissions-check-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig[not(descendant::permissions)]|media[starts-with(@mimetype,'video') and not(descendant::permissions)]|table-wrap[not(descendant::permissions)]|supplementary-material[not(descendant::permissions)]" id="fig-permissions-check">
       <let name="label" value="replace(label[1],'\.','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#reproduce-test-1" test="matches(caption[1],'[Rr]eproduced from')" role="warning" id="reproduce-test-1">The caption for <value-of select="$label"/> contains the text 'reproduced from', but has no permissions. Is this correct?</report>
@@ -8383,8 +8383,8 @@
       <report test="matches(caption[1],'[Cc]ourtesy|[Pp]roprietary')" role="warning" id="reproduce-test-9">The caption for <value-of select="$label"/> contains the text 'courtesy' or 'proprietary', but has no permissions. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="xref-formatting-pattern">
-    <rule context="xref[not(@ref-type='bibr')]" id="xref-formatting">
+  <pattern xmlns="" id="xref-formatting-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[not(@ref-type='bibr')]" id="xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','italic','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby')"/>
@@ -8394,8 +8394,8 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-child-test" test="$child = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
   </pattern>
-  <pattern id="ref-xref-formatting-pattern">
-    <rule context="xref[@ref-type='bibr']" id="ref-xref-formatting">
+  <pattern xmlns="" id="ref-xref-formatting-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="xref[@ref-type='bibr']" id="ref-xref-formatting">
       <let name="parent" value="parent::*/local-name()"/>
       <let name="child" value="child::*/local-name()"/>
       <let name="formatting-elems" value="('bold','fixed-case','monospace','overline','overline-start','overline-end','roman','sans-serif','sc','strike','underline','underline-start','underline-end','ruby','sub','sup')"/>
@@ -8407,15 +8407,15 @@
       <report test="italic" role="warning" id="ref-xref-italic-child-test">xref - <value-of select="."/> - contains italic formatting. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="code-fork-pattern">
-    <rule context="article" id="code-fork">
+  <pattern xmlns="" id="code-fork-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article" id="code-fork">
       <let name="test" value="e:code-check(lower-case(.))"/>
       
       <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#code-fork-info" test="$test//*:match" role="warning" id="code-fork-info">Article possibly contains code that needs forking. Search - <value-of select="string-join(for $x in $test//*:match return $x,', ')"/>.</report>
     </rule>
   </pattern>
-  <pattern id="auth-kwd-style-pattern">
-    <rule context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
+  <pattern xmlns="" id="auth-kwd-style-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="kwd-group[@kwd-group-type='author-keywords']/kwd" id="auth-kwd-style">
       <let name="article-text" value="string-join(for $x in ancestor::article/*[local-name() = 'body' or local-name() = 'back']//*         return         if ($x/ancestor::sec[@sec-type='data-availability']) then ()         else if ($x/ancestor::sec[@sec-type='additional-information']) then ()         else if ($x/ancestor::ref-list) then ()         else if ($x/local-name() = 'xref') then ()         else $x/text(),'')"/>
       <let name="lower" value="lower-case(.)"/>
       <!-- removes instances where the keyword begins a sentence and accounts for regex special characters -->
@@ -8437,36 +8437,36 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-7" test="not(italic) and matches($lower,$org-regex)" role="warning" id="auth-kwd-check-7">Keyword contains an organism name which is not in italics - <value-of select="."/>. Please italicise the organism name in the keyword.</report>
     </rule>
   </pattern>
-  <pattern id="general-kwd-pattern">
-    <rule context="kwd" id="general-kwd">
+  <pattern xmlns="" id="general-kwd-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="kwd" id="general-kwd">
       
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-8" test="contains(.,', ')" role="warning" id="auth-kwd-check-8">Keyword contains a comma - '<value-of select="."/>'. Should this be split into multiple keywords?</report>
       
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-9" test="matches(.,'[”“‘’&quot;]')" role="warning" id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
   </pattern>
-  <pattern id="ref-given-names-pattern">
-    <rule context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
+  <pattern xmlns="" id="ref-given-names-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ref-list//element-citation/person-group[@person-group-type='author']//given-names" id="ref-given-names">
       
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-given-names-test-1" test="string-length(.) gt 4" role="warning" id="ref-given-names-test-1">Given names should always be initialised. Ref '<value-of select="ancestor::ref[1]/@id"/>' contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
     </rule>
   </pattern>
-  <pattern id="data-ref-given-names-pattern">
-    <rule context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
+  <pattern xmlns="" id="data-ref-given-names-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec[@sec-type='data-availability']//element-citation/person-group[@person-group-type='author']//given-names" id="data-ref-given-names">      
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-ref-given-names-test-1" test="string-length(.) gt 4" role="warning" id="data-ref-given-names-test-1">Given names should always be initialised. Ref contains a given names with a string longer than 4 characters - '<value-of select="."/>' in <value-of select="concat(preceding-sibling::surname[1],' ',.)"/>. Is this a surname captured as given names? Or a fully spelt out given names?</report>
       
     </rule>
   </pattern>
-  <pattern id="ar-fig-title-tests-pattern">
-    <rule context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
+  <pattern xmlns="" id="ar-fig-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="fig[ancestor::sub-article]/caption/title" id="ar-fig-title-tests">     
       
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#ar-fig-title-test-1" test="lower-case(normalize-space(.))=('title','title.')" role="warning" id="ar-fig-title-test-1">Please query author for a <value-of select="ancestor::fig/label"/> title, and/or remove placeholder title text - <value-of select="."/>.</report>
       
     </rule>
   </pattern>
-  <pattern id="section-title-tests-pattern">
-    <rule context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
+  <pattern xmlns="" id="section-title-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" id="section-title-tests">     
       <let name="following-text" value="following-sibling::text()[1]"/>
       
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#section-title-test-1" test="(name()=('italic','bold','underline')) and (ends-with(.,'.') or matches($following-text,'^\p{Zs}?\.|^[\p{P}]?\p{Zs}?[A-Z]|^[\p{P}]?\p{Zs}?\d')) and not((name()='italic') and matches(lower-case(.),$sec-title-regex))" role="warning" id="section-title-test-1">
@@ -8474,23 +8474,23 @@
       
     </rule>
   </pattern>
-  <pattern id="strike-tests-pattern">
-    <rule context="strike" id="strike-tests">     
+  <pattern xmlns="" id="strike-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="strike" id="strike-tests">     
       
       <report test="." role="warning" id="final-strike-flag">
         <value-of select="parent::*/local-name()"/> element contains text with strikethrough formatting - <value-of select="."/> - Is this correct? Or have the authors added strikethrough formatting as an indication that the content should be removed?</report>
       
     </rule>
   </pattern>
-  <pattern id="title-bold-tests-pattern">
-    <rule context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">  
+  <pattern xmlns="" id="title-bold-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="title[(count(*)=1) and (child::bold or child::italic)]" id="title-bold-tests">  
     <let name="free-text" value="replace(       normalize-space(string-join(for $x in self::*/text() return $x,''))       ,' ','')"/>
     
     <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hcq0l-title-all-bold-test-1" test="$free-text=''" role="warning" id="title-all-bold-test-1">Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="italic-org-tests-pattern">
-    <rule context="italic[matches(lower-case(.),$org-regex)]" id="italic-org-tests">
+  <pattern xmlns="" id="italic-org-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="italic[matches(lower-case(.),$org-regex)]" id="italic-org-tests">
       <let name="pre-text" value="preceding-sibling::text()[1]"/>
       <let name="post-text" value="following-sibling::text()[1]"/>
       <let name="pre-token" value="substring($pre-text, string-length($pre-text), 1)"/>
@@ -8501,23 +8501,23 @@
       <assert see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hkbnb-italic-org-test-2" test="(substring(., string-length(.), 1) = (' ',' ')) or ($post-token='') or matches($post-token,'[\p{Zs}\p{P}]')" role="warning" id="italic-org-test-2">There is no space between the organism name '<value-of select="."/>' and its following text - '<value-of select="concat(.,substring($post-text,1,10))"/>'. Is this correct or is there a missing space?</assert>
     </rule>
   </pattern>
-  <pattern id="sub-sup-tests-pattern">
-    <rule context="sub|sup" id="sub-sup-tests">
+  <pattern xmlns="" id="sub-sup-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub|sup" id="sub-sup-tests">
       
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#h6795-double-sup-sub" test="parent::*/name() = name()" role="error" id="double-sup-sub">
         <name/> is captured as a child of <name/>, which is not permitted.</report>
       
     </rule>
   </pattern>
-  <pattern id="break-tests-pattern">
-    <rule context="break" id="break-tests">
+  <pattern xmlns="" id="break-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="break" id="break-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hmp1c-break-placement" test="ancestor::td or ancestor::th" role="error" id="break-placement">The break element is only permitted as a child (or descendant) of a table cell. This one is placed elsewhere (<value-of select="concat(string-join(for $x in ancestor::* return $x/name(),'/'),'/',name())"/>).</assert>
       
     </rule>
   </pattern>
-  <pattern id="flag-github-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" id="flag-github">
+  <pattern xmlns="" id="flag-github-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'github.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" id="flag-github">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'github.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -8526,8 +8526,8 @@
       
     </rule>
   </pattern>
-  <pattern id="flag-gitlab-pattern">
-    <rule context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" id="flag-gitlab">
+  <pattern xmlns="" id="flag-gitlab-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="ext-link[not(ancestor::sub-article or ancestor::element-citation or ancestor::sec[@sec-type='data-availability']) and contains(lower-case(@xlink:href),'gitlab.com') and not(contains(@xlink:href,'archive.softwareheritage.org'))]" id="flag-gitlab">
       <let name="l" value="lower-case(@xlink:href)"/>
       <let name="substring" value="substring-after($l,'gitlab.com/')"/>
       <let name="owner-repo" value="string-join(for $x in tokenize($substring,'/')[position()=(1,2)] return if (contains($x,'#')) then substring-before($x,'#') else $x,'/')"/>
@@ -8536,8 +8536,8 @@
       
     </rule>
   </pattern>
-  <pattern id="data-request-checks-pattern">
-    <rule context="p|td|th|title" id="data-request-checks">
+  <pattern xmlns="" id="data-request-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p|td|th|title" id="data-request-checks">
       
       <report test="matches(lower-case(.),'(^|\s)(data|datasets)(\s|\?|\.|!)') and matches(lower-case(.),'(^|\s)request(\s|\?|\.|!|$)')" role="warning" id="data-request-check">
         <name/> element contains text that has the words data (or dataset(s)) as well as request. Is this a statement that data is available on request? If so, has this been approved by the editors?</report>
@@ -8548,8 +8548,8 @@
     </rule>
   </pattern>
   
-  <pattern id="doi-journal-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
+  <pattern xmlns="" id="doi-journal-ref-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='journal') and not(pub-id[@pub-id-type='doi']) and year and source]" id="doi-journal-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="journal" value="replace(lower-case(source[1]),'^the ','')"/>
@@ -8560,8 +8560,8 @@
       
     </rule>
   </pattern>
-  <pattern id="doi-book-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" id="doi-book-ref-checks">
+  <pattern xmlns="" id="doi-book-ref-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" id="doi-book-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="year" value="number(replace(year[1],'[^\d]',''))"/>
       <let name="publisher" value="lower-case(publisher-name[1])"/>
@@ -8572,8 +8572,8 @@
       
     </rule>
   </pattern>
-  <pattern id="doi-software-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
+  <pattern xmlns="" id="doi-software-ref-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='software') and year and source]" id="doi-software-ref-checks">
       <let name="cite" value="e:citation-format1(.)"/>
       <let name="host" value="lower-case(source[1])"/>
       
@@ -8585,8 +8585,8 @@
       
     </rule>
   </pattern>
-  <pattern id="doi-conf-ref-checks-pattern">
-    <rule context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
+  <pattern xmlns="" id="doi-conf-ref-checks-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(@publication-type='confproc') and not(pub-id[@pub-id-type='doi']) and year and conf-name]" id="doi-conf-ref-checks">
       <let name="name" value="lower-case(conf-name[1])"/>
       
       <report see="https://elifeproduction.slab.com/posts/conference-references-d51f08lj?shr=d51f08lj#h5t13-conf-doi-test-1" test="contains($name,'ieee')" role="warning" id="conf-doi-test-1">
@@ -8595,8 +8595,8 @@
     </rule>
   </pattern>
   
-  <pattern id="zenodo-tests-pattern">
-    <rule context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
+  <pattern xmlns="" id="zenodo-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation[(lower-case(source[1])='zenodo') or contains(ext-link[1],'10.5281/zenodo') or contains(pub-id[@pub-id-type='doi'][1],'10.5281/zenodo')]" id="zenodo-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#zenodo-check" test="@publication-type=('data','software','preprint','report')" role="error" id="zenodo-check">
         <value-of select="@publication-type"/> type reference <value-of select="if (parent::ref[@id]) then concat('(with id ',parent::ref[1]/@id,')') else ()"/> is a zenodo one, which means that it must be one of the following reference types: data, software, preprint or report.</assert>
@@ -8604,8 +8604,8 @@
     </rule>
   </pattern>
   
-  <pattern id="link-ref-tests-pattern">
-    <rule context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
+  <pattern xmlns="" id="link-ref-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="element-citation/source | element-citation/article-title | element-citation/chapter-title | element-citation/data-title" id="link-ref-tests">
       <let name="lc" value="lower-case(.)"/>
       <!-- Get tokens in the string which are not common. Distinct values can then be compared to determine if there is duplication -->
       <let name="t" value="tokenize($lc,'\s')[not(.=('of','the'))]"/>
@@ -8624,8 +8624,8 @@
     </rule>
   </pattern>
   
-  <pattern id="unicode-tests-pattern">
-    <rule context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
+  <pattern xmlns="" id="unicode-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="sub-article//p[matches(.,'[âÂÅÃËÆ]')]|sub-article//td[matches(.,'[âÂÅÃËÆ]')]|sub-article//th[matches(.,'[âÂÅÃËÆ]')]" id="unicode-tests">
       
         <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#unicode-test-1" test="contains(.,'â‚¬')" role="warning" id="unicode-test-1">
         <name/> element contains 'â‚¬' - this should instead be the character '€'. - <value-of select="."/>.</report>
@@ -8902,8 +8902,8 @@
 
         </rule>
   </pattern>
-  <pattern id="private-char-tests-pattern">
-    <rule context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" id="private-char-tests">
+  <pattern xmlns="" id="private-char-tests-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)]" id="private-char-tests">
       
       <report see="https://elifeproduction.slab.com/posts/general-content-2y3029rs#private-char-test" test="matches(.,'\p{Co}')" role="error" id="private-char-test">
         <name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\p{Zs}')[matches(.,'\p{Co}')]),' ')"/>'.</report>
@@ -8911,8 +8911,8 @@
     </rule>
   </pattern>
   
-  <pattern id="element-allowlist-pattern">
-    <rule context="article//*[not(ancestor::mml:math)]" id="element-allowlist">
+  <pattern xmlns="" id="element-allowlist-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="article//*[not(ancestor::mml:math)]" id="element-allowlist">
       <let name="allowed-elements" value="('abstract',         'ack',         'addr-line',         'aff',         'ali:free_to_read',         'ali:license_ref',         'alternatives',         'anonymous',         'app',         'app-group',         'article',         'article-categories',         'article-id',         'article-meta',         'article-title',         'article-version',         'attrib',         'author-notes',         'award-group',         'award-id',         'back',         'bio',         'body',         'bold',         'boxed-text',         'break',         'caption',         'chapter-title',         'code',         'collab',         'collab-name',         'collab-wrap',         'comment',         'conf-date',         'conf-loc',         'conf-name',         'contrib',         'contrib-group',         'contrib-id',         'copyright-holder',         'copyright-statement',         'copyright-year',         'corresp',         'country',         'custom-meta',         'custom-meta-group',         'data-title',         'date',         'date-in-citation',         'day',         'disp-formula',         'disp-quote',         'edition',         'element-citation',         'elocation-id',         'email',         'event',         'event-desc',         'ext-link',         'fig',         'fig-group',         'fn',         'fn-group',         'fpage',         'front',         'front-stub',         'funding-group',         'funding-source',         'funding-statement',         'given-names',         'graphic',         'history',         'inline-formula',         'inline-graphic',         'institution',         'institution-id',         'institution-wrap',         'issn',         'issue',         'italic',         'journal-id',         'journal-meta',         'journal-title',         'journal-title-group',         'kwd',         'kwd-group',         'label',         'license',         'license-p',         'list',         'list-item',         'lpage',         'media',         'meta-name',         'meta-value',         'mml:math',         'monospace',         'month',         'name',         'named-content',         'on-behalf-of',         'p',         'patent',         'permissions',         'person-group',         'principal-award-recipient',         'pub-date',         'pub-history',         'pub-id',         'publisher',         'publisher-loc',         'publisher-name',         'ref',         'ref-list',         'related-article',         'related-object',         'role',         'sc',         'sec',         'self-uri',         'source',         'strike',         'string-date',         'string-name',         'styled-content',         'sub',         'sub-article',         'subj-group',         'subject',         'suffix',         'sup',         'supplementary-material',         'surname',         'table',         'table-wrap',         'table-wrap-foot',         'tbody',         'td',         'tex-math',         'th',         'thead',         'title',         'title-group',         'tr',         'underline',         'version',         'volume',         'xref',         'year')"/>
       
       <assert test="name()=$allowed-elements" role="error" id="element-conformity">
@@ -8921,8 +8921,8 @@
     </rule>
   </pattern>
   
-  <pattern id="empty-attribute-test-pattern">
-    <rule context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
+  <pattern xmlns="" id="empty-attribute-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[@*/normalize-space(.)='']" id="empty-attribute-test">
       
       <report test="." role="warning" id="pre-empty-attribute-conformance">
         <value-of select="name()"/> element has attribute(s) with an empty value. &lt;<value-of select="name()"/>
@@ -8934,15 +8934,15 @@
       
     </rule>
   </pattern>
-  <pattern id="contrib-id-attribute-test-pattern">
-    <rule context="contrib[@contrib-type]" id="contrib-id-attribute-test">
+  <pattern xmlns="" id="contrib-id-attribute-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="contrib[@contrib-type]" id="contrib-id-attribute-test">
       <let name="allowed-values" value="('author','senior_editor','editor','reviewer')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-id-value-conformance" test="@contrib-type=$allowed-values" role="error" id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
     </rule>
   </pattern>
-  <pattern id="content-type-attribute-test-pattern">
-    <rule context="*[@content-type]" id="content-type-attribute-test">
+  <pattern xmlns="" id="content-type-attribute-test-pattern">
+    <rule xmlns="http://purl.oclc.org/dsdl/schematron" context="*[@content-type]" id="content-type-attribute-test">
       <let name="allowed-elements" value="('named-content','contrib-group','self-uri','institution','fn-group','disp-quote')"/>
       
       <assert test="name()=$allowed-elements" role="error" id="content-type-value-conformance">
@@ -8952,7 +8952,7 @@
   
   
   
-<pattern id="root-pattern">
+<pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" role="error" id="covid-prologue-xspec-assert">article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]] must be present.</assert>
       <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>

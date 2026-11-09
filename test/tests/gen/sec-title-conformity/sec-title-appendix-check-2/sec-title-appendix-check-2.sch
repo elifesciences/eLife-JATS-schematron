@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-appendix-check-2" test="ancestor::body and matches(.,'^[Ss]upplementary |^[Ss]upplemental ')" role="warning" id="sec-title-appendix-check-2">Should the section titled '<value-of select="."/>' be captured as an appendix?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
     </rule>

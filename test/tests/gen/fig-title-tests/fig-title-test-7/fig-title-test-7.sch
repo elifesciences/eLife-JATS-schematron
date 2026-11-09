@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-7" test="string-length(.) gt 250" role="warning" id="fig-title-test-7">title for <value-of select="$label"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
     </rule>

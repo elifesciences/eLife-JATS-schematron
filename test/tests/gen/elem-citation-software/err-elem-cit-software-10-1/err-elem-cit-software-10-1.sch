@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-10-1" test="count(data-title) &gt; 1" role="error" id="err-elem-cit-software-10-1">Each &lt;element-citation&gt; of type 'software' may contain one and only one &lt;data-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(data-title)"/> &lt;data-title&gt; elements.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type = 'software']" role="error" id="elem-citation-software-xspec-assert">element-citation[@publication-type = 'software'] must be present.</assert>
     </rule>

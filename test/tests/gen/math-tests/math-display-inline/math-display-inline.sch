@@ -969,7 +969,7 @@
         <name/> is a descendant of an disp-formula but it has the attribute display="inline". This is likely incorrect. Either the disp-formula is really a inline-formula, or the display="inline" attribute should be removed (or changed to "block").</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>

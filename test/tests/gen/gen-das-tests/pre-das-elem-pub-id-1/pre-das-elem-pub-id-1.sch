@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-elem-pub-id-1" test="count(pub-id)=1" role="warning" id="pre-das-elem-pub-id-1">The reference in position <value-of select="$pos"/> of the data availability section does not have an identifier (no pub-id). Please ensure to add it in or query the authors asking for it.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>

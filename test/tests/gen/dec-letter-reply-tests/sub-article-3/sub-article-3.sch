@@ -970,7 +970,7 @@
       <report test="$is-prc and @article-type='decision-letter'" role="error" flag="dl-ar" id="sub-article-3">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in PRC articles. Provided this is in fact a PRC article, the article-type should be 'referee-report'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/sub-article" role="error" id="dec-letter-reply-tests-xspec-assert">article/sub-article must be present.</assert>
     </rule>

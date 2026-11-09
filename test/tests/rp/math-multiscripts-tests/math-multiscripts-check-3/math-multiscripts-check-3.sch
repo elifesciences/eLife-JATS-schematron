@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-multiscripts-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-multiscripts-tests-pattern">
     <rule context="*:mmultiscripts" id="math-multiscripts-tests">
       <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>
       <assert test="*:mprescripts" role="warning" id="math-multiscripts-check-3">[math-multiscripts-check-3] <name/> element does not have a child mml:mprescripts element. Is that correct? Or should a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
     </rule>

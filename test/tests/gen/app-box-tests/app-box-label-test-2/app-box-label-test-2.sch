@@ -968,7 +968,7 @@
         <name/> label must start with the title for the appendix it sits in, <value-of select="$app-title"/>. This one does not - "<value-of select="label[1]"/>".</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))]" role="error" id="app-box-tests-xspec-assert">app//boxed-text[not((parent::sec[parent::app] or parent::app) and preceding-sibling::*[1]/name()='title' or count(preceding-sibling::*) = (0,1))] must be present.</assert>
     </rule>

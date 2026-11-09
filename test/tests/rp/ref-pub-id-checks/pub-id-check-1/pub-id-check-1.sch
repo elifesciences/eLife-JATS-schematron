@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-pub-id-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <assert test="@pub-id-type" role="error" id="pub-id-check-1">[pub-id-check-1] <name/> does not have a pub-id-type attribute.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>

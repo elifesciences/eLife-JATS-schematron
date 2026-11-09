@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-white-circle-symbol-sup" test="contains(.,'○')" role="warning" id="white-circle-symbol-sup">'<name/>' element contains the white circle symbol, '○'. Should this be a (non-superscript) degree symbol - ° - instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/*" role="error" id="ed-eval-front-child-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/* must be present.</assert>
     </rule>

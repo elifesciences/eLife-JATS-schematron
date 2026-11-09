@@ -974,7 +974,7 @@
         <value-of select="label"/> contains a link to <value-of select="descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1]"/>, but it is not a captured as a child of that fig. Should it be captured as <value-of select="concat(descendant::xref[@ref-type='fig'][contains(.,'igure') and not(contains(.,'supplement'))][1],'—video x')"/> instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>

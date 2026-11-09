@@ -966,7 +966,7 @@
       <report test="descendant::supplementary-material[matches(lower-case(label[1]),'transparent reporting form')] and descendant::supplementary-material[matches(lower-case(label[1]),'mdar checklist')]" role="error" id="add-files-4">This article has both a transparent reporting form and an MDAR checklist - there should only be one. Please check with the eLife team who will decide which should be retained.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='supplementary-material']" role="error" id="additional-files-tests-xspec-assert">sec[@sec-type='supplementary-material'] must be present.</assert>
     </rule>

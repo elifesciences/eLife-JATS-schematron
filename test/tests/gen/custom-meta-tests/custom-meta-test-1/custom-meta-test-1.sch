@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-1" test="count(meta-name) = 1" role="error" id="custom-meta-test-1">One meta-name must be present in custom-meta.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta" role="error" id="custom-meta-tests-xspec-assert">article-meta/custom-meta-group/custom-meta must be present.</assert>
     </rule>

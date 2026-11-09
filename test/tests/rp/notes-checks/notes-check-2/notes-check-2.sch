@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="notes-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="notes-checks-pattern">
     <rule context="front/notes" id="notes-checks">
       <report test="*[not(name()=('fn-group','notes'))]" role="error" sqf:fix="delete-node" id="notes-check-2">[notes-check-2] When present, the notes element should only be used to contain an author revision summary (an fn-group with the content-type 'summary-of-updates'). This notes element contains the following element(s): <value-of select="string-join(distinct-values(*[not(name()=('fn-group','notes'))]/name()),'; ')"/>). Are these redundant? Or should the content be moved elsewhere? (coi statements should be in author-notes; clinical trial numbers should be included as a related-object in a structured abstract (if it already exists) or as related-object in article-meta; data/code/ethics/funding statements can be included in additional information in new or existing section(s), as appropriate; anstract shpould be captured as abstracts with the appropriate type)</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front/notes" role="error" id="notes-checks-xspec-assert">front/notes must be present.</assert>
     </rule>

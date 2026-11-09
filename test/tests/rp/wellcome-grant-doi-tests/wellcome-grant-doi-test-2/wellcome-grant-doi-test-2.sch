@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="wellcome-grant-doi-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="wellcome-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" id="wellcome-grant-doi-tests">
       <let name="funder-entries" value="key('ror-by-any-id', $wellcome-funder-ids, $rors-doc)"/>
       <let name="grants" value="$funder-entries/*:grant"/>
@@ -1304,8 +1304,8 @@
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#wellcome-grant-doi-test-2" test="$grant-matches" role="warning" id="wellcome-grant-doi-test-2">[wellcome-grant-doi-test-2] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="$award-id-elem"/>). The award id hasn't exactly matched the details of a known grant DOI, but the funder is known to mint grant DOIs (for example in the format <value-of select="$grants[1]/@doi"/> for ID <value-of select="$grants[1]/@award"/>). Does the award ID in the article contain a number/string within it that can be used to find a match here: https://api.crossref.org/works?filter=type:grant,award.number:[insert-grant-number]</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids]" role="error" id="wellcome-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=$wellcome-funder-ids] must be present.</assert>
     </rule>

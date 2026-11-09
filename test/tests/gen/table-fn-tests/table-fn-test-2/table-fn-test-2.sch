@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-fn-test-2" test="@id and not(label)" role="error" id="table-fn-test-2">Table footnotes with an id must have a label (or the id should be removed). This one has the id '<value-of select="@id"/>' but no label. If a lable should not be present, then please remove the id.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap-foot//fn" role="error" id="table-fn-tests-xspec-assert">table-wrap-foot//fn must be present.</assert>
     </rule>

@@ -17887,12 +17887,12 @@
     <x:scenario label="data-availability-statement">
       <x:scenario label="das-sentence-conformity-pass">
         <x:context href="../tests/gen/data-availability-statement/das-sentence-conformity/pass.xml"/>
-        <x:expect-not-assert id="das-sentence-conformity" role="error"/>
+        <x:expect-not-assert id="das-sentence-conformity" role="warning"/>
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="das-sentence-conformity-fail">
         <x:context href="../tests/gen/data-availability-statement/das-sentence-conformity/fail.xml"/>
-        <x:expect-assert id="das-sentence-conformity" role="error"/>
+        <x:expect-assert id="das-sentence-conformity" role="warning"/>
         <x:expect-not-assert id="data-availability-statement-xspec-assert" role="error"/>
       </x:scenario>
       <x:scenario label="pre-das-dryad-conformity-pass">

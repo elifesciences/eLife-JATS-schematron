@@ -985,7 +985,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-email-1" test="self::*[@corresp='yes'][not(child::*:email)]" role="error" id="contrib-email-1">Corresponding authors must have an email.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>

@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="page-break-pi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="page-break-pi-checks-pattern">
     <rule context="processing-instruction('page-break')" id="page-break-pi-checks">
       <let name="allowed-parents" value="('article','body','back','sec','app','ack','boxed-text','statement','def-list','list','glossary','disp-quote')"/>
       <assert test="parent::*/name()=$allowed-parents" role="error" id="page-break-pi-1">[page-break-pi-1] 'page-break' cannot be placed inside a <value-of select="parent::*/name()"/> element. It should be placed in one of the following: <value-of select="string-join($allowed-parents,'; ')"/>
       </assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::processing-instruction('page-break')" role="error" id="page-break-pi-checks-xspec-assert">processing-instruction('page-break') must be present.</assert>
     </rule>

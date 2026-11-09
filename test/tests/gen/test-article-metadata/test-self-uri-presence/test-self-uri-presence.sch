@@ -976,7 +976,7 @@
       <report test="not($article-type = $notice-article-types) and not(self-uri)" role="error" id="test-self-uri-presence">There must be a child self-uri in article-meta.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

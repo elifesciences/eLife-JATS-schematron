@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-pub-id-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <report test="@pub-id-type='doi' and matches(lower-case(.),'file|figure|table')" role="warning" id="doi-superfluous">[doi-superfluous] This DOI (<value-of select="."/>) looks like it relates to supplementary material instead of an overall article. Should this be changed to the article DOI instead?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>

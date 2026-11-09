@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-id" test="@id=concat($fig-id,'sdata',$pos)" role="error" id="fig-data-id">The id for figure level source data must be the id of its ancestor fig, followed by 'sdata', followed by its position relative to other source data for the same figure. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($fig-id,'sdata',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" role="error" id="fig-source-data-tests-xspec-assert">fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')] must be present.</assert>
     </rule>

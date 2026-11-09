@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-id-test-3" test="matches(.,'^\p{Zs}?[Nn]one[\.]?\p{Zs}?$')" role="error" id="award-id-test-3">Award id contains - <value-of select="."/> - This entry should be empty.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>

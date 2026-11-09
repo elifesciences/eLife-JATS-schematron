@@ -970,7 +970,7 @@
       <report test="($license-type='cc0') and .!=$cc0-text" role="error" id="license-p-test-2">The text in license-p is incorrect (<value-of select="."/>). Since this article is CC0 licensed, the text should be <value-of select="$cc0-text"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front//permissions/license/license-p must be present.</assert>
     </rule>

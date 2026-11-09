@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-empty-child-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-empty-child-tests-pattern">
     <rule context="*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot" id="math-empty-child-tests">
       <let name="child-count" value="if (local-name()=('msubsup','munderover')) then 3 else 2"/>
       <let name="first-name" value="if (local-name() = 'mfrac') then 'numerator'                                 else if (local-name() = 'mroot') then 'radicand'                                 else 'base'"/>
       <let name="second-name" value="if (local-name() = 'msub') then 'subscript'                                  else if (local-name() = 'msup') then 'superscript'                                  else if (local-name() = 'msubsup') then 'subscript'                                  else if (local-name() = 'munder') then 'underscript'                                  else if (local-name() = 'mover') then 'overscript'                                  else if (local-name() = 'munderover') then 'underscript'                                  else if (local-name() = 'mfrac') then 'denominator'                                  else if (local-name() = 'mroot') then 'index'                                  else 'second'"/>
       <assert test="count(*) = $child-count" role="error" id="math-child-count-check">[math-child-count-check] <name/> element must have <value-of select="$child-count"/> children. This one has <value-of select="count(*)"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::*:msub or descendant::*:msup or descendant::*:msubsup or descendant::*:munder or descendant::*:mover or descendant::*:munderover or descendant::*:mfrac or descendant::*:mroot" role="error" id="math-empty-child-tests-xspec-assert">*:msub|*:msup|*:msubsup|*:munder|*:mover|*:munderover|*:mfrac|*:mroot must be present.</assert>
     </rule>

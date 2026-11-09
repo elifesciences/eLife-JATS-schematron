@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-list-check" test="matches(.,'^\p{Zs}?[A-Za-z]{1,3}\)|^\p{Zs}?\([A-Za-z]{1,3}')" role="warning" id="sec-title-list-check">Section title might start with a list indicator - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
     </rule>

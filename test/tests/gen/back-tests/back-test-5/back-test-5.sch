@@ -970,7 +970,7 @@
       <report test="if ($article-type = ('research-article','article-commentary')) then (count(ref-list) != 1)         else ()" role="error" id="back-test-5">One and only one ref-list must be present in <value-of select="$article-type"/> content.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>

@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#handbook-presence" test="contains($uc,'HANDBOOK')" role="error" id="handbook-presence">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
     </rule>

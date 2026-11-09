@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-10" test="matches(.,'^[\d]+$')" role="error" id="custom-meta-test-10">Impact statement is comprised entirely of numbers, which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value must be present.</assert>
     </rule>

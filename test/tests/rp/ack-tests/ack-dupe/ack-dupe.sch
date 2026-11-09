@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ack-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ack-tests-pattern">
     <rule context="ack" id="ack-tests">
       <report test="preceding::ack" role="warning" sqf:fix="delete-node" id="ack-dupe">[ack-dupe] This ack element follows another one. Should there really be more than one Acknowledgements?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ack" role="error" id="ack-tests-xspec-assert">ack must be present.</assert>
     </rule>

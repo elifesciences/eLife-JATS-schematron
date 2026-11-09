@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="eu-horizon-grant-doi-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="eu-horizon-grant-doi-tests-pattern">
     <rule context="funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" id="eu-horizon-grant-doi-tests">
       <let name="funder-id" value="funding-source/institution-wrap/institution-id"/>
       <let name="funder-entries" value="key('ror-by-any-id', ($eu-ror-ids,$eu-horizon-fundref-ids), $rors-doc)"/>
@@ -1304,8 +1304,8 @@
       <let name="grant-matches" value="if ($award-id='') then ()         else $grants[@award=$award-id]"/>
       <report test="$grant-matches" role="warning" sqf:fix="add-grant-doi" id="eu-horizon-grant-doi-test-1">[eu-horizon-grant-doi-test-1] Funding entry from <value-of select="funding-source/institution-wrap/institution"/> has an award-id (<value-of select="award-id[1]"/>) which could potentially be replaced with a grant DOI. The following grant DOIs are possibilities: <value-of select="string-join(distinct-values(for $grant in $grant-matches return concat('https://doi.org/',$grant/@doi)),'; ')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)]" role="error" id="eu-horizon-grant-doi-tests-xspec-assert">funding-group/award-group[award-id[not(@award-id-type='doi')] and funding-source/institution-wrap/institution-id=($eu-ror-ids,$eu-horizon-fundref-ids)] must be present.</assert>
     </rule>

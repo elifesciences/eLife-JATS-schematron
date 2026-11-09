@@ -986,7 +986,7 @@
         <value-of select="$name"/> is affiliated with what looks like a company, but contains no COI statement. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//contrib" role="error" id="contrib-tests-xspec-assert">article-meta//contrib must be present.</assert>
     </rule>

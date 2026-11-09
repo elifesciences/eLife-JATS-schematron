@@ -968,7 +968,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p" role="error" id="digest-tests-xspec-assert">front//abstract[@abstract-type=('executive-summary','plain-language-summary')]/p must be present.</assert>
     </rule>

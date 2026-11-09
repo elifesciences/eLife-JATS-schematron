@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hlpdc-gene-primer-sequence-test" test="($text-count le $count)" role="warning" id="gene-primer-sequence-test">p element contains what looks like an untagged primer or gene sequence - <value-of select="string-join($text-tokens,', ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p[not(child::table-wrap)]" role="error" id="gene-primer-sequence-xspec-assert">p[not(child::table-wrap)] must be present.</assert>
     </rule>

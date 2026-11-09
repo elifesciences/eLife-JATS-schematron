@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-pub-id-2" test="@pub-id-type!='doi' and normalize-space(.)!='' and (not(@xlink:href) or (normalize-space(@xlink:href)=''))" role="error" id="final-das-pub-id-2">Each pub-id element which is not a doi must have an @xlink-href (which is not empty).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" role="error" id="das-elem-citation-data-pub-id-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id must be present.</assert>
     </rule>

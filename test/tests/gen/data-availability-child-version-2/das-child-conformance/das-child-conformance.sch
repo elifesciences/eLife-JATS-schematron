@@ -966,7 +966,7 @@
       <assert test="name()=('p','title')" role="error" id="das-child-conformance">Only p and title elements are permitted within the data availability section. In version 2 XML <value-of select="name()"/> is not permitted.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/*" role="error" id="data-availability-child-version-2-xspec-assert">article[e:get-version(.)!='1']//sec[@sec-type='data-availability']/* must be present.</assert>
     </rule>

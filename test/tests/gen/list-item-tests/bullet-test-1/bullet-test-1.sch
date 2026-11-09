@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#ho2mz-bullet-test-1" test="($type='bullet') and matches(.,'^\p{Zs}?•')" role="error" id="bullet-test-1">list-item is part of bullet list, but it also begins with a '•', which means that two will output. Remove the unnecessary '•' from the beginning of the list-item.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
     </rule>

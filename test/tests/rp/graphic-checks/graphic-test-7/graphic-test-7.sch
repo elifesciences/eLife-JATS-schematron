@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="graphic-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="graphic-checks-pattern">
     <rule context="graphic|inline-graphic" id="graphic-checks">
       <let name="link" value="lower-case(@*:href)"/>
       <let name="file" value="tokenize($link,'\.')[last()]"/>
@@ -1303,8 +1303,8 @@
       <let name="mime-subtype" value="if (@mime-subtype) then @mime-subtype else substring-after(@mimetype,'/')"/>
       <report test="$mime-subtype='gif' and $file!='gif'" role="error" id="graphic-test-7">[graphic-test-7] <name/> has gif mime-subtype but filename does not end with '.gif'. This cannot be correct.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::graphic or descendant::inline-graphic" role="error" id="graphic-checks-xspec-assert">graphic|inline-graphic must be present.</assert>
     </rule>

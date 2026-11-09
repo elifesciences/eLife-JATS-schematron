@@ -968,7 +968,7 @@
         <name/> that's a child of an event without an eLife DOI must contain the text 'Preprint posted'. This one has '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event-desc" role="error" id="event-desc-tests-xspec-assert">event-desc must be present.</assert>
     </rule>

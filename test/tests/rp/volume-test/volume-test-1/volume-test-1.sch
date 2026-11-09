@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="volume-test-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="volume-test-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]/article-meta/volume" id="volume-test">
       <let name="is-first-version" value="if (ancestor::article-meta/article-id[@specific-use='version' and ends-with(.,'.1')]) then true()                                           else if (not(ancestor::article-meta/pub-history[event[date[@date-type='reviewed-preprint']]])) then true()                                           else false()"/>
       <let name="pub-date" value=" if (not($is-first-version)) then parent::article-meta/pub-history[1]/event[date[@date-type='reviewed-preprint']][1]/date[@date-type='reviewed-preprint'][1]/year[1]          else if (ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic']) then ancestor::article-meta/pub-date[@date-type='publication' and @publication-format='electronic'][1]/year[1]          else string(year-from-date(current-date()))"/>
       <report test=".='' or (. != (number($pub-date) - 2011))" role="error" id="volume-test-1">[volume-test-1] volume is incorrect. It should be <value-of select="number($pub-date) - 2011"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/volume" role="error" id="volume-test-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/volume must be present.</assert>
     </rule>

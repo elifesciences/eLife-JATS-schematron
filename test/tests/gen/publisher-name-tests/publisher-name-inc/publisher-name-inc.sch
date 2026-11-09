@@ -967,7 +967,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert test="@specific-use=('generated','analyzed')" role="error" flag="version-2" id="err-elem-cit-data-1-v2">element-citation[@publication-type='data'] must have a specific-use attribute is either 'generated' or 'analyzed'. Reference '<value-of select="ancestor::ref/@id"/>' does not have this attribute or the value is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//element-citation[@publication-type='data']" role="error" id="elem-citation-data-v2-xspec-assert">article[e:get-version(.)!='1']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>

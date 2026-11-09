@@ -967,7 +967,7 @@
       <report test="@*[not(name()=$allowed-attributes)]" role="error" id="pub-date-test-2">Only the following attributes are permitted on pub-date. This one has the following unallowed attributes: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>

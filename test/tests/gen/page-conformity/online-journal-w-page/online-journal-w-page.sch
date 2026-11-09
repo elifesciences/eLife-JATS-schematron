@@ -968,7 +968,7 @@
         <value-of select="$cite"/> is a <value-of select="source"/> article, but has a page number, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[(@publication-type='journal') and (fpage or lpage)]" role="error" id="page-conformity-xspec-assert">element-citation[(@publication-type='journal') and (fpage or lpage)] must be present.</assert>
     </rule>

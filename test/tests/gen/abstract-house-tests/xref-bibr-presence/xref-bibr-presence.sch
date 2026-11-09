@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#xref-bibr-presence" test="descendant::xref[@ref-type='bibr']" role="warning" id="xref-bibr-presence">Abstract contains a citation - '<value-of select="descendant::xref[@ref-type='bibr'][1]"/>' - which isn't usually allowed. Check that this is correct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[not(@*)]" role="error" id="abstract-house-tests-xspec-assert">abstract[not(@*)] must be present.</assert>
     </rule>

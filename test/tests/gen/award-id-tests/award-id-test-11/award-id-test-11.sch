@@ -969,7 +969,7 @@
       <report test="matches(lower-case(.),'\s+(and|&amp;)\s+')" role="warning" id="award-id-test-11">award-id contains 'and' or an ampersand - <value-of select="."/>. Each separate award needs its own funding entry. If these are two separate grant numbers, please split them out.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>

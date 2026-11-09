@@ -968,7 +968,7 @@
       <report test="preceding-sibling::attrib" role="warning" id="attrib-sibling">attrib has a preceding sibling. Does the <value-of select="$parent"/> really need more than one attrib?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::attrib" role="error" id="attrib-tests-xspec-assert">attrib must be present.</assert>
     </rule>

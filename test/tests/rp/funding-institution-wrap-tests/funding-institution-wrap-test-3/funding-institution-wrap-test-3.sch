@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="funding-institution-wrap-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-institution-wrap-tests-pattern">
     <rule context="funding-source//institution-wrap" id="funding-institution-wrap-tests">
       <report test="count(institution-id)=1 and (normalize-space(string-join(text(),''))!='' or comment())" role="error" id="funding-institution-wrap-test-3">[funding-institution-wrap-test-3] institution-wrap cannot contain text content or comments. It can only contain elements and whitespace.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-source//institution-wrap" role="error" id="funding-institution-wrap-tests-xspec-assert">funding-source//institution-wrap must be present.</assert>
     </rule>

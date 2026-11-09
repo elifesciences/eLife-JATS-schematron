@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-crcns-test-1" test="starts-with(pub-id[1][@pub-id-type='doi'],'10.6080') and (source[1]!='Collaborative Research in Computational Neuroscience')" role="warning" id="data-crcns-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a doi starting with '10.6080' but the database name is not 'Collaborative Research in Computational Neuroscience' - <value-of select="source[1]"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
     </rule>

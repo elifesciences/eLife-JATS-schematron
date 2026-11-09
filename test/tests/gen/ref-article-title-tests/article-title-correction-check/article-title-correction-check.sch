@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-correction-check" test="matches(.,'^[Cc]orrection|^[Rr]etraction|[Ee]rratum')" role="warning" id="article-title-correction-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which begins with 'Correction', 'Retraction' or contains 'Erratum'. Is this a reference to the notice or the original article?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
     </rule>

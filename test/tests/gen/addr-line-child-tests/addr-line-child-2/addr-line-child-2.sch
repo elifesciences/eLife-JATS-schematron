@@ -967,7 +967,7 @@
         <value-of select="name()"/> in &lt;addr-line&gt; must have the attribute content-type="city". <value-of select="."/> does not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::addr-line/*" role="error" id="addr-line-child-tests-xspec-assert">addr-line/* must be present.</assert>
     </rule>

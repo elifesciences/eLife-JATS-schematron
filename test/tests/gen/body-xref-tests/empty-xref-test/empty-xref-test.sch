@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#empty-xref-test" test="not(child::*) and normalize-space(.)=''" role="error" id="empty-xref-test">Empty xref in the body is not allowed. Its position is here in the text - "<value-of select="concat(preceding-sibling::text()[1],'*Empty xref*',following-sibling::text()[1])"/>".</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::body//xref" role="error" id="body-xref-tests-xspec-assert">body//xref must be present.</assert>
     </rule>

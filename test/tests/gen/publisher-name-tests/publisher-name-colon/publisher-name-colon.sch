@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#publisher-name-colon" test="matches(.,':')" role="warning" id="publisher-name-colon">ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name containing a colon - <value-of select="."/>. Should the text preceding the colon instead be captured as publisher-loc?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
     </rule>

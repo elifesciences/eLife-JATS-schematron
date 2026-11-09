@@ -967,7 +967,7 @@
         <name/> element contains the replacement character '�' which is unallowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff/institution[@content-type='dept']" role="error" id="department-tests-xspec-assert">aff/institution[@content-type='dept'] must be present.</assert>
     </rule>

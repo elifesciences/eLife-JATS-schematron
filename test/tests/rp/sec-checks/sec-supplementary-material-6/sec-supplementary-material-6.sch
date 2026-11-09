@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sec-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='supplementary-material' and title and title!='Additional files' and parent::back" role="error" id="sec-supplementary-material-6">[sec-supplementary-material-6] &lt;sec sec-type='supplementary-material'&gt; has a title element, but it is not 'Additional files'.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>

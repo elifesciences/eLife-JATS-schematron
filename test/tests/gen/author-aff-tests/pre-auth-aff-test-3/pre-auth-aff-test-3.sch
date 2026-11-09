@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2v3t-pre-auth-aff-test-3" test="institution[not(@*)] or institution-wrap[institution[not(@*)]]" role="warning" id="pre-auth-aff-test-3">Author affiliations (&lt;aff&gt;) must include an &gt;institution&gt; tag. This one (with the id <value-of select="@id"/>) does not - <value-of select="$display"/>. Please query the authors.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
     </rule>

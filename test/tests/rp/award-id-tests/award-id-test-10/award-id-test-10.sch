@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="award-id-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
       <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
       <report test="not(@award-id-type='doi') and matches(.,'^10\.\d{4,9}/[-._;\+()#/:A-Za-z0-9&lt;&gt;\[\]]+$')" role="error" id="award-id-test-10">[award-id-test-10] award-id contains a DOI (<value-of select="."/>), but it does not have the attribute award-id-type="doi".</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>

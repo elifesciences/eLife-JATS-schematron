@@ -969,7 +969,7 @@
         <value-of select="replace(label,'\.$','')"/> is placed after <value-of select="preceding-sibling::fig[1]/label[1]"/>. Figure level author explainer videos should always be placed directly after the main figure and before any figure supplements in the figure group.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig-group/media[starts-with(@mimetype,'video')]" role="error" id="fig-video-specific-xspec-assert">fig-group/media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>

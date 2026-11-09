@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#given-names-count" test="count(given-names) gt 1" role="error" id="given-names-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(given-names)"/> given-names - <value-of select="."/> - which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
     </rule>

@@ -972,7 +972,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#fig-xref-test-2" test="not(parent::*[name()=('td','th')] and preceding-sibling::node()[1]/name()='break') and matches($pre-text,'[\p{L}\p{N}\p{M}\p{Pe},;]$')" role="warning" id="fig-xref-test-2">There is no space between citation and the preceding text - <value-of select="concat(substring($pre-text,string-length($pre-text)-15),.)"/> - Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='fig' and @rid]" role="error" id="fig-xref-conformance-xspec-assert">xref[@ref-type='fig' and @rid] must be present.</assert>
     </rule>

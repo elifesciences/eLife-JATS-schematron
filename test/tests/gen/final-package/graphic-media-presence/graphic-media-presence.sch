@@ -971,7 +971,7 @@
       </assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href] or descendant::self-uri[not(parent::event) and @xlink:href]" role="error" id="final-package-xspec-assert">graphic[@xlink:href]|media[@xlink:href]|self-uri[not(parent::event) and @xlink:href] must be present.</assert>
     </rule>

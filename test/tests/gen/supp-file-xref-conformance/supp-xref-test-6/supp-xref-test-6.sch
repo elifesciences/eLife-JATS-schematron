@@ -973,7 +973,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-6" test="contains(.,'—Source')" role="warning" id="supp-xref-test-6">citation contains '—Source' (<value-of select="."/>). If it refers to asset level source data or code, then 'Source' should be spelled with a lowercase s, as in the label for that file.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>

@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="clintrial-related-object-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
       <report test="ancestor::abstract[sec] and not(parent::p/parent::sec/title[matches(lower-case(.),'clinical trial')])" role="warning" id="clintrial-related-object-parent-3">[clintrial-related-object-parent-3] <name/> is a descendant of (a sturctured) abstract, but it's not within a section that has a title indicating it's a clinical trial number. Is that right?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
     </rule>

@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="article-title-children-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="article-title-children-checks-pattern">
     <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
       <let name="permitted-children" value="('italic','sup','sub')"/>
       <assert test="name()=$permitted-children" role="error" sqf:fix="delete-node" id="article-title-children-check-1">[article-title-children-check-1] <name/> is not supported as a child of article title. Please remove this element (and any child content, as appropriate).</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/title-group/article-title/*" role="error" id="article-title-children-checks-xspec-assert">article-meta/title-group/article-title/* must be present.</assert>
     </rule>

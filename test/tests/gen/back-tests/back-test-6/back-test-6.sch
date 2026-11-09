@@ -970,7 +970,7 @@
       <report test="count(app-group) gt 1" role="error" id="back-test-6">One and only one app-group may be present in back.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::back" role="error" id="back-tests-xspec-assert">back must be present.</assert>
     </rule>

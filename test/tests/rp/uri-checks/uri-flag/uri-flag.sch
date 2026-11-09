@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="uri-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="uri-checks-pattern">
     <rule context="uri" id="uri-checks">
       <report test="." role="error" sqf:fix="replace-to-ext-link" id="uri-flag">[uri-flag] The uri element is not permitted. Instead use ext-link with the attribute link-type="uri".</report>
     </rule>
-  </pattern>
+  </sch:pattern>
 </schema>

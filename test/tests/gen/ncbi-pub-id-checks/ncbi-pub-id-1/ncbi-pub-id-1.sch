@@ -966,7 +966,7 @@
       <assert test="contains(lower-case(@xlink:href),lower-case(.))" role="warning" id="ncbi-pub-id-1">Dataset reference is an NCBI dataset, but the link for the dataset - <value-of select="@xlink:href"/> - does not contain the accession number - <value-of select="."/> - which is particularly unusual, and its likely that one of these is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')]" role="error" id="ncbi-pub-id-checks-xspec-assert">element-citation[@publication-type='data']/pub-id[@pub-id-type='accession' and contains(@xlink:href,'.ncbi.nlm.nih.gov')] must be present.</assert>
     </rule>

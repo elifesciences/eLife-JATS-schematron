@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/general-layout-and-formatting-wq0m31at#hcq0l-title-all-bold-test-1" test="$free-text=''" role="warning" id="title-all-bold-test-1">Title is entirely in <value-of select="child::*[1]/local-name()"/> - '<value-of select="."/>'. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::title[(count(*)=1) and (child::bold or child::italic)]" role="error" id="title-bold-tests-xspec-assert">title[(count(*)=1) and (child::bold or child::italic)] must be present.</assert>
     </rule>

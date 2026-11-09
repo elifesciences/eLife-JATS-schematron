@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/data-references-4jxukxzy#final-err-elem-cit-data-11-2" test="count(source)=1" role="error" id="final-err-elem-cit-data-11-2">Data reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(source)"/> source elements. It must contain one (and only one).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/element-citation[@publication-type='data']" role="error" id="elem-citation-data-xspec-assert">ref/element-citation[@publication-type='data'] must be present.</assert>
     </rule>

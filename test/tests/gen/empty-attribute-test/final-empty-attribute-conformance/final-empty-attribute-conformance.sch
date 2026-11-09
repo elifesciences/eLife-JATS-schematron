@@ -968,7 +968,7 @@
         <value-of select="for $att in ./@*[normalize-space(.)=''] return concat(' ',$att/name(),'=&quot;',$att,'&quot;')"/>&gt;</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::*[@*/normalize-space(.)='']" role="error" id="empty-attribute-test-xspec-assert">*[@*/normalize-space(.)=''] must be present.</assert>
     </rule>

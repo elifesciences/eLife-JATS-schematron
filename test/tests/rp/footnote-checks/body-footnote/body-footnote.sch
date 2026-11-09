@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="footnote-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="footnote-checks-pattern">
     <rule context="fn-group[fn]" id="footnote-checks">
       <assert test="ancestor::notes" role="error" id="body-footnote">[body-footnote] This preprint has footnotes appended to the content. EPP cannot render these, so they need adding to the text.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[fn]" role="error" id="footnote-checks-xspec-assert">fn-group[fn] must be present.</assert>
     </rule>

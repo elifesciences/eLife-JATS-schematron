@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="clintrial-related-object-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="clintrial-related-object-pattern">
     <rule context="related-object[@content-type or @document-id]" id="clintrial-related-object">
       <let name="registries" value="'../../../../../src/clinical-trial-registries.xml'"/>
       <report test="ancestor::abstract and not(parent::p/parent::sec/parent::abstract)" role="error" id="clintrial-related-object-parent-2">[clintrial-related-object-parent-2] If <name/> is a descendant of abstract, then it must be placed within a p element that is part of a subsection (i.e. it must be within a structured abstract). This one is not.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::related-object[@content-type or @document-id]" role="error" id="clintrial-related-object-xspec-assert">related-object[@content-type or @document-id] must be present.</assert>
     </rule>

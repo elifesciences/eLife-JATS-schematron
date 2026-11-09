@@ -971,7 +971,7 @@
         <value-of select="$cite"/> is a book ref without a doi, but its publisher (<value-of select="publisher-name[1]"/>) is known to register dois with some books/chapters. Should it have one?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name]" role="error" id="doi-book-ref-checks-xspec-assert">element-citation[(@publication-type='book') and not(pub-id[@pub-id-type='doi']) and year and publisher-name] must be present.</assert>
     </rule>

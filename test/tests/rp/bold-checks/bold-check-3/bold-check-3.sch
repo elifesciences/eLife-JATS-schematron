@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="bold-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="bold-checks-pattern">
     <rule context="bold" id="bold-checks">
       <report test="not(ancestor::sub-article) and matches(.,'(^|[\s\(\[])([Vv]ideo|[Mm]ovie)')" role="warning" sqf:fix="strip-tags replace-fig-xref replace-supp-xref" id="bold-check-3">[bold-check-3] Content of bold element suggests it's intended to be a video or supplementary file citation: <value-of select="."/>. Either replace it with an xref or remove the bold formatting, as appropriate.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::bold" role="error" id="bold-checks-xspec-assert">bold must be present.</assert>
     </rule>

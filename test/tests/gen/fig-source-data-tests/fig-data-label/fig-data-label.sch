@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#fig-data-label" test="$label = concat($fig-label,'—source data ',$pos,'.')" role="error" id="fig-data-label">Figure source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong figure or the label is incorrect. Should the label be <value-of select="concat($fig-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')]" role="error" id="fig-source-data-tests-xspec-assert">fig//supplementary-material[not(ancestor::media) and contains(label[1],' data ')] must be present.</assert>
     </rule>

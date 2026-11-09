@@ -967,7 +967,7 @@
         <value-of select="descendant::subj-group[@subj-group-type='display-channel'][1]/subject[1]"/>s cannot have funding, but this one has a funding-group element. Please remove it.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta" role="error" id="article-metadata-exceptions-xspec-assert">article[@article-type=('article-commentary',$notice-article-types)]/front/article-meta must be present.</assert>
     </rule>

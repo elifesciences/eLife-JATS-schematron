@@ -970,7 +970,7 @@
         as it contains the value '<value-of select="suffix"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/person-group/name/suffix" role="error" id="elem-citation-gen-name-4-xspec-assert">element-citation/person-group/name/suffix must be present.</assert>
     </rule>

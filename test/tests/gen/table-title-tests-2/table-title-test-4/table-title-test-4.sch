@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-4" test="ends-with(.,' vs.')" role="warning" id="table-title-test-4">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

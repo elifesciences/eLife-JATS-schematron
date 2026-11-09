@@ -970,7 +970,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#duplicate-member-test" test="empty($indistinct-names)" role="warning" id="duplicate-member-test">There is more than one member of the group author <value-of select="e:get-collab(parent::*)"/> with the following name(s) - <value-of select="if (count($indistinct-names) gt 1) then concat(string-join($indistinct-names[position() != last()],', '),' and ',$indistinct-names[last()]) else $indistinct-names"/> - which is very likely incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group" role="error" id="collab-tests-xspec-assert">article//article-meta/contrib-group[1]/contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h2i0t-n-korea-test" test="replace(.,'\p{P}','') = 'Democratic Peoples Republic of Korea'" role="warning" id="n-korea-test">Affiliation has '<value-of select="."/>' as its country which is very likely to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//aff/country" role="error" id="country-tests-xspec-assert">front//aff/country must be present.</assert>
     </rule>

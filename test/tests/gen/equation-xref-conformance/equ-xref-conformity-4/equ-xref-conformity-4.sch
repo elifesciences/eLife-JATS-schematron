@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#equ-xref-conformity-4" test="matches($prec-text,'cf[\.]?\p{Zs}?[\(]?$')" role="warning" id="equ-xref-conformity-4">citation is preceded by '<value-of select="substring($prec-text,string-length($prec-text)-10)"/>'. The 'cf.' is unnecessary and should be removed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
     </rule>

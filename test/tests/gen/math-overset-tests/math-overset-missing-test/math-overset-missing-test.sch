@@ -967,7 +967,7 @@
         <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/> contains character(s) that have possibly missing character(s) directly above them (<value-of select="."/>). Has the \overset{}{} function been used, and if so should the appropriate equivalent latex function be used instead (such as \bar{}, \tilde{}, \dot{}, or \hat{})?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:mover" role="error" id="math-overset-tests-xspec-assert">mml:mover must be present.</assert>
     </rule>

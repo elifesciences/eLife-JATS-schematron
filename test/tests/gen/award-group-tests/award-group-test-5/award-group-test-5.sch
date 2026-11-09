@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-5" test="funding-source/institution-wrap" role="error" id="award-group-test-5">funding-source must contain an institution-wrap.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>

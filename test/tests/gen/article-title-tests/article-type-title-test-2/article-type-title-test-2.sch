@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#article-type-title-test-2" test="($type = 'Scientific Correspondence') and not(matches(.,'^Comment on|^Response to comment on'))" role="error" id="article-type-title-test-2">title of a '<value-of select="$type"/>' must start with 'Comment on' or 'Response to comment on', but this starts with something else - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
     </rule>

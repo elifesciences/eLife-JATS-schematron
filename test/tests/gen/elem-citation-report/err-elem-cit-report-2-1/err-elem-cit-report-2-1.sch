@@ -970,7 +970,7 @@
         <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='report']" role="error" id="elem-citation-report-xspec-assert">element-citation[@publication-type='report'] must be present.</assert>
     </rule>

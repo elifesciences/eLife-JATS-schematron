@@ -969,7 +969,7 @@
       <report test="$ror='https://ror.org/05t99sp05' and matches(institution-wrap[1]/institution[1]/lower-case(.),'univ(\.|ersity) of california')" role="error" id="aff-ror-cal-coast">Affiliation has the ROR id for California Coast University (https://ror.org/05t99sp05), but the institution name contains 'University of California' (or similar) - <value-of select="institution-wrap[1]/institution[1]"/>. The ROR id is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="aff-ror-tests-xspec-assert">aff[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>

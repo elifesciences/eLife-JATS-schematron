@@ -967,7 +967,7 @@
       <assert test="*[1]/name()='boxed-text'" role="error" id="notice-body-test-1">The first child element of body in a <value-of select="$display-subject"/> must be boxed-text. This one has <value-of select="*[1]/name()"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body" role="error" id="notice-body-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body must be present.</assert>
     </rule>

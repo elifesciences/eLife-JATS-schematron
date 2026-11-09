@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="journal-fpage-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="journal-fpage-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']/fpage" id="journal-fpage-checks">
       <report test="parent::mixed-citation[not(issue)] and preceding-sibling::*[1]/name()='volume' and preceding-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\(\s*$')] and following-sibling::node()[1][. instance of text() and matches(.,'^\s*[\.,]?\)')]" role="warning" sqf:fix="replace-fpage-to-issue" id="journal-fpage-1">[journal-fpage-1] fpage in journal reference (with <value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) is surrounded by brackets and follows the volume. Is it the issue number instead?</report>
       <sqf:fix id="replace-fpage-to-issue">
@@ -1309,8 +1309,8 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='journal']/fpage" role="error" id="journal-fpage-checks-xspec-assert">mixed-citation[@publication-type='journal']/fpage must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-group//name/suffix" role="error" id="suffix-tests-xspec-assert">contrib-group//name/suffix must be present.</assert>
     </rule>

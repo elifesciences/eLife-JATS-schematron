@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sec-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="glossary and not(*[not(name()=('label','title','sec-meta','glossary'))])" role="warning" id="sec-glossary">[sec-glossary] sec element only contains a child glossary. Is it a redundant sec (which should be deleted)? Or perhaps it indicates the structure/hierarchy has been incorrectly captured.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
       <report test="$parent = ($formatting-elems,'italic')" role="error" id="ref-xref-parent-test">xref - <value-of select="."/> - has a formatting parent element - <value-of select="$parent"/> - which is not correct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-formatting-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

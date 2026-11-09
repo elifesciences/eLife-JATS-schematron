@@ -968,7 +968,7 @@
         <name/> text begins a paragraph - <value-of select="."/> - Should it be marked up as a section title (Heading level <value-of select="count(ancestor::sec) + 1"/>)?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')]" role="error" id="section-title-tests-xspec-assert">sec/p/*[1][not(preceding-sibling::text()) or (normalize-space(preceding-sibling::text())='')] must be present.</assert>
     </rule>

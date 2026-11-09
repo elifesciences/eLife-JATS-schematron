@@ -968,7 +968,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']" role="error" id="website-tests-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>

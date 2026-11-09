@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="award-id-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="award-id-tests-pattern">
     <rule context="funding-group/award-group/award-id" id="award-id-tests">
       <let name="id" value="parent::award-group/@id"/>
       <let name="funder-id" value="parent::award-group/descendant::institution-id[1]"/>
       <let name="funder-name" value="parent::award-group/descendant::institution[1]"/>
       <report test="matches(lower-case(.),'grant')" role="warning" id="award-id-test-13">[award-id-test-13] award-id contains the phrase 'grant' (<value-of select="."/>). Should it be removed?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group/award-id" role="error" id="award-id-tests-xspec-assert">funding-group/award-group/award-id must be present.</assert>
     </rule>

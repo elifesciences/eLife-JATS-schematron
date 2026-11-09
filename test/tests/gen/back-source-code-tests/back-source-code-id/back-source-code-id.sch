@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#back-source-code-id" test="matches(@id,'^scode\d{1,2}$')" role="error" id="back-source-code-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. Source code needs to have ids in the format 'scode0'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
     </rule>

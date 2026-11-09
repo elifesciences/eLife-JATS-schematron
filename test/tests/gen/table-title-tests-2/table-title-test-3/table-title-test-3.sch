@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-3" test="ends-with(.,'.') or ends-with(.,'?')" role="error" id="table-title-test-3">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> does not end with a full stop which is incorrect - '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

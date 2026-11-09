@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h6tpw-err-elem-cit-book-13" test="text() = 'In press'" role="error" id="err-elem-cit-book-13">Comment elements with content other than 'In press' are not allowed. Reference '<value-of select="ancestor::ref/@id"/>' has such a &lt;comment&gt; element.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']/comment" role="error" id="elem-citation-book-comment-xspec-assert">element-citation[@publication-type='book']/comment must be present.</assert>
     </rule>

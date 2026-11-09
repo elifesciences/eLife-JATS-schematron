@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-xref-high-2-1" test="some $x in preceding::xref satisfies (substring(normalize-space(.),string-length(.)) gt substring(normalize-space($x),string-length(.)))" role="error" id="err-xref-high-2-1">Citations in the text to references with the same author(s) in the same year must be arranged in the same order as the reference list. The xref with the value '<value-of select="."/>' is in the wrong order in the text. Check all the references to citations for the same authors to determine which need to be changed.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')]" role="error" id="xref-xspec-assert">xref[@ref-type='bibr' and matches(normalize-space(.),'[b-z]$')] must be present.</assert>
     </rule>

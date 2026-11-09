@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="comment-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="comment-checks-pattern">
     <rule context="comment" id="comment-checks">
       <assert test="parent::mixed-citation" role="error" id="comment-1">[comment-1] <name/> is only supported within mixed-citation, but this one is in <value-of select="parent::*/name()"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::comment" role="error" id="comment-checks-xspec-assert">comment must be present.</assert>
     </rule>

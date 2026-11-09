@@ -969,7 +969,7 @@
         less than or equal to &lt;fpage&gt; <value-of select="fpage"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='confproc']" role="error" id="elem-citation-confproc-xspec-assert">element-citation[@publication-type='confproc'] must be present.</assert>
     </rule>

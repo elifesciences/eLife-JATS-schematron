@@ -968,7 +968,7 @@
         <name/> element should not have a missing or empty base expression.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:msub or descendant::mml:msup or descendant::mml:msubsup or descendant::mml:munder or descendant::mml:mover or descendant::mml:munderover" role="error" id="math-empty-child-tests-xspec-assert">mml:msub|mml:msup|mml:msubsup|mml:munder|mml:mover|mml:munderover must be present.</assert>
     </rule>

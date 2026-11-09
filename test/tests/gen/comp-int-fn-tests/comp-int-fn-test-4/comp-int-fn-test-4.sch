@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#comp-int-fn-test-4" test="matches(.,'\.\p{Zs}*$')" role="error" id="comp-int-fn-test-4">Competing interests footnote ends with full stop - <value-of select="."/> - Please remove the full stop.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='competing-interest']/fn" role="error" id="comp-int-fn-tests-xspec-assert">fn-group[@content-type='competing-interest']/fn must be present.</assert>
     </rule>

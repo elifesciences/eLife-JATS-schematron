@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#source-code-test-2" test="contains(label[1],'ource code') and not(($file=('tar','gz','zip','tgz','rar')))" role="warning" id="source-code-test-2">Source code files should always be zipped. The file type for <value-of select="if (self::*/label) then replace(label,'\.$','') else self::*/local-name()"/> is '<value-of select="$file"/>'. Please zip this file, and replace it with the zipped version.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>

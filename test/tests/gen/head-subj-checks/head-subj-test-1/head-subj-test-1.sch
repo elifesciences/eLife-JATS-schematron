@@ -967,7 +967,7 @@
       <assert test="count(subject) = 1" role="error" id="head-subj-test-1">Each subj-group[@subj-group-type='heading'] must contain one and only one subject. This one contains <value-of select="count(subject)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-categories/subj-group[@subj-group-type='heading']" role="error" id="head-subj-checks-xspec-assert">article-categories/subj-group[@subj-group-type='heading'] must be present.</assert>
     </rule>

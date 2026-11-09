@@ -966,7 +966,7 @@
       <assert test="count(pub-id)=1 or count(ext-link)=1" role="warning" id="pre-err-elem-cit-preprint-10-3">Either one &lt;pub-id&gt; or one &lt;ext-link&gt; element is required in a preprint reference. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(pub-id)"/> &lt;pub-id&gt; elements and <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='preprint']" role="error" id="elem-citation-preprint-xspec-assert">element-citation[@publication-type='preprint'] must be present.</assert>
     </rule>

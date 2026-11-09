@@ -967,7 +967,7 @@
       <report test="@publication-format and @publication-format!='electronic'" role="error" id="pub-date-test-3">pub-date has the attribute publication-format, but the value is "<value-of select="@publication-format"/>". The only permitted value is "electronic".</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>

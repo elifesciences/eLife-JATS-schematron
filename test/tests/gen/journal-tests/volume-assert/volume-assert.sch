@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#volume-assert" test="not(comment[.='In press']) and not(volume)" role="warning" id="volume-assert">ref '<value-of select="ancestor::ref/@id"/>' is a journal, but it doesn't have a volume. Is this right?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="journal-tests-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>

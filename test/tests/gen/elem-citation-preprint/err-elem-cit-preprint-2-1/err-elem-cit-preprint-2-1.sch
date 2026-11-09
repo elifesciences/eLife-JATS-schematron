@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#err-elem-cit-preprint-2-1" test="count(person-group)=1" role="error" id="err-elem-cit-preprint-2-1">There must be one and only one person-group. <value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group)"/> &lt;person-group&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='preprint']" role="error" id="elem-citation-preprint-xspec-assert">element-citation[@publication-type='preprint'] must be present.</assert>
     </rule>

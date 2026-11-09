@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#tbody-test-1" test="count(tr) = 0" role="error" id="tbody-test-1">tbody must have at least one row (tr).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table/tbody" role="error" id="tbody-tests-xspec-assert">table/tbody must be present.</assert>
     </rule>

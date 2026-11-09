@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="journal-ref-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="journal-ref-checks-pattern">
     <rule context="mixed-citation[@publication-type='journal']" id="journal-ref-checks">
       <let name="text-regex" value="'^[\p{Z}\p{P}]+((jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\p{Z}?\d?\d?|doi|pmid|epub|vol|no|and|pp?|in|is[sb]n)[:\.]?'"/>
       <report test="e:is-reviewed-preprint(.) and (source or article-title) and not(pub-id[@pub-id-type=('doi','pmid','pmcid')])" role="warning" id="journal-doi-check">[journal-doi-check] Journal reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) doesn't have a DOI or PMID. Should it?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='journal']" role="error" id="journal-ref-checks-xspec-assert">mixed-citation[@publication-type='journal'] must be present.</assert>
     </rule>

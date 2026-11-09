@@ -967,7 +967,7 @@
         <name/> element is empty - this is not allowed. It must contain content.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//*" role="error" id="element-citation-descendants-xspec-assert">element-citation//* must be present.</assert>
     </rule>

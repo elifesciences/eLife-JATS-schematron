@@ -977,7 +977,7 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-16" test="matches($post-sentence,'^\p{Zs}?\)\)')" role="error" id="ref-xref-test-16">citation is followed by '))'. Either one of the brackets is unnecessary or the reference needs to be placed in square brackets - <value-of select="concat(.,$post-sentence)"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

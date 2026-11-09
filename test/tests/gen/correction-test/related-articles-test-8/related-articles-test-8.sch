@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hzu2u-related-articles-test-8" test="count(related-article[@related-article-type='corrected-article']) gt 0" role="error" id="related-articles-test-8">Corrections must contain at least 1 related-article link with the attribute related-article-type='corrected-article'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='correction']//article-meta" role="error" id="correction-test-xspec-assert">article[@article-type='correction']//article-meta must be present.</assert>
     </rule>

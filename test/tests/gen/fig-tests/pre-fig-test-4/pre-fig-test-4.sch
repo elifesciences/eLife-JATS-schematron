@@ -968,7 +968,7 @@
         <value-of select="label"/> has no title or caption (caption element). Ensure this is queried with the author.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
     </rule>

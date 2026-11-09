@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-2" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" role="error" flag="dl-ar" id="dec-letter-box-test-2">At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='decision-letter']/body/boxed-text[1]" role="error" id="dec-letter-box-tests-xspec-assert">sub-article[@article-type='decision-letter']/body/boxed-text[1] must be present.</assert>
     </rule>

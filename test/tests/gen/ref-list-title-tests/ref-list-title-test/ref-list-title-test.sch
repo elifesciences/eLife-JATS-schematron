@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#ref-list-title-test" test="title = 'References'" role="warning" id="ref-list-title-test">reference list usually has a title that is 'References', but currently it is '<value-of select="title"/>' - is that correct?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref-list" role="error" id="ref-list-title-tests-xspec-assert">ref-list must be present.</assert>
     </rule>

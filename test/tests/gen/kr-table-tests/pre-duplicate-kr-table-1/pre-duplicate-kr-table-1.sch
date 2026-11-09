@@ -966,7 +966,7 @@
       <report test="following::table-wrap[contains(@id,'keyresource') or contains(lower-case(label[1]),'key resources table')]" role="warning" id="pre-duplicate-kr-table-1">There appears to be more than one key resources table. Exeter please check with Production on how to proceed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]" role="error" id="kr-table-tests-xspec-assert">table-wrap[contains(@id,'keyresource')] must be present.</assert>
     </rule>

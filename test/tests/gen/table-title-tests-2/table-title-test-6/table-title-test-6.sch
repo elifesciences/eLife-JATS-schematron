@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-6" test="$sentence-count gt 1" role="warning" id="table-title-test-6">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> contains <value-of select="$sentence-count"/> sentences. Should the sentence(s) after the first be moved into the caption? Or is the title itself a caption (in which case, please ask the authors for a title)?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

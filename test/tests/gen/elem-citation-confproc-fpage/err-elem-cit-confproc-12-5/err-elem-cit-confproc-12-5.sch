@@ -970,7 +970,7 @@
         and &lt;lpage&gt;='<value-of select="../lpage"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='confproc']/fpage" role="error" id="elem-citation-confproc-fpage-xspec-assert">element-citation[@publication-type='confproc']/fpage must be present.</assert>
     </rule>

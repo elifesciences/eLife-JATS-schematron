@@ -969,7 +969,7 @@
       <report test="not(ancestor::article/@article-type='correction') and not(parent::p/parent::caption/parent::*[name()=('fig','table-wrap','media')]         or parent::sec[@sec-type='supplementary-material'])" role="error" id="supp-mat-placement">supplementary-material must be either a child of a caption p for a fig, table or video, or it must be plaed in the additional files section (sec[@sec-type='supplementary-material']). This one with the label <value-of select="label[1]"/> is not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>

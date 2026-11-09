@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-1" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2,'|',$permitted-text-3))" role="warning" flag="dl-ar" id="dec-letter-box-test-1">The text at the top of the decision letter is not correct - '<value-of select="."/>'. It has to be one of the three paragraphs which are permitted (see the GitBook page for these paragraphs).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='decision-letter']/body/boxed-text[1]" role="error" id="dec-letter-box-tests-xspec-assert">sub-article[@article-type='decision-letter']/body/boxed-text[1] must be present.</assert>
     </rule>

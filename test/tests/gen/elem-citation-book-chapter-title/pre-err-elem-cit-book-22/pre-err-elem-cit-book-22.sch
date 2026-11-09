@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h7i77-pre-err-elem-cit-book-22" test="count(../person-group[@person-group-type='author'])=1" role="warning" id="pre-err-elem-cit-book-22">If there is a &lt;chapter-title&gt; element there must be one and only one &lt;person-group person-group-type="author"&gt;. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement. If this information is missing, please query the authors for it.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']/chapter-title" role="error" id="elem-citation-book-chapter-title-xspec-assert">element-citation[@publication-type='book']/chapter-title must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> is not permitted in articles with the article-type <value-of select="ancestor::article/@article-type"/>. Either correct the article type if it is wrong or remove the <name/> element.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-history" role="error" id="pub-history-exception-tests-xspec-assert">pub-history must be present.</assert>
     </rule>

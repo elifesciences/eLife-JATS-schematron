@@ -970,7 +970,7 @@
         <value-of select="."/> is not allowed. This should be 'United Kingdom'</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//aff/country" role="error" id="country-tests-xspec-assert">front//aff/country must be present.</assert>
     </rule>

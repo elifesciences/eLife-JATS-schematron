@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="top-sec-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="top-sec-checks-pattern">
     <rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
       <let name="top-sec-phrases" value="('(results?|conclusions?)( (and|&amp;) discussion)?',             'discussion( (and|&amp;) (results?|conclusions?))?')"/>
       <let name="methods-phrases" value="('(materials? (and|&amp;)|experimental)?\s?methods?( details?|summary|(and|&amp;) materials?)?',             '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',             '(model|methods?)(( and| &amp;) (results|materials?))?')"/>
@@ -1303,8 +1303,8 @@
       <let name="sec-regex" value="concat('^(',string-join(($top-sec-phrases,$methods-phrases),'|'),')$')"/>
       <report test="matches(label[1],'\d+\.\s?\d')" role="warning" id="top-sec-2">[top-sec-2] Section that is placed as a child of <value-of select="parent::*/name()"/> has a label which suggests it should be a subsection: <value-of select="label[1]"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[(parent::body or parent::back) and title]" role="error" id="top-sec-checks-xspec-assert">sec[(parent::body or parent::back) and title] must be present.</assert>
     </rule>

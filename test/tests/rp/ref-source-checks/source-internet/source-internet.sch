@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-source-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-source-checks-pattern">
     <rule context="ref//source" id="ref-source-checks">
       <report test="contains(lower-case(.),'[internet]')" role="warning" id="source-internet">[source-internet] This source includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//source" role="error" id="ref-source-checks-xspec-assert">ref//source must be present.</assert>
     </rule>

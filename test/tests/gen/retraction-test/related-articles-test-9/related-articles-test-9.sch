@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hl977-related-articles-test-9" test="count(related-article[@related-article-type='retracted-article']) gt 0" role="error" id="related-articles-test-9">Retractions must contain at least 1 related-article link with the attribute related-article-type='retracted-article'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='retraction']//article-meta" role="error" id="retraction-test-xspec-assert">article[@article-type='retraction']//article-meta must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> is not allowed outside of the main abstract (abstract[not(@abstract-type)]) or in the front-stub for an editor's evaluation.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::related-object" role="error" id="related-object-tests-xspec-assert">related-object must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> element must have a label in the format "Box 0.".</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//boxed-text[not(parent::body) or preceding-sibling::*]" role="error" id="body-box-tests-xspec-assert">article/body//boxed-text[not(parent::body) or preceding-sibling::*] must be present.</assert>
     </rule>

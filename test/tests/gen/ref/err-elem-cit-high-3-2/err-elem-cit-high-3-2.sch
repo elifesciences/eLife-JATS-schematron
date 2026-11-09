@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-3-2" test="matches(normalize-space(@id) ,'^bib\d+$')" role="error" id="err-elem-cit-high-3-2">Each &lt;ref&gt; element must have an @id attribute that starts with 'bib' and ends with a number. Reference '<value-of select="@id"/>' has the value '<value-of select="@id"/>', which is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
     </rule>

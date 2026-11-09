@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-label" test="$label = concat($vid-label,'—source data ',$pos,'.')" role="error" id="vid-data-label">Video source data label (<value-of select="$label"/>) is incorrect based on its position. Either it has been placed under the wrong video or the label is incorrect. Should the label be <value-of select="concat($vid-label,'—source data ',$pos,'.')"/> instead?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" role="error" id="vid-source-data-tests-xspec-assert">media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')] must be present.</assert>
     </rule>

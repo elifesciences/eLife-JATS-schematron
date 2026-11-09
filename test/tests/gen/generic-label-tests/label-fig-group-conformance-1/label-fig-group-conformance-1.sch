@@ -969,7 +969,7 @@
         <value-of select="$label"/> is not placed in a &lt;fig-group&gt; element, which is incorrect. Either the label needs updating, or it needs moving into the &lt;fig-group&gt;.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig/label or descendant::supplementary-material/label or descendant::media/label or descendant::table-wrap/label or descendant::boxed-text/label" role="error" id="generic-label-tests-xspec-assert">fig/label|supplementary-material/label|media/label|table-wrap/label|boxed-text/label must be present.</assert>
     </rule>

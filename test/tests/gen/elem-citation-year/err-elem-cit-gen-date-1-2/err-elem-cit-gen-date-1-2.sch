@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-2" test="(1700 le number($YYYY)) and (number($YYYY) le ($current-year + 5))" role="warning" id="err-elem-cit-gen-date-1-2">The numeric value of the 4 digits in the &lt;year&gt; element must be between 1700 and the current year + 5 years (inclusive). Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement as it contains the value '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
     </rule>

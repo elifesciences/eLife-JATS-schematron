@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-content-house-style-k617122o#h1vp1-covid-processing-instruction" test="preceding::processing-instruction('covid-19-tdm')" role="warning" id="covid-processing-instruction">The article title (<value-of select="front/article-meta//article-title"/>) suggests that this article should probably have the covid processing instruction - '&lt;?covid-19-tdm?&gt;' - but it does not. Should it?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]]" role="error" id="covid-prologue-xspec-assert">article[front/article-meta//article-title[matches(lower-case(.),'sars-cov-2|covid-19|coronavirus')]] must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-3" test="matches(lower-case(publisher-name[1]),'github|gitlab|bitbucket|sourceforge|figshare|^osf$|open science framework|zenodo|matlab')" role="error" id="ref-software-test-3">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name - <value-of select="publisher-name[1]"/>. Since this is a software source, it should be captured in a source element. Please move into the source field (rather than publisher).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>

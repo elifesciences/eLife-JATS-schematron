@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#orcid-test-2" test="matches(.,'^http[s]?://orcid.org/[\d]{4}-[\d]{4}-[\d]{4}-[\d]{3}[0-9X]$')" role="error" id="orcid-test-2">contrib-id[@contrib-id-type="orcid"] must contain a valid ORCID URL in the format 'https://orcid.org/0000-0000-0000-0000'</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
     </rule>

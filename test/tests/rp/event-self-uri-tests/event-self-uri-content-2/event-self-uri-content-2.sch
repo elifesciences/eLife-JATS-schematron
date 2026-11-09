@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="event-self-uri-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="event-self-uri-tests-pattern">
     <rule context="event/self-uri" id="event-self-uri-tests">
       <let name="allowed-content-vals" value="('preprint','reviewed-preprint','editor-report','referee-report','author-comment')"/>
       <let name="content-type" value="@content-type"/>
       <let name="article-id" value="ancestor::article-meta/article-id[@pub-id-type='publisher-id']"/>
       <report test="@content-type='editor-report' and (* or not(matches(.,'^eLife [Aa]ssessment$')))" role="error" id="event-self-uri-content-2">[event-self-uri-content-2] <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the text 'eLife Assessment'. This one does not.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>

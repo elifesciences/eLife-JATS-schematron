@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="underline-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="string-length(.) gt 20" role="warning" sqf:fix="strip-tags" id="underline-warning">[underline-warning] underline element contains more than 20 characters. Is this tracked change formatting that's been erroneously retained?</report>
       <sqf:fix id="add-ge-symbol">
@@ -1315,8 +1315,8 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
     </rule>

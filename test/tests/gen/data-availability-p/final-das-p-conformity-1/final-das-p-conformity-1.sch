@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-p-conformity-1" test="normalize-space(replace(.,' ',''))=''" role="error" id="final-das-p-conformity-1">p element in data availability section contains no content. It must be removed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']/p[not(*)]" role="error" id="data-availability-p-xspec-assert">sec[@sec-type='data-availability']/p[not(*)] must be present.</assert>
     </rule>

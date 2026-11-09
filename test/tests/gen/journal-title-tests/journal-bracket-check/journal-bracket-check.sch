@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#journal-bracket-check" test="matches(.,'\[|\(|\)|\]')" role="warning" id="journal-bracket-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has a journal name which contains brackets '<value-of select="."/>'. It is very unlikely that the content in the brackets is required.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
     </rule>

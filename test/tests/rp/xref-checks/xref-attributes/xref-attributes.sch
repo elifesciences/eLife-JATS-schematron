@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="xref-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="xref-checks-pattern">
     <rule context="xref" id="xref-checks">
       <let name="allowed-attributes" value="('ref-type','rid')"/>
       <report test="@*[not(name()=$allowed-attributes)]" role="warning" id="xref-attributes">[xref-attributes] This xref element has the following attribute(s) which are not supported: <value-of select="string-join(@*[not(name()=$allowed-attributes)]/name(),'; ')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref" role="error" id="xref-checks-xspec-assert">xref must be present.</assert>
     </rule>

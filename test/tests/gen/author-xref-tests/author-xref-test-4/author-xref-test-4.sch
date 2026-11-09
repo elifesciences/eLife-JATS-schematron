@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-xref-test-4" test="contains(@rid,'dataset')" role="error" id="author-xref-test-4">Author footnote links to datasets are not needed. Please remove this - &lt;xref <value-of select="string-join(for $x in self::*/@* return concat($x/name(),'=&quot;',$x,'&quot;'),' ')"/>/&gt;</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//contrib[@contrib-type='author']/xref" role="error" id="author-xref-tests-xspec-assert">article-meta//contrib[@contrib-type='author']/xref must be present.</assert>
     </rule>

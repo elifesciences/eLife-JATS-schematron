@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="funding-institution-id-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-institution-id-tests-pattern">
     <rule context="funding-source//institution-id" id="funding-institution-id-tests">
       <assert test="@institution-id-type=('ror','FundRef')" role="error" id="funding-institution-id-test-1">[funding-institution-id-test-1] institution-id in funding must have the attribute institution-id-type with a value of either "ror" or "FundRef".</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
     </rule>

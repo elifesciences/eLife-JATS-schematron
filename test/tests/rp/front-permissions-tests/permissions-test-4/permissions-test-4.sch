@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="front-permissions-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="front-permissions-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//permissions" id="front-permissions-tests">
       <let name="author-contrib-group" value="ancestor::article-meta/contrib-group[1]"/>
       <let name="copyright-holder" value="e:get-copyright-holder($author-contrib-group)"/>
       <let name="license-type" value="license/@*:href"/>
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#permissions-test-4" test="*:free_to_read" role="error" id="permissions-test-4">[permissions-test-4] permissions must contain an ali:free_to_read element.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions" role="error" id="front-permissions-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions must be present.</assert>
     </rule>

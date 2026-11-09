@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#data-empiar-test-1" test="contains(pub-id[1]/@xlink:href,'www.ebi.ac.uk/pdbe/emdb/empiar/') and not(source[1]='Electron Microscopy Public Image Archive')" role="warning" id="data-empiar-test-1">Data reference with the title '<value-of select="data-title[1]"/>' has a 'http://www.ebi.ac.uk/pdbe/emdb/empiar' type link, but the database name is not 'Electron Microscopy Public Image Archive' - <value-of select="source[1]"/>. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='data']" role="error" id="data-ref-tests-xspec-assert">element-citation[@publication-type='data'] must be present.</assert>
     </rule>

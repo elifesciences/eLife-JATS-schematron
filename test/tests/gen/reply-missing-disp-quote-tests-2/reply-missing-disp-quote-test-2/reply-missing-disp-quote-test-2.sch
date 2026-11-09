@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-2-xspec-assert">sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)] must be present.</assert>
     </rule>

@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-6" test="not(ancestor::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1] = $features-subj) and count(tokenize(.,'\p{Zs}')) gt 4" role="warning" id="auth-kwd-check-6">Keyword contains more than 4 words - <value-of select="."/>. Should these be split out into separate keywords?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
     </rule>

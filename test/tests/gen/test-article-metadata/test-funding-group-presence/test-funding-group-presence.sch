@@ -976,7 +976,7 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#test-funding-group-presence" test="if ($article-type = $features-article-types) then ()       else if ($subj-type = ('Scientific Correspondence',$notice-display-types)) then ()       else count(funding-group) != 1" role="error" id="test-funding-group-presence">There must be one and only one funding-group element in the article-meta. Currently there are <value-of select="count(funding-group)"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

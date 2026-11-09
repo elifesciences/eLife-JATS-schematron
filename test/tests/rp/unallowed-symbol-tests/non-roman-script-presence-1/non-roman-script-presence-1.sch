@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="unallowed-symbol-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="unallowed-symbol-tests-pattern">
     <rule context="p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref" id="unallowed-symbol-tests">
       <report test="matches(., '[԰-ۿ܀-ॿ฀-࿿]')" role="warning" id="non-roman-script-presence-1">[non-roman-script-presence-1] <name/> element contains the following non-roman script character(s): <value-of select="string-join(distinct-values(e:analyze-string(.,'[԰-ۿ܀-ॿ฀-࿿]')//*:match),'; ')"/>. It is unusual for these characters to be present in eLife content. Are they correct?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title or descendant::xref or descendant::bold or descendant::italic or descendant::sub or descendant::sc or descendant::named-content or descendant::monospace or descendant::code or descendant::underline or descendant::fn or descendant::institution or descendant::ext-link or descendant::ref" role="error" id="unallowed-symbol-tests-xspec-assert">p|td|th|title|xref|bold|italic|sub|sc|named-content|monospace|code|underline|fn|institution|ext-link|ref must be present.</assert>
     </rule>

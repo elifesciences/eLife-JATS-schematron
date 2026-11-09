@@ -966,7 +966,7 @@
       <assert test="@pub-id-type=('doi','pmid')" role="error" id="err-elem-cit-journal-9-1">Each &lt;pub-id&gt;, if present in a journal reference, must have a @pub-id-type of either "doi" or "pmid". The pub-id-type attribute on &lt;pub-id&gt; in Reference '<value-of select="ancestor::ref/@id"/>' is <value-of select="@pub-id-type"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/pub-id" role="error" id="elem-citation-journal-pub-id-xspec-assert">element-citation[@publication-type='journal']/pub-id must be present.</assert>
     </rule>

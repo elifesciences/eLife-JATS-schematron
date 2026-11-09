@@ -972,7 +972,7 @@
       <report test="($preprint-pub-date and $preprint-pub-date != '') and         $preprint-pub-date ge $rp-pub-date" role="error" id="rp-event-test-1">Reviewed preprint publication date (<value-of select="$rp-pub-date"/>) in the publication history (for RP version <value-of select="$rp-version"/>) is the same or an earlier date than the preprint posted date (<value-of select="$preprint-pub-date"/>), which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event[date[@date-type='reviewed-preprint']/@iso-8601-date != '']" role="error" id="rp-event-tests-xspec-assert">event[date[@date-type='reviewed-preprint']/@iso-8601-date != ''] must be present.</assert>
     </rule>

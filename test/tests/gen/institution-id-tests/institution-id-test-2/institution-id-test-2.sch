@@ -967,7 +967,7 @@
         <name/> element must have the attribute institution-id-type with a value of "ror" (or for older content "FundRef").</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
     </rule>

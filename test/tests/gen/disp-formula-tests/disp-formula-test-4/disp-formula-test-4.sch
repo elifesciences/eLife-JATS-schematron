@@ -967,7 +967,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::disp-formula" role="error" id="disp-formula-tests-xspec-assert">disp-formula must be present.</assert>
     </rule>

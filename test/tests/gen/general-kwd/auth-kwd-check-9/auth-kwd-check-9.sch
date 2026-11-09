@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-9" test="matches(.,'[”“‘’&quot;]')" role="warning" id="auth-kwd-check-9">Keyword contains a quotation mark - '<value-of select="."/>'. Should this be removed and/or should the keyword be split into multiple keywords?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::kwd" role="error" id="general-kwd-xspec-assert">kwd must be present.</assert>
     </rule>

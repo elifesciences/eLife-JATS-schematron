@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-citation-year-1" test="(.!='') and (@iso-8601-date!=$digits)" role="error" id="das-elem-citation-year-1">Every year in a reference must have an @iso-8601-date attribute equal to the numbers in the year. Reference with id <value-of select="parent::*/@id"/> has a year '<value-of select="."/>' but an @iso-8601-date '<value-of select="@iso-8601-date"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year" role="error" id="das-elem-citation-year-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/year must be present.</assert>
     </rule>

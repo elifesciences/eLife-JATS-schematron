@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="pr-image-labels-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="pr-image-labels-pattern">
     <rule context="sub-article[@article-type='referee-report']//fig/label" id="pr-image-labels">
       <assert test="matches(.,'^Review image \d\d?\.$')" role="error" id="pr-image-label-1">[pr-image-label-1] Label for figures in public reviews must be in the format 'Review image 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='referee-report']//fig/label" role="error" id="pr-image-labels-xspec-assert">sub-article[@article-type='referee-report']//fig/label must be present.</assert>
     </rule>

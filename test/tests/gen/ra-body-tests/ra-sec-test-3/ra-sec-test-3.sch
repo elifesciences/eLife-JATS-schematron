@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#ra-sec-test-3" test="if ($type = ('Short Report','Scientific Correspondence','Feature Article')) then ()         else $method-count != 1" role="warning" id="ra-sec-test-3">main body in <value-of select="$type"/> content doesn't have a child sec with @sec-type whose value is either 'materials|methods', 'methods' or 'model'. Is this correct?.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article']/body" role="error" id="ra-body-tests-xspec-assert">article[@article-type='research-article']/body must be present.</assert>
     </rule>

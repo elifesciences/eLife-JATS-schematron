@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-group-type" test="@kwd-group-type='author-keywords'" role="error" id="kwd-group-type">kwd-group must have a @kwd-group-type 'research-organism', or 'author-keywords'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/kwd-group[not(@kwd-group-type='research-organism')]" role="error" id="kwd-group-tests-xspec-assert">article-meta/kwd-group[not(@kwd-group-type='research-organism')] must be present.</assert>
     </rule>

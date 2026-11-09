@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#cc-0-test-1" test="copyright-statement" role="error" id="cc-0-test-1">This is a CC0 licensed article (<value-of select="$license-type"/>), but there is a copyright-statement (<value-of select="copyright-statement"/>) which is not correct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')]" role="error" id="cc-0-permissions-tests-xspec-assert">front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/publicdomain/zero')] must be present.</assert>
     </rule>

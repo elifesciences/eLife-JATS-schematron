@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-number-check" test="matches(.,'[0-9]')" role="warning" id="surname-number-check">name in ref '<value-of select="ancestor::ref/@id"/>' contains numbers - <value-of select="."/>. Should this be captured as a collab-name?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
     </rule>

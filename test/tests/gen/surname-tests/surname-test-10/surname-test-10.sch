@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#surname-test-10" test="matches(.,'\p{Zs}(III?|I?V)$')" role="warning" id="surname-test-10">surname ends with what might be roman numerals - '<value-of select="."/>'. Should these be placed in a suffix element instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
     </rule>

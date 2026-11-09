@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-10-1-2" test="count(*)=0" role="error" id="err-elem-cit-patent-10-1-2">The &lt;patent&gt; element may not have child elements. Reference '<value-of select="ancestor::ref/@id"/>' has child elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='patent']/patent" role="error" id="elem-citation-patent-patent-xspec-assert">element-citation[@publication-type='patent']/patent must be present.</assert>
     </rule>

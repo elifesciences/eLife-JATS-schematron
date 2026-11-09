@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-caption-test-2" test="contains(lower-case(.),'image credit') and not(parent::caption/parent::fig/attrib)" role="warning" id="fig-caption-test-2">Caption for <value-of select="$label"/> contains what looks like an image credit. It's quite likely that this should be captured in an &lt;attrib&gt; element instead - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig/caption/p[not(child::supplementary-material)]" role="error" id="fig-caption-tests-xspec-assert">fig/caption/p[not(child::supplementary-material)] must be present.</assert>
     </rule>

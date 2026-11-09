@@ -969,7 +969,7 @@
       <report test="($diff gt 1) or ($diff lt -1)" role="warning" id="final-data-old-and-gend">Dataset reference <value-of select="if (parent::ref) then parent::ref/@id else 'in data availability section'"/> is marked as generated but the year is <value-of select="$year"/>. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')]" role="error" id="elem-citation-data-gend-xspec-assert">element-citation[@publication-type='data' and year and @specific-use=('isSupplementedBy','generated')] must be present.</assert>
     </rule>

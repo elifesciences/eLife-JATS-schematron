@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1" test="count(contrib[@contrib-type='editor']) = 1" role="warning" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" role="error" id="dec-letter-editor-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[1] must be present.</assert>
     </rule>

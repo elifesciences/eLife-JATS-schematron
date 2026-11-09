@@ -967,7 +967,7 @@
         <value-of select="replace(label,'\.$,','')"/> does not have a title, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media[child::label]" role="error" id="video-test-xspec-assert">media[child::label] must be present.</assert>
     </rule>

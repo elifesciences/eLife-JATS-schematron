@@ -976,7 +976,7 @@
       <report test="not($article-type = $notice-article-types) and not(self-uri[starts-with(@xlink:href,concat('elife-', $article-id))])" role="error" id="test-self-uri-pdf-1">self-uri must have attribute xlink:href="elife-xxxxx.pdf" where xxxxx = the article-id. Currently it is <value-of select="self-uri/@xlink:href"/>. It should start with elife-<value-of select="$article-id"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

@@ -972,7 +972,7 @@
       <report test="$related-ref-year!='' and not($current-year = $related-ref-year)" role="warning" id="insight-related-article-test-3">This Insight is related to <value-of select="$doi"/>, but the reference in the ref-list with that doi has a year (<value-of select="$related-ref-year"/>) which is not the same as the current year (<value-of select="$current-year"/>). Is that correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
     </rule>

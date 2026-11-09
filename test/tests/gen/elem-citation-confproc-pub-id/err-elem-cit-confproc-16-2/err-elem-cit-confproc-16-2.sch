@@ -969,7 +969,7 @@
         '<value-of select="@pub-id-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='confproc']/pub-id" role="error" id="elem-citation-confproc-pub-id-xspec-assert">element-citation[@publication-type='confproc']/pub-id must be present.</assert>
     </rule>

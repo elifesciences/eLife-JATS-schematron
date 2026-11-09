@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-article-title-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-article-title-checks-pattern">
     <rule context="ref//article-title" id="ref-article-title-checks">
       <report test="matches(.,'\p{Ps}') and not(matches(.,'\p{Pe}'))" role="warning" id="ref-article-title-4">[ref-article-title-4] <name/> in ref contains an opening bracket - <value-of select="replace(.,'[^\p{Ps}]','')"/> - but it does not contain a closing bracket. Is that correct?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//article-title" role="error" id="ref-article-title-checks-xspec-assert">ref//article-title must be present.</assert>
     </rule>

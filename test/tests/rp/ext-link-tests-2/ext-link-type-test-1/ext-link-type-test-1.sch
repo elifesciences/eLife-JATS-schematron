@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ext-link-tests-2-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ext-link-tests-2-pattern">
     <rule context="ext-link" id="ext-link-tests-2">
       <assert test="@ext-link-type='uri'" role="error" id="ext-link-type-test-1">[ext-link-type-test-1] ext-link must have the attribute ext-link-type="uri". This one does not. It contains the text: <value-of select="."/>
       </assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ext-link" role="error" id="ext-link-tests-2-xspec-assert">ext-link must be present.</assert>
     </rule>

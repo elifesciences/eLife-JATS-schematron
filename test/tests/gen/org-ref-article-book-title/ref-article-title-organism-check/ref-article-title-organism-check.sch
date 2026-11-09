@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#hbbhc-ref-article-title-organism-check" test="$organisms//*:organism" role="info" id="ref-article-title-organism-check">ref <value-of select="ancestor::ref/@id"/> has a <name/> element containing an organism - <value-of select="string-join($organisms//*:organism,'; ')"/> - but there is no italic element with that correct capitalisation or spacing.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/article-title or descendant::       element-citation/chapter-title or descendant::       element-citation/source or descendant::       element-citation/data-title" role="error" id="org-ref-article-book-title-xspec-assert">element-citation/article-title|       element-citation/chapter-title|       element-citation/source|       element-citation/data-title must be present.</assert>
     </rule>

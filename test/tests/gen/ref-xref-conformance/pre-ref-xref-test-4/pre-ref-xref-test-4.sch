@@ -977,7 +977,7 @@
       <assert see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#pre-ref-xref-test-4" test="matches(normalize-space(.),'\p{N}')" role="warning" id="pre-ref-xref-test-4">citation doesn't contain numbers, which must be incorrect - <value-of select="."/>. If there is no year for this reference, and you are unable to determine this yourself, please query the authors.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

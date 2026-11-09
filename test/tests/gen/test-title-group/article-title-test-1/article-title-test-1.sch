@@ -971,7 +971,7 @@
       <report test="ends-with(replace(article-title[1],'\p{Z}',''),'.')" role="error" id="article-title-test-1">Article title must not end with a full stop - '<value-of select="article-title"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
     </rule>

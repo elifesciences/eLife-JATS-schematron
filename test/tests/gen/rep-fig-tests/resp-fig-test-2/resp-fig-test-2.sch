@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]//fig" role="error" id="rep-fig-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]//fig must be present.</assert>
     </rule>

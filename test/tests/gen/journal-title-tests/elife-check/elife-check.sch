@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#elife-check" test="starts-with($doi,'10.7554/eLife.') and (. != 'eLife')" role="error" id="elife-check">Journal ref '<value-of select="ancestor::ref/@id"/>' has an eLife doi <value-of select="$doi"/>, but the journal name is '<value-of select="."/>', when it should be 'eLife'. Either the journal name needs updating to eLife, or the doi is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/source" role="error" id="journal-title-tests-xspec-assert">element-citation[@publication-type='journal']/source must be present.</assert>
     </rule>

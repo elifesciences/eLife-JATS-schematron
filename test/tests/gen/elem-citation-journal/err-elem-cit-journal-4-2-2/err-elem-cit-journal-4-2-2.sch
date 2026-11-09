@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-4-2-2" test="count(source)=1 and count(source/*)!=0" role="error" id="err-elem-cit-journal-4-2-2">A  &lt;source&gt; element within a &lt;element-citation&gt; of type 'journal' may not contain child elements. Reference '<value-of select="ancestor::ref/@id"/>' has disallowed child elements.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>

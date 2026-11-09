@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-custom-meta-test-9" test="matches(.,'[Ww]e show|[Ww]e present|[Tt]his (study|paper|work)| et al\.')" role="warning" id="pre-custom-meta-test-9">Impact statement contains a possessive phrase. This is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value" role="error" id="meta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Author impact statement']/meta-value must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report test="($ref-count gt 1) and not(matches(.,'^The following previously published datasets were used:\s?$'))" role="error" id="das-used-p-2">p element before used datasets in data availability sections that contain more than 1 used dataset should contain 'The following previously published datasets were used:', but this one contains '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" role="error" id="data-availability-used-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]] must be present.</assert>
     </rule>

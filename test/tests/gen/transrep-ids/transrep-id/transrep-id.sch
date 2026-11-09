@@ -966,7 +966,7 @@
       <assert test="matches(@id,'^transrepform$')" role="error" id="transrep-id">The id (<value-of select="@id"/>) for <value-of select="replace(label,'\.$','')"/> is not in the correct format. It must be 'transrepform'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material[contains(lower-case(label[1]),'transparent')]" role="error" id="transrep-ids-xspec-assert">supplementary-material[contains(lower-case(label[1]),'transparent')] must be present.</assert>
     </rule>

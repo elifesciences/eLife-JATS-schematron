@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" role="error" id="reply-missing-disp-quote-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)] must be present.</assert>
     </rule>

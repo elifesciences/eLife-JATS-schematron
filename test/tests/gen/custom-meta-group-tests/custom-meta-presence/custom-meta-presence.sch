@@ -967,7 +967,7 @@
       <report test="($type = $research-subj) and not(count(custom-meta[@specific-use='meta-only'])=(1,2))" role="error" id="custom-meta-presence">Only 1 or 2 custom-meta[@specific-use='meta-only'] elements are permitted in custom-meta-group for <value-of select="$type"/>. This one has <value-of select="count(custom-meta[@specific-use='meta-only'])"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group" role="error" id="custom-meta-group-tests-xspec-assert">article-meta/custom-meta-group must be present.</assert>
     </rule>

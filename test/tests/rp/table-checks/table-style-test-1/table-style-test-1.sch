@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="table-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-checks-pattern">
     <rule context="table" id="table-checks">
       <report test="descendant::*[name()=('tr','td','th') and @style[contains(.,'background-color')]]" role="warning" id="table-style-test-1">[table-style-test-1] <value-of select="if (ancestor::table-wrap/label) then ancestor::table-wrap/label else 'Unlabelled table'"/> contains some elements with background colour. Is this OK?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table" role="error" id="table-checks-xspec-assert">table must be present.</assert>
     </rule>

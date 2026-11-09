@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="pub-history-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="pub-history-tests-pattern">
     <rule context="article[e:is-reviewed-preprint(.)]//pub-history" id="pub-history-tests">
       <let name="version-from-doi" value="replace(ancestor::article-meta[1]/article-id[@pub-id-type='doi' and @specific-use='version'][1],'^.*\.','')"/>
       <let name="is-revised-rp" value="if ($version-from-doi=('','1')) then false() else true()"/>
       <assert test="parent::article-meta" role="error" id="pub-history-parent">[pub-history-parent] <name/> is only allowed to be captured as a child of article-meta. This one is a child of <value-of select="parent::*/name()"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:is-reviewed-preprint(.)]//pub-history" role="error" id="pub-history-tests-xspec-assert">article[e:is-reviewed-preprint(.)]//pub-history must be present.</assert>
     </rule>

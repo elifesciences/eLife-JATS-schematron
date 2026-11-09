@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-notes-fn-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <report test="@fn-type='deceased' and not(ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="error" id="author-fn-3">[author-fn-3] Deceased type footnote (id=<value-of select="$id"/>) in author-notes is not linked to from any specific author, which must be a mistake. "<value-of select="."/>"</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
     </rule>

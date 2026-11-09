@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hvgj9-gen-aff-test-5" test="count(country) gt 1" role="error" id="gen-aff-test-5">Affiliations cannot have more than 1 country elements. <value-of select="$display"/> has <value-of select="count(country)"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
     </rule>

@@ -972,7 +972,7 @@
         <value-of select="replace(label[1],'\.','')"/> does not appear in sequence. Relative to the other figures in the same appendix it is placed in position <value-of select="$pos"/>. Please query this with the author.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//app//fig[not(@specific-use='child-fig')]" role="error" id="app-fig-pos-tests-xspec-assert">article//app//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#app-fig-sup-test-2" test="starts-with(.,ancestor::app/title)" role="error" id="app-fig-sup-test-2">label for <value-of select="."/> does not start with the correct appendix prefix. Either the figure is placed in the incorrect appendix or the label is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//app//fig[@specific-use='child-fig']/label" role="error" id="app-fig-sup-tests-xspec-assert">article//app//fig[@specific-use='child-fig']/label must be present.</assert>
     </rule>

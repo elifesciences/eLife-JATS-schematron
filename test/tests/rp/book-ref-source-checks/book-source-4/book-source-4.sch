@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="book-ref-source-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="book-ref-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='book']/source" id="book-ref-source-checks">
       <report test="matches(.,'[“”&quot;]')" role="warning" sqf:fix="delete-quote-characters" id="book-source-4">[book-source-4] Book reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that contains speech quotes - <value-of select="."/>. Is that correct?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='book']/source" role="error" id="book-ref-source-checks-xspec-assert">mixed-citation[@publication-type='book']/source must be present.</assert>
     </rule>

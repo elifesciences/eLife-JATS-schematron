@@ -968,7 +968,7 @@
         <value-of select="."/> is not allowed as insitution name, since this is always followed by city name. This should very likely be <value-of select="concat('University of California, ',$city)"/> (provided there is a city tagged).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff/institution[not(@*)]" role="error" id="institution-tests-xspec-assert">aff/institution[not(@*)] must be present.</assert>
     </rule>

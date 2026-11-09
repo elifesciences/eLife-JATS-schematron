@@ -971,7 +971,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#duplicate-ref-test-3" test="some $x in preceding-sibling::ref/element-citation satisfies (         (($x/article-title = $a-title) and ($x/source = $source))         or         (($x/chapter-title = $c-title) and ($x/source = $source))         )" role="warning" id="duplicate-ref-test-3">ref '<value-of select="@id"/>' has the same title and source as another reference, which is almost certainly incorrect - '<value-of select="$a-title"/>', '<value-of select="$source"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref-list//ref" role="error" id="duplicate-ref-xspec-assert">ref-list//ref must be present.</assert>
     </rule>

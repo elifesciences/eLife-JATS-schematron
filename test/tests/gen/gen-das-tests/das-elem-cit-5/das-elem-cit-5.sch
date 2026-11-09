@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-cit-5" test="pub-id[1] = following::element-citation[ancestor::ref-list]/pub-id[1]" role="warning" id="das-elem-cit-5">The reference in position <value-of select="$pos"/> of the data availability section has a pub-id (<value-of select="pub-id[1]"/>) which is the same as in another reference in the reference list. Is the same reference in both the reference list and data availability section?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>

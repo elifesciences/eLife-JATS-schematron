@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-10-1" test="count(ext-link)=1" role="error" id="err-elem-cit-web-10-1">One and only one &lt;ext-link&gt; element is required. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(ext-link)"/> &lt;ext-link&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>

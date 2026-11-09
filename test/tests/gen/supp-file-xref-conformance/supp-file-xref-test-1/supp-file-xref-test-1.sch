@@ -974,7 +974,7 @@
         <value-of select="."/> - Citation is in the caption of the Supplementary file that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>

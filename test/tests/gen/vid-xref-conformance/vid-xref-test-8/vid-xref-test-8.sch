@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-test-8" test="matches($post-text,'^[\p{Zs}]?[\p{Zs}—\-][\p{Zs}]?[Ss]ource')" role="error" id="vid-xref-test-8">Incomplete citation. Video citation is followed by text which suggests it should instead be a link to source data or code - <value-of select="concat(.,$post-text)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='video']" role="error" id="vid-xref-conformance-xspec-assert">xref[@ref-type='video'] must be present.</assert>
     </rule>

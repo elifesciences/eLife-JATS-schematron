@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-1" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-1">Top level section title has the content '<value-of select="."/>' - should it be made a level 2 section? Potentially as a child of the <value-of select="preceding-sibling::sec[1]/title"/> section?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title" role="error" id="conclusion-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body/sec/title must be present.</assert>
     </rule>

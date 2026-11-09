@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h03ib-err-elem-cit-book-40" test="count(*) = count(person-group| year| source| chapter-title| publisher-loc|publisher-name|volume|         edition| fpage| lpage| pub-id | comment)" role="error" id="err-elem-cit-book-40">The only tags that are allowed as children of &lt;element-citation&gt; with the publication-type="book" are: &lt;person-group&gt;, &lt;year&gt;, &lt;source&gt;, &lt;chapter-title&gt;, &lt;publisher-loc&gt;, &lt;publisher-name&gt;, &lt;volume&gt;, &lt;edition&gt;, &lt;fpage&gt;, &lt;lpage&gt;, &lt;pub-id&gt;, and &lt;comment&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has other elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']" role="error" id="elem-citation-book-xspec-assert">element-citation[@publication-type='book'] must be present.</assert>
     </rule>

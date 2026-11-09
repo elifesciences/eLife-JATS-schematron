@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#insight-abstract-impact-test-1" test=". = $impact-statement" role="warning" id="insight-abstract-impact-test-1">In insights, abstracts must be the same as impact statements. Here the abstract reads "<value-of select="."/>", whereas the impact statement reads "<value-of select="$impact-statement"/>".</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='article-commentary']//article-meta/abstract" role="error" id="insight-asbtract-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/abstract must be present.</assert>
     </rule>

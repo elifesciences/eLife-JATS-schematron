@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-conformity" test="not($type = ($features-subj,'Review Article',$notice-display-types)) and not(replace(title[1],' ',' ') = $allowed-titles)" role="warning" id="sec-conformity">top level sec with title - <value-of select="title"/> - is not a usual title for <value-of select="$type"/> content. Should this be captured as a sub-level of <value-of select="preceding-sibling::sec[1]/title"/>?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::body/sec" role="error" id="top-level-sec-tests-xspec-assert">body/sec must be present.</assert>
     </rule>

@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-5" test="contains($lower,' and ')" role="warning" id="auth-kwd-check-5">Keyword contains 'and' - <value-of select="."/>. These should be split out into two keywords.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
     </rule>

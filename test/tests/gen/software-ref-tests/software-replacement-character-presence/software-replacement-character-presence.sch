@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#software-replacement-character-presence" test="matches(.,'�')" role="error" id="software-replacement-character-presence">software reference contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>

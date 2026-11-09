@@ -970,7 +970,7 @@
         <name/> in event must have an xlink:href attribute containing a link to the preprint. This one does not have a valid URI - <value-of select="@xlink:href"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>

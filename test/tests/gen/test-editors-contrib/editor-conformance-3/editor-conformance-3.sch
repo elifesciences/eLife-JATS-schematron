@@ -971,7 +971,7 @@
         <value-of select="$name"/> has a @contrib-type='senior_editor' but their role is not 'Senior Editor' (<value-of select="$role"/>), which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']/contrib" role="error" id="test-editors-contrib-xspec-assert">article/front/article-meta/contrib-group[@content-type='section']/contrib must be present.</assert>
     </rule>

@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ar-table-labels-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ar-table-labels-pattern">
     <rule context="sub-article[@article-type='author-comment']//table-wrap/label" id="ar-table-labels">
       <assert test="matches(.,'^Author response table \d\d?\.$')" role="error" id="ar-table-label-1">[ar-table-label-1] Label for tables in the author response must be in the format 'Author response table 0.' This one is not: '<value-of select="."/>'</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='author-comment']//table-wrap/label" role="error" id="ar-table-labels-xspec-assert">sub-article[@article-type='author-comment']//table-wrap/label must be present.</assert>
     </rule>

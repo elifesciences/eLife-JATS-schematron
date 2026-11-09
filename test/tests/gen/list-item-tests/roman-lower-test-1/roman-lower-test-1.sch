@@ -968,7 +968,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::list-item" role="error" id="list-item-tests-xspec-assert">list-item must be present.</assert>
     </rule>

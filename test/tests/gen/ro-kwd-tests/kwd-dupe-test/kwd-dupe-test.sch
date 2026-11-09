@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#kwd-dupe-test" test="preceding-sibling::kwd = ." role="error" id="kwd-dupe-test">research-organism keywords must be distinct. This one containing <value-of select="."/> is not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/kwd-group[@kwd-group-type='research-organism']/kwd" role="error" id="ro-kwd-tests-xspec-assert">article-meta/kwd-group[@kwd-group-type='research-organism']/kwd must be present.</assert>
     </rule>

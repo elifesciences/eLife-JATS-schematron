@@ -968,7 +968,7 @@
         <value-of select="name()"/> is not allowed as a child of &lt;aff&gt;.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff/*" role="error" id="aff-child-tests-xspec-assert">aff/* must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-3" test="./@iso-8601-date" role="error" id="err-elem-cit-gen-date-1-3">All &lt;year&gt; elements must have @iso-8601-date attributes. Reference '<value-of select="ancestor::ref/@id"/>' does not.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/element-citation/year" role="error" id="elem-citation-year-xspec-assert">ref/element-citation/year must be present.</assert>
     </rule>

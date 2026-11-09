@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="refinery-comment-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="refinery-comment-checks-pattern">
     <rule context="ref//comment()" id="refinery-comment-checks">
       <report test="matches(lower-case(.),'refinery: existing (doi|pmid) could not be verified')" role="warning" sqf:fix="update-refinery dismiss-refinery" id="refinery-verified-fail">[refinery-verified-fail] Ref (with id <value-of select="ancestor::ref/@id"/>) has a DOI and/or PMID which cannot be verified (<value-of select="string-join(ancestor::ref//pub-id[@pub-id-type=('doi','pmid')],'; ')"/>). Should it be removed?</report>
       <sqf:fix id="update-refinery">
@@ -1321,8 +1321,8 @@
         <sqf:delete match=".|./preceding-sibling::text()[1]"/>
       </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//comment()" role="error" id="refinery-comment-checks-xspec-assert">ref//comment() must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#funding-group-test-2" test="count(award-group) = 0" role="warning" id="funding-group-test-2">There is no funding for this article. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/funding-group" role="error" id="funding-group-tests-xspec-assert">article-meta/funding-group must be present.</assert>
     </rule>

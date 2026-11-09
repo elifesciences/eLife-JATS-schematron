@@ -970,7 +970,7 @@
         <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" role="error" id="ar-video-specific-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>

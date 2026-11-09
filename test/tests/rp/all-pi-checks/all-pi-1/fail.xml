@@ -4,10 +4,10 @@ Test: assert    name()=($allowed-names,'oxygen')
 Message: '' is not an allowed processing-instruction. The only ones that can be used are:  -->
 <root xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
     <article>
-        <?parge-break ?>
-        <?bigger-image ?>
-        <?fig-increase ?>
-        <?fig-decrease ?>
-        <?YOU-GET-THE-IDEA ?>
+        <?parge-break?>
+        <?bigger-image?>
+        <?fig-increase?>
+        <?fig-decrease?>
+        <?YOU-GET-THE-IDEA?>
     </article>
 </root>

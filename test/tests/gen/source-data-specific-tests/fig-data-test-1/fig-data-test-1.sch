@@ -967,7 +967,7 @@
         <value-of select="label"/> is figure level source data, but contains 1 figure citation which is a link to a figure supplement - should it be figure supplement level source data?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)]" role="error" id="source-data-specific-tests-xspec-assert">supplementary-material[(ancestor::fig) or (ancestor::media) or (ancestor::table-wrap)] must be present.</assert>
     </rule>

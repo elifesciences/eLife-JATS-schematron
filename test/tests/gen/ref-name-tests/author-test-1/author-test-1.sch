@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#author-test-1" test="matches(.,'[Aa]uthor')" role="warning" id="author-test-1">name in ref '<value-of select="ancestor::ref/@id"/>' contans the text 'Author'. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
     </rule>

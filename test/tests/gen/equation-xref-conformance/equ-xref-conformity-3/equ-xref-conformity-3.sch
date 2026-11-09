@@ -971,7 +971,7 @@
         <value-of select="concat(.,$post-text,following-sibling::*[1])"/> - Equation citation appears to be a reference to an equation from a different paper, and therefore must be unlinked.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='disp-formula']" role="error" id="equation-xref-conformance-xspec-assert">xref[@ref-type='disp-formula'] must be present.</assert>
     </rule>

@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-doi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-doi-checks-pattern">
     <rule context="sub-article/front-stub/article-id[@pub-id-type='doi']" id="sub-article-doi-checks">
       <let name="article-version-doi" value="ancestor::article//article-meta/article-id[@pub-id-type='doi' and @specific-use='version']"/>
       <assert test="matches(.,'^10\.7554/eLife\.\d{5,6}\.\d\.sa\d$')" role="error" id="sub-article-doi-check-1">[sub-article-doi-check-1] The DOI for this sub-article does not match the permitted format: <value-of select="."/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/front-stub/article-id[@pub-id-type='doi']" role="error" id="sub-article-doi-checks-xspec-assert">sub-article/front-stub/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>

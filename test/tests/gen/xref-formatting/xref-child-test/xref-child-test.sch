@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#xref-child-test" test="$child = $formatting-elems" role="warning" id="xref-child-test">xref - <value-of select="."/> - has a formatting child element - <value-of select="$child"/> - which is likely not correct.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[not(@ref-type='bibr')]" role="error" id="xref-formatting-xspec-assert">xref[not(@ref-type='bibr')] must be present.</assert>
     </rule>

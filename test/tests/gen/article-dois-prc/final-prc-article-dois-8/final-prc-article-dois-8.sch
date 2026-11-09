@@ -969,7 +969,7 @@
       <report test="@specific-use and number(substring-after(.,concat($article-id,'.'))) != (number($latest-rp-doi-version)+1)" role="error" id="final-prc-article-dois-8">The version DOI for the VOR needs to end with a number that is one more than whatever number the latest reviewed preprint version DOI ends with. The VOR version DOI ends with <value-of select="substring-after(.,concat($article-id,'.'))"/> (<value-of select="."/>), whereas the latest reviewed preprint DOI in the publication history ends with <value-of select="$latest-rp-doi-version"/> (<value-of select="$latest-rp-doi"/>). Either there is a missing reviewed preprint publication event in the publication history, or the VOR version DOI is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-prc-xspec-assert">article[e:is-prc(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>

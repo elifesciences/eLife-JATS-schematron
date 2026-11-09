@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-p-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-p-checks-pattern">
     <rule context="sub-article/body//p" id="sub-article-p-checks">
       <report test="bold[matches(lower-case(.),'(author response|review) (image|table)')]" role="error" id="sub-article-bold-image-2">[sub-article-bold-image-2] p element contains bold text which looks like a label for an image or table. Since it's not been captured as a figure in the XML, it might either be misformatted in Kotahi/Hypothesis or there's a processing bug.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/body//p" role="error" id="sub-article-p-checks-xspec-assert">sub-article/body//p must be present.</assert>
     </rule>

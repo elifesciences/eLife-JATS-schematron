@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-notes-fn-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <report test="p[matches(.,'^\s*[^\p{L}:]')]" role="warning" id="author-fn-11">[author-fn-11] footnote with id <value-of select="$id"/> has a p element that starts with a symbol or character that should likely be placed in a label element - '<value-of select="p"/>'</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="table-title-test-7">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> ends with space(s) which is incorrect - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

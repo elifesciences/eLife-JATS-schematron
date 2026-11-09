@@ -968,7 +968,7 @@
       <report test="replace(.,'^https?|/$','')=replace($article-license,'^https?|/$','')" role="error" id="block-permish-ali-license">ali:license_ref in permissions for <value-of select="$label"/> is the same as the license link for the article - <value-of select="."/> - which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::permissions[not(parent::article-meta)]//ali:license_ref" role="error" id="permissions-3a-xspec-assert">permissions[not(parent::article-meta)]//ali:license_ref must be present.</assert>
     </rule>

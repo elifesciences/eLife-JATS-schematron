@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="general-article-id-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="general-article-id-checks-pattern">
     <rule context="article/front/article-meta/article-id" id="general-article-id-checks">
       <assert test="@pub-id-type=('publisher-id','doi')" role="error" id="article-id-3">[article-id-3] article-id must have a pub-id-type with a value of 'publisher-id' or 'doi'. This one has <value-of select="if (@publisher-id) then @publisher-id else 'no publisher-id attribute'"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/article-id" role="error" id="general-article-id-checks-xspec-assert">article/front/article-meta/article-id must be present.</assert>
     </rule>

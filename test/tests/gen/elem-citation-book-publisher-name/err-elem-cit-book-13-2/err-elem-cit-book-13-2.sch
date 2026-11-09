@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#hvmqu-err-elem-cit-book-13-2" test="count(*)=0" role="error" id="err-elem-cit-book-13-2">No elements are allowed inside &lt;publisher-name&gt;. Reference '<value-of select="ancestor::ref/@id"/>' has child elements within the &lt;publisher-name&gt; element.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']/publisher-name" role="error" id="elem-citation-book-publisher-name-xspec-assert">element-citation[@publication-type='book']/publisher-name must be present.</assert>
     </rule>

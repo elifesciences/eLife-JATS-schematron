@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="underline-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="matches(lower-case(.),'www\.|(f|ht)tp|^link\s|\slink\s')" role="warning" sqf:fix="replace-to-ext-link strip-tags" id="underline-link-warning">[underline-link-warning] Should this underline element be a link (ext-link) instead? <value-of select="."/>
       </report>
@@ -1316,8 +1316,8 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
     </rule>

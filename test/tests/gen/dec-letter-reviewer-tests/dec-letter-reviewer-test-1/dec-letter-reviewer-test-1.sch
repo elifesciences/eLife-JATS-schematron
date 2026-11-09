@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1" test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" role="error" id="dec-letter-reviewer-tests-xspec-assert">sub-article[@article-type='decision-letter']/front-stub/contrib-group[2] must be present.</assert>
     </rule>

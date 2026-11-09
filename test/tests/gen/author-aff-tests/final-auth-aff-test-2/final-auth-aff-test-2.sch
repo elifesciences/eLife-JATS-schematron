@@ -968,7 +968,7 @@
       </assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/contrib-group[not(@*)]//aff" role="error" id="author-aff-tests-xspec-assert">article-meta/contrib-group[not(@*)]//aff must be present.</assert>
     </rule>

@@ -976,7 +976,7 @@
       <report test="not($article-type = ($notice-article-types,'article-commentary','editorial')) and ($dtd ge '1.4') and count(history) != 0" role="error" id="test-history-presence-dtd">The history element is deprecated in JATS version <value-of select="$dtd"/>. Remove it.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

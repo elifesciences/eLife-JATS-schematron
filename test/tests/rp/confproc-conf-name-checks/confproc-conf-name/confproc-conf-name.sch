@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="confproc-conf-name-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="confproc-conf-name-checks-pattern">
     <rule context="mixed-citation[@publication-type='confproc']/conf-name" id="confproc-conf-name-checks">
       <report test="matches(lower-case(.),'^(\.\s*)?in[^a-z]')" role="warning" id="confproc-conf-name">[confproc-conf-name] The conf-name in conference reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) starts with 'In: ' - <value-of select="."/>. Are the details captured correctly?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='confproc']/conf-name" role="error" id="confproc-conf-name-checks-xspec-assert">mixed-citation[@publication-type='confproc']/conf-name must be present.</assert>
     </rule>

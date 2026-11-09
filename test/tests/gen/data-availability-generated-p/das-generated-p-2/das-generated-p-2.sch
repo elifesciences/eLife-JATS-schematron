@@ -967,7 +967,7 @@
       <report test="($ref-count gt 1) and not(matches(.,'^The following datasets were generated:\s?$'))" role="error" id="das-generated-p-2">p element before generated datasets in data availability sections that contain more than 1 generated dataset should contain 'The following datasets were generated:', but this one contains '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" role="error" id="data-availability-generated-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]] must be present.</assert>
     </rule>

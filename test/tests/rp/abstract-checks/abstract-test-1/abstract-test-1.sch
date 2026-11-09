@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="abstract-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
       <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="preceding::abstract[not(@abstract-type) and not(@xml:lang)] and not(@abstract-type) and not(@xml:lang)" role="error" id="abstract-test-1">[abstract-test-1] There should only be one abstract without an abstract-type attribute (for the common-garden abstract) or xml:lang attirbute (for common-garden abstract in a language other than english). This asbtract does not have an abstract-type, but there is also a preceding abstract without an abstract-type or xml:lang. One of these needs to be given an abstract-type with the allowed values ('structured' for a structured abstract with sections; 'plain-language-summary' for a digest or author provided plain summary; 'teaser' for an impact statement; 'summary' for a general summary that's in addition to the common-garden abstract; 'graphical' for a graphical abstract).</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
     </rule>

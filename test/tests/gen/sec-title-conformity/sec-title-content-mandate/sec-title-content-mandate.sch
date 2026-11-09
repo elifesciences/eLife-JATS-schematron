@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#sec-title-content-mandate" test="normalize-space(.)=''" role="error" id="sec-title-content-mandate">Section title must not be empty.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
     </rule>

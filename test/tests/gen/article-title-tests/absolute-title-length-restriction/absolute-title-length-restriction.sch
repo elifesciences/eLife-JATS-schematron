@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-title-qhybaifk#absolute-title-length-restriction" test="$count gt 255" role="error" id="absolute-title-length-restriction">The article title contains <value-of select="$count"/> characters, when the current absolute limit for Continuum is 255.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//article-title" role="error" id="article-title-tests-xspec-assert">article-meta//article-title must be present.</assert>
     </rule>

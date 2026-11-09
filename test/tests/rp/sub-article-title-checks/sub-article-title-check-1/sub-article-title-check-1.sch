@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sub-article-title-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-title-checks-pattern">
     <rule context="sub-article/front-stub/title-group/article-title" id="sub-article-title-checks">
       <let name="type" value="ancestor::sub-article/@article-type"/>
       <report test="$type='editor-report' and not(matches(.,'^eLife [aA]ssessment$'))" role="error" id="sub-article-title-check-1">[sub-article-title-check-1] The title of an <value-of select="$type"/> type sub-article should be 'eLife Assessment'. This one is: <value-of select="."/>
       </report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/front-stub/title-group/article-title" role="error" id="sub-article-title-checks-xspec-assert">sub-article/front-stub/title-group/article-title must be present.</assert>
     </rule>

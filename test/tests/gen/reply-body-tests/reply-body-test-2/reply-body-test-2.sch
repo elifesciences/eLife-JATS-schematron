@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2" test="count(p) = 0" role="error" flag="dl-ar" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body" role="error" id="reply-body-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body must be present.</assert>
     </rule>

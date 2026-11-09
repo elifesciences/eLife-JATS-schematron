@@ -976,7 +976,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#test-no-digest" test="($subj-type= $no-digest) and abstract[@abstract-type=('executive-summary','plain-language-summary')]" role="error" id="test-no-digest">'<value-of select="$subj-type"/>' cannot have a digest.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="test-article-metadata-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

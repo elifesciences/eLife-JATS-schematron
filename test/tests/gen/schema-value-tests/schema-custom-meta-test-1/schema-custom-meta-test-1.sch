@@ -966,7 +966,7 @@
       <assert test=".='2.0.0'" role="error" id="schema-custom-meta-test-1">The meta-value element for schema-version must have a value of '2.0.0'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value" role="error" id="schema-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='schema-version']/meta-value must be present.</assert>
     </rule>

@@ -971,7 +971,7 @@
         <value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other appendix videos it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)]" role="error" id="app-video-specific-xspec-assert">app//media[starts-with(@mimetype,'video') and not(ancestor::fig-group)] must be present.</assert>
     </rule>

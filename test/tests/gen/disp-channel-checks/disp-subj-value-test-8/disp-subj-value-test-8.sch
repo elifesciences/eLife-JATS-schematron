@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#h7pnv-disp-subj-value-test-8" test="($article-type = 'retraction') and not(.='Retraction')" role="error" id="disp-subj-value-test-8">Article is an @article-type="<value-of select="$article-type"/>" but the display channel is <value-of select="."/>. It should be 'Retraction' according to the article-type.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-categories/subj-group[@subj-group-type='display-channel']/subject" role="error" id="disp-channel-checks-xspec-assert">article-categories/subj-group[@subj-group-type='display-channel']/subject must be present.</assert>
     </rule>

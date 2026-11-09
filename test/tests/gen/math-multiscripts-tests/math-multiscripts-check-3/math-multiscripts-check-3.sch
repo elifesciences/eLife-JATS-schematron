@@ -968,7 +968,7 @@
         <name/> element does not have a child mml:mprescripts element. Is that correct? Or should a more conventional math element (e.g. mml:msub) should be used to capture this content.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
     </rule>

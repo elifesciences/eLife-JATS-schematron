@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-notes-fn-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <report test="@fn-type and not(@fn-type=$known-types)" role="warning" id="author-fn-5">[author-fn-5] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>' which is not one of the known values (<value-of select="string-join($known-types,'; ')"/>). Should it be changed to be one of the values? "<value-of select="."/>"</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
     </rule>

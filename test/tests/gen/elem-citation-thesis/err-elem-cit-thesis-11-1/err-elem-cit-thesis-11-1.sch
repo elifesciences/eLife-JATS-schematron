@@ -969,7 +969,7 @@
         &lt;pub-id&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='thesis']" role="error" id="elem-citation-thesis-xspec-assert">element-citation[@publication-type='thesis'] must be present.</assert>
     </rule>

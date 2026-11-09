@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#pre-err-elem-cit-patent-2-1" test="count(person-group[@person-group-type='inventor'])=1" role="warning" id="pre-err-elem-cit-patent-2-1">There must be one person-group with @person-group-type="inventor". Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(person-group[@person-group-type='inventor'])"/> &lt;person-group&gt; elements of type 'inventor'. If this information is missing, please query the authors for it.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
     </rule>

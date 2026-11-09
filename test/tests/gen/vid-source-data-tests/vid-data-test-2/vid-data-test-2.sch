@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-data-test-2" test="$number = $pos" role="error" id="vid-data-test-2">'<value-of select="$label"/>' ends with <value-of select="$number"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is misnumbered or it should be moved to a different position.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')]" role="error" id="vid-source-data-tests-xspec-assert">media//supplementary-material[not(ancestor::fig) and contains(label[1],' data ')] must be present.</assert>
     </rule>

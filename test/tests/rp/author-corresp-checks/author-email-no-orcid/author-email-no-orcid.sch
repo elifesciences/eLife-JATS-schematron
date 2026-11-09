@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-corresp-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-corresp-checks-pattern">
     <rule context="contrib[@contrib-type='author']" id="author-corresp-checks">
       <report test="e:is-reviewed-preprint(.) and @corresp='yes' and not(contrib-id[@contrib-id-type='orcid'])" role="warning" id="author-email-no-orcid">[author-email-no-orcid] Author <value-of select="e:get-name(name[1])"/> is a corresponding author (corresp="yes"), but they do not have an ORCID ID. Is that correct?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib[@contrib-type='author']" role="error" id="author-corresp-checks-xspec-assert">contrib[@contrib-type='author'] must be present.</assert>
     </rule>

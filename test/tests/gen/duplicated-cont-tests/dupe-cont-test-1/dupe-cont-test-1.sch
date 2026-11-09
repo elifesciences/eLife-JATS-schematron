@@ -971,7 +971,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-1" test="empty($indistinct-conts)" role="error" flag="version-1" id="dupe-cont-test-1">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions which is incorrect. The indistinct contributions are: <value-of select="string-join($indistinct-conts,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]]" role="error" id="duplicated-cont-tests-xspec-assert">article[e:get-version(.)='1']//article-meta//contrib[(@contrib-type='author') and xref[@ref-type='fn' and matches(@rid,'^con[0-9]{1,3}$')]] must be present.</assert>
     </rule>

@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-child-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-child-checks-pattern">
     <rule context="ref/*" id="ref-child-checks">
       <let name="allowed-children" value="('label','mixed-citation','element-citation')"/>
       <assert test="name()=$allowed-children" role="error" id="ref-child">[ref-child] <name/> is not supported in ref. Only the following elements are permittted: <value-of select="string-join($allowed-children,'; ')"/>.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/*" role="error" id="ref-child-checks-xspec-assert">ref/* must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report test="descendant::element-citation" role="error" id="das-no-refs">Version 2 xml cannot have references in the data availability section. Data references must instead be cited from the data availability section.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//sec[@sec-type='data-availability']" role="error" id="data-availability-version-2-xspec-assert">article[e:get-version(.)!='1']//sec[@sec-type='data-availability'] must be present.</assert>
     </rule>

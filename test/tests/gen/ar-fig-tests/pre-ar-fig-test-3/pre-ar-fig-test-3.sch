@@ -971,7 +971,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#pre-ar-fig-test-3" test="graphic" role="warning" flag="dl-ar" id="pre-ar-fig-test-3">Author Response fig does not have graphic. Ensure author query is added asking for file.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" role="error" id="ar-fig-tests-xspec-assert">fig[ancestor::sub-article[@article-type=('reply','author-comment')]] must be present.</assert>
     </rule>

@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sec-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-checks-pattern">
     <rule context="sec" id="sec-checks">
       <report test="@sec-type='data-availability' and (preceding::sec[@sec-type='data-availability'] or ancestor::sec[@sec-type='data-availability'])" role="warning" id="sec-data-availability">[sec-data-availability] sec has the sec-type 'data-availability', but there is one or more other secs with this same sec-type. Are they duplicates?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec" role="error" id="sec-checks-xspec-assert">sec must be present.</assert>
     </rule>

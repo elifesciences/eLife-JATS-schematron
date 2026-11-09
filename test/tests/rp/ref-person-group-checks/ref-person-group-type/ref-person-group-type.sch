@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-person-group-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-person-group-checks-pattern">
     <rule context="ref//person-group" id="ref-person-group-checks">
       <assert test="normalize-space(@person-group-type)!=''" role="error" id="ref-person-group-type">[ref-person-group-type] <name/> must have a person-group-type attribute with a non-empty value.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
     </rule>

@@ -974,7 +974,7 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other fig-level videos it is placed in position <value-of select="$fig-pos"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')]" role="error" id="body-video-specific-xspec-assert">article[not(@article-type = $notice-article-types)]/body//media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>

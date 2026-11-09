@@ -968,7 +968,7 @@
         <value-of select="name()"/> element is not allowed.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//*[not(ancestor::mml:math)]" role="error" id="element-allowlist-xspec-assert">article//*[not(ancestor::mml:math)] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report test="matches(@xlink:href,'[\p{Zs}]')" role="error" id="pub-id-url-space-report">'<value-of select="@xlink:href"/>' - Link contains a space which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-id[@xlink:href]" role="error" id="pub-id-xlink-href-tests-xspec-assert">pub-id[@xlink:href] must be present.</assert>
     </rule>

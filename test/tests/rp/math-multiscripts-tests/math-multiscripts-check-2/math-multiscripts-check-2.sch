@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-multiscripts-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-multiscripts-tests-pattern">
     <rule context="*:mmultiscripts" id="math-multiscripts-tests">
       <let name="empty-exceptions" value="('mprescripts','mrow','none')"/>
       <report test="*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']" role="error" id="math-multiscripts-check-2">[math-multiscripts-check-2] <name/> element must not have an empty child element (with the following exceptions: <value-of select="string-join($empty-exceptions,'; ')"/>). This <name/> has <value-of select="count(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)=''])"/> empty child elements - <value-of select="string-join(distinct-values(*[not(local-name()=$empty-exceptions) and not(child::*) and normalize-space(.)='']/name()),';')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::*:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">*:mmultiscripts must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/preprint-references-okxjjp9i#preprint-handbook-presence" test="contains(.,'handbook')" role="error" id="preprint-handbook-presence">Preprint ref '<value-of select="ancestor::ref/@id"/>' has a source '<value-of select="."/>'. Should it be captured as a book type reference instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="preprint-title-tests-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>

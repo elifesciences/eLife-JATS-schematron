@@ -970,7 +970,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//permissions" role="error" id="front-permissions-tests-xspec-assert">front//permissions must be present.</assert>
     </rule>

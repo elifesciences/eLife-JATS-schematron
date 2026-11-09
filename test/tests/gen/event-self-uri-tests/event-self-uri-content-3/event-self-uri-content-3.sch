@@ -970,7 +970,7 @@
         <name/> with the content-type <value-of select="@content-type"/> must not have any child elements, and contain the title of the public review as text. This self-uri either has child elements or it is empty.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event/self-uri" role="error" id="event-self-uri-tests-xspec-assert">event/self-uri must be present.</assert>
     </rule>

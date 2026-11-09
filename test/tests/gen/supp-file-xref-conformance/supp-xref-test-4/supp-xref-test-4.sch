@@ -973,7 +973,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#supp-xref-test-4" test="matches($pre-text,'[Ff]igure [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Vv]ideo [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$|[Tt]able [\d]{1,2}[\p{Zs}]?[\p{Zs}\p{P}][\p{Zs}]?$')" role="error" id="supp-xref-test-4">Incomplete citation. <value-of select="."/> citation is preceded by text which suggests it should instead be a link to Figure/Video/Table level source data or code - <value-of select="concat($pre-text,.)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='supplementary-material']" role="error" id="supp-file-xref-conformance-xspec-assert">xref[@ref-type='supplementary-material'] must be present.</assert>
     </rule>

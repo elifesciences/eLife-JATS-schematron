@@ -972,7 +972,7 @@
       <report test="ancestor::article-meta/contrib-group[1]/aff[count(descendant::institution-id) = 1 and descendant::institution-id=$nih-rors]" role="warning" id="permissions-test-17">This article is CC-BY, but one or more of the authors are affiliated with the NIH (<value-of select="string-join(for $x in ancestor::article-meta/contrib-group[1]/aff[count(descendant::institution-id) = 1 and descendant::institution-id=$nih-rors] return $x,'; ')"/>). Should it be CC0 instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')]" role="error" id="cc-by-permissions-tests-xspec-assert">front//permissions[contains(license[1]/@xlink:href,'creativecommons.org/licenses/by/')] must be present.</assert>
     </rule>

@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="article-title-children-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="article-title-children-checks-pattern">
     <rule context="article-meta/title-group/article-title/*" id="article-title-children-checks">
       <let name="permitted-children" value="('italic','sup','sub')"/>
       <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="article-title-children-check-2">[article-title-children-check-2] Child elements of article-title must contain text content. This <name/> element is empty.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/title-group/article-title/*" role="error" id="article-title-children-checks-xspec-assert">article-meta/title-group/article-title/* must be present.</assert>
     </rule>

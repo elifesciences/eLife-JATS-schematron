@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#custom-meta-test-2" test="($type = ($research-subj,$notice-article-types)) and not(meta-name = ('Author impact statement','publishing-route'))" role="error" id="custom-meta-test-2">The value of meta-name can only be 'Author impact statement' or 'publishing-route'. Currently it is <value-of select="meta-name"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta" role="error" id="custom-meta-tests-xspec-assert">article-meta/custom-meta-group/custom-meta must be present.</assert>
     </rule>

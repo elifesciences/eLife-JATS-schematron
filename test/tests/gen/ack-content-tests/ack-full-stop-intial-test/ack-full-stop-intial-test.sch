@@ -969,7 +969,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ack//p" role="error" id="ack-content-tests-xspec-assert">ack//p must be present.</assert>
     </rule>

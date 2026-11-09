@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-2" test="matches(.,'&amp;#x\d')" role="warning" id="auth-kwd-check-2">Keyword contains what looks like a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
     </rule>

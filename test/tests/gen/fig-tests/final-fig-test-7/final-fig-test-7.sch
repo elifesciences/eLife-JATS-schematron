@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#final-fig-test-7" test="graphic" role="error" id="final-fig-test-7">fig must have a graphic.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
     </rule>

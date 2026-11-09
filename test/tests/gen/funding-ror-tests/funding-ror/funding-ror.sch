@@ -968,7 +968,7 @@
       <assert test="exists($matching-ror)" role="error" id="funding-ror">Funding (<value-of select="institution-wrap[1]/institution[1]"/>) has a ROR id - <value-of select="$ror"/> - but it does not look like a correct one.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-source[institution-wrap/institution-id[@institution-id-type='ror']]" role="error" id="funding-ror-tests-xspec-assert">funding-source[institution-wrap/institution-id[@institution-id-type='ror']] must be present.</assert>
     </rule>

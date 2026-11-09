@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="test-editors-contrib-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="test-editors-contrib-pattern">
     <rule context="article/front/article-meta/contrib-group[@content-type='section']/contrib" id="test-editors-contrib">
       <let name="name" value="if (name) then e:get-name(name[1]) else ''"/>
       <let name="role" value="role[1]"/>
@@ -1303,8 +1303,8 @@
       <let name="matching-author-names" value="for $contrib in $author-contribs return if (e:get-name($contrib/name[1])=$name) then e:get-name($contrib) else ()"/>
       <report test="(@contrib-type='editor') and ($role!='Reviewing Editor')" role="error" id="editor-conformance-4">[editor-conformance-4] <value-of select="$name"/> has a @contrib-type='editor' but their role is not 'Reviewing Editor' (<value-of select="$role"/>), which is incorrect.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']/contrib" role="error" id="test-editors-contrib-xspec-assert">article/front/article-meta/contrib-group[@content-type='section']/contrib must be present.</assert>
     </rule>

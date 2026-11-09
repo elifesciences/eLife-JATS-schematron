@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/keywords-and-research-organisms-mq0bozp9#auth-kwd-check-3" test="contains(.,'&lt;') or contains(.,'&gt;')" role="error" id="auth-kwd-check-3">Keyword contains markup captured as text - <value-of select="."/>. Please remove it and ensure that it is marked up properly (if necessary).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::kwd-group[@kwd-group-type='author-keywords']/kwd" role="error" id="auth-kwd-style-xspec-assert">kwd-group[@kwd-group-type='author-keywords']/kwd must be present.</assert>
     </rule>

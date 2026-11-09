@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-person-group-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-person-group-checks-pattern">
     <rule context="ref//person-group" id="ref-person-group-checks">
       <assert test="collab or collab-name or string-name or name" role="error" id="ref-person-group-type-content">[ref-person-group-type-content] <name/> must contain at least one collab, collab-name, string-name or name element. This one (within reference id=<value-of select="ancestor::ref/@id"/>) does not.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//person-group" role="error" id="ref-person-group-checks-xspec-assert">ref//person-group must be present.</assert>
     </rule>

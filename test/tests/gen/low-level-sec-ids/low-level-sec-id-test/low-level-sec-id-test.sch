@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#low-level-sec-id-test" test="@id = concat($parent-sec,'-',$pos)" role="error" id="low-level-sec-id-test">sec id must be a concatenation of its parent sec id and this element's position relative to its sibling secs. It must be <value-of select="concat($parent-sec,'-',$pos)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body/sec//sec or descendant::article/back/sec//sec" role="error" id="low-level-sec-ids-xspec-assert">article/body/sec//sec|article/back/sec//sec must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> must contain the text 'version of record'. This one contains '<value-of select="."/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-version" role="error" id="article-version-xspec-assert">article-version must be present.</assert>
     </rule>

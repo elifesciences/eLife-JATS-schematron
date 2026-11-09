@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="funding-group-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-group-tests-pattern">
     <rule context="funding-group" id="funding-group-tests">
       <report test="preceding-sibling::funding-group" role="error" id="multiple-funding-group-presence">[multiple-funding-group-presence] There cannot be more than one funding-group element in article-meta.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group" role="error" id="funding-group-tests-xspec-assert">funding-group must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-test-1" test="label" role="error" id="supplementary-material-test-1">supplementary-material must have a label.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material" role="error" id="supplementary-material-tests-xspec-assert">supplementary-material must be present.</assert>
     </rule>

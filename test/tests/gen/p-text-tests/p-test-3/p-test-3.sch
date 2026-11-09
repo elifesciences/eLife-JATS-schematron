@@ -967,7 +967,7 @@
       <assert test="count($text-tokens) = 0" role="error" id="p-test-3">p element contains <value-of select="string-join($text-tokens,', ')"/> - The spacing is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p[not(inline-formula or disp-formula or code)]" role="error" id="p-text-tests-xspec-assert">p[not(inline-formula or disp-formula or code)] must be present.</assert>
     </rule>

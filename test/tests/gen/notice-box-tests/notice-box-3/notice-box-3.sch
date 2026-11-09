@@ -969,7 +969,7 @@
       <assert test="contains(p[1],$obj-title)" role="error" id="notice-box-3">The first paragraph in boxed text at the start of this <value-of select="$display-subject"/> does not contain the title of the related article as written in the title of the notice. Related article title (from notice title) = '<value-of select="$obj-title"/>'. First boxed-text para = '<value-of select="p[1]"/>'</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
     </rule>

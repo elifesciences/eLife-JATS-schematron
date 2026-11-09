@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/house-style-yi0641ob#he2sr-trademark-symbol-1-sup" test="contains(.,'™')" role="error" id="trademark-symbol-1-sup">'<name/>' element contains the trademark symbol, '™', which is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
     </rule>

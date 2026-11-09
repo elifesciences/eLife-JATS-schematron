@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="article-dois-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="article-dois-pattern">
     <rule context="article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" id="article-dois">
       <let name="article-id" value="parent::article-meta[1]/article-id[@pub-id-type='publisher-id'][1]"/>
       <let name="latest-rp-doi" value="parent::article-meta/pub-history/event[position()=last()]/self-uri[@content-type='reviewed-preprint'][1]/@*:href"/>
@@ -1303,8 +1303,8 @@
       <assert test="starts-with(.,'10.7554/eLife.')" role="error" id="prc-article-dois-1">[prc-article-dois-1] Article level DOI must start with '10.7554/eLife.'. Currently it is <value-of select="."/>
       </assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi']" role="error" id="article-dois-xspec-assert">article[e:is-reviewed-preprint(.)]/front/article-meta/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>

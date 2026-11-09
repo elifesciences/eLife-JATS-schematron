@@ -968,7 +968,7 @@
       <report test="matches(.,'\p{Zs}$')" role="error" id="supplementary-material-title-test-9">title for <value-of select="$label"/> ends with space(s), which is not allowed - '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
     </rule>

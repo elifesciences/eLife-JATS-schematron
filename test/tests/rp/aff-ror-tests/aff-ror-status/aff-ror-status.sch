@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="aff-ror-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="aff-ror-tests-pattern">
     <rule context="aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" id="aff-ror-tests">
       <let name="ror" value="institution-wrap[1]/institution-id[@institution-id-type='ror'][1]"/>
       <let name="matching-ror" value="key('ror-by-any-id', $ror, $rors-doc)"/>
       <let name="display" value="string-join(descendant::*[not(local-name()=('label','institution-id','institution-wrap','named-content','city','country'))],', ')"/>
       <report test="$matching-ror[@status='withdrawn']" role="error" id="aff-ror-status">[aff-ror-status] Affiliation has a ROR id, but the ROR id's status is withdrawn. Withdrawn RORs should not be used. Should one of the following be used instead?: <value-of select="string-join(for $x in $matching-ror/*:relationships/* return concat('(',$x/name(),') ',$x/*:id,' ',$x/*:label),'; ')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1]" role="error" id="aff-ror-tests-xspec-assert">aff[count(institution-wrap/institution-id[@institution-id-type='ror'])=1] must be present.</assert>
     </rule>

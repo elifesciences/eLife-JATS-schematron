@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#supplementary-material-title-test-3" test="matches(.,' vs\.$')" role="warning" id="supplementary-material-title-test-3">title for <value-of select="$label"/> ends with 'vs.', which indicates that the title sentence may be split across title and caption.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::supplementary-material/caption/title" role="error" id="supplementary-material-title-tests-xspec-assert">supplementary-material/caption/title must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
         <value-of select="$type"/> is a template <value-of select="$template"/>, which means that it should not have any BREs. This <value-of select="$type"/> has <value-of select="           string-join(           for $x in front/article-meta/contrib-group[@content-type='section']/contrib           return concat(e:get-name($x/name[1]),' as ',$x/role[1])           ,           ' and '           )           "/>. Please remove any senior/reviewing editors.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" role="error" id="feature-template-tests-xspec-assert">article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj] must be present.</assert>
     </rule>

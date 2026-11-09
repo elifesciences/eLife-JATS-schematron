@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/acknowledgements-49wvb1xt#howwo-ack-test-1" test="count(title) = 1" role="error" id="ack-test-1">ack must have only 1 title.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::back/ack" role="error" id="ack-tests-xspec-assert">back/ack must be present.</assert>
     </rule>

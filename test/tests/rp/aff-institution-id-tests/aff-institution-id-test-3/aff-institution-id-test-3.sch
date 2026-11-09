@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="aff-institution-id-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="aff-institution-id-tests-pattern">
     <rule context="aff//institution-id" id="aff-institution-id-tests">
       <report test="*" role="error" id="aff-institution-id-test-3">[aff-institution-id-test-3] institution-id in aff cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
       <sqf:fix id="add-ror-institution-id-type">
@@ -1305,8 +1305,8 @@
           <sqf:add target="institution-id-type" node-type="attribute">ror</sqf:add>
         </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
     </rule>

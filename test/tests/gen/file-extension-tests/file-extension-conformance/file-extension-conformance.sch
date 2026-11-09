@@ -966,7 +966,7 @@
       <assert test="matches(@xlink:href,'\.[a-z0-9]+$')" role="error" id="file-extension-conformance">The file extenstion for a file must be in lower case. This <name/> element has an xlink:href which does not end with a lowercase file extension (<value-of select="tokenize(@xlink:href,'\.')[last()]"/> in <value-of select="@xlink:href"/>).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::graphic[@xlink:href] or descendant::media[@xlink:href]" role="error" id="file-extension-tests-xspec-assert">graphic[@xlink:href]|media[@xlink:href] must be present.</assert>
     </rule>

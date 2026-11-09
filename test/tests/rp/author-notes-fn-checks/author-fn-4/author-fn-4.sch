@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-notes-fn-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <report test="@fn-type=('abbr','con','coi-statement','financial-disclosure','presented-at','supported-by') and (ancestor::article-meta//contrib[@contrib-type='author']/xref/@rid = $id)" role="warning" id="author-fn-4">[author-fn-4] <value-of select="@fn-type"/> type footnote (id=<value-of select="$id"/>) in author-notes usually contains content that relates to all authors instead of a subset. This one however is linked to from <value-of select="ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id]"/> author(s) (<value-of select="string-join(for $x in ancestor::article-meta//contrib[@contrib-type='author'][xref/@rid = $id] return e:get-name($x/name[1]),'; ')"/>). "<value-of select="."/>"</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
     </rule>

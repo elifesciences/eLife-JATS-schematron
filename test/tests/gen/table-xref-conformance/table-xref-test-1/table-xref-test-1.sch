@@ -972,7 +972,7 @@
         <value-of select="."/> - Citation is in the caption of the Table that it links to. Is it correct or necessary?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
     </rule>

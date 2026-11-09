@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="p-td-th-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="p-td-th-checks-pattern">
     <rule context="p|td|th" id="p-td-th-checks">
       <let name="rrid-link-count" value="count(descendant::ext-link[matches(@*:href,'identifiers\.org/RRID(:|/).*')])"/>
       <let name="rrid-text-count" value="number(count(         for $x in tokenize(.,'RRID\p{Zs}?#?\p{Zs}?:|RRID AB_[\d]+|RRID CVCL_[\d]+|RRID SCR_[\d]+|RRID ISMR_JAX')         return $x)) -1"/>
@@ -1304,8 +1304,8 @@
       <let name="organisms" value="if (matches(lower-case(.),$org-regex)) then (e:org-conform(.)) else ()"/>
       <report test="matches(.,'user-?name\s*:|password\s*:') or (matches(.,'\suser-?name\s') and matches(.,'\spassword\s'))" role="warning" id="user-name-password">[user-name-password] <name/> contains what may be a username and password - <value-of select="."/>. If these are access ceredentials for a dataset depositsed by the authors, it should be made publicly available (unless approved by editors) and the credentials removed/deleted.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p or descendant::td or descendant::th" role="error" id="p-td-th-checks-xspec-assert">p|td|th must be present.</assert>
     </rule>

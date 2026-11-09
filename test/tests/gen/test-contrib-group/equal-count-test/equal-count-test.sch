@@ -967,7 +967,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group" role="error" id="test-contrib-group-xspec-assert">article/front/article-meta/contrib-group must be present.</assert>
     </rule>

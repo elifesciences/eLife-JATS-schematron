@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="affiliation-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="affiliation-checks-pattern">
     <rule context="aff" id="affiliation-checks">
       <let name="id" value="@id"/>
       <let name="country-count" value="count(descendant::country)"/>
@@ -1355,8 +1355,8 @@
         </sqf:add>
       </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff" role="error" id="affiliation-checks-xspec-assert">aff must be present.</assert>
     </rule>

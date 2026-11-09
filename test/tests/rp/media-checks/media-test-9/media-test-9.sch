@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="media-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="media-checks-pattern">
     <rule context="media" id="media-checks">
       <let name="link" value="@*:href"/>
       <report test="matches(lower-case(@*:href),'\.(xml|XML)\s*$')" role="error" id="media-test-9">[media-test-9] media points to an xml file. This cannot be handled currently. Please download the file, place it in a zip and replace the file with this zip, and update the xlink:href accordingly.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media" role="error" id="media-checks-xspec-assert">media must be present.</assert>
     </rule>

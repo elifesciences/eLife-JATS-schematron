@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="general-article-meta-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="general-article-meta-checks-pattern">
     <rule context="article/front/article-meta" id="general-article-meta-checks">
       <let name="is-reviewed-preprint" value="e:is-reviewed-preprint(.)"/>
       <let name="distinct-emails" value="distinct-values((descendant::contrib[@contrib-type='author']/email, author-notes/corresp/email))"/>
@@ -1305,8 +1305,8 @@
       <let name="dtd" value="ancestor::article/@dtd-version"/>
       <report test="$is-reviewed-preprint and not(count(pub-history)=1)" role="error" id="pub-history-presence">[pub-history-presence] Reviewed preprints must have (and only one) pub-history. This one has <value-of select="count(pub-history)"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta" role="error" id="general-article-meta-checks-xspec-assert">article/front/article-meta must be present.</assert>
     </rule>

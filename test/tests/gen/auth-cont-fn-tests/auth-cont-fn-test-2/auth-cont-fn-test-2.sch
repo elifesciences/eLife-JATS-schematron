@@ -967,7 +967,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='author-contribution']/fn" role="error" id="auth-cont-fn-tests-xspec-assert">fn-group[@content-type='author-contribution']/fn must be present.</assert>
     </rule>

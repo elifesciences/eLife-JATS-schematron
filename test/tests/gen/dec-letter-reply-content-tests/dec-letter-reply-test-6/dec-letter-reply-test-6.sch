@@ -967,7 +967,7 @@
         <value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/sub-article//p" role="error" id="dec-letter-reply-content-tests-xspec-assert">article/sub-article//p must be present.</assert>
     </rule>

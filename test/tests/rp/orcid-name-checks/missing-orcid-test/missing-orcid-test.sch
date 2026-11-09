@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="orcid-name-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="orcid-name-checks-pattern">
     <rule context="article/front/article-meta/contrib-group[1]" id="orcid-name-checks">
       <let name="names" value="for $name in contrib[@contrib-type='author']/name[1] return e:get-name($name)"/>
       <let name="indistinct-names" value="for $name in distinct-values($names) return $name[count($names[. = $name]) gt 1]"/>
@@ -1303,8 +1303,8 @@
       <let name="indistinct-orcids" value="for $orcid in distinct-values($orcids) return $orcid[count($orcids[. = $orcid]) gt 1]"/>
       <report test="e:is-reviewed-preprint(.) and empty($orcids) and contrib[@contrib-type='author' and (name or string-name)]" role="error" id="missing-orcid-test">[missing-orcid-test] There are no ORCID IDs in this author contrib-group, which must be incorrect given eLife's requirements around corresponding authors needing an ORCID to login/submit.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="orcid-name-checks-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
     </rule>

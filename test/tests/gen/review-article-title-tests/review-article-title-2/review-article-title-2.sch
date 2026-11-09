@@ -968,7 +968,7 @@
       <assert test="substring($post-colon,1,1) = upper-case(substring($post-colon,1,1))" role="error" id="review-article-title-2">The first character after the colon in the title for a review article should be upper case. '<value-of select="substring($post-colon,1,1)"/>' in '<value-of select="."/>'</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')]" role="error" id="review-article-title-tests-xspec-assert">article[@article-type='review-article']/front/article-meta/title-group/article-title[contains(.,': ')] must be present.</assert>
     </rule>

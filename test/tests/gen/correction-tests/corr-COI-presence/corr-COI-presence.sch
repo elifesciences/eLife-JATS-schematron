@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hohvo-corr-coi-presence" test="descendant::fn-group[@content-type='competing-interest']" role="error" id="corr-COI-presence">Correction notices should not contain competing interests.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1" test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/contrib-group" role="error" id="ed-eval-contrib-group-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/contrib-group must be present.</assert>
     </rule>

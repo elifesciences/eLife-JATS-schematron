@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#video-title-test-4" test="matches(.,'^\p{Zs}')" role="error" id="video-title-test-4">title for <value-of select="$label"/> begins with a space, which is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media/caption/title" role="error" id="video-title-tests-xspec-assert">media/caption/title must be present.</assert>
     </rule>

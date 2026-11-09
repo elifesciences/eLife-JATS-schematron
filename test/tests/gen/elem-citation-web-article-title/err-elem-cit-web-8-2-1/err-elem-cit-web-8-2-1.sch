@@ -967,7 +967,7 @@
         at least two characters. Reference '<value-of select="ancestor::ref/@id"/>' has too few characters.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']/article-title" role="error" id="elem-citation-web-article-title-xspec-assert">element-citation[@publication-type='web']/article-title must be present.</assert>
     </rule>

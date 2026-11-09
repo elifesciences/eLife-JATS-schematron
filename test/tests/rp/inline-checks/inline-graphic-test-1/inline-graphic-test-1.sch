@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="inline-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="inline-checks-pattern">
     <rule context="inline-graphic" id="inline-checks">
       <assert test="parent::inline-formula or parent::alternatives[parent::inline-formula] or ancestor::caption[parent::fig or parent::table-wrap]" role="warning" id="inline-graphic-test-1">[inline-graphic-test-1] <name/> is usually placed either in inline-formula (or alternatives which in turn is a child of inline-formula), or in the caption for a figure or table. This one is not (its a child of <value-of select="parent::*/name()"/>). Is that OK?</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::inline-graphic" role="error" id="inline-checks-xspec-assert">inline-graphic must be present.</assert>
     </rule>

@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#pre-abstract-word-count-restriction" test="($count gt 300)" role="warning" id="pre-abstract-word-count-restriction">The abstract contains <value-of select="$count"/> words, when the usual upper limit is 300. Exeter: Please check with the eLife production team who will need to contact the eLife Editorial team.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//abstract[not(@abstract-type) and not(sec)]" role="error" id="abstract-word-count-xspec-assert">front//abstract[not(@abstract-type) and not(sec)] must be present.</assert>
     </rule>

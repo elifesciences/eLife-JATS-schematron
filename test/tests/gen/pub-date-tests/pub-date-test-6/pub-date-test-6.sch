@@ -967,7 +967,7 @@
       <assert test="@publication-format" role="error" id="pub-date-test-6">pub-date must have the attribute publication-format.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-date" role="error" id="pub-date-tests-xspec-assert">pub-date must be present.</assert>
     </rule>

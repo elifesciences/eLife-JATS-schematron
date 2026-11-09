@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-size-pi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-size-pi-checks-pattern">
     <rule context="processing-instruction('math-size')" id="math-size-pi-checks">
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="$next-node-name=('disp-formula','inline-formula')" role="error" id="math-size-pi-1">[math-size-pi-1] 'math-size' processing-instructions must be placed directly before a disp-formula or inline-formula element. This is placed before a <value-of select="$next-node-name"/> element.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::processing-instruction('math-size')" role="error" id="math-size-pi-checks-xspec-assert">processing-instruction('math-size') must be present.</assert>
     </rule>

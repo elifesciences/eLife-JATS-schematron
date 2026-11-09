@@ -968,7 +968,7 @@
         <value-of select="$type"/> must be a template 1. Currently it is a template <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value" role="error" id="featmeta-value-tests-xspec-assert">article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value must be present.</assert>
     </rule>

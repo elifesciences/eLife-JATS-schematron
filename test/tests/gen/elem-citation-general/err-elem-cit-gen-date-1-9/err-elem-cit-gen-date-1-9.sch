@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-gen-date-1-9" test="count(year) &gt; 1 " role="error" id="err-elem-cit-gen-date-1-9">There may be at most one &lt;year&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(year)"/> &lt;year&gt; elements.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation" role="error" id="elem-citation-general-xspec-assert">element-citation must be present.</assert>
     </rule>

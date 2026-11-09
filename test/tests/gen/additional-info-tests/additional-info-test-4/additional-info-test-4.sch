@@ -970,7 +970,7 @@
         <value-of select="$article-type"/> type articles should not contain author contributions.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
     </rule>

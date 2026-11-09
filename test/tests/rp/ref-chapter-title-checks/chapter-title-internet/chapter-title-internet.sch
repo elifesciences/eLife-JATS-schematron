@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-chapter-title-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-chapter-title-checks-pattern">
     <rule context="ref//chapter-title" id="ref-chapter-title-checks">
       <report test="contains(lower-case(.),'[internet]')" role="warning" id="chapter-title-internet">[chapter-title-internet] This title includes the text '[I(i)nternet]'. This is probably superfluous and should be deleted.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//chapter-title" role="error" id="ref-chapter-title-checks-xspec-assert">ref//chapter-title must be present.</assert>
     </rule>

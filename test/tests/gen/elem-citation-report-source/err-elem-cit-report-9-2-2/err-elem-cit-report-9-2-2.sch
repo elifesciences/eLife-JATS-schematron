@@ -969,7 +969,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' has child elements that are not allowed.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='report']/source" role="error" id="elem-citation-report-source-xspec-assert">element-citation[@publication-type='report']/source must be present.</assert>
     </rule>

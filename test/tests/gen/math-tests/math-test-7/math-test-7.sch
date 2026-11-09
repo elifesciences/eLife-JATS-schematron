@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#math-test-7" test="matches($data,'^~[\d]+$|^~[\d]+\.[\d]+$')" role="error" id="math-test-7">mml:math only contains '~' and digits, which is unnecessary. Capture this as a normal text instead.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:math" role="error" id="math-tests-xspec-assert">mml:math must be present.</assert>
     </rule>

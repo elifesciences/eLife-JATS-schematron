@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#pre-additional-info-test-3" test="if (e:get-version(.)='1' and $article-type = ('research-article','review-article')) then (not(fn-group[@content-type='author-contribution']))         else ()" role="warning" id="pre-additional-info-test-3">Missing author contributions. Please ensure that this is raised with eLife staff/the authors. (This type of sec in research content must have a child fn-group[@content-type='author-contribution']).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='additional-information']" role="error" id="additional-info-tests-xspec-assert">sec[@sec-type='additional-information'] must be present.</assert>
     </rule>

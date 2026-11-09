@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-body-1" test="local-name()='td'" role="error" id="kr-table-body-1">Table cell in KR table containing '<value-of select="."/>' is captured as a table header cell (<value-of select="local-name()"/>), which is not allowed. Ensure that this is changed to a normal table cell (td).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap[contains(@id,'keyresource')]/table/tbody/tr/*" role="error" id="kr-table-body-tests-xspec-assert">table-wrap[contains(@id,'keyresource')]/table/tbody/tr/* must be present.</assert>
     </rule>

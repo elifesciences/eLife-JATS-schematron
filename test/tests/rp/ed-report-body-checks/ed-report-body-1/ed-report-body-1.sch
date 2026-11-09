@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-body-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-body-checks-pattern">
     <rule context="sub-article[@article-type='editor-report']/body" id="ed-report-body-checks">
       <report test="contains(lower-case(.),'this review article') and not(ancestor::article/@article-type='review-article')" role="warning" id="ed-report-body-1">[ed-report-body-1] eLife Assessment contains the phrase 'This Review Article', but the article-type on the root article element is '<value-of select="ancestor::article[1]/@article-type"/>'. Should the article-type on the article element be changed to 'review-article'?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/body" role="error" id="ed-report-body-checks-xspec-assert">sub-article[@article-type='editor-report']/body must be present.</assert>
     </rule>

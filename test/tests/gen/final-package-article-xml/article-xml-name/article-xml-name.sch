@@ -969,7 +969,7 @@
       <assert test="ends-with($base,$xml-file-name)" role="error" id="article-xml-name">The filename for the article xml file is incorrect. It should be named "<value-of select="$xml-file-name"/>", but instead it is named "<value-of select="tokenize($base,'/')[last()]"/>".</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article" role="error" id="final-package-article-xml-xspec-assert">article must be present.</assert>
     </rule>

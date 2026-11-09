@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#err-elem-cit-web-2-2" test="@person-group-type='author'" role="error" id="err-elem-cit-web-2-2">The &lt;person-group&gt; element must contain @person-group-type='author'. The &lt;person-group&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' contains @person-group-type='<value-of select="@person-group-type"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']/person-group" role="error" id="elem-citation-web-person-group-xspec-assert">element-citation[@publication-type='web']/person-group must be present.</assert>
     </rule>

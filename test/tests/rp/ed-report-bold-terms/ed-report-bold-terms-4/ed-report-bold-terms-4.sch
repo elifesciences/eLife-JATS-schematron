@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-bold-terms-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-bold-terms-pattern">
     <rule context="sub-article[@article-type='editor-report']/body/p[1]//bold" id="ed-report-bold-terms">
       <let name="str-kwds" value="('exceptional', 'compelling', 'convincing', 'convincingly', 'solid', 'incomplete', 'incompletely', 'inadequate', 'inadequately')"/>
       <let name="sig-kwds" value="('landmark', 'fundamental', 'important', 'valuable', 'useful')"/>
@@ -1305,8 +1305,8 @@
       <let name="preceding-text" value="string-join(preceding-sibling::node(),'')"/>
       <report test="(lower-case(.)=$allowed-vals) and matches($preceding-text,'\smore\s*$')" role="warning" id="ed-report-bold-terms-4">[ed-report-bold-terms-4] Assessment keyword (<value-of select="."/>) is preceded by 'more'. Has the keyword been deployed correctly?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/body/p[1]//bold" role="error" id="ed-report-bold-terms-xspec-assert">sub-article[@article-type='editor-report']/body/p[1]//bold must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <name/> element contains only spaces. Has "\" been used for space in the tex editor, instead of "\,"?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:mi" role="error" id="math-mi-tests-xspec-assert">mml:mi must be present.</assert>
     </rule>

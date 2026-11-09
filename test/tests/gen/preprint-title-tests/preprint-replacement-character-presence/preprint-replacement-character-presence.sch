@@ -968,7 +968,7 @@
         <name/> element contains the replacement character '�' which is unallowed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='preprint']/source" role="error" id="preprint-title-tests-xspec-assert">element-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>

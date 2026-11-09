@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="underline-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="underline-checks-pattern">
     <rule context="underline" id="underline-checks">
       <report test="not(ancestor::sub-article) and matches(.,'(^|\s)[Ff]ig(\.|ure)?')" role="warning" sqf:fix="replace-fig-xref replace-supp-xref strip-tags" id="underline-check-1">[underline-check-1] Content of underline element suggests it's intended to be a figure citation: <value-of select="."/>. Either replace it with an xref or remove the underline formatting, as appropriate.</report>
       <sqf:fix id="add-ge-symbol">
@@ -1315,8 +1315,8 @@
          </sqf:replace>
        </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::underline" role="error" id="underline-checks-xspec-assert">underline must be present.</assert>
     </rule>

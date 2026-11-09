@@ -972,7 +972,7 @@
       <report test="@related-article-type='commentary-article' and not(ancestor::article//ref-list/ref//pub-id[@pub-id-type]/lower-case(.) = lower-case($doi))" role="error" id="insight-related-article-test-2">This Insight is related to <value-of select="$doi"/>, but there is no reference in the ref-list with that doi.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='article-commentary']//article-meta/related-article" role="error" id="insight-related-article-tests-xspec-assert">article[@article-type='article-commentary']//article-meta/related-article must be present.</assert>
     </rule>

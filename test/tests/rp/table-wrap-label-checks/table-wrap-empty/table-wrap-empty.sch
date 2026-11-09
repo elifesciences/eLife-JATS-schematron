@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="table-wrap-label-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-wrap-label-checks-pattern">
     <rule context="table-wrap/label" id="table-wrap-label-checks">
       <report test="normalize-space(.)=''" role="error" sqf:fix="delete-node" id="table-wrap-empty">[table-wrap-empty] Label for table is empty. Either remove the elment or add the missing content.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/label" role="error" id="table-wrap-label-checks-xspec-assert">table-wrap/label must be present.</assert>
     </rule>

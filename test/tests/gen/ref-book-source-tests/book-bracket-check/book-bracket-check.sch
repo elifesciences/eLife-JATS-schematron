@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/book-references-x4trb0n2#h4ccl-book-bracket-check" test="matches(.,'\[|\(|\)|\]')" role="warning" id="book-bracket-check">Book ref '<value-of select="ancestor::ref/@id"/>' has a book name which contains brackets '<value-of select="."/>'. Is the content in the brackets is required?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='book']/source" role="error" id="ref-book-source-tests-xspec-assert">element-citation[@publication-type='book']/source must be present.</assert>
     </rule>

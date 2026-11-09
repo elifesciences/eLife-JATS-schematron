@@ -970,7 +970,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#credit-role-check-2" test="not(@vocab-term-identifier) or ((count($credit-role) = 1) and ($vocab-term-id != $credit-role/@uri))" role="error" flag="version-2" id="credit-role-check-2">A CRediT taxonomy role must have a @vocab-term-identifier, the value of which must be the URL of the specific CRediT term. <value-of select="if (empty($credit-role)) then concat('It must be one of these - ',string-join(document($credit-roles)//*:item/@uri,', ')) else concat('In this case ',$credit-role/@uri,' (based on the @vocab-term of this role element)')"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit']" role="error" id="author-role-tests-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[@vocab='credit'] must be present.</assert>
     </rule>

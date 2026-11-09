@@ -974,7 +974,7 @@
         <value-of select="label"/> is in position <value-of select="$pos"/>, which means either the label or the placement incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
     </rule>

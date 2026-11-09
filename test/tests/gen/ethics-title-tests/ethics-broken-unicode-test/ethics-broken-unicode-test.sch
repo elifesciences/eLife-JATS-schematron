@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-broken-unicode-test" test="matches(.,'&amp;#x\d')" role="warning" id="ethics-broken-unicode-test">Ethics statement likely contains a broken unicode - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-title-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
     </rule>

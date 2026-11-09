@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-pub-id-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-pub-id-checks-pattern">
     <rule context="ref//pub-id" id="ref-pub-id-checks">
       <report test="(@pub-id-type='pmid') and not(matches(.,'^\d{3,10}$'))" role="error" id="ref-pmid-conformance">[ref-pmid-conformance] pub-id is tagged as a pmid, but it is not a number made up of between 3 and 10 digits - <value-of select="."/>. The id must be either incorrect or have the wrong pub-id-type.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//pub-id" role="error" id="ref-pub-id-checks-xspec-assert">ref//pub-id must be present.</assert>
     </rule>

@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="rp-and-preprint-version-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="rp-and-preprint-version-checks-pattern">
     <rule context="article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')]" id="rp-and-preprint-version-checks">
       <let name="preprint-version" value="number(substring-after(descendant::article-version[@article-version-type='preprint-version'][1],'.'))"/>
       <let name="rp-version" value="number(replace(article-id[@specific-use='version'][1],'^.*\.',''))"/>
       <assert test="$rp-version le $preprint-version" role="error" id="article-version-12">[article-version-12] This is Reviewed Preprint version <value-of select="$rp-version"/>, but according to the article-version, it's based on preprint version <value-of select="$preprint-version"/>. This cannot be correct.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')]" role="error" id="rp-and-preprint-version-checks-xspec-assert">article/front[journal-meta/journal-id='elife']/article-meta[matches(replace(article-id[@specific-use='version'][1],'^.*\.',''),'^\d\d?$') and matches(descendant::article-version[@article-version-type='preprint-version'][1],'^1\.\d+$')] must be present.</assert>
     </rule>

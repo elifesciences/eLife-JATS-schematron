@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-checks-pattern">
     <rule context="ref" id="ref-checks">
       <report test="(count(mixed-citation) + count(element-citation)) gt 1" role="error" sqf:fix="replace-to-distinct-refs" id="ref-extra-citations">[ref-extra-citations] <name/> cannot contain more that one citation element (mixed-citation or element-citation). This one (with id=<value-of select="ancestor::ref/@id"/>) has <value-of select="count(mixed-citation) + count(element-citation)"/>.</report>
       <sqf:fix id="replace-to-distinct-refs">
@@ -1327,8 +1327,8 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref" role="error" id="ref-checks-xspec-assert">ref must be present.</assert>
     </rule>

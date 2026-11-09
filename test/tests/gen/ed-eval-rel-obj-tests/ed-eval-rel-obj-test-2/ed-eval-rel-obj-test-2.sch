@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-2" test="@object-id-type='id'" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-2">related-object in editor's evaluation must have an object-id-type="id" attribute.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub/related-object" role="error" id="ed-eval-rel-obj-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub/related-object must be present.</assert>
     </rule>

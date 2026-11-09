@@ -967,7 +967,7 @@
         <name/> contains the text 'guardian', 'independent', 'times' or 'post' - <value-of select="."/> - is it a newspaper reference? If so, it should be captured as a web or a periodical reference.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/publisher-name" role="error" id="publisher-name-tests-xspec-assert">element-citation/publisher-name must be present.</assert>
     </rule>

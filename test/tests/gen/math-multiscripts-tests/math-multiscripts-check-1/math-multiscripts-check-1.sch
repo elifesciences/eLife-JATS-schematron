@@ -968,7 +968,7 @@
         <name/> element must at least 3 child elements. This one has <value-of select="count(*)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:mmultiscripts" role="error" id="math-multiscripts-tests-xspec-assert">mml:mmultiscripts must be present.</assert>
     </rule>

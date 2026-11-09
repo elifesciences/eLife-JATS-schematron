@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-cont-fn-test-1" test="@fn-type='con'" role="error" id="auth-cont-fn-test-1">This fn must have an @fn-type='con'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='author-contribution']/fn" role="error" id="auth-cont-fn-tests-xspec-assert">fn-group[@content-type='author-contribution']/fn must be present.</assert>
     </rule>

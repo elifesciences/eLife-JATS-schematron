@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/additional-files-60jpvalx#vid-code-id" test="@id=concat($vid-id,'scode',$pos)" role="error" id="vid-code-id">The id for video level source code must be the id of its ancestor video, followed by 'scode', followed by its position relative to other source data for the same video. The id for <value-of select="$label"/>, '<value-of select="@id"/>' is not in this format. It should be '<value-of select="concat($vid-id,'scode',$pos)"/>' instead.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')]" role="error" id="vid-source-code-tests-xspec-assert">media//supplementary-material[not(ancestor::fig) and contains(label[1],' code ')] must be present.</assert>
     </rule>

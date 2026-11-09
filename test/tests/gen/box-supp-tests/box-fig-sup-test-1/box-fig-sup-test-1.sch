@@ -967,7 +967,7 @@
       <assert test="matches(.,concat('^',$fig-label,'—(source data \d|source code \d)\.$'))" role="error" id="box-fig-sup-test-1">label for supplementary-material for a fig inside boxed-text must begin with the label from its parent fig. '<value-of select="."/>' is not in one of the following formats: '<value-of select="concat($fig-label,'—source data 0')"/>' or '<value-of select="concat($fig-label,'—source code 0')"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label" role="error" id="box-supp-tests-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')]//supplementary-material/label must be present.</assert>
     </rule>

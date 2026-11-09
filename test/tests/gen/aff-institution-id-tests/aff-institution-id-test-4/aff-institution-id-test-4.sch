@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hqr61-aff-institution-id-test-2" test="matches(.,'^http://')" role="error" id="aff-institution-id-test-4">institution-id in aff must use the https protocol. This one uses http - '<value-of select="."/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff//institution-id" role="error" id="aff-institution-id-tests-xspec-assert">aff//institution-id must be present.</assert>
     </rule>

@@ -969,7 +969,7 @@
         <value-of select="replace(label,'\.$','')"/> id ends with <value-of select="$no"/>, but it is placed <value-of select="e:get-ordinal($pos)"/>. Either it is mislabelled, the id is incorrect, or it should be moved to a different position.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')]" role="error" id="back-source-code-tests-xspec-assert">sec[@sec-type='supplementary-material']/supplementary-material[contains(label[1],'ource code')] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-2" test="count(fn) gt 3" role="error" id="ethics-test-2">Ethics fn-group may not have more than 3 fn elements. Currently there are <value-of select="count(fn)"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
     </rule>

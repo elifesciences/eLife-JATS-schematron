@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="fig-width-pi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-width-pi-checks-pattern">
     <rule context="processing-instruction('fig-width')" id="fig-width-pi-checks">
       <let name="supported-values" value="for $x in (1 to 12) return concat(string($x * 10),'%')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="normalize-space(.)=$supported-values" role="error" id="fig-width-pi-2">[fig-width-pi-2] 'fig-width' processing-instructions must contain a positive percentage value that is a multiple of 10, with 120 being the maximum (e.g. 120%). '<value-of select="."/>' is not supported.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::processing-instruction('fig-width')" role="error" id="fig-width-pi-checks-xspec-assert">processing-instruction('fig-width') must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#final-mathcolor-test-1" test="@mathcolor = $allowed-values" role="error" id="final-mathcolor-test-1">math (<value-of select="name()"/> element) containing '<value-of select="."/>' has a color style which is not red, blue or purple - '<value-of select="@mathcolor"/>' - which is not allowed. Only 'red', 'blue' and 'purple' are allowed.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:*[@mathcolor]" role="error" id="math-colour-tests-xspec-assert">mml:*[@mathcolor] must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
         <value-of select="name()"/> is not allowed as a child element in the additional files section (sec[@sec-type='supplementary-material']).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='supplementary-material']/*" role="error" id="additional-files-child-tests-xspec-assert">sec[@sec-type='supplementary-material']/* must be present.</assert>
     </rule>

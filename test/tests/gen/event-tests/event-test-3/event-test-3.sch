@@ -971,7 +971,7 @@
         <name/> must contain a self-uri element. This one does not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event" role="error" id="event-tests-xspec-assert">event must be present.</assert>
     </rule>

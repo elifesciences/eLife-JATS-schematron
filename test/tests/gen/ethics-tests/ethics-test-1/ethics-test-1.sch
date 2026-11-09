@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-test-1" test="ancestor::article[not(@article-type='discussion')] and not(parent::sec[@sec-type='additional-information'])" role="error" id="ethics-test-1">Ethics fn-group can only be captured as a child of a sec [@sec-type='additional-information']</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='ethics-information']" role="error" id="ethics-tests-xspec-assert">fn-group[@content-type='ethics-information'] must be present.</assert>
     </rule>

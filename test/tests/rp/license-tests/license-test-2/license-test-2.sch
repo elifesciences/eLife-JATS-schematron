@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="license-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="license-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//permissions/license" id="license-tests">
       <assert see="https://elifeproduction.slab.com/posts/licensing-and-copyright-rqdavyty#license-test-2" test="count(license-p) = 1" role="error" id="license-test-2">[license-test-2] license must contain one and only one license-p.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license" role="error" id="license-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license must be present.</assert>
     </rule>

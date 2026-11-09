@@ -974,7 +974,7 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other figures it is placed in position <value-of select="$pos"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
     </rule>

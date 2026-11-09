@@ -969,7 +969,7 @@
         Reference '<value-of select="ancestor::ref/@id"/>' contains additional elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/person-group/collab  or descendant:: element-citation/person-group/collab-name" role="error" id="elem-citation-gen-name-3-2-xspec-assert">element-citation/person-group/collab | element-citation/person-group/collab-name must be present.</assert>
     </rule>

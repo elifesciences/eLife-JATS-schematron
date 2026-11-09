@@ -971,7 +971,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#table-xref-test-5" test="matches($pre-text,'cf[\.]?\p{Zs}?[\(]?$')" role="warning" id="table-xref-test-5">citation is preceded by '<value-of select="substring($pre-text,string-length($pre-text)-10)"/>'. The 'cf.' is unnecessary and should be removed</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='table']" role="error" id="table-xref-conformance-xspec-assert">xref[@ref-type='table'] must be present.</assert>
     </rule>

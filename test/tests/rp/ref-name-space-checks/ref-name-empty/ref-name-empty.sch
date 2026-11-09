@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-name-space-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-name-space-checks-pattern">
     <rule context="mixed-citation//given-names | mixed-citation//surname" id="ref-name-space-checks">
       <report test="normalize-space(.)=''" role="error" id="ref-name-empty">[ref-name-empty] <name/> element must not be empty.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation//given-names  or descendant:: mixed-citation//surname" role="error" id="ref-name-space-checks-xspec-assert">mixed-citation//given-names | mixed-citation//surname must be present.</assert>
     </rule>

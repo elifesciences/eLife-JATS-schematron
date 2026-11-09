@@ -963,10 +963,10 @@
   </xsl:function>
   <pattern id="house-style">
     <rule context="sec[@sec-type='data-availability']/p[1]" id="data-availability-statement">
-      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="error" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
+      <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" test="matches(.,'\.$|\?$')" role="warning" id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']/p[1]" role="error" id="data-availability-statement-xspec-assert">sec[@sec-type='data-availability']/p[1] must be present.</assert>
     </rule>

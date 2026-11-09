@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="abstract-child-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="abstract-child-checks-pattern">
     <rule context="abstract[parent::article-meta]/*" id="abstract-child-checks">
       <let name="allowed-children" value="('label','title','sec','p','fig','list')"/>
       <assert test="name()=$allowed-children" role="error" id="abstract-child-test-1">[abstract-child-test-1] <name/> is not permitted within abstract.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[parent::article-meta]/*" role="error" id="abstract-child-checks-xspec-assert">abstract[parent::article-meta]/* must be present.</assert>
     </rule>

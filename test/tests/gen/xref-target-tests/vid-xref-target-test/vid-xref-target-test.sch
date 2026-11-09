@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/asset-citations-fa3e2yoo#vid-xref-target-test" test="(@ref-type='video') and (($target/local-name() != 'media') or not(starts-with($target/@mimetype,'video')))" role="error" id="vid-xref-target-test">xref with @ref-type='<value-of select="@ref-type"/>' must point to a media[@mimetype="video"] element. Either this links to the incorrect location or the xref/@ref-type is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref" role="error" id="xref-target-tests-xspec-assert">xref must be present.</assert>
     </rule>

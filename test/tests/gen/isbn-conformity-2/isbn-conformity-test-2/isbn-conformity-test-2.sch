@@ -967,7 +967,7 @@
       <assert test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test-2">isbn contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::isbn" role="error" id="isbn-conformity-2-xspec-assert">isbn must be present.</assert>
     </rule>

@@ -974,7 +974,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-wrap-test-2" test="count(table) &gt; 1" role="warning" id="table-wrap-test-2">table-wrap has more than one table - Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
     </rule>

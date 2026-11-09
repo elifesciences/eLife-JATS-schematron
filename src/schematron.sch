@@ -12385,7 +12385,7 @@ else self::*/local-name() = $allowed-p-blocks"
       
       <assert see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-sentence-conformity" 
         test="matches(.,'\.$|\?$')" 
-        role="error" 
+        role="warning" 
         id="das-sentence-conformity">The Data Availability Statement must end with a full stop.</assert>
       
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#pre-das-dryad-conformity" 

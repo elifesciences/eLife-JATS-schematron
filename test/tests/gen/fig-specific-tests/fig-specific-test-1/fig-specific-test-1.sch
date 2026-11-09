@@ -977,7 +977,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-specific-test-1" test="label[contains(lower-case(.),'supplement')]" role="error" id="fig-specific-test-1">fig label contains 'supplement', but it does not have a @specific-use='child-fig'. If it is a figure supplement it needs the attribute, if it isn't then it cannot contain 'supplement' in the label.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)]" role="error" id="fig-specific-tests-xspec-assert">article/body//fig[not(@specific-use='child-fig')][not(ancestor::boxed-text)] must be present.</assert>
     </rule>

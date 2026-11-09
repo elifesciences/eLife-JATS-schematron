@@ -969,7 +969,7 @@
       <assert test="count(p)=2" role="error" id="notice-box-1">The boxed-text at the start of a <value-of select="$display-subject"/> notice should contain 2 paragraphs. The first should contain the citation details for the related article. The second should state the fulld ate on which it was published. This boxed-text has <value-of select="count(p)"/> p elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1]" role="error" id="notice-box-tests-xspec-assert">article[@article-type = ('retraction','expression-of-concern','correction')]/body/boxed-text[1] must be present.</assert>
     </rule>

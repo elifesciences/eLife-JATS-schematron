@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ed-report-front-stub-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-front-stub-pattern">
     <rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-report-front-stub">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <report test="not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" role="warning" id="ed-report-str-kwd-presence">[ed-report-str-kwd-presence] eLife Assessment does not have a strength keyword group. Is that correct?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-report-front-stub-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
     </rule>

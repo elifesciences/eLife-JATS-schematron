@@ -966,7 +966,7 @@
       <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have the attribute contrib-type='author'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" role="error" id="sub-article-contrib-tests-xspec-assert">sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib must be present.</assert>
     </rule>

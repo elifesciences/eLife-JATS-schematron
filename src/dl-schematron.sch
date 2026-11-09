@@ -977,7 +977,7 @@
   
   
   
- <pattern id="research-article-pattern"><rule context="article[@article-type='research-article']" id="research-article">
+ <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="research-article-pattern"><rule context="article[@article-type='research-article']" id="research-article">
 	  <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
 	  <let name="is-prc" value="e:is-prc(.)"/>
 	  
@@ -991,12 +991,12 @@
 	  
 	  <report test="count(sub-article[@article-type='editor-report']) gt 1" role="error" flag="dl-ar" id="editor-report-2">There cannot be more than one eLife Assessment or Editor's evaluation. This one has <value-of select="count(sub-article[@article-type='editor-report'])"/>.</report>
 	
-	</rule></pattern><pattern id="research-article-sub-article-pattern"><rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
+	</rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="research-article-sub-article-pattern"><rule context="article[@article-type='research-article' and sub-article]" id="research-article-sub-article">
      <let name="disp-channel" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/> 
      
      <report test="$disp-channel != 'Scientific Correspondence' and not(sub-article[not(@article-type=('reply','author-comment'))])" flag="dl-ar" role="error" id="r-article-sub-articles"><value-of select="$disp-channel"/> type articles cannot have only an Author response. The following combinations of peer review-material are permitted: Editor's evaluation, Decision letter, and Author response; Decision letter, and Author response; Editor's evaluation and Decision letter; Editor's evaluation and Author response; or Decision letter.</report>
      
-   </rule></pattern>
+   </rule></sch:pattern>
 
   
 
@@ -1008,7 +1008,7 @@
 
    	
   
-  <pattern id="ar-fig-tests-pattern"><rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ar-fig-tests-pattern"><rule context="fig[ancestor::sub-article[@article-type=('reply','author-comment')]]" id="ar-fig-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       <let name="count" value="count(ancestor::body//fig)"/>
       <let name="pos" value="$count - count(following::fig)"/>
@@ -1026,15 +1026,15 @@
       
 
       
-    </rule></pattern><pattern id="disp-quote-tests-pattern"><rule context="disp-quote" id="disp-quote-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-quote-tests-pattern"><rule context="disp-quote" id="disp-quote-tests">
       <let name="subj" value="ancestor::article//subj-group[@subj-group-type='display-channel']/subject[1]"/>
       
       <report test="ancestor::sub-article[not(@article-type=('reply','author-comment'))]" role="warning" flag="dl-ar" id="disp-quote-test-1">Content is tagged as a display quote, which is almost definitely incorrect, since it's within peer review material that is not an author response - <value-of select="."/></report>
       
       
-    </rule></pattern>
+    </rule></sch:pattern>
   
-  <pattern id="dl-video-specific-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dl-video-specific-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//media[starts-with(@mimetype,'video')]" id="dl-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video') and ancestor::sub-article/@article-type=('decision-letter','referee-report')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -1042,7 +1042,7 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-dl-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other DL videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
-    </rule></pattern><pattern id="ar-video-specific-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ar-video-specific-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//media[starts-with(@mimetype,'video')]" id="ar-video-specific">
       <let name="count" value="count(ancestor::body//media[starts-with(@mimetype,'video')])"/>
       <let name="pos" value="$count - count(following::media[starts-with(@mimetype,'video')])"/>
       <let name="no" value="substring-after(@id,'video')"/>
@@ -1050,58 +1050,58 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#" test="$no = string($pos)" role="warning" flag="dl-ar" id="pre-ar-video-position-test"><value-of select="label"/> does not appear in sequence which is likely incorrect. Relative to the other AR videos it is placed in position <value-of select="$pos"/>.</assert>
       
       
-    </rule></pattern>
+    </rule></sch:pattern>
   
   
   
-  <pattern id="rep-fig-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="rep-fig-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//fig" id="rep-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-test-2" test="label" role="error" flag="dl-ar" id="resp-fig-test-2">fig must have a label.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#reply-fig-test-2" test="matches(label[1],'^Author response image [0-9]{1,3}\.$|^Chemical structure \d{1,4}\.$|^Scheme \d{1,4}\.$')" role="error" flag="dl-ar" id="reply-fig-test-2">fig label in author response must be in the format 'Author response image 1.', or 'Chemical Structure 1.', or 'Scheme 1.'.</assert>
       
-    </rule></pattern><pattern id="dec-fig-tests-pattern"><rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-fig-tests-pattern"><rule context="sub-article[@article-type='decision-letter']//fig" id="dec-fig-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-1" test="label" role="error" flag="dl-ar" id="dec-fig-test-1">fig must have a label.</assert>
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#dec-fig-test-2" test="matches(label[1],'^Decision letter image [0-9]{1,3}\.$')" role="error" flag="dl-ar" id="dec-fig-test-2">fig label in author response must be in the format 'Decision letter image 1.'.</assert>
       
-    </rule></pattern>
+    </rule></sch:pattern>
   
   
   
-  <pattern id="ed-eval-title-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-title-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/title-group" id="ed-eval-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-title-test" test="article-title = (&quot;Editor's evaluation&quot;,'eLife assessment','eLife Assessment')" role="error" flag="dl-ar" id="ed-eval-title-test">A sub-article[@article-type='editor-report'] must have the title "eLife Assessment" or "Editor's evaluation". Currently it is <value-of select="article-title"/>.</assert>
-    </rule></pattern><pattern id="dec-letter-title-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-title-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/title-group" id="dec-letter-title-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-title-test" test="article-title = 'Decision letter'" role="error" flag="dl-ar" id="dec-letter-title-test">title-group must contain article-title which contains 'Decision letter'. Currently it is <value-of select="article-title"/>.</assert>
-    </rule></pattern><pattern id="reply-title-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-title-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub/title-group" id="reply-title-tests">
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-title-test" test="article-title = 'Author response'" role="error" flag="dl-ar" id="reply-title-test">title-group must contain article-title which contains 'Author response'. Currently it is <value-of select="article-title"/>.</assert>
       
-    </rule></pattern>
+    </rule></sch:pattern>
   
-  <pattern id="rep-fig-ids-pattern"><rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="rep-fig-ids-pattern"><rule context="sub-article//fig[not(@specific-use='child-fig')]" id="rep-fig-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-id-test" test="matches(@id,'^respfig[0-9]{1,3}$|^sa[0-9]fig[0-9]{1,3}$')" role="error" flag="dl-ar" id="resp-fig-id-test">fig in decision letter/author response must have @id in the format respfig0, or sa0fig0. <value-of select="@id"/> does not conform to this.</assert>
-    </rule></pattern><pattern id="rep-fig-sup-ids-pattern"><rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="rep-fig-sup-ids-pattern"><rule context="sub-article//fig[@specific-use='child-fig']" id="rep-fig-sup-ids">
       
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#resp-fig-sup-id-test" test="matches(@id,'^respfig[0-9]{1,3}s[0-9]{1,3}$|^sa[0-9]{1}fig[0-9]{1,3}s[0-9]{1,3}$')" role="error" flag="dl-ar" id="resp-fig-sup-id-test">figure supplement in decision letter/author response must have @id in the format respfig0s0 or sa0fig0s0. <value-of select="@id"/> does not conform to this.</assert>
       
-    </rule></pattern><pattern id="disp-formula-ids-pattern"><rule context="disp-formula" id="disp-formula-ids">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="disp-formula-ids-pattern"><rule context="disp-formula" id="disp-formula-ids">
       
       
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-disp-formula-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]equ[0-9]{1,9}$|^equ[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-disp-formula-id-test">disp-formula @id must be in the format 'sa0equ0' when in a sub-article.  <value-of select="@id"/> does not conform to this.</report>
-    </rule></pattern><pattern id="mml-math-ids-pattern"><rule context="disp-formula/mml:math" id="mml-math-ids">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="mml-math-ids-pattern"><rule context="disp-formula/mml:math" id="mml-math-ids">
       
       
       
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#sub-mml-math-id-test" test="(ancestor::sub-article) and not(matches(@id,'^sa[0-9]m[0-9]{1,9}$|^m[0-9]{1,9}$'))" role="error" flag="dl-ar" id="sub-mml-math-id-test">mml:math @id in disp-formula must be in the format 'sa0m0'.  <value-of select="@id"/> does not conform to this.</report>
-    </rule></pattern><pattern id="resp-table-wrap-ids-pattern"><rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="resp-table-wrap-ids-pattern"><rule context="sub-article//table-wrap" id="resp-table-wrap-ids">
  
       <assert see="https://elifeproduction.slab.com/posts/tables-3nehcouh#resp-table-wrap-id-test" test="if (label) then matches(@id, '^resptable[0-9]{1,3}$|^sa[0-9]table[0-9]{1,3}$')         else matches(@id, '^respinlinetable[0-9]{1,3}$||^sa[0-9]inlinetable[0-9]{1,3}$')" role="warning" flag="dl-ar" id="resp-table-wrap-id-test">table-wrap @id in a sub-article must be in the format 'resptable0' or 'sa0table0' if it has a label, or in the format 'respinlinetable0' or 'sa0inlinetable0' if it does not.</assert>
-    </rule></pattern>
+    </rule></sch:pattern>
   
   
   
@@ -1109,7 +1109,7 @@
   
   
   
-  <pattern id="dec-letter-reply-tests-pattern"><rule context="article/sub-article" id="dec-letter-reply-tests">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-reply-tests-pattern"><rule context="article/sub-article" id="dec-letter-reply-tests">
       <let name="is-prc" value="e:is-prc(.)"/>
       <let name="sub-article-types" value="('editor-report','referee-report','author-comment','decision-letter','reply')"/>
       <let name="sub-article-count" value="count(parent::article/sub-article)"/>
@@ -1131,17 +1131,17 @@
       
       <report test="$is-prc and @article-type='reply'" role="error" flag="dl-ar" id="sub-article-4">'<value-of select="@article-type"/>' is not permitted as the article-type for a sub-article in a non-PRC article. Provided this is in fact a non-PRC article, the article-type should be 'author-comment'.</report>
       
-    </rule></pattern><pattern id="dec-letter-reply-content-tests-pattern"><rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-reply-content-tests-pattern"><rule context="article/sub-article//p" id="dec-letter-reply-content-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-5" test="matches(.,'&lt;[/]?[Aa]uthor response')" role="error" flag="dl-ar" id="dec-letter-reply-test-5"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what looks like pseudo-code - <value-of select="."/>.</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-6" test="matches(.,'&lt;\p{Zs}?/?\p{Zs}?[a-z]*\p{Zs}?/?\p{Zs}?&gt;')" role="warning" flag="dl-ar" id="dec-letter-reply-test-6"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be pseudo-code or tags which should likely be removed - <value-of select="."/>.</report>
-    </rule></pattern><pattern id="dec-letter-reply-content-tests-2-pattern"><rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-reply-content-tests-2-pattern"><rule context="article/sub-article//p[not(ancestor::disp-quote)]" id="dec-letter-reply-content-tests-2">
       <let name="regex" value="'\p{Zs}([Oo]ffensive|[Oo]ffended|[Uu]nproff?essional|[Rr]ude|[Cc]onflict\p{Zs}[Oo]f\p{Zs}[Ii]nterest|([Aa]re|[Aa]m)\p{Zs}[Ss]hocked|[Ss]trongly\p{Zs}[Dd]isagree)[^\p{L}]'"/>
       
       <!-- Need to improve messaging -->
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reply-test-7" test="matches(.,$regex)" role="warning" flag="dl-ar" id="dec-letter-reply-test-7"><value-of select="ancestor::sub-article/@article-type"/> paragraph contains what might be inflammatory or offensive language. eLife: please check it to see if it is language that should be removed. This paragraph was flagged because of the phrase(s) <value-of select="string-join(tokenize(.,'\p{Zs}')[matches(.,concat('^',substring-before(substring-after($regex,'\p{Zs}'),'[^\p{L}]')))],'; ')"/> in <value-of select="."/>.</report>
-    </rule></pattern><pattern id="ed-eval-front-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-front-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub" id="ed-eval-front-tests">
       <let name="article-type" value="ancestor::article/@article-type"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ed-eval-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
@@ -1157,18 +1157,18 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-5" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='claim-importance'])" role="warning" flag="dl-ar" id="ed-eval-front-test-5">eLife Assessment front-stub does not contain a significance term keyword group, which is very unusual. Is that correct?</report>
       
       <report test="e:is-prc(.) and $article-type='review-article' and kwd-group[@kwd-group-type='claim-importance']" role="error" flag="dl-ar" id="ed-eval-front-test-5b">eLife Assessment front-stub contains a significance term keyword group, but this is a PRC Review article (which don't use the terms), so this must be incorrect.</report>
-    </rule></pattern><pattern id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-front-child-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/*" id="ed-eval-front-child-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-child-test-1" test="name()=('article-id','title-group','contrib-group','kwd-group','related-object')" role="error" flag="dl-ar" id="ed-eval-front-child-test-1"><name/> element is not allowed in the front-stub for an editor report. Only the following elements are permitted: article-id, title-group, contrib-group, kwd-group, related-object.</assert>
-    </rule></pattern><pattern id="ed-eval-contrib-group-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-contrib-group-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group" id="ed-eval-contrib-group-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-contrib-group-test-1" test="count(contrib[@contrib-type='author']) = 1" role="error" flag="dl-ar" id="ed-eval-contrib-group-test-1">editor report contrib-group must contain 1 contrib[@contrib-type='author'].</assert>
-    </rule></pattern><pattern id="ed-eval-author-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-author-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/contrib-group/contrib[@contrib-type='author' and name]" id="ed-eval-author-tests">
       <let name="rev-ed-name" value="e:get-name(ancestor::article//article-meta/contrib-group[@content-type='section'][1]/contrib[@contrib-type='editor'][1]/name[1])"/>
       <let name="name" value="e:get-name(name[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-author-test-1" test="$name = $rev-ed-name" role="error" flag="dl-ar" id="ed-eval-author-test-1">The author of the editor report must be the same as the Reviewing editor for the article. The Reviewing editor is <value-of select="$rev-ed-name"/>, but the editor evaluation author is <value-of select="$name"/>.</assert>
-    </rule></pattern><pattern id="ed-eval-rel-obj-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-eval-rel-obj-tests-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/related-object" id="ed-eval-rel-obj-tests">
       <let name="event-preprint-doi" value="for $x in ancestor::article//article-meta/pub-history/event[self-uri[@content-type='preprint']]/self-uri[@content-type='preprint'][1]/@xlink:href                                         return substring-after($x,'.org/')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-1" test="matches(@id,'^sa0ro\d$')" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-1">related-object in editor's evaluation must have an id in the format sa0ro1. <value-of select="@id"/> does not meet this convention.</assert>
@@ -1185,7 +1185,7 @@
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-rel-obj-test-7" test="@xlink:href = (         concat('https://sciety.org/articles/activity/',$event-preprint-doi),         concat('https://sciety.org/articles/',$event-preprint-doi)         )" role="error" flag="dl-ar" id="ed-eval-rel-obj-test-7">related-object in editor's evaluation must have an xlink:href attribute whose value is 'https://sciety.org/articles/activity/' followed by the preprint doi in the article's pub-history. xlink:href '<value-of select="@xlink:href"/>' is not the same as '<value-of select="concat('https://sciety.org/articles/activity/',$event-preprint-doi)"/>'. Which is correct?</assert>
       
-    </rule></pattern><pattern id="ed-report-kwd-group-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-kwd-group-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group" id="ed-report-kwd-group">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-1" test="@kwd-group-type=('claim-importance','evidence-strength')" role="error" flag="dl-ar" id="ed-report-kwd-group-1">kwd-group in <value-of select="parent::*/title-group/article-title"/> must have the attribute kwd-group-type with the value 'claim-importance' or 'evidence-strength'. This one does not.</assert>
 
@@ -1195,12 +1195,12 @@
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-group-4" test="@kwd-group-type='evidence-strength' and count(kwd) gt 2" role="error" flag="dl-ar" id="ed-report-kwd-group-4"><value-of select="@kwd-group-type"/> type kwd-group has <value-of select="count(kwd)"/> keywords: <value-of select="string-join(kwd,'; ')"/>. This is incorrect.</report>
       
-    </rule></pattern><pattern id="ed-report-claim-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-claim-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='claim-importance']/kwd" id="ed-report-claim-kwds">
       <let name="allowed-vals" value="('Landmark', 'Fundamental', 'Important', 'Valuable', 'Useful')"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-claim-kwd-1" test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-claim-kwd-1">Keyword contains <value-of select="."/>, but it is in a 'claim-importance' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
       
-    </rule></pattern><pattern id="ed-report-evidence-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-evidence-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group[@kwd-group-type='evidence-strength']/kwd" id="ed-report-evidence-kwds">
       <let name="wos-go-vals" value="('Exceptional', 'Compelling', 'Convincing', 'Solid')"/>
       <let name="wos-no-go-vals" value="('Incomplete', 'Inadequate')"/>
       <let name="allowed-vals" value="($wos-go-vals,$wos-no-go-vals)"/>
@@ -1208,7 +1208,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-1" test=".=$allowed-vals" role="error" flag="dl-ar" id="ed-report-evidence-kwd-1">Keyword contains <value-of select="."/>, but it is in an 'evidence-strength' keyword group, meaning it should have one of the following values: <value-of select="string-join($allowed-vals,', ')"/></assert>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-evidence-kwd-2" test=".=$wos-no-go-vals and parent::*/kwd[.=$wos-go-vals]" role="warning" flag="dl-ar" id="ed-report-evidence-kwd-2">There is both an <value-of select="."/> and <value-of select="string-join(parent::*/kwd[.=$wos-go-vals],'; ')"/> kwd in the kwd-group for strength of evidence. Should <value-of select="."/> be unbolded or changed to a different word in the Assessment and removed as a keyword?</report>
-    </rule></pattern><pattern id="ed-report-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ed-report-kwds-pattern"><rule context="sub-article[@article-type='editor-report']/front-stub/kwd-group/kwd" id="ed-report-kwds">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-1" test="preceding-sibling::kwd = ." role="error" flag="dl-ar" id="ed-report-kwd-1">Keyword contains <value-of select="."/>, there is another kwd with that value witin the same kwd-group, so this one is either incorrect or superfluous and should be deleted.</report>
       
@@ -1216,7 +1216,7 @@
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-report-kwd-3" test="*" role="error" flag="dl-ar" id="ed-report-kwd-3">Keywords in <value-of select="ancestor::front-stub/title-group/article-title"/> cannot contain elements, only text. This one has: <value-of select="string-join(distinct-values(*/name()),'; ')"/>.</report>
       
-    </rule></pattern><pattern id="dec-letter-front-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-front-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub" id="dec-letter-front-tests">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="dec-letter-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
@@ -1226,12 +1226,12 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-3" test="$count gt 2" role="error" flag="dl-ar" id="dec-letter-front-test-3">decision letter front-stub contains more than 2 contrib-group elements.</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-front-test-4" test="($count = 1) and not(matches(parent::sub-article[1]/body[1],'(All|The) reviewers have opted to remain anonymous|The reviewer has opted to remain anonymous')) and not(parent::sub-article[1]/body[1]//ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/|doi.org/10.24072/pci.evolbiol')])" role="warning" flag="dl-ar" id="dec-letter-front-test-4">decision letter front-stub has only 1 contrib-group element. Is this correct? i.e. were all of the reviewers (aside from the reviewing editor) anonymous? The text 'The reviewers have opted to remain anonymous' or 'The reviewer has opted to remain anonymous' is not present and there is no link to Review commons or a Peer Community in Evolutionary Biology doi in the decision letter.</report>
-    </rule></pattern><pattern id="dec-letter-editor-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-editor-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]" id="dec-letter-editor-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-1" test="count(contrib[@contrib-type='editor']) = 1" role="warning" flag="dl-ar" id="dec-letter-editor-test-1">First contrib-group in decision letter must contain 1 and only 1 editor (contrib[@contrib-type='editor']).</assert>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-editor-test-2" test="contrib[not(@contrib-type) or @contrib-type!='editor']" role="warning" flag="dl-ar" id="dec-letter-editor-test-2">First contrib-group in decision letter contains a contrib which is not marked up as an editor (contrib[@contrib-type='editor']).</report>
-    </rule></pattern><pattern id="dec-letter-editor-tests-2-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-editor-tests-2-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[1]/contrib[@contrib-type='editor']" id="dec-letter-editor-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       <let name="role" value="role[1]"/>
       <!--<let name="top-role" value="ancestor::article//article-meta/contrib-group[@content-type='section']/contrib[e:get-name(name[1])=$name]/role"/>-->
@@ -1242,25 +1242,25 @@
       <!--<report test="($top-name!='') and ($top-name!=$name)"
         role="error"
         id="dec-letter-editor-test-5">In decision letter <value-of select="$name"/> is a <value-of select="$role"/>, but in the top-level article details <value-of select="$top-name"/> is the <value-of select="$role"/>.</report>-->
-    </rule></pattern><pattern id="dec-letter-reviewer-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-reviewer-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]" id="dec-letter-reviewer-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-1" test="count(contrib[@contrib-type='reviewer']) gt 0" role="error" flag="dl-ar" id="dec-letter-reviewer-test-1">Second contrib-group in decision letter must contain a reviewer (contrib[@contrib-type='reviewer']).</assert>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-2" test="contrib[not(@contrib-type) or @contrib-type!='reviewer']" role="error" flag="dl-ar" id="dec-letter-reviewer-test-2">Second contrib-group in decision letter contains a contrib which is not marked up as a reviewer (contrib[@contrib-type='reviewer']).</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-6" test="count(contrib[@contrib-type='reviewer']) gt 5" role="warning" flag="dl-ar" id="dec-letter-reviewer-test-6">Second contrib-group in decision letter contains more than five reviewers. Is this correct? Exeter: Please check with eLife. eLife: check eJP to ensure this is correct.</report>
-    </rule></pattern><pattern id="dec-letter-reviewer-tests-2-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-reviewer-tests-2-pattern"><rule context="sub-article[@article-type='decision-letter']/front-stub/contrib-group[2]/contrib[@contrib-type='reviewer']" id="dec-letter-reviewer-tests-2">
       <let name="name" value="e:get-name(name[1])"/>
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-reviewer-test-3" test="role='Reviewer'" role="error" flag="dl-ar" id="dec-letter-reviewer-test-3">Reviewer in decision letter front-stub must have the role 'Reviewer'. <value-of select="$name"/> has '<value-of select="role"/>'.</assert>
-    </rule></pattern><pattern id="dec-letter-body-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-body-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body" id="dec-letter-body-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-1" test="child::*[1]/local-name() = 'boxed-text'" role="error" flag="dl-ar" id="dec-letter-body-test-1">First child element in decision letter is not boxed-text. This is certainly incorrect.</assert>
-    </rule></pattern><pattern id="dec-letter-body-p-tests-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-body-p-tests-pattern"><rule context="sub-article[@article-type=('decision-letter','referee-report')]/body//p" id="dec-letter-body-p-tests">  
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-body-test-2" test="contains(lower-case(.),'this paper was reviewed by review commons') and not(child::ext-link[matches(@xlink:href,'http[s]?://www.reviewcommons.org/') and (lower-case(.)='review commons')])" role="error" flag="dl-ar" id="dec-letter-body-test-2">The text 'Review Commons' in '<value-of select="."/>' must contain an embedded link pointing to https://www.reviewcommons.org/.</report>
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-body-test-3" test="contains(lower-case(.),'reviewed and recommended by peer community in evolutionary biology') and not(child::ext-link[matches(@xlink:href,'doi.org/10.24072/pci.evolbiol')])" role="error" flag="dl-ar" id="dec-letter-body-test-3">The decision letter indicates that this article was reviewed by PCI evol bio, but there is no doi link with the prefix '10.24072/pci.evolbiol' which must be incorrect.</report>
-    </rule></pattern><pattern id="dec-letter-box-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="dec-letter-box-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body/boxed-text[1]" id="dec-letter-box-tests">  
       <let name="permitted-text-1" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below.$'"/>
       <let name="permitted-text-2" value="'^Our editorial process produces two outputs: \(?i\) public reviews designed to be posted alongside the preprint for the benefit of readers; \(?ii\) feedback on the manuscript for the authors, including requests for revisions, shown below. We also include an acceptance summary that explains what the editors found interesting or important about the work.$'"/>
       <let name="permitted-text-3" value="'^In the interests of transparency, eLife publishes the most substantive revision requests and the accompanying author responses.$'"/>
@@ -1270,65 +1270,65 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-2" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[contains(@xlink:href,'sciety.org/') and .='public reviews'])" role="error" flag="dl-ar" id="dec-letter-box-test-2">At the top of the decision letter, the text 'public reviews' must contain an embedded link to Sciety where the public review for this article's preprint is located.</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#dec-letter-box-test-3" test="matches(.,concat($permitted-text-1,'|',$permitted-text-2)) and not(descendant::ext-link[.='the preprint'])" role="error" flag="dl-ar" id="dec-letter-box-test-3">At the top of the decision letter, the text 'the preprint' must contain an embedded link to this article's preprint.</report>
-    </rule></pattern><pattern id="decision-missing-table-tests-pattern"><rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="decision-missing-table-tests-pattern"><rule context="sub-article[@article-type='decision-letter']" id="decision-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#decision-missing-table-test" test="contains(.,'letter table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="decision-missing-table-test">A decision letter table is referred to in the text, but there is no table in the decision letter with a label.</report>
-    </rule></pattern><pattern id="reply-front-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-front-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/front-stub" id="reply-front-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="reply-front-test-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
-    </rule></pattern><pattern id="reply-body-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-body-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body" id="reply-body-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-1" test="count(disp-quote[@content-type='editor-comment']) = 0" role="warning" flag="dl-ar" id="reply-body-test-1">author response doesn't contain a disp-quote. This is very likely to be incorrect. Please check the original file.</report>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-body-test-2" test="count(p) = 0" role="error" flag="dl-ar" id="reply-body-test-2">author response doesn't contain a p. This has to be incorrect.</report>
-    </rule></pattern><pattern id="reply-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//disp-quote" id="reply-disp-quote-tests">
       
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-disp-quote-test-1" test="@content-type='editor-comment'" role="warning" flag="dl-ar" id="reply-disp-quote-test-1">disp-quote in author reply does not have @content-type='editor-comment'. This is almost certainly incorrect.</assert>
-    </rule></pattern><pattern id="reply-missing-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-missing-disp-quote-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//p[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests">
       <let name="free-text" value="replace(         normalize-space(string-join(for $x in self::*/text() return $x,''))         ,' ','')"/>
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-1" test="(count(*)=1) and (child::italic) and ($free-text='')" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-1">para in author response is entirely in italics, but not in a display quote. Is this a quote which has been processed incorrectly?</report>
-    </rule></pattern><pattern id="reply-missing-disp-quote-tests-2-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-missing-disp-quote-tests-2-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]//italic[not(ancestor::disp-quote)]" id="reply-missing-disp-quote-tests-2">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-disp-quote-test-2" test="string-length(.) ge 50" role="warning" flag="dl-ar" id="reply-missing-disp-quote-test-2">A long piece of text is in italics in an Author response paragraph. Should it be captured as a display quote in a separate paragraph? '<value-of select="."/>' in '<value-of select="ancestor::*[local-name()='p'][1]"/>'</report>
-    </rule></pattern><pattern id="reply-missing-table-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="reply-missing-table-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]" id="reply-missing-table-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#reply-missing-table-test" test="contains(.,'response table') and not(descendant::table-wrap[label])" role="warning" flag="dl-ar" id="reply-missing-table-test">An author response table is referred to in the text, but there is no table in the response with a label.</report>
-    </rule></pattern><pattern id="sub-article-ext-link-tests-pattern"><rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-ext-link-tests-pattern"><rule context="sub-article//ext-link" id="sub-article-ext-link-tests">
       
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#paper-pile-test" test="contains(@xlink:href,'paperpile.com')" role="error" flag="dl-ar" id="paper-pile-test">In the <value-of select="if (ancestor::sub-article[@article-type='reply']) then 'author response' else 'decision letter'"/> the text '<value-of select="."/>' has an embedded hyperlink to <value-of select="@xlink:href"/>. The hyperlink should be removed (but the text retained).</report>
-    </rule></pattern><pattern id="sub-article-ref-p-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-ref-p-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body/*[last()][name()='p']" id="sub-article-ref-p-tests">
       
       <report see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#sub-article-ref-p-test" test="count(tokenize(lower-case(.),'doi\p{Zs}?:')) gt 2" role="warning" flag="dl-ar" id="sub-article-ref-p-test">The last paragraph of the author response looks like it contains various references. Should each reference be split out into its own paragraph? <value-of select="."/></report>
-    </rule></pattern><pattern id="sub-article-dl-image-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-dl-image-tests-pattern"><rule context="sub-article[@article-type='decision-letter']/body//bold" id="sub-article-dl-image-tests">
       
       <report test="matches(.,'[Dd]ecision letter image \d')" role="error" flag="dl-ar" id="sub-article-dl-image-1">Decision letter contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the decision letter image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Dd]ecision letter table \d')" role="error" flag="dl-ar" id="sub-article-dl-image-2">Decision letter contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the decision letter table is missing, then it should be added).</report>
-    </rule></pattern><pattern id="sub-article-pr-image-tests-pattern"><rule context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-pr-image-tests-pattern"><rule context="sub-article[@article-type='referee-report']/body//bold" id="sub-article-pr-image-tests">
       
       <report test="matches(.,'[Rr]eview image \d')" role="error" flag="dl-ar" id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Rr]eview table \d')" role="error" flag="dl-ar" id="sub-article-pr-image-2">Public review contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the review table is missing, then it should be added).</report>
-    </rule></pattern><pattern id="sub-article-ar-image-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-ar-image-tests-pattern"><rule context="sub-article[@article-type=('reply','author-comment')]/body//bold" id="sub-article-ar-image-tests">
       
       <report test="matches(.,'[Aa]uthor response image \d')" role="error" flag="dl-ar" id="sub-article-ar-image-1">Author response contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the author response image is missing, then it should be added).</report>
       
       <report test="matches(.,'[Aa]uthor response table \d')" role="error" flag="dl-ar" id="sub-article-ar-image-2">Author response contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the author response table is missing, then it should be added).</report>
-    </rule></pattern><pattern id="sub-article-gen-image-tests-pattern"><rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-gen-image-tests-pattern"><rule context="sub-article/body//bold[not(matches(.,'[Dd]ecision letter (image|table) \d|[Rr]eview (image|table) \d|[Aa]uthor response (image|table) \d'))]" id="sub-article-gen-image-tests">
       
       <report test="matches(.,'image \d')" role="error" flag="dl-ar" id="sub-article-gen-image-1"><value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions an image: <value-of select="."/>. Is there a missing image?</report>
       
       <report test="matches(.,'table \d')" role="error" flag="dl-ar" id="sub-article-gen-image-2"><value-of select="ancestor::sub-article/front-stub//article-title"/> contains bold text that mentions a table: <value-of select="."/>. Is there a missing table?</report>
-    </rule></pattern>
+    </rule></sch:pattern>
   
-  <pattern id="ref-report-front-pattern"><rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-report-front-pattern"><rule context="sub-article[@article-type='referee-report']/front-stub" id="ref-report-front">
       <let name="count" value="count(contrib-group)"/>
       
       <assert see="https://elifeproduction.slab.com/posts/decision-letters-and-author-responses-rr1pcseo#dec-letter-front-test-1" test="count(article-id[@pub-id-type='doi']) = 1" role="error" flag="dl-ar" id="ref-report-front-1">sub-article front-stub must contain article-id[@pub-id-type='doi'].</assert>
       
       <assert test="$count = 1" role="error" flag="dl-ar" id="ref-report-front-2">sub-article front-stub must contain one, and only one contrib-group elements.</assert>
-    </rule></pattern><pattern id="sub-article-contrib-tests-pattern"><rule context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-contrib-tests-pattern"><rule context="sub-article[@article-type=('editor-report','referee-report','author-comment')]/front-stub/contrib-group/contrib" id="sub-article-contrib-tests">
       
       <assert test="@contrib-type='author'" role="error" flag="dl-ar" id="sub-article-contrib-test-1">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have the attribute contrib-type='author'.</assert>
       
@@ -1338,7 +1338,7 @@
       
       <assert test="role" role="error" flag="dl-ar" id="sub-article-contrib-test-4">contrib inside sub-article with article-type '<value-of select="ancestor::sub-article/@article-type"/>' must have a child role element.</assert>
       
-    </rule></pattern><pattern id="sub-article-role-tests-pattern"><rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sub-article-role-tests-pattern"><rule context="sub-article/front-stub/contrib-group/contrib/role" id="sub-article-role-tests">
       <let name="sub-article-type" value="ancestor::sub-article[1]/@article-type"/>
       <let name="sub-title" value="ancestor::sub-article[1]/front-stub[1]/title-group[1]/article-title[1]"/>
       
@@ -1354,17 +1354,17 @@
       
       <report test="@specific-use='referee' and .!='Reviewer'" role="error" flag="dl-ar" id="sub-article-role-test-6">A role element with the attribute specific-use='referee' must contain the text 'Reviewer'. This one has '<value-of select="."/>'.</report>
       
-    </rule></pattern><pattern id="ref-report-editor-tests-pattern"><rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-report-editor-tests-pattern"><rule context="sub-article[@article-type='referee-report']/front-stub[lower-case(title-group[1]/article-title[1])='recommendations for authors']" id="ref-report-editor-tests">
       
       <assert test="count(descendant::contrib[role[@specific-use='editor']]) = 1" role="error" flag="dl-ar" id="ref-report-editor-1">The Recommendations for authors must contain 1 and only 1 editor (a contrib with a role[@specific-use='editor']). This one has <value-of select="count(descendant::contrib[role[@specific-use='editor']])"/>.</assert>
       
       <assert test="count(descendant::contrib[role[@specific-use='referee']]) &gt; 0" role="error" flag="dl-ar" id="ref-report-reviewer-1">The Recommendations for authors must contain 1 or more reviewers (a contrib with a role[@specific-use='referee']). This one has 0.</assert>
-    </rule></pattern><pattern id="ref-report-reviewer-tests-pattern"><rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
+    </rule></sch:pattern><sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-report-reviewer-tests-pattern"><rule context="sub-article[@article-type='referee-report' and contains(lower-case(front-stub[1]/title-group[1]/article-title[1]),'public review')]/front-stub" id="ref-report-reviewer-tests">
       
       <assert test="count(descendant::contrib[role[@specific-use='referee']])=1" role="error" flag="dl-ar" id="ref-report-reviewer-test-1">A public review must contain a single contributor which is a reviewer (a contrib with a child role[@specific-use='referee']). This one contains <value-of select="count(descendant::contrib[role[@specific-use='referee']])"/>.</assert>
       
       <report test="descendant::contrib[not(role[@specific-use='referee'])]" role="error" flag="dl-ar" id="ref-report-reviewer-test-2">A public review cannot contain a contributor which is not a reviewer (i.e. a contrib without a child role[@specific-use='referee']).</report>
-    </rule></pattern>
+    </rule></sch:pattern>
   
   
   
@@ -1400,7 +1400,7 @@
   
   
   
- <pattern id="feature-template-tests-pattern"><rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
+ <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="feature-template-tests-pattern"><rule context="article[descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject = $features-subj]" id="feature-template-tests">
      <let name="template" value="descendant::article-meta/custom-meta-group/custom-meta[meta-name='Template']/meta-value[1]"/>
      <let name="type" value="descendant::article-meta/article-categories/subj-group[@subj-group-type='display-channel']/subject[1]"/>
      
@@ -1421,7 +1421,7 @@
      
      
      
-   </rule></pattern>
+   </rule></sch:pattern>
   
   
   

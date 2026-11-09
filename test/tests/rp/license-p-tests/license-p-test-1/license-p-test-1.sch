@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="license-p-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="license-p-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]//permissions/license/license-p" id="license-p-tests">
       <let name="license-link" value="parent::license/@*:href"/>
       <let name="license-type" value="if (contains($license-link,'//creativecommons.org/publicdomain/zero/1.0/')) then 'cc0' else if (contains($license-link,'//creativecommons.org/licenses/by/4.0/')) then 'ccby' else ('unknown')"/>
@@ -1303,8 +1303,8 @@
       <let name="ccby-text" value="'This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.'"/>
       <report test="($license-type='ccby') and .!=$ccby-text" role="error" id="license-p-test-1">[license-p-test-1] The text in license-p is incorrect (<value-of select="."/>). Since this article is CCBY licensed, the text should be <value-of select="$ccby-text"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]//permissions/license/license-p" role="error" id="license-p-tests-xspec-assert">front[e:is-reviewed-preprint(.)]//permissions/license/license-p must be present.</assert>
     </rule>

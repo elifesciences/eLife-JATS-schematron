@@ -968,7 +968,7 @@
         <name/> is not allowed as a child of table-wrap.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-children-xspec-assert">table-wrap/* must be present.</assert>
     </rule>

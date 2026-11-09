@@ -966,7 +966,7 @@
       <report test="matches(.,'[Aa]uthor response table \d')" role="error" flag="dl-ar" id="sub-article-ar-image-2">Author response contains bold text that mentions an table: <value-of select="."/>. This should be changed to a citation (and if the author response table is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type=('reply','author-comment')]/body//bold" role="error" id="sub-article-ar-image-tests-xspec-assert">sub-article[@article-type=('reply','author-comment')]/body//bold must be present.</assert>
     </rule>

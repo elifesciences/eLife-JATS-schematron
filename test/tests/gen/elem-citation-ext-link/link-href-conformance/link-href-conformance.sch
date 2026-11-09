@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#link-href-conformance" test="matches(@xlink:href,'^https?://|^s?ftp://')" role="error" id="link-href-conformance">@xlink:href must start with either "http://", "https://", "sftp://" or "ftp://". The &lt;ext-link&gt; element in Reference '<value-of select="ancestor::ref/@id"/>' is '<value-of select="@xlink:href"/>', which does not.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/element-citation/ext-link" role="error" id="elem-citation-ext-link-xspec-assert">ref/element-citation/ext-link must be present.</assert>
     </rule>

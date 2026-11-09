@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="inline-formula-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="inline-formula-checks-pattern">
     <rule context="inline-formula" id="inline-formula-checks">
       <assert test="inline-graphic or alternatives[inline-graphic]" role="error" id="inline-formula-content-conformance">[inline-formula-content-conformance] <value-of select="name()"/> does not have a child inline-graphic element, which must be incorrect.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::inline-formula" role="error" id="inline-formula-checks-xspec-assert">inline-formula must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/versioning-li6miptl#hrxuv-corr-self-uri-presence" test="descendant::self-uri" role="error" id="corr-self-uri-presence">Correction notices should not contain a self-uri element (as the PDF is not published).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type = 'correction']" role="error" id="correction-tests-xspec-assert">article[@article-type = 'correction'] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#sec-test-4" test="matches(lower-case(title[1]),'^ethics| ethics$| ethics ')" role="warning" id="sec-test-4">Section has a title '<value-of select="title[1]"/>'. Is it a duplicate of, or very similar to, the ethics statement (in the article details page)? If so, it should be removed. If not, then which statement is correct? The one in this section or '<value-of select="string-join(         ancestor::article//fn-group[@content-type='ethics-information']/fn         ,' '         )"/>'?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])]" role="error" id="res-ethics-sec-xspec-assert">article[@article-type='research-article']//sec[not(descendant::xref[@ref-type='bibr'])] must be present.</assert>
     </rule>

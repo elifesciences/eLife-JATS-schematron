@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#all-caps-surname" test="matches(surname[1],'^[A-Z]*$')" role="warning" id="all-caps-surname">surname in ref '<value-of select="ancestor::ref/@id"/>' is composed of only capitalised letters - <value-of select="surname[1]"/>. Should this be captured as a collab-name? If not, Should it be - <value-of select="concat(substring(surname[1],1,1),lower-case(substring(surname[1],2)))"/>?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
     </rule>

@@ -970,7 +970,7 @@
       </report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
     </rule>

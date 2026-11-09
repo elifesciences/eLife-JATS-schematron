@@ -967,7 +967,7 @@
       <report test="matches(lower-case($article-text),'biorend[eo]r')" role="warning" id="biorender-check">Article text contains a reference to BioRender. Any figures created with BioRender should include a sentence in the caption in the format: "Created with BioRender.com/{figure-code}".</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article" role="error" id="biorender-tests-xspec-assert">article must be present.</assert>
     </rule>

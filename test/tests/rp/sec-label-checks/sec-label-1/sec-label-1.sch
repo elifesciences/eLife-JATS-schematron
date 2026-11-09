@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="sec-label-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="sec-label-checks-pattern">
     <rule context="sec/label" id="sec-label-checks">
       <report test="matches(.,'[2-4]D')" role="warning" sqf:fix="move-to-title delete-node" id="sec-label-1">[sec-label-1] Label for section contains 2D or similar - '<value-of select="."/>'. Is it really a label? Or just part of the title?</report>
       <sqf:fix id="move-to-title" use-when="parent::sec/title">
@@ -1314,8 +1314,8 @@
           <sqf:delete match="."/>
         </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec/label" role="error" id="sec-label-checks-xspec-assert">sec/label must be present.</assert>
     </rule>

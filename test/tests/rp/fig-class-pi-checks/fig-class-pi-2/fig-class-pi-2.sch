@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="fig-class-pi-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-class-pi-checks-pattern">
     <rule context="processing-instruction('fig-class')" id="fig-class-pi-checks">
       <let name="supported-values" value="('full', 'half', 'quarter')"/>
       <let name="next-node-name" value="following-sibling::node()[not(self::text())][1]/name()"/>
       <assert test="normalize-space(.)=$supported-values" role="error" id="fig-class-pi-2">[fig-class-pi-2] 'fig-class' processing-instructions must contain one of the following values: <value-of select="string-join($supported-values,'; ')"/>. '<value-of select="."/>' is not supported.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::processing-instruction('fig-class')" role="error" id="fig-class-pi-checks-xspec-assert">processing-instruction('fig-class') must be present.</assert>
     </rule>

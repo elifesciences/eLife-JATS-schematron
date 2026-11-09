@@ -973,7 +973,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-sup-test-2" test="$label-conforms" role="error" id="fig-sup-test-2">fig in the body of the article which has a @specific-use='child-fig' must have a label in the format 'Figure 0—figure supplement 0.' (where 0 is one or more digits).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//fig[@specific-use='child-fig']" role="error" id="fig-sup-tests-xspec-assert">article/body//fig[@specific-use='child-fig'] must be present.</assert>
     </rule>

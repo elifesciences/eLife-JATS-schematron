@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#surname-count" test="count(surname) = 1" role="error" id="surname-count">ref '<value-of select="ancestor::ref/@id"/>' has an <value-of select="$type"/> with <value-of select="count(surname)"/> surnames - <value-of select="."/> - which is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation//name" role="error" id="ref-name-tests-xspec-assert">element-citation//name must be present.</assert>
     </rule>

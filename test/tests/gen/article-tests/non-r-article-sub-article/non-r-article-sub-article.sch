@@ -968,7 +968,7 @@
         <value-of select="@article-type"/> type articles cannot have sub-articles (peer review materials).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article" role="error" id="article-tests-xspec-assert">article must be present.</assert>
     </rule>

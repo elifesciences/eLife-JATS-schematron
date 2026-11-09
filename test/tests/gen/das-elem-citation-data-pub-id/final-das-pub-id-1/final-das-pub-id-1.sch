@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#final-das-pub-id-1" test="normalize-space(.)!='' and not(@pub-id-type=('accession', 'doi'))" role="error" id="final-das-pub-id-1">Each pub-id element must have an @pub-id-type which is either accession or doi.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id" role="error" id="das-elem-citation-data-pub-id-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data']/pub-id must be present.</assert>
     </rule>

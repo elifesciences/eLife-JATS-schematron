@@ -968,7 +968,7 @@
       <report test="count(sub-article[@article-type='editor-report']) gt 1" role="error" flag="dl-ar" id="editor-report-2">There cannot be more than one eLife Assessment or Editor's evaluation. This one has <value-of select="count(sub-article[@article-type='editor-report'])"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article']" role="error" id="research-article-xspec-assert">article[@article-type='research-article'] must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#email-test" test="matches(upper-case(.),'^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$')" role="error" id="email-test">email element must contain a valid email address. Currently it is <value-of select="self::*"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta//email" role="error" id="email-tests-xspec-assert">article-meta//email must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report test=". = 'SM'" role="warning" id="service-mark-symbol-2-sup">'<name/>' element contains the text 'SM', which means that it resembles the service mark symbol. The service mark symbol is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sup" role="error" id="unallowed-symbol-tests-sup-xspec-assert">sup must be present.</assert>
     </rule>

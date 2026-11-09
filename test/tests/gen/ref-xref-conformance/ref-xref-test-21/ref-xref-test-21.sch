@@ -977,7 +977,7 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-21" test="matches($pre-sentence,'[A-Za-z0-9]\($')" role="warning" id="ref-xref-test-21">citation is preceded by a letter or number immediately followed by '('. Is there a space missing before the '('?  - '<value-of select="concat($pre-sentence,.)"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

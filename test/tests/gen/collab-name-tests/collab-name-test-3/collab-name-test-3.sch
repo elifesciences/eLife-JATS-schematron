@@ -967,7 +967,7 @@
         <name/> must only be captured as a descendant of ref or article-meta. This one is not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::collab-name" role="error" id="collab-name-tests-xspec-assert">collab-name must be present.</assert>
     </rule>

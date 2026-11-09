@@ -968,7 +968,7 @@
         <value-of select="e:get-name(parent::*/name[1])"/>'s ORCiD is the same as another author's - <value-of select="."/>. Duplicated ORCiDs are not allowed. If it is clear who the ORCiD belongs to, remove the duplicate. If it is not clear please add an author query - 'This ORCiD - <value-of select="."/> - is associated with <value-of select="count(ancestor::contrib-group//contrib-id[@contrib-id-type='orcid' and .=$text])"/> authors. Please confirm which author this ORCiD belongs to.'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
     </rule>

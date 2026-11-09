@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="math-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="math-tests-pattern">
     <rule context="*:math" id="math-tests">
       <let name="data" value="replace(normalize-space(.),'\p{Zs}','')"/>
       <assert test="@display" role="warning" id="math-display-absence">[math-display-absence] <name/> does not have a display attribute. Since this math is a descendant of <value-of select="ancestor::*[name()=('disp-formula','inline-formula')]/name()"/>, is should be display="<value-of select="if (ancestor::disp-formula) then 'block' else 'inline'"/>".</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::*:math" role="error" id="math-tests-xspec-assert">*:math must be present.</assert>
     </rule>

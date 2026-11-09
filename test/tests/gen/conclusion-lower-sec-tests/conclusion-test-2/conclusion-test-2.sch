@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-structure-5nhfjxj0#conclusion-test-2" test="matches($title,'conclusions?')" role="warning" id="conclusion-test-2">Level <value-of select="count(ancestor::sec) + 1"/> section with the title '<value-of select="."/>' should likely be made a level 2 section.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title" role="error" id="conclusion-lower-sec-tests-xspec-assert">article[@article-type='research-article' and not(descendant::article-meta//subj-group[@subj-group-type]/subject=('Feature Article','Review Article','Short Report'))]/body//sec/sec//sec/title must be present.</assert>
     </rule>

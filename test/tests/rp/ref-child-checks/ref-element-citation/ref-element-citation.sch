@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-child-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-child-checks-pattern">
     <rule context="ref/*" id="ref-child-checks">
       <let name="allowed-children" value="('label','mixed-citation','element-citation')"/>
       <report test="name()='element-citation'" role="warning" id="ref-element-citation">[ref-element-citation] mixed-citation is typically used for references in Reviewed preprints instead of <name/>. Please check this refeerence displays as corrceted.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref/*" role="error" id="ref-child-checks-xspec-assert">ref/* must be present.</assert>
     </rule>

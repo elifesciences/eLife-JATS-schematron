@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-6-2" test="count(../elocation-id) eq 0 and count(../comment) eq 0" role="error" id="err-elem-cit-journal-6-2">If &lt;fpage&gt; is present, neither &lt;elocation-id&gt; nor &lt;comment&gt;In press&lt;/comment&gt; may be present. Reference '<value-of select="ancestor::ref/@id"/>' has &lt;fpage&gt; and one of those elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/fpage" role="error" id="elem-citation-journal-fpage-xspec-assert">element-citation[@publication-type='journal']/fpage must be present.</assert>
     </rule>

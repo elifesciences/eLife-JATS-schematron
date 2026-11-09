@@ -966,7 +966,7 @@
       <assert test="title = 'Additional files'" role="error" id="add-files-1">The additional files section (sec[@sec-type='supplementary-material']) must have a title which is 'Additional files'. This one does not.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='supplementary-material']" role="error" id="additional-files-tests-xspec-assert">sec[@sec-type='supplementary-material'] must be present.</assert>
     </rule>

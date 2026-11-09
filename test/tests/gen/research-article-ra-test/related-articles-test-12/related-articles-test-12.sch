@@ -966,7 +966,7 @@
       <assert test="@related-article-type=('article-reference', 'commentary', 'corrected-article', 'retracted-article')" role="error" id="related-articles-test-12">The only types of related-article link allowed in a research article are 'article-reference' (link to another research article), 'commentary' (link to an insight), 'corrected-article' (link to a correction notice) or 'retracted-article' (link to retraction notice). The link to <value-of select="@xlink:href"/> is a <value-of select="@related-article-type"/> type link.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[@article-type='research-article']//related-article" role="error" id="research-article-ra-test-xspec-assert">article[@article-type='research-article']//related-article must be present.</assert>
     </rule>

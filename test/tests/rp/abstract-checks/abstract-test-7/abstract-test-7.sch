@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="abstract-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="abstract-checks-pattern">
     <rule context="abstract[parent::article-meta]" id="abstract-checks">
       <let name="allowed-types" value="('structured','plain-language-summary','teaser','summary','graphical','video')"/>
       <let name="impact-statement-elems" value="('title','p','italic','bold','sup','sub','sc','monospace','xref')"/>
       <let name="word-count" value="count(for $x in tokenize(normalize-space(replace(.,'\p{P}','')),' ') return $x)"/>
       <report test="@abstract-type='teaser' and descendant::*[not(name()=$impact-statement-elems)]" role="error" id="abstract-test-7">[abstract-test-7] abstract has the abstract-type 'teaser', meaning it is equivalent to an impact statement, but it has the following descendant elements, which prove it needs a different type <value-of select="string-join(distinct-values(descendant::*[not(name()=$impact-statement-elems)]/name()),'; ')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[parent::article-meta]" role="error" id="abstract-checks-xspec-assert">abstract[parent::article-meta] must be present.</assert>
     </rule>

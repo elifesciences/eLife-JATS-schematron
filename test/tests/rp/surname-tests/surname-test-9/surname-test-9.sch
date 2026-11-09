@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="surname-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="surname-tests-pattern">
     <rule context="contrib-group//name/surname" id="surname-tests">
       <report test="matches(.,'[\(\)\[\]]')" role="warning" id="surname-test-9">[surname-test-9] surname contains brackets - '<value-of select="."/>'. Should the bracketed text be placed in the given-names field instead?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-group//name/surname" role="error" id="surname-tests-xspec-assert">contrib-group//name/surname must be present.</assert>
     </rule>

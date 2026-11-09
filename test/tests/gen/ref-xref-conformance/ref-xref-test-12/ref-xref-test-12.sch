@@ -977,7 +977,7 @@
       <report see="https://elifeproduction.slab.com/posts/reference-citations-vv87m87l#ref-xref-test-12" test="matches($post-text,'^[\)]+\p{Zs}*who|^[\)]+\p{Zs}*have|^[\)]+\p{Zs}*found|^[\)]+\p{Zs}*used|^[\)]+\p{Zs}*demonstrate|^[\)]+\p{Zs}*follow[s]?|^[\)]+\p{Zs}*followed')" role="warning" id="ref-xref-test-12">'<value-of select="concat(.,substring($post-text,1,10))"/>' - citation is followed by a bracket and a possessive, preposition or verb which suggests the bracket is unnecessary.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-xref-conformance-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

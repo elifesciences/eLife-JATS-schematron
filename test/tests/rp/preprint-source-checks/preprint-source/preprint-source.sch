@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="preprint-source-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="preprint-source-checks-pattern">
     <rule context="mixed-citation[@publication-type='preprint']/source" id="preprint-source-checks">
       <let name="lc" value="lower-case(.)"/>
       <report test="matches($lc,'^(\.\s*)?in[^a-z]')" role="warning" id="preprint-source">[preprint-source] Preprint reference (<value-of select="if (ancestor::ref/@id) then concat('id ',ancestor::ref/@id) else 'no id'"/>) has a source that starts with 'In ', '<value-of select="."/>'. Should that text be moved out of the source? And is it a different type of reference?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mixed-citation[@publication-type='preprint']/source" role="error" id="preprint-source-checks-xspec-assert">mixed-citation[@publication-type='preprint']/source must be present.</assert>
     </rule>

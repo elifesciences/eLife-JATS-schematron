@@ -971,7 +971,7 @@
         <value-of select="self::*/local-name()"/> is not allowed as a child of author.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/*" role="error" id="author-children-tests-v2-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/* must be present.</assert>
     </rule>

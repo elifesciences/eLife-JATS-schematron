@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="orcid-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="orcid-tests-pattern">
     <rule context="contrib-id[@contrib-id-type='orcid']" id="orcid-tests">
       <report test="following-sibling::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-test-5">[orcid-test-5] <value-of select="parent::*/name()"/> <value-of select="if (parent::*/name) then concat('for ',e:get-name(parent::*/name[1])) else ''"/> has two or more ORCID IDs. An author should only have one ORCID ID. Please check which is correct, remove any incorrect or duplicate ORCID IDs and (if appropriate) preference the authenticated ORCID ID.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib-id[@contrib-id-type='orcid']" role="error" id="orcid-tests-xspec-assert">contrib-id[@contrib-id-type='orcid'] must be present.</assert>
     </rule>

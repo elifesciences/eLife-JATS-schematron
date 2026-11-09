@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-2" test="not(*) and normalize-space(.)=''" role="error" id="table-title-test-2">The title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is empty which is not allowed.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

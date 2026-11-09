@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#err-elem-cit-software-10-2" test="count(*) = count(sub | sup | italic)" role="error" id="err-elem-cit-software-10-2">An &lt;data-title&gt; element in a reference may contain characters and &lt;italic&gt;, &lt;sub&gt;, and &lt;sup&gt;. No other elements are allowed. Reference '<value-of select="ancestor::ref/@id"/>' does not meet this requirement.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type = 'software']/data-title" role="error" id="elem-citation-software-data-title-xspec-assert">element-citation[@publication-type = 'software']/data-title must be present.</assert>
     </rule>

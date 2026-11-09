@@ -1295,14 +1295,14 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="author-notes-fn-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="author-notes-fn-checks-pattern">
     <rule context="article/front/article-meta/author-notes/fn" id="author-notes-fn-checks">
       <let name="id" value="@id"/>
       <let name="known-types" value="('abbr','con','coi-statement','deceased','equal','financial-disclosure','presented-at','present-address','supported-by')"/>
       <report test="@fn-type='financial-disclosure' and preceding-sibling::fn[@fn-type='coi-statement']" role="warning" id="author-fn-8">[author-fn-8] footnote with id <value-of select="$id"/> has the fn-type '<value-of select="@fn-type"/>', but there's another footnote with the type 'coi-statement'. Are two separate notes necessary? Are they duplicates?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/author-notes/fn" role="error" id="author-notes-fn-checks-xspec-assert">article/front/article-meta/author-notes/fn must be present.</assert>
     </rule>

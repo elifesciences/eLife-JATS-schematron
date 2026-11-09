@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h07qo-aff-institution-wrap-test-2" test="parent::aff" role="error" id="aff-institution-wrap-test-2">institution-wrap must be a child of aff. This one has <value-of select="parent::*/name()"/> as its parent.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff//institution-wrap must be present.</assert>
     </rule>

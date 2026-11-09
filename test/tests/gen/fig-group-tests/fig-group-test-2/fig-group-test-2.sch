@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-group-test-2" test="not(child::fig[@specific-use='child-fig']) and not(descendant::media[starts-with(@mimetype,'video')])" role="error" id="fig-group-test-2">fig-group does not contain a figure supplement or a figure-level video, which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig-group" role="error" id="fig-group-tests-xspec-assert">fig-group must be present.</assert>
     </rule>

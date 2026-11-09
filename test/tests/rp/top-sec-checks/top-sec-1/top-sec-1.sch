@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="top-sec-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="top-sec-checks-pattern">
     <rule context="sec[(parent::body or parent::back) and title]" id="top-sec-checks">
       <let name="top-sec-phrases" value="('(results?|conclusions?)( (and|&amp;) discussion)?',             'discussion( (and|&amp;) (results?|conclusions?))?')"/>
       <let name="methods-phrases" value="('(materials? (and|&amp;)|experimental)?\s?methods?( details?|summary|(and|&amp;) materials?)?',             '(supplement(al|ary)? )?materials( (and|&amp;) correspondence)?',             '(model|methods?)(( and| &amp;) (results|materials?))?')"/>
@@ -1303,8 +1303,8 @@
       <let name="sec-regex" value="concat('^(',string-join(($top-sec-phrases,$methods-phrases),'|'),')$')"/>
       <report test="parent::body and not(matches(lower-case(title[1]),$sec-regex)) and preceding-sibling::sec/title[1][matches(lower-case(.),$methods-regex)]" role="warning" id="top-sec-1">[top-sec-1] Section with the title '<value-of select="title[1]"/>' is a child of body. Should it be a child of another section (e.g. methods) or placed within back (perhaps within an 'Additional infomation' section)?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[(parent::body or parent::back) and title]" role="error" id="top-sec-checks-xspec-assert">sec[(parent::body or parent::back) and title] must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#table-title-test-5" test="string-length(.) gt 250" role="warning" id="table-title-test-5">title for <value-of select="replace(ancestor::table-wrap[1]/label[1],'\.$','')"/> is longer than 250 characters. Is it a caption instead?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/caption/title" role="error" id="table-title-tests-2-xspec-assert">table-wrap/caption/title must be present.</assert>
     </rule>

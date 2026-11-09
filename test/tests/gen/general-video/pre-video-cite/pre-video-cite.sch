@@ -973,7 +973,7 @@
       <assert see="https://elifeproduction.slab.com/posts/videos-m0p9ve8m#pre-video-cite" test="$xrefs//*:match" role="warning" id="pre-video-cite">There is no citation to <value-of select="$label"/>. Ensure to query the author asking for a citation.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
     </rule>

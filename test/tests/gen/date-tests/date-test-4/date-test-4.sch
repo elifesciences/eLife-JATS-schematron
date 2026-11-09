@@ -966,7 +966,7 @@
       <assert test="@iso-8601-date = concat(year[1],'-',month[1],'-',day[1])" role="error" id="date-test-4">date must have an @iso-8601-date the value of which must be the values of the year-month-day elements. Currently it is <value-of select="@iso-8601-date"/>, when it should be <value-of select="concat(year,'-',month,'-',day)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::date" role="error" id="date-tests-xspec-assert">date must be present.</assert>
     </rule>

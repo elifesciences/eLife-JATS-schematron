@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="table-wrap-child-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="table-wrap-child-checks-pattern">
     <rule context="table-wrap/*" id="table-wrap-child-checks">
       <let name="supported-table-wrap-children" value="('label','caption','graphic','alternatives','table','permissions','table-wrap-foot')"/>
       <assert test="name()=$supported-table-wrap-children" role="error" sqf:fix="delete-node" id="table-wrap-child-conformance">[table-wrap-child-conformance] <value-of select="name()"/> is not supported as a child of &lt;table-wrap&gt;.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap/*" role="error" id="table-wrap-child-checks-xspec-assert">table-wrap/* must be present.</assert>
     </rule>

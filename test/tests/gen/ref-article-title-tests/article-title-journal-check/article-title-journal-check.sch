@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/journal-references-i098980k#article-title-journal-check" test="matches(.,' [Jj]ournal ')" role="warning" id="article-title-journal-check">ref '<value-of select="ancestor::ref/@id"/>' has an article-title which contains the text ' journal '. Is a journal name (source) erroneously included in the title? - '<value-of select="."/>'</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']/article-title" role="error" id="ref-article-title-tests-xspec-assert">element-citation[@publication-type='journal']/article-title must be present.</assert>
     </rule>

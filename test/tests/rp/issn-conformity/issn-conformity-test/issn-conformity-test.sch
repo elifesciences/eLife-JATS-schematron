@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="issn-conformity-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="issn-conformity-pattern">
     <rule context="ref//pub-id[@pub-id-type='issn']|issn" id="issn-conformity">
       <assert test="e:is-valid-issn(.)" role="error" id="issn-conformity-test">[issn-conformity-test] <name/> element contains an invalid ISSN - '<value-of select="."/>'. Should it be captured as another type of id?</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref//pub-id[@pub-id-type='issn'] or descendant::issn" role="error" id="issn-conformity-xspec-assert">ref//pub-id[@pub-id-type='issn']|issn must be present.</assert>
     </rule>

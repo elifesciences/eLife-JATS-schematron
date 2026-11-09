@@ -969,7 +969,7 @@
       <report see="https://elifeproduction.slab.com/posts/archiving-code-zrfi30c5#software-heritage-test-4" test="$ref and not(preceding::xref[@rid=$rid]) and not(some $x in preceding-sibling::ext-link[position() le 3] satisfies replace(lower-case($x/@xlink:href),'/$','') = $origin)" role="warning" id="software-heritage-test-4">The first citation for a Software heritage reference should follow the original link for the software. This Software heritage citation (<value-of select="."/>) is for a reference which has '<value-of select="$origin"/>' as its origin URL, but there is no link preceding the citation with that same URL.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr']" role="error" id="software-heritage-cite-tests-xspec-assert">article[descendant::ref[descendant::ext-link[1][contains(@xlink:href,'softwareheritage')]]]//xref[@ref-type='bibr'] must be present.</assert>
     </rule>

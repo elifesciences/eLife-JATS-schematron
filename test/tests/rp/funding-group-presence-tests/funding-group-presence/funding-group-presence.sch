@@ -1295,9 +1295,9 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="funding-group-presence-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-group-presence-tests-pattern">
     <rule context="funding-group" id="funding-group-presence-tests">
       <report test="." role="warning" id="funding-group-presence">[funding-group-presence] This Reviewed preprint contains a funding-group. Please check the details carefully and correct, as necessary.</report>
     </rule>
-  </pattern>
+  </sch:pattern>
 </schema>

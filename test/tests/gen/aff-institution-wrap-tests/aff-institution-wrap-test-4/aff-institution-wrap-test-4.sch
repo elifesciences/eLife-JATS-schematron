@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hjf05-aff-institution-wrap-test-4" test="count(institution-id) = 1" role="error" id="aff-institution-wrap-test-4">institution-wrap must contain 1 and only 1 institution-id elements. This one has <value-of select="count(institution-id)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff//institution-wrap" role="error" id="aff-institution-wrap-tests-xspec-assert">aff//institution-wrap must be present.</assert>
     </rule>

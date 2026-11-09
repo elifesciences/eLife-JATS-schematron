@@ -967,7 +967,7 @@
         <name/> element in funding entry for <value-of select="parent::institution-wrap/institution"/> is <value-of select="."/>. This is an uncommon funder - should the funder be listed as 'Wellcome Trust' (http://dx.doi.org/10.13039/100010269) instead.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//award-group//institution-wrap/institution-id" role="error" id="institution-id-tests-xspec-assert">article//award-group//institution-wrap/institution-id must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/funding-3sv64358#par-name-test-1" test="contains(.,'.')" role="error" id="par-name-test-1">Author name in funding entry contains a full stop - <value-of select="e:get-name(.)"/>. Please remove the full stop.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group//principal-award-recipient/name" role="error" id="par-name-tests-xspec-assert">funding-group//principal-award-recipient/name must be present.</assert>
     </rule>

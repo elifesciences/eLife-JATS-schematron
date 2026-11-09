@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#dupe-cont-test-v2" test="empty($indistinct-conts)" role="error" id="dupe-cont-test-v2">Author <value-of select="if (name) then e:get-name(name[1]) else if (collab or collab-wrap) then e:get-surname(.) else ('with no name')"/> has duplicated contributions - <value-of select="$indistinct-conts"/> - which is incorrect.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']" role="error" id="duplicated-cont-tests-v2-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author'] must be present.</assert>
     </rule>

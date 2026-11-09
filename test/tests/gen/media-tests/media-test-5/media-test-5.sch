@@ -970,7 +970,7 @@
         <value-of select="label"/> media with animation type label must have a mimetype ending with 'gif' (or mime-subtype='gif'). This one has '<value-of select="$file"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media" role="error" id="media-tests-xspec-assert">media must be present.</assert>
     </rule>

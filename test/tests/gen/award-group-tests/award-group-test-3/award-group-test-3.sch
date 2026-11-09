@@ -968,7 +968,7 @@
       <assert see="https://elifeproduction.slab.com/posts/funding-3sv64358#award-group-test-3" test="principal-award-recipient" role="warning" id="award-group-test-3">award-group should almost always contain a principal-award-recipient. If it is not clear which author(s) are associated with this funding, please query with the authors, and only leave it without an author if appropriate.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-group/award-group" role="error" id="award-group-tests-xspec-assert">funding-group/award-group must be present.</assert>
     </rule>

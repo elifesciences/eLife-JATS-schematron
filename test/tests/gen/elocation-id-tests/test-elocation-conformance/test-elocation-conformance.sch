@@ -968,7 +968,7 @@
       <report test="not($is-prc) and . != concat('e' , $article-id)" role="error" id="test-elocation-conformance">elocation-id is incorrect. In non-PRC articles its value should be a concatenation of 'e' and the article id, in this case <value-of select="concat('e',$article-id)"/>. Currently it is <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/elocation-id" role="error" id="elocation-id-tests-xspec-assert">article-meta/elocation-id must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/feature-content-alikl8qp#feature-title-test-1" test="(count(ancestor::article-meta/article-categories/subj-group[@subj-group-type='sub-display-channel']/subject) = 1) and starts-with(.,$sub-disp-channel)" role="error" id="feature-title-test-1">title starts with the sub-display-channel. This is certainly incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title" role="error" id="feature-title-tests-xspec-assert">article-meta[descendant::subj-group[@subj-group-type='display-channel']/subject = $features-subj]//title-group/article-title must be present.</assert>
     </rule>

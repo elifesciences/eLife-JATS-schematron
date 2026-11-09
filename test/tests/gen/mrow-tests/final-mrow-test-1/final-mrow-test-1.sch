@@ -966,7 +966,7 @@
       <report test="not(*) and (normalize-space(.)='')" role="error" id="final-mrow-test-1">mrow cannot be empty.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::mml:mrow" role="error" id="mrow-tests-xspec-assert">mml:mrow must be present.</assert>
     </rule>

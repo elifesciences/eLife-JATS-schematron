@@ -967,7 +967,7 @@
         <name/> element contains a typo ('mmethods') - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p or descendant::td or descendant::th or descendant::title" role="error" id="data-request-checks-xspec-assert">p|td|th|title must be present.</assert>
     </rule>

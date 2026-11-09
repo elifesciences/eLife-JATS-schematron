@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/patent-references-qcd31iv5#err-elem-cit-patent-2-3" test="every $type in person-group/@person-group-type         satisfies $type = ('assignee','inventor')" role="error" id="err-elem-cit-patent-2-3">The only allowed types of person-group elements are "assignee" and "inventor". Reference '<value-of select="ancestor::ref/@id"/>' has &lt;person-group&gt; elements of other types.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='patent']" role="error" id="elem-citation-patent-xspec-assert">element-citation[@publication-type='patent'] must be present.</assert>
     </rule>

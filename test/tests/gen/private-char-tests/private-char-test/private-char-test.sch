@@ -967,7 +967,7 @@
         <name/> element contains private use character(s). They either need removing or changing to the correct character. Private characters: '<value-of select="string-join(distinct-values(tokenize(.,'\p{Zs}')[matches(.,'\p{Co}')]),' ')"/>'.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p[not(descendant::p or descendant::td or descendant::th)] or descendant::td[not(descendant::p)] or descendant::th[not(descendant::p)]" role="error" id="private-char-tests-xspec-assert">p[not(descendant::p or descendant::td or descendant::th)]|td[not(descendant::p)]|th[not(descendant::p)] must be present.</assert>
     </rule>

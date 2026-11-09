@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#isbn-conformity-test" test="e:is-valid-isbn(.)" role="error" id="isbn-conformity-test">pub-id contains an invalid ISBN - '<value-of select="."/>'. Should it be captured as another type of pub-id?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation/pub-id[@pub-id-type='isbn']" role="error" id="isbn-conformity-xspec-assert">element-citation/pub-id[@pub-id-type='isbn'] must be present.</assert>
     </rule>

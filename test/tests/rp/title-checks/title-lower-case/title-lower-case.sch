@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="title-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="title-checks-pattern">
     <rule context="title" id="title-checks">
       <report test="lower-case(.)=." role="warning" sqf:fix="replace-sentence-case" id="title-lower-case">[title-lower-case] Content of &lt;title&gt; element is entirely in lower-case case: Is that correct? '<value-of select="."/>'</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::title" role="error" id="title-checks-xspec-assert">title must be present.</assert>
     </rule>

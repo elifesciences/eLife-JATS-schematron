@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="funding-institution-id-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="funding-institution-id-tests-pattern">
     <rule context="funding-source//institution-id" id="funding-institution-id-tests">
       <report test="*" role="error" id="funding-institution-id-test-3">[funding-institution-id-test-3] institution-id in funding cannot contain elements, only text (which is a valid ROR id). This one contains the following element(s): <value-of select="string-join(*/name(),'; ')"/>.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::funding-source//institution-id" role="error" id="funding-institution-id-tests-xspec-assert">funding-source//institution-id must be present.</assert>
     </rule>

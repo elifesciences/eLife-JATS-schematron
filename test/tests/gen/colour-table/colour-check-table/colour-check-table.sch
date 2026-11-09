@@ -968,7 +968,7 @@
         <value-of select="if (label) then label else 'table'"/> has colour background. Is this correct and appropriate?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap" role="error" id="colour-table-xspec-assert">table-wrap must be present.</assert>
     </rule>

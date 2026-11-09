@@ -968,7 +968,7 @@
         <value-of select="name()"/> is not allowed as a child of pub-date. The only permitted elements are <value-of select="string-join($allowed-children,'; ')"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::pub-date/*" role="error" id="pub-date-child-tests-xspec-assert">pub-date/* must be present.</assert>
     </rule>

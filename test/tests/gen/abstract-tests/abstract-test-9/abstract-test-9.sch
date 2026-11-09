@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/abstracts-digests-and-impact-statements-tiau2k6x#abstract-test-9" test="matches(.,'_{5}')" role="error" id="abstract-test-9">Abstract contains a series of underscores directly next to each other. These are replacement characters input by the bot when the export from eJP contains an unknown or unsupported unicode character. Check the original abstract where these underscores are and ensure that they are replaced with whatever character should be present, or that the underscores are simply removed - <value-of select="."/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front//abstract" role="error" id="abstract-tests-xspec-assert">front//abstract must be present.</assert>
     </rule>

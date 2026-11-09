@@ -1295,7 +1295,7 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="collab-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-checks-pattern">
     <rule context="collab | collab-name" id="collab-checks">
       <report test="contains(.,',') and contains(.,'.') or count(tokenize(.,',')) gt 2" role="warning" sqf:fix="replace-collab-to-string-name" id="collab-check-5">[collab-check-5] <name/> element contains '<value-of select="."/>'. Is it really a collab?</report>
       <sqf:fix id="replace-collab-to-string-name">
@@ -1309,8 +1309,8 @@
           </sqf:replace>
         </sqf:fix>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::collab  or descendant:: collab-name" role="error" id="collab-checks-xspec-assert">collab | collab-name must be present.</assert>
     </rule>

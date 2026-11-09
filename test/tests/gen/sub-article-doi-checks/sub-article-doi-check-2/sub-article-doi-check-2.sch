@@ -972,7 +972,7 @@
       <assert see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#sub-article-doi-check-2" test="contains(.,concat('.',$msid,'.'))" role="error" id="sub-article-doi-check-2">The DOI for peer review piece '<value-of select="ancestor::sub-article/front-stub//article-title"/>' must contain the overall 5-6 digit manuscript tracking number (<value-of select="$msid"/>), but it does not (<value-of select="."/>).</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article/front-stub/article-id[@pub-id-type='doi']" role="error" id="sub-article-doi-checks-xspec-assert">sub-article/front-stub/article-id[@pub-id-type='doi'] must be present.</assert>
     </rule>

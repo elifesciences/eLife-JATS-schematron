@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="graphic-placement-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="graphic-placement-pattern">
     <rule context="graphic" id="graphic-placement">
       <assert test="parent::fig or parent::table-wrap or parent::disp-formula or parent::alternatives[parent::table-wrap or parent::disp-formula]" role="error" id="graphic-test-8">[graphic-test-8] <name/> can only be placed as a child of fig, table-wrap, disp-formula or alternatives (alternatives must in turn must be a child of either table-wrap or disp-formula). This one is a child of <value-of select="parent::*/name()"/>
       </assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::graphic" role="error" id="graphic-placement-xspec-assert">graphic must be present.</assert>
     </rule>

@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#contrib-id-value-conformance" test="@contrib-type=$allowed-values" role="error" id="contrib-id-value-conformance">'<value-of select="@contrib-type"/>' is not a permitted value for a <name/> element. The only permitted values are 'author','senior_editor','editor', and 'reviewer'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::contrib[@contrib-type]" role="error" id="contrib-id-attribute-test-xspec-assert">contrib[@contrib-type] must be present.</assert>
     </rule>

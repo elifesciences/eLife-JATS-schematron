@@ -1295,15 +1295,15 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="abstract-lang-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="abstract-lang-checks-pattern">
     <rule context="abstract[@xml:lang]" id="abstract-lang-checks">
       <let name="xml-lang-value" value="@xml:lang"/>
       <let name="languages" value="'../../../../../src/languages.xml'"/>
       <let name="subtag-description" value="string-join(document($languages)//*:item[@subtag=$xml-lang-value]/*:description,' / ')"/>
       <assert test="$subtag-description!=''" role="error" id="abstract-lang-test-1">[abstract-lang-test-1] The xml:lang attribute on <name/> must contain one of the IETF RFC 5646 subtags. '<value-of select="@xml:lang"/>' is not one of these values.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::abstract[@xml:lang]" role="error" id="abstract-lang-checks-xspec-assert">abstract[@xml:lang] must be present.</assert>
     </rule>

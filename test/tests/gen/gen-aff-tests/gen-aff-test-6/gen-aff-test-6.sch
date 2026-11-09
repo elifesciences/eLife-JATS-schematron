@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#hf1l4-gen-aff-test-6" test="text()" role="error" id="gen-aff-test-6">aff elements cannot contain text. They can only contain elements (label, institution, addr-line, country). This one (<value-of select="@id"/>) contains the text '<value-of select="string-join(text(),'')"/>'</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::aff" role="error" id="gen-aff-tests-xspec-assert">aff must be present.</assert>
     </rule>

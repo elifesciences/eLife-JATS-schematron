@@ -969,7 +969,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#auth-and-member-test" test="empty($auth-and-member)" role="warning" id="auth-and-member-test">Top level author(s) <value-of select="if (count($auth-and-member) gt 1) then concat(string-join($auth-and-member[position() != last()],', '),' and ',$auth-and-member[last()]) else $auth-and-member"/> are also a member of a group author. Is this correct?</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group]" role="error" id="collab-tests-2-xspec-assert">article//article-meta/contrib-group[1][contrib[@contrib-type='author']/*[name()=('collab','collab-wrap')]/contrib-group] must be present.</assert>
     </rule>

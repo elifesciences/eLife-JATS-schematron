@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#inline-formula-length-test-1" test="string-length(descendant::mml:math[1]) gt 89" role="warning" id="inline-formula-length-test-1">Inline formula containing '<value-of select="descendant::mml:math[1]"/>' is particularly long. Consider either splitting this up into multiple equations or capturing this as a display equation, as the display on Continuum will likely be strange.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::inline-formula[not(descendant::mml:mtable) and following-sibling::text()]" role="error" id="inline-formula-length-tests-xspec-assert">inline-formula[not(descendant::mml:mtable) and following-sibling::text()] must be present.</assert>
     </rule>

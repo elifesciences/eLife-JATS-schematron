@@ -971,7 +971,7 @@
         <name/> in event must have a day, month and year element. This one does not.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::event/date" role="error" id="event-date-tests-xspec-assert">event/date must be present.</assert>
     </rule>

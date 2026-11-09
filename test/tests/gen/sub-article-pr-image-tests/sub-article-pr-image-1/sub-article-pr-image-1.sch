@@ -966,7 +966,7 @@
       <report test="matches(.,'[Rr]eview image \d')" role="error" flag="dl-ar" id="sub-article-pr-image-1">Public review contains bold text that mentions an image: <value-of select="."/>. This should be changed to a citation (and if the review image is missing, then it should be added).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='referee-report']/body//bold" role="error" id="sub-article-pr-image-tests-xspec-assert">sub-article[@article-type='referee-report']/body//bold must be present.</assert>
     </rule>

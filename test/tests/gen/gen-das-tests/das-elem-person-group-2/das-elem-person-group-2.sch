@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/data-availability-qi8vg0qp#das-elem-person-group-2" test="count(person-group) gt 1" role="error" id="das-elem-person-group-2">The reference in position <value-of select="$pos"/> of the data availability has <value-of select="count(person-group)"/> person-group elements, which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sec[@sec-type='data-availability']//element-citation[@publication-type='data']" role="error" id="gen-das-tests-xspec-assert">sec[@sec-type='data-availability']//element-citation[@publication-type='data'] must be present.</assert>
     </rule>

@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#author-role-check-1" test="@vocab-term or @vocab-term-identifier or @vocab-identifier" role="error" flag="version-2" id="author-role-check-1">role with <value-of select="string-join(@*[name()=('vocab-term','vocab-term-identifier','vocab-identifier')]/name(),'; ')"/> attributes must have a vocab="credit" attribute. This one does not.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')]" role="error" id="author-role-tests-2-xspec-assert">article[e:get-version(.)!='1']//article-meta//contrib[@contrib-type='author']/role[not(@vocab='credit')] must be present.</assert>
     </rule>

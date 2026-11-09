@@ -971,7 +971,7 @@
         <value-of select="@iso-8601-date"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']/date-in-citation" role="error" id="elem-citation-web-date-in-citation-xspec-assert">element-citation[@publication-type='web']/date-in-citation must be present.</assert>
     </rule>

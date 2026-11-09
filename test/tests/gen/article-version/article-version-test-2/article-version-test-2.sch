@@ -967,7 +967,7 @@
         <name/> must have an article-version-type="publication-state" attribute. This one does not.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-version" role="error" id="article-version-xspec-assert">article-version must be present.</assert>
     </rule>

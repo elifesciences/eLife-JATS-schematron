@@ -967,7 +967,7 @@
         <name/> that is a descendant of ref must be captured as a child of person-group. This one has the parent <value-of select="parent::*/name()"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::collab-name" role="error" id="collab-name-tests-xspec-assert">collab-name must be present.</assert>
     </rule>

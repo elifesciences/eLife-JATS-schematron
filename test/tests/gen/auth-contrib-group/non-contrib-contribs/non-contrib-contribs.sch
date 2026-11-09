@@ -973,7 +973,7 @@
         <value-of select="$article-type"/> type articles should not contain author contributions.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group[1]" role="error" id="auth-contrib-group-xspec-assert">article/front/article-meta/contrib-group[1] must be present.</assert>
     </rule>

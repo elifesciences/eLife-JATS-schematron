@@ -967,7 +967,7 @@
         <name/> element contains 'ad libitum' - this should not be in italics (eLife house style).</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::italic[not(ancestor::ref) and not(ancestor::sub-article)]" role="error" id="italic-house-style-xspec-assert">italic[not(ancestor::ref) and not(ancestor::sub-article)] must be present.</assert>
     </rule>

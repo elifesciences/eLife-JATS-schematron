@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="history-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="history-tests-pattern">
     <rule context="front[e:is-reviewed-preprint(.)]/article-meta/history" id="history-tests">
       <assert test="count(date[@date-type='sent-for-review']) = 1" role="error" id="prc-history-date-test-1">[prc-history-date-test-1] history must contain one (and only one) date[@date-type='sent-for-review'] in Reviewed preprints.</assert>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::front[e:is-reviewed-preprint(.)]/article-meta/history" role="error" id="history-tests-xspec-assert">front[e:is-reviewed-preprint(.)]/article-meta/history must be present.</assert>
     </rule>

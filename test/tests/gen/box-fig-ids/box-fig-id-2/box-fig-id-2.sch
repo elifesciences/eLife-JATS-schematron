@@ -967,7 +967,7 @@
       <assert see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#box-fig-id-2" test="contains(@id,$box-id)" role="error" id="box-fig-id-2">fig id (<value-of select="@id"/>) does not contain its ancestor boxed-text id. Please ensure the first part of the id contains '<value-of select="$box-id"/>'.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/body//boxed-text//fig[not(@specific-use='child-fig')]" role="error" id="box-fig-ids-xspec-assert">article/body//boxed-text//fig[not(@specific-use='child-fig')] must be present.</assert>
     </rule>

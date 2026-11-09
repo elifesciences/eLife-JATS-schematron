@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/affiliations-js7opgq6#h5tdf-aff-test-1" test="parent::contrib-group//contrib//xref/@rid = @id" role="error" id="aff-test-1">aff elements that are direct children of contrib-group must have an xref in that contrib-group pointing to them.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article-meta/contrib-group/aff" role="error" id="aff-tests-xspec-assert">article-meta/contrib-group/aff must be present.</assert>
     </rule>

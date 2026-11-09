@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/review-materials-r9uiav3j#ed-eval-front-test-4" test="e:is-prc(.) and not($article-type='review-article') and not(kwd-group[@kwd-group-type='evidence-strength'])" role="error" flag="dl-ar" id="ed-eval-front-test-4">eLife Assessment front-stub does not contain a strength term keyword group, which must be incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::sub-article[@article-type='editor-report']/front-stub" role="error" id="ed-eval-front-tests-xspec-assert">sub-article[@article-type='editor-report']/front-stub must be present.</assert>
     </rule>

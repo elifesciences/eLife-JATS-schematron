@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/website-references-ua2hs8qo#final-err-elem-cit-web-8-1" test="count(article-title)=1" role="error" id="final-err-elem-cit-web-8-1">Each  &lt;element-citation&gt; of type 'web' must contain one and only one &lt;article-title&gt; element. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(article-title)"/> &lt;article-title&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='web']" role="error" id="elem-citation-web-xspec-assert">element-citation[@publication-type='web'] must be present.</assert>
     </rule>

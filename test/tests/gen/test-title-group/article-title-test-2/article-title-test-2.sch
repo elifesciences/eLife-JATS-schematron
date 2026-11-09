@@ -971,7 +971,7 @@
       <report test="article-title[text() != ''] = lower-case(article-title[1])" role="warning" id="article-title-test-2">Article title is entirely in lower case, is this correct? - <value-of select="article-title"/>.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/title-group" role="error" id="test-title-group-xspec-assert">article/front/article-meta/title-group must be present.</assert>
     </rule>

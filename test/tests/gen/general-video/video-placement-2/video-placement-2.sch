@@ -974,7 +974,7 @@
         <value-of select="$label"/> appears after its first citation but not directly after its first citation. Is this correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')]" role="error" id="general-video-xspec-assert">media[starts-with(@mimetype,'video')][matches(@id,'^video[0-9]{1,3}$')] must be present.</assert>
     </rule>

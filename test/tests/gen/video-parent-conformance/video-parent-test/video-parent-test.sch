@@ -968,7 +968,7 @@
         <value-of select="replace(label[1],'\.$','')"/> is a child of a &lt;<value-of select="$parent"/>&gt; element. It can only be a child of sec, fig-group, body, boxed-text, or app.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::media[starts-with(@mimetype,'video')]" role="error" id="video-parent-conformance-xspec-assert">media[starts-with(@mimetype,'video')] must be present.</assert>
     </rule>

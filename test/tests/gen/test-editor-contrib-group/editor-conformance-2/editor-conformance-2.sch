@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/article-contributors-m3y6vxlc#editor-conformance-2" test="count(contrib[@contrib-type='editor']) = 1" role="warning" id="editor-conformance-2">contrib-group[@content-type='section'] should contain one (and only 1) Reviewing Editor (contrib[@contrib-type='editor']). This one doesn't which is almost definitely incorrect and needs correcting.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/front/article-meta/contrib-group[@content-type='section']" role="error" id="test-editor-contrib-group-xspec-assert">article/front/article-meta/contrib-group[@content-type='section'] must be present.</assert>
     </rule>

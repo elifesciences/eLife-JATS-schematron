@@ -970,7 +970,7 @@
         <value-of select="label"/> does not appear in sequence which is incorrect. Relative to the other numbered tables it is placed in position <value-of select="$pos"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')]" role="error" id="body-table-pos-conformance-xspec-assert">article[not(@article-type=$notice-article-types)]/body//table-wrap[matches(@id,'^table[\d]+$')] must be present.</assert>
     </rule>

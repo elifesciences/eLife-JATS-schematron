@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="collab-name-tests-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="collab-name-tests-pattern">
     <rule context="collab-name" id="collab-name-tests">
       <report test="not(ancestor::ref) and not(ancestor::article-meta) and not(ancestor::front-stub)" role="error" id="collab-name-test-3">[collab-name-test-3] <name/> must only be captured ass a descendant of ref or article-meta or front-stub. This one is not.</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::collab-name" role="error" id="collab-name-tests-xspec-assert">collab-name must be present.</assert>
     </rule>

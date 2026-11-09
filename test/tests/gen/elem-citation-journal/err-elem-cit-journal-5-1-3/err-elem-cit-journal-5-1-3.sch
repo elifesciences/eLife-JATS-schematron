@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/journal-references-i098980k#err-elem-cit-journal-5-1-3" test="count(volume) le 1" role="error" id="err-elem-cit-journal-5-1-3">There may be no more than one  &lt;volume&gt; element within a &lt;element-citation&gt; of type 'journal'. Reference '<value-of select="ancestor::ref/@id"/>' has <value-of select="count(volume)"/> &lt;volume&gt; elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='journal']" role="error" id="elem-citation-journal-xspec-assert">element-citation[@publication-type='journal'] must be present.</assert>
     </rule>

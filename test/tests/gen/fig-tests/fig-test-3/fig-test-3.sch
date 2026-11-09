@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-test-3" test="not($article-type = ($features-article-types,$notice-article-types)) and not(label)" role="error" id="fig-test-3">fig must have a label.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig[not(ancestor::sub-article)]" role="error" id="fig-tests-xspec-assert">fig[not(ancestor::sub-article)] must be present.</assert>
     </rule>

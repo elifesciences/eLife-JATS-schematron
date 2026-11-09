@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#r-test-6" test="matches(lower-case(publisher-name[1]),'r: a language and environment for statistical computing')" role="error" id="R-test-6">software ref '<value-of select="ancestor::ref/@id"/>' has a publisher-name '<value-of select="publisher-name"/>' but this is the data-title.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>

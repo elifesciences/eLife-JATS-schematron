@@ -1295,13 +1295,13 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="ref-citation-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="ref-citation-checks-pattern">
     <rule context="xref[@ref-type='bibr']" id="ref-citation-checks">
       <let name="rid" value="@rid"/>
       <report test="((sup[matches(.,'^\d+$')] and .=sup) or (matches(.,'^\d+$') and ancestor::sup)) and (preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')] or ancestor::sup/preceding::text()[1][matches(lower-case(.),'([×x⋅]\s?[0-9]|10)$')])" role="warning" sqf:fix="strip-tags" id="ref-cite-superscript-0">[ref-cite-superscript-0] This reference citation contains superscript number(s), but is preceed by a formula. Should the xref be removed and the superscript numbers be retained (as an exponent)?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::xref[@ref-type='bibr']" role="error" id="ref-citation-checks-xspec-assert">xref[@ref-type='bibr'] must be present.</assert>
     </rule>

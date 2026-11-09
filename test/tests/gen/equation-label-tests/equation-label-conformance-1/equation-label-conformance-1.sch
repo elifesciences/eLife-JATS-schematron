@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/maths-0gfptlyl#equation-label-conformance-1" test="(ancestor::app) and (some $x in preceding::disp-formula/label[ancestor::app[@id=$app-id]] satisfies (replace($x,'\p{P}','') = $label-2))" role="warning" id="equation-label-conformance-1">Duplicated display formula labels - <value-of select="."/> is present more than once in the same appendix. Is that correct?</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article[not(@article-type) or @article-type!='correction']//disp-formula/label" role="error" id="equation-label-tests-xspec-assert">article[not(@article-type) or @article-type!='correction']//disp-formula/label must be present.</assert>
     </rule>

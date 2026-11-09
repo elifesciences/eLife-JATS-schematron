@@ -967,7 +967,7 @@
       <assert test="@id = concat('s',$pos)" role="error" id="back-top-level-sec-id-test">This sec id must be a concatenation of 's' and this element's position relative to other top level secs. It must be <value-of select="concat('s',$pos)"/>.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::article/back/sec" role="error" id="back-top-level-sec-ids-xspec-assert">article/back/sec must be present.</assert>
     </rule>

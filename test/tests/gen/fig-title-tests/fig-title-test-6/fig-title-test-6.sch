@@ -968,7 +968,7 @@
       <report see="https://elifeproduction.slab.com/posts/figures-and-figure-supplements-8gb4whlr#fig-title-test-6" test="matches(.,'^[Pp]anel ')" role="warning" id="fig-title-test-6">title for <value-of select="$label"/> begins with '<value-of select="substring-before(.,' ')"/>' - <value-of select="."/>. It is very likely that this requires an overall title instead.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig/caption/title" role="error" id="fig-title-tests-xspec-assert">fig/caption/title must be present.</assert>
     </rule>

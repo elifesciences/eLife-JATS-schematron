@@ -1295,12 +1295,12 @@
       </sqf:replace>
         </sqf:fix>
   </sqf:fixes>
-  <pattern id="fig-label-checks-pattern">
+  <sch:pattern xmlns:sch="http://purl.oclc.org/dsdl/schematron" id="fig-label-checks-pattern">
     <rule context="fig/label" id="fig-label-checks">
       <report test="matches(lower-case(.),'^\s*table')" role="warning" id="fig-label-table">[fig-label-table] Label for figure ('<value-of select="."/>') starts with table. Should this content be captured as a table instead of a figure?</report>
     </rule>
-  </pattern>
-  <pattern id="root-pattern">
+  </sch:pattern>
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fig/label" role="error" id="fig-label-checks-xspec-assert">fig/label must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <assert see="https://elifeproduction.slab.com/posts/references-ghxfa7uy#err-elem-cit-high-1" test="count(*) = count(element-citation)" role="error" id="err-elem-cit-high-1">The only element that is allowed as a child of &lt;ref&gt; is &lt;element-citation&gt;. Reference '<value-of select="@id"/>' has other elements.</assert>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::ref" role="error" id="ref-xspec-assert">ref must be present.</assert>
     </rule>

@@ -966,7 +966,7 @@
       <report see="https://elifeproduction.slab.com/posts/ethics-se0ia1cs#ethics-info-supplemental-conformity" test="matches(.,'[Ss]upplemental [Ffigure]')" role="warning" id="ethics-info-supplemental-conformity">Ethics statement contains the phrase 'supplemental figure'. This will almost certainly need updating to account for eLife's figure labelling.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-info-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
     </rule>

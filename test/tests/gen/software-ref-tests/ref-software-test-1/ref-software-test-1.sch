@@ -967,7 +967,7 @@
       <report see="https://elifeproduction.slab.com/posts/software-references-aymhzmlh#ref-software-test-1" test="source and publisher-name" role="error" id="ref-software-test-1">software ref '<value-of select="ancestor::ref/@id"/>' has both a source - <value-of select="source[1]"/> - and a publisher-name - <value-of select="publisher-name[1]"/> - which is incorrect. It should have either one or the other.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::element-citation[@publication-type='software']" role="error" id="software-ref-tests-xspec-assert">element-citation[@publication-type='software'] must be present.</assert>
     </rule>

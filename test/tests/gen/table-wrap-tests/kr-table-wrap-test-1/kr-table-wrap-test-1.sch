@@ -974,7 +974,7 @@
       <report see="https://elifeproduction.slab.com/posts/tables-3nehcouh#kr-table-wrap-test-1" test="contains($id,'keyresource') and not(matches($lab,'^Key resources table$|^Appendix [0-9]{1,4}—key resources table$'))" role="error" id="kr-table-wrap-test-1">table-wrap has an id '<value-of select="$id"/>' but its label is not in the format 'Key resources table' or 'Appendix 0—key resources table', which is incorrect.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::table-wrap" role="error" id="table-wrap-tests-xspec-assert">table-wrap must be present.</assert>
     </rule>

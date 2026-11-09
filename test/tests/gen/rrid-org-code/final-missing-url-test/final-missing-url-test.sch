@@ -974,7 +974,7 @@
         <name/> element contains the text 'URL to be added' or 'citation to be added' - <value-of select="."/>. If this is a software heritage link, then please ensure that it is added. If it is a different URL/citation, then the eLife team should check with the authors to determine what needs to be added.</report>
     </rule>
   </pattern>
-  <pattern id="root-pattern">
+  <pattern xmlns="" id="root-pattern">
     <rule context="root" id="root-rule">
       <assert test="descendant::p or descendant::td or descendant::th" role="error" id="rrid-org-code-xspec-assert">p|td|th must be present.</assert>
     </rule>
