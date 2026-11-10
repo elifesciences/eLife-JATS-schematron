@@ -1,7 +1,7 @@
 <?oxygen SCHSchema="das-extra-p.sch"?>
-<!--Context: sec[@sec-type='data-availability' and not(descendant::element-citation)]/p
+<!--Context: sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p
 Test: report    preceding-sibling::p
-Message: Is this extra p element in the data availability section required? There are no dataset references within the section. -->
+Message: Is this extra p element in the data availability section required? There are no reference citations within the section. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
   <article>
     <sec id="s7" sec-type="data-availability">
@@ -9,5 +9,24 @@ Message: Is this extra p element in the data availability section required? Ther
       <p>Statement.</p>
       <p>The following datasets were generated:</p>
     </sec>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Author</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <year iso-8601-date="2026">2026</year>
+          <article-title>eLife paper</article-title>
+          <source>eLife</source>
+          <volume>15</volume>
+          <elocation-id>RP123456</elocation-id>
+          <pub-id pub-id-type="doi">10.7554/eLife.123456</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
   </article>
 </root>

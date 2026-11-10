@@ -6152,9 +6152,9 @@
       
       <report test="($ref-count gt 1) and not(matches(.,'^The following previously published datasets were used:\s?$'))" role="error" id="das-used-p-2">[das-used-p-2] p element before used datasets in data availability sections that contain more than 1 used dataset should contain 'The following previously published datasets were used:', but this one contains '<value-of select="."/>'.</report>
       
-    </rule></pattern><pattern id="data-availability-extra-p-pattern"><rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
+    </rule></pattern><pattern id="data-availability-extra-p-pattern"><rule context="sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" id="data-availability-extra-p">
       
-      <report test="preceding-sibling::p" role="warning" id="das-extra-p">[das-extra-p] Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
+      <report test="preceding-sibling::p" role="warning" id="das-extra-p">[das-extra-p] Is this extra p element in the data availability section required? There are no reference citations within the section.</report>
       
     </rule></pattern><pattern id="data-availability-without-extra-p-pattern"><rule context="sec[@sec-type='data-availability' and descendant::element-citation]" id="data-availability-without-extra-p">
       

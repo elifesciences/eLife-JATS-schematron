@@ -8042,9 +8042,9 @@
     </rule>
   </pattern>
   <pattern id="data-availability-extra-p-pattern">
-    <rule context="sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" id="data-availability-extra-p">
+    <rule context="sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" id="data-availability-extra-p">
       
-      <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no dataset references within the section.</report>
+      <report test="preceding-sibling::p" role="warning" id="das-extra-p">Is this extra p element in the data availability section required? There are no reference citations within the section.</report>
       
     </rule>
   </pattern>
@@ -9443,7 +9443,7 @@
       <assert test="descendant::sec[@sec-type='data-availability']/p[not(*)]" role="error" id="data-availability-p-xspec-assert">sec[@sec-type='data-availability']/p[not(*)] must be present.</assert>
       <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]]" role="error" id="data-availability-generated-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]] must be present.</assert>
       <assert test="descendant::article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]]" role="error" id="data-availability-used-p-xspec-assert">article//sec[@sec-type='data-availability']/p[position() gt 1 and not(element-citation) and not(following-sibling::p[element-citation[@specific-use=('isSupplementedBy','generated')]]) and following-sibling::p[element-citation[@specific-use=('references','analyzed')]]] must be present.</assert>
-      <assert test="descendant::sec[@sec-type='data-availability' and not(descendant::element-citation)]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::element-citation)]/p must be present.</assert>
+      <assert test="descendant::sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p" role="error" id="data-availability-extra-p-xspec-assert">sec[@sec-type='data-availability' and not(descendant::xref[@ref-type='bibr'])]/p must be present.</assert>
       <assert test="descendant::sec[@sec-type='data-availability' and descendant::element-citation]" role="error" id="data-availability-without-extra-p-xspec-assert">sec[@sec-type='data-availability' and descendant::element-citation] must be present.</assert>
       <assert test="descendant::fn-group[@content-type='ethics-information']/fn" role="error" id="ethics-info-xspec-assert">fn-group[@content-type='ethics-information']/fn must be present.</assert>
       <assert test="descendant::sec/title" role="error" id="sec-title-conformity-xspec-assert">sec/title must be present.</assert>
