@@ -11,7 +11,7 @@ Message: Is this extra p element in the data availability section required? Ther
     <sec id="s8" sec-type="data-availability">
       <title>Data availability</title>
       <p>Statement.</p>
-      <p>The following datasets were generated: <xref ref-type="bibr" rid="bib2">Author A, 2026</xref></p>
+      <p>The following datasets were generated: <xref ref-type="bibr" rid="bib1">Author, 2025</xref></p>
     </sec>
     <ref-list>
       <title>References</title>
@@ -23,10 +23,10 @@ Message: Is this extra p element in the data availability section required? Ther
               <given-names>A</given-names>
             </name>
           </person-group>
-          <year iso-8601-date="2026">2026</year>
+          <year iso-8601-date="2025">2025</year>
           <article-title>eLife paper</article-title>
           <source>eLife</source>
-          <volume>15</volume>
+          <volume>14</volume>
           <elocation-id>RP123456</elocation-id>
           <pub-id pub-id-type="doi">10.7554/eLife.123456</pub-id>
         </element-citation>
@@ -36,7 +36,7 @@ Message: Is this extra p element in the data availability section required? Ther
           <person-group person-group-type="author">
             <name>
               <surname>Author</surname>
-              <given-names>A</given-names>
+              <given-names>B</given-names>
             </name>
           </person-group>
           <year iso-8601-date="2026">2026</year>
