@@ -1,14 +1,17 @@
 <?oxygen SCHSchema="pre-das-dryad-conformity.sch"?>
 <!--Context: sec[@sec-type='data-availability']/p[1]
-Test: report    matches(.,'[Dd]ryad') and not(parent::sec//element-citation[contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))]]) and not(ancestor::back//ref-list/ref[element-citation[@publication-type='data' and (contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))])]]/@id = xref[@ref-type='bibr']/@rid)
-Message: Data Availability Statement contains the word Dryad, but there is no data citation in the dataset section with a dryad doi and/or database name containing 'Dryad'. If there is a dryad dataset present, ensure that it is captured correctly, otherwise please query the authors for the reference details. -->
+Test: report    matches(.,'[Dd]ryad') and not(ancestor::back//ref-list/ref[element-citation[@publication-type='data' and (contains(source[1],'Dryad') or pub-id[@pub-id-type='doi' and (contains(.,'10.7272') or contains(.,'10.5061/dryad'))])]]/@id = parent::sec//xref[@ref-type='bibr']/@rid)
+Message: Data Availability Statement contains the word Dryad, but there is no citation in the dataset section for a data reference with a Dryad doi and/or database name containing 'Dryad'. If there is a Dryad dataset present, ensure it is captured correctly, otherwise please query the authors for the reference details. -->
 <root xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0">
   <article>
-    <sec sec-type="data-availability">
-      <p>Dryad</p>
-      <element-citation>
-        <pub-id pub-id-type="doi">10.7272/....</pub-id>
-      </element-citation>
-    </sec>
+    <back>
+      <sec sec-type="data-availability">
+        <p>Dryad</p>
+        <p>The following datasets were generated: <xref ref-type="bibr" rid="bib1">Wu and Turrigiano, 2026</xref>.</p>
+      </sec>
+      <ref-list>
+        <ref id="bib1"><element-citation publication-type="data" specific-use="generated"><person-group person-group-type="author"><name><surname>Wu</surname><given-names>CH</given-names></name><name><surname>Turrigiano</surname><given-names>GG</given-names></name></person-group><year iso-8601-date="2026">2026</year><data-title>Processed two-photon calcium trace data from: Learning-associated flexibility of cortical taste coding is impaired in shank3 knockout mice</data-title><source>Dryad Digital Repository</source><pub-id pub-id-type="doi">10.5061/dryad.h18932044</pub-id></element-citation></ref>
+      </ref-list>
+    </back>
   </article>
 </root>
